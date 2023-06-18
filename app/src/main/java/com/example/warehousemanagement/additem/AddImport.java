@@ -1,11 +1,15 @@
 package com.example.warehousemanagement.additem;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
+import com.example.warehousemanagement.TrangChu;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +28,7 @@ import java.io.IOException;
 public class AddImport extends AppCompatActivity {
     private EditText etName, etCode, etDate, etStock, etNote, etProducer, etStatus, etCategory;
     private Button btnSubmit;
+    String header = DangNhap.account.getToken();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,6 +79,7 @@ public class AddImport extends AppCompatActivity {
                         RequestBody requestBody = RequestBody.create(mediaType, jsonObject.toString());
                         Request request = new Request.Builder()
                                 .url("http://14.225.211.190:4001/api/product")
+                                .addHeader("Authorization", "Bearer" +  header)
                                 .post(requestBody)
                                 .build();
 
@@ -81,9 +87,11 @@ public class AddImport extends AppCompatActivity {
                             Response response = client.newCall(request).execute();
                             // Xử lý phản hồi từ máy chủ (response)
                             if (response.isSuccessful()) {
-                                // Yêu cầu thành công
+                                System.out.println(jsonObject);
+                                Intent intent = new Intent(AddImport.this, TrangChu.class);
+                                startActivity(intent);
                             } else {
-                                // Yêu cầu thất bại
+                                System.out.println("lỗi ");
                             }
                         } catch (IOException e) {
                             e.printStackTrace();

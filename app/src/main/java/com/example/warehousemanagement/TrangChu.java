@@ -48,7 +48,7 @@ public class TrangChu extends AppCompatActivity {
             }
         });
 
-//        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.home_apps);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                 public boolean onNavigationItemSelected( MenuItem item) {
