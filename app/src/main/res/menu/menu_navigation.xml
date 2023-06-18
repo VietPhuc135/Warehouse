@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/home_apps"
+        android:title="Home"
+        android:icon="@drawable/home"/>
+    <item android:id="@+id/list_apps"
+        android:title="Store manager"
+        android:icon="@drawable/ic_baseline_format_list"/>
+    <item android:id="@+id/info_app"
+        android:title="User Information"
+        android:icon="@drawable/man"/>
+
+</menu>
