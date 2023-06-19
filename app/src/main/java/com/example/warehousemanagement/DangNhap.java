@@ -67,7 +67,7 @@ public class DangNhap extends AppCompatActivity {
                 String password = "sonha12";
 //                        editTextPassword.getText().toString();
 
-                if (editTextEmail.getText() == null && editTextPassword.getText() == null) {
+                if (editTextEmail.getText().equals("") && editTextPassword.getText().equals("")) {
                     View view = findViewById(R.id.password);
 //
 //                    Snackbar snackbar = Snackbar.make(view, "", Snackbar.LENGTH_SHORT);
@@ -87,7 +87,9 @@ public class DangNhap extends AppCompatActivity {
 //                    Snackbar.SnackbarLayout snackbarLay = (Snackbar.SnackbarLayout) snackbar.getView();
 //                    snackbarLay.addView(customSnackbarView, 0);
 //                    snackbar.show();
-                    System.out.println("khoong ddc null ");
+                    System.out.println("khong duoc null ");
+                    Intent intent1 = new Intent(DangNhap.this, Option.class);
+                    startActivity(intent1);
                 } else {
                     loginAPI(email, password);
 
