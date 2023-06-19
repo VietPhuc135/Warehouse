@@ -37,7 +37,7 @@ public class QLMarket extends AppCompatActivity {
         setContentView(R.layout.activity_market_manager);
         marketList = findViewById(R.id.lvMarket);
         marketNames = new ArrayList<>();
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, marketNames);
+        adapter = new ArrayAdapter<>(this, R.layout.activity_list_market, marketNames);
         marketList.setAdapter(adapter);
 
         // Gọi phương thức để thực hiện yêu cầu HTTP và hiển thị danh sách
