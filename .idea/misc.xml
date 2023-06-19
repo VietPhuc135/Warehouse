@@ -4,6 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_add_item.xml" value="0.17708333333333334" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_additem.xml" value="0.11979166666666667" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_edititem.xml" value="0.11979166666666667" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_editmarket.xml" value="0.17708333333333334" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_list_import_export_view_user.xml" value="0.1171875" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_list_storage_market.xml" value="0.1171875" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_login.xml" value="0.176" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_main.xml" value="0.1171875" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_market_manager.xml" value="0.12" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_scan_items.xml" value="0.1171875" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_storage_manager.xml" value="0.1171875" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_store_management.xml" value="0.17708333333333334" />
         <entry key="..\:/WarehouseManagement/WarehouseManagement/app/src/main/res/drawable/selector.xml" value="0.1" />
         <entry key="..\:/WarehouseManagement/WarehouseManagement/app/src/main/res/layout/activity_additem.xml" value="0.24791666666666667" />

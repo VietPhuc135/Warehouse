@@ -20,6 +20,7 @@ public class TrangChu extends AppCompatActivity {
 
     Button btnDN, btnDangki;
     ImageView imgImport, imgExport, imgProduct, imgUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +75,7 @@ public class TrangChu extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),
 
                                 QLStore.class));
-  overridePendingTransition(0, 0);
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.info_app:
                         startActivity(new Intent(getApplicationContext(),
