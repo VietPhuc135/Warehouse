@@ -7,6 +7,23 @@
     android:orientation="vertical"
     android:background="@drawable/bgstore">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/allura"
+        android:text="Store Manager"
+        android:textStyle="bold"
+        android:textColor="#F57C00"
+        android:textSize="40sp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+
     <GridLayout
         android:id="@+id/mainGrid"
         android:layout_width="match_parent"
@@ -31,7 +48,7 @@
             android:background="#FFFFFF">
 
             <ImageView
-                android:id="@+id/imgImport"
+                android:id="@+id/imgStorage"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/warehouse"/>
@@ -54,7 +71,7 @@
             android:background="#FFFFFF">
 
             <ImageView
-                android:id="@+id/imgExport"
+                android:id="@+id/imgMarket"
                 android:layout_width="85dp"
                 android:layout_height="85dp"
                 android:src="@drawable/market" />

@@ -14,7 +14,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginTop="9dp"
         android:fontFamily="@font/lobster"
-        android:text="Product Manager"
+        android:text="Storage Manager"
         android:layout_weight="0.5"
         android:textColor="#000000"
         android:textSize="30dp"
@@ -29,14 +29,14 @@
         android:gravity="center">
 
         <EditText
-            android:id="@+id/searchProduct"
+            android:id="@+id/searchStorage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:background="#11AA9E9E"
             android:drawableLeft="@drawable/ic_search_black_24dp"
             android:ems="15"
-            android:hint="Search Product"
+            android:hint="Search Storage"
             android:inputType="textPersonName"
             android:gravity="center"
             android:textColor="#000000"
@@ -46,7 +46,7 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:id="@+id/imgArrageProduct"
+            android:id="@+id/imgArrageStorage"
             android:layout_marginLeft="10dp"
             android:src="@drawable/arrange"/>
     </LinearLayout>
@@ -54,7 +54,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lvProduct"
+        android:id="@+id/lvStorage"
         android:textColor="#000000"
         android:layout_weight="9"/>
 

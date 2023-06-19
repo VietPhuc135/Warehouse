@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/backgroundgradient">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="222dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="9dp"
+        android:fontFamily="@font/allura"
+        android:text="Warehouse Management"
+        android:textColor="#C1F8B0B0"
+        android:textSize="45dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="97dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <EditText
+        android:id="@+id/searchfield"
+        android:layout_width="330dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="9dp"
+        android:background="#11AA9E9E"
+        android:drawableLeft="@drawable/ic_search_black_24dp"
+        android:ems="25"
+        android:hint="Search Items"
+        android:inputType="textPersonName"
+        android:gravity="center"
+        android:textColor="#fff"
+        android:textColorHint="#F7F2F2"
+        android:textSize="16dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchbtnn"
+        android:layout_marginLeft="150dp"
+        android:text="Search"
+        android:textColor="#F7F2F2"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerViews"
+        android:layout_marginTop="40dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+</LinearLayout>
