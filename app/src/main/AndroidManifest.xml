@@ -15,11 +15,14 @@
         android:theme="@style/Theme.Design.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".QLMarket"
+            android:name=".Option"
             android:exported="true"/>
         <activity
+            android:name=".QLMarket"
+            android:exported="true" />
+        <activity
             android:name=".QLStorage"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".additem.DanhSachImport"
             android:exported="true" />
@@ -41,7 +44,6 @@
         <activity
             android:name=".profile.ProfilePage"
             android:exported="true" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true">

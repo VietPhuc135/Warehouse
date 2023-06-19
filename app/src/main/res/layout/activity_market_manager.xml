@@ -63,6 +63,7 @@
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
 <!--        android:textSize="20dp"-->
+
 <!--        android:textColor="#79FFFFFF"-->
 <!--        android:layout_alignParentBottom="true"-->
 <!--        app:itemBackground="@color/purple_500"-->
