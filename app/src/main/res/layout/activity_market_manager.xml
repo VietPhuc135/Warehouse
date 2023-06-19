@@ -57,6 +57,7 @@
         android:id="@+id/lvMarket"
         android:textColor="#431919"
         android:layout_weight="9"/>
+<!--<<<<<<< HEAD-->
 
 <!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
 <!--        android:id="@+id/bottom_navigation"-->
@@ -70,4 +71,6 @@
 <!--        app:itemIconTint="@drawable/selector"-->
 <!--        app:itemTextColor="@drawable/selector"-->
 <!--        app:menu="@menu/menu_navigation" />-->
+<!--=======-->
+<!--&gt;>>>>>> main-->
 </LinearLayout>
