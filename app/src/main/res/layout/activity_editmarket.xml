@@ -12,56 +12,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/lobster"
-        android:text="Add user"
+        android:text="Edtit market"
         android:textColor="#F1E6E6"
         android:textSize="30dp"
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/etUsername"
+        android:id="@+id/etCodeMarket2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username"/>
+        android:hint="Code"/>
     <requestFocus/>
 
     <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password" />
-
-    <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email" />
-
-    <EditText
-        android:id="@+id/etName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Name" />
-
-    <EditText
-        android:id="@+id/etRole"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Role" />
-
-    <EditText
-        android:id="@+id/etAddress"
+        android:id="@+id/etAddressMarket2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Address" />
 
-    <EditText
-        android:id="@+id/etMarketID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="MarketId" />
-
     <Button
-        android:id="@+id/btnSubmitUser"
+        android:id="@+id/btnSubmitMarket2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit" />

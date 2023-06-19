@@ -72,8 +72,9 @@ public class TrangChu extends AppCompatActivity {
                         return true;
                     case R.id.list_apps:
                         startActivity(new Intent(getApplicationContext(),
+
                                 QLStore.class));
-                        overridePendingTransition(0, 0);
+  overridePendingTransition(0, 0);
                         return true;
                     case R.id.info_app:
                         startActivity(new Intent(getApplicationContext(),
