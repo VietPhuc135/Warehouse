@@ -1,6 +1,7 @@
 package com.example.warehousemanagement;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,11 +18,8 @@ import com.google.android.material.navigation.NavigationView;
 
 public class TrangChu extends AppCompatActivity {
 
-    BottomNavigationView bottomNavigationView;
-
     Button btnDN, btnDangki;
     ImageView imgImport, imgExport, imgProduct, imgUser;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,33 +41,11 @@ public class TrangChu extends AppCompatActivity {
         imgExport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(TrangChu.this, XuatSanPham.class);
-                startActivity(intent1);
+                Intent intent = new Intent(TrangChu.this, XuatSanPham.class);
+                startActivity(intent);
             }
         });
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.home_apps);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-                public boolean onNavigationItemSelected( MenuItem item) {
-                    switch (item.getItemId()) {
-                        case R.id.home_apps:
-                            return true;
-//                    case R.id.list_apps:
-//                        startActivity(new Intent(getApplicationContext(),
-//                                StoreManager.class));
-//                        overridePendingTransition(0, 0);
-//                        return true;
-                        case R.id.info_app:
-                            startActivity(new Intent(getApplicationContext(),
-                                    ProfilePage.class));
-                            overridePendingTransition(0, 0);
-                            return true;
-                    }
-                    return false;
-    }
-}
-        );
         imgProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,6 +59,29 @@ public class TrangChu extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent3 = new Intent(TrangChu.this, QLNguoiDung.class);
                 startActivity(intent3);
+            }
+        });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.home_apps);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home_apps:
+                        return true;
+                    case R.id.list_apps:
+                        startActivity(new Intent(getApplicationContext(),
+                                QLStore.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.info_app:
+                        startActivity(new Intent(getApplicationContext(),
+                                ProfilePage.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
             }
         });
     }
