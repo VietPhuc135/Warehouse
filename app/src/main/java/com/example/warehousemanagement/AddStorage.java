@@ -23,18 +23,18 @@ import okhttp3.Response;
 
 public class AddStorage extends AppCompatActivity {
     EditText code, address ;
-    Button btnSubmitStorage2;
+    Button btnSubmitStorage;
     String header = DangNhap.account.getToken();
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_editstorage);
-        code = findViewById(R.id.etCodeStorage2);
-        address = findViewById(R.id.etAddressStorage2);
-        btnSubmitStorage2 = findViewById(R.id.btnSubmitStorage2);
+        setContentView(R.layout.activity_addstorage);
+        code = findViewById(R.id.etCodeStorage);
+        address = findViewById(R.id.etAddressStorage);
+        btnSubmitStorage = findViewById(R.id.btnSubmitStorage);
 
-        btnSubmitStorage2.setOnClickListener(new View.OnClickListener() {
+        btnSubmitStorage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Lấy dữ liệu từ EditText

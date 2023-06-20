@@ -25,18 +25,18 @@ import okhttp3.Response;
 
 public class AddMarket extends AppCompatActivity {
     EditText code, address ;
-    Button btnSubmitMarket2;
+    Button btnSubmitMarket;
     String header = DangNhap.account.getToken();
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_editmarket);
-        code = findViewById(R.id.etCodeMarket2);
-        address = findViewById(R.id.etCodeMarket2);
-        btnSubmitMarket2 = findViewById(R.id.btnSubmitMarket2);
+        setContentView(R.layout.activity_addmarket);
+        code = findViewById(R.id.etCodeMarket);
+        address = findViewById(R.id.etCodeMarket);
+        btnSubmitMarket = findViewById(R.id.btnSubmitMarket);
 
-        btnSubmitMarket2.setOnClickListener(new View.OnClickListener() {
+        btnSubmitMarket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Lấy dữ liệu từ EditText

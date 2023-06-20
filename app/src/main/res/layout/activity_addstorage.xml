@@ -21,14 +21,20 @@
         android:id="@+id/etCodeStorage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Code"/>
+        android:hint="Code"
+        android:padding="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
     <requestFocus/>
 
     <EditText
         android:id="@+id/etAddressStorage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Address" />
+        android:hint="Address"
+        android:padding="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
 
     <Button
         android:id="@+id/btnSubmitStorage"
