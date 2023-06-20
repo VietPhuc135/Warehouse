@@ -115,7 +115,8 @@ public class DangNhap extends AppCompatActivity {
                 // lưu dữ liệu trả về từ api
                 Gson gson = new Gson();
                 account = gson.fromJson(responseData, Account.class);
-                System.out.println( account.getUser().getRole());
+                System.out.println( DangNhap.account.getToken());
+
                 Intent intent = new Intent(DangNhap.this, SplashScreen.class);
                 startActivity(intent);
 //                if (account != null) {

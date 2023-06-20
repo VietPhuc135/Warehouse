@@ -32,7 +32,7 @@ public class QLMarket extends AppCompatActivity {
     private ListView marketList;
     private ArrayAdapter<String> adapter;
     private ArrayList<String> marketNames;
-    String header = DangNhap.account.getToken();
+    String header ;
 
 
     @Override
@@ -43,6 +43,7 @@ public class QLMarket extends AppCompatActivity {
         marketNames = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, R.layout.activity_list_market, marketNames);
         marketList.setAdapter(adapter);
+        header = DangNhap.account.getToken();
         ImageView imgArrageMarket = findViewById(R.id.imgArrageMarket);
         imgArrageMarket.setOnClickListener(new View.OnClickListener() {
                                                @Override

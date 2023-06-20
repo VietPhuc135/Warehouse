@@ -32,13 +32,13 @@ public class QLStorage extends AppCompatActivity {
     private ListView storageList;
     private ArrayAdapter<String> adapter;
     private ArrayList<String> storageNames;
-    String header = DangNhap.account.getToken();
+    String header ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage_manager);
-
+        header = DangNhap.account.getToken();
         storageList = findViewById(R.id.lvStorage);
         storageNames = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, R.layout.activity_list_market, storageNames);
