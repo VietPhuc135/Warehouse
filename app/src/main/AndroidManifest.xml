@@ -20,6 +20,7 @@
         <activity
             android:name=".QLMarket"
             android:exported="true" />
+        <activity android:name=".market.AddMarket" android:exported="true"/>
         <activity
             android:name=".QLStorage"
             android:exported="true" />
@@ -35,6 +36,7 @@
         <activity
             android:name=".QLStore"
             android:exported="true" />
+        <activity android:name=".AddStorage" android:exported="true"/>
         <activity
             android:name=".QLNguoiDung"
             android:exported="true" />
