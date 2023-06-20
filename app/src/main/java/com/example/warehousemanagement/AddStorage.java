@@ -23,20 +23,28 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class AddStorage extends AppCompatActivity {
-    EditText code, address ;
+    EditText code, address;
+
     Button btnSubmitStorage2;
-    String header; JSONObject jsonObject;
+    String header;
+    JSONObject jsonObject;
+
+    Button btnSubmitStorage;
+
 
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addstorage);
         code = findViewById(R.id.etCodeStorage);
         address = findViewById(R.id.etAddressStorage);
-        header = DangNhap.account.getToken();
-        btnSubmitStorage2 = findViewById(R.id.btnSubmitStorage);
 
-        btnSubmitStorage2.setOnClickListener(new View.OnClickListener() {
+        header = DangNhap.account.getToken();
+
+        btnSubmitStorage = findViewById(R.id.btnSubmitStorage);
+
+
+        btnSubmitStorage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Lấy dữ liệu từ EditText
@@ -45,7 +53,7 @@ public class AddStorage extends AppCompatActivity {
 
 
                 // Tạo JSON object từ dữ liệu
-                 jsonObject = new JSONObject();
+                jsonObject = new JSONObject();
                 try {
                     jsonObject.put("code", codetxt);
                     jsonObject.put("address", addresstxt);
@@ -59,6 +67,7 @@ public class AddStorage extends AppCompatActivity {
             }
         });
     }
+
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
 
         @Override

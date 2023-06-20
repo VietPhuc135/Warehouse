@@ -25,20 +25,26 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class AddMarket extends AppCompatActivity {
-    EditText code, address ;
-    Button btnSubmitMarket2;
+    EditText code, address;
+
     String header;
     JSONObject jsonObject;
+    Button btnSubmitMarket;
+
+
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addmarket);
         code = findViewById(R.id.etCodeMarket);
         address = findViewById(R.id.etCodeMarket);
-        btnSubmitMarket2 = findViewById(R.id.btnSubmitMarket);
+
         header = DangNhap.account.getToken();
 
-        btnSubmitMarket2.setOnClickListener(new View.OnClickListener() {
+        btnSubmitMarket = findViewById(R.id.btnSubmitMarket);
+
+
+        btnSubmitMarket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Lấy dữ liệu từ EditText
@@ -47,7 +53,7 @@ public class AddMarket extends AppCompatActivity {
 
 
                 // Tạo JSON object từ dữ liệu
-                 jsonObject = new JSONObject();
+                jsonObject = new JSONObject();
                 try {
                     jsonObject.put("code", codetxt);
                     jsonObject.put("address", addresstxt);
@@ -60,6 +66,7 @@ public class AddMarket extends AppCompatActivity {
             }
         });
     }
+
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
 
         @Override
