@@ -1,11 +1,7 @@
 package com.example.warehousemanagement;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.AsyncTask;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,18 +10,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.obj.Account;
+import com.example.warehousemanagement.other.SplashScreen;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -35,14 +26,13 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import okhttp3.*;
-
 public class DangNhap extends AppCompatActivity {
 
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button buttonLogin;
     public static Account account;
+    boolean isResponseReceived = false;
 
 
     public static Account getAccount() {
@@ -63,36 +53,25 @@ public class DangNhap extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Lấy giá trị email và password từ EditText
-                String email = "admin";
-                String password = "sonha12";
-//                        editTextPassword.getText().toString();
+                String email =
+//                        "admin";
+                editTextEmail.getText().toString();
+                String password =
+//                        "sonha12";
+                        editTextPassword.getText().toString();
 
-                if (editTextEmail.getText().equals("") && editTextPassword.getText().equals("")) {
-                    View view = findViewById(R.id.password);
-//
-//                    Snackbar snackbar = Snackbar.make(view, "", Snackbar.LENGTH_SHORT);
-//                    View snackbarView = snackbar.getView();
-//                    LayoutInflater inflater = LayoutInflater.from(snackbarView.getContext());
-//                    View customSnackbarView = inflater.inflate(R.layout.custom_layout_snackbar, null);
-//                    LinearLayout snackbarLayout = customSnackbarView.findViewById(R.id.snackbar_layout);
-//                    ImageView snackbarIcon = customSnackbarView.findViewById(R.id.snackbar_icon);
-//                    TextView snackbarText = customSnackbarView.findViewById(R.id.snackbar_text);
-//
-//// Tùy chỉnh giao diện và nội dung của Snackbar
-////                    snackbarLayout.setBackgroundColor(getResources().getColor(R.color.custom_snackbar_background));
-////                    snackbarIcon.setImageResource(R.drawable.custom_snackbar_icon);
-//                    snackbarText.setText("Custom Snackbar");
-//
-//// Đặt tệp XML layout tùy chỉnh cho Snackbar
-//                    Snackbar.SnackbarLayout snackbarLay = (Snackbar.SnackbarLayout) snackbar.getView();
-//                    snackbarLay.addView(customSnackbarView, 0);
-//                    snackbar.show();
+                if (email.equals("") && password.equals("")) {
+
                     System.out.println("khong duoc null ");
-                    Intent intent1 = new Intent(DangNhap.this, Option.class);
-                    startActivity(intent1);
-                } else {
+                    Toast.makeText(getApplicationContext(), "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                }
+                if (email.equals("")){
+                    Toast.makeText(getApplicationContext(), "Vui lòng điền email", Toast.LENGTH_SHORT).show();
+                }
+                if (password.equals("")){
+                    Toast.makeText(getApplicationContext(), "Vui lòng điền password", Toast.LENGTH_SHORT).show();
+                }else{
                     loginAPI(email, password);
-
                 }
                 // Gọi phương thức gửi yêu cầu POST API
             }
@@ -129,7 +108,6 @@ public class DangNhap extends AppCompatActivity {
                 // Xử lý khi gặp lỗi
                 e.printStackTrace();
             }
-
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 // Xử lý khi nhận được phản hồi từ server
@@ -137,14 +115,21 @@ public class DangNhap extends AppCompatActivity {
                 // lưu dữ liệu trả về từ api
                 Gson gson = new Gson();
                 account = gson.fromJson(responseData, Account.class);
-                // Chuyển sang TrangChuActivity
-
-                Intent intent = new Intent(DangNhap.this, TrangChu.class);
+                System.out.println( account.getUser().getRole());
+                Intent intent = new Intent(DangNhap.this, SplashScreen.class);
                 startActivity(intent);
-                System.out.println( responseData);
-
-
-                // Tiếp tục xử lý dữ liệu phản hồi từ server
+//                if (account != null) {
+//                    // Chuyển sang TrangChuActivity
+//                    if (account.getUser().getRole().equals("stocker")) {
+//                        Intent intent = new Intent(DangNhap.this, QLStorage.class);
+//                        startActivity(intent);
+//                    } else if (account.getUser().getRole().equals("saler")) {
+//                        Intent intent = new Intent(DangNhap.this, DsSanPham.class);
+//                        startActivity(intent);
+//                    } else {
+//
+//                    }
+//                }
             }
         });
     }

@@ -2,6 +2,7 @@ package com.example.warehousemanagement;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import com.example.warehousemanagement.market.AddMarket;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +28,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class QLMarket extends AppCompatActivity {
+
     private ListView marketList;
     private ArrayAdapter<String> adapter;
     private ArrayList<String> marketNames;
@@ -39,7 +43,15 @@ public class QLMarket extends AppCompatActivity {
         marketNames = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, R.layout.activity_list_market, marketNames);
         marketList.setAdapter(adapter);
-
+        ImageView imgArrageMarket = findViewById(R.id.imgArrageMarket);
+        imgArrageMarket.setOnClickListener(new View.OnClickListener() {
+                                               @Override
+                                               public void onClick(View v) {
+                                                   Intent intent = new Intent(QLMarket.this, AddMarket.class);
+                                                   startActivity(intent);
+                                               }
+                                           }
+        );
         // Gọi phương thức để thực hiện yêu cầu HTTP và hiển thị danh sách
         fetchMarketList();
     }
@@ -50,8 +62,8 @@ public class QLMarket extends AppCompatActivity {
         RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
                 .url("http://14.225.211.190:4001/api/market/query")
-                .method("POST",body)
-                .addHeader("Authorization", "Bearer " +  header)
+                .method("POST", body)
+                .addHeader("Authorization", "Bearer " + header)
                 .build();
 
         client.newCall(request).enqueue(new okhttp3.Callback() {
