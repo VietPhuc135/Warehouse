@@ -54,11 +54,11 @@ public class DangNhap extends AppCompatActivity {
             public void onClick(View v) {
                 // Lấy giá trị email và password từ EditText
                 String email =
-                        "admin";
-//                editTextEmail.getText().toString();
+//                        "admin";
+                editTextEmail.getText().toString();
                 String password =
-                        "sonha12";
-//                        editTextPassword.getText().toString();
+//                        "sonha12";
+                        editTextPassword.getText().toString();
 
                 if (email.equals("") && password.equals("")) {
 
@@ -119,18 +119,7 @@ public class DangNhap extends AppCompatActivity {
 
                 Intent intent = new Intent(DangNhap.this, SplashScreen.class);
                 startActivity(intent);
-//                if (account != null) {
-//                    // Chuyển sang TrangChuActivity
-//                    if (account.getUser().getRole().equals("stocker")) {
-//                        Intent intent = new Intent(DangNhap.this, QLStorage.class);
-//                        startActivity(intent);
-//                    } else if (account.getUser().getRole().equals("saler")) {
-//                        Intent intent = new Intent(DangNhap.this, DsSanPham.class);
-//                        startActivity(intent);
-//                    } else {
-//
-//                    }
-//                }
+
             }
         });
     }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -68,7 +69,6 @@ public class DsSanPham extends AppCompatActivity {
         imgAddProduct = findViewById(R.id.imgAddProduct);
         listView = findViewById(R.id.lvProduct);
         header = DangNhap.account.getToken();
-//        adapter = new ArrayAdapter<>(this,R.layout.product_item,itemList);
         adapter = new ArrayProduct(this, itemList);
         imgAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,44 +108,102 @@ public class DsSanPham extends AppCompatActivity {
                 }
             }
         );
-        OkHttpClient client = new OkHttpClient();
-        MediaType mediaType = MediaType.parse("text/plain");
-        RequestBody body = RequestBody.create(mediaType, "");
-        Request request = new Request.Builder()
-                .url("http://14.225.211.190:4001/api/product/query")
-                .method("POST", body)
-                .addHeader("Authorization", "Bearer " + header)
-                .build();
-
-        client.newCall(request).enqueue(new okhttp3.Callback() {
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    String responseBody = response.body().string();
-                    Gson gson = new Gson();
-                    Type listType = new TypeToken<List<Product>>() {
-                    }.getType();
-
-                    itemList = gson.fromJson(responseBody, listType);
-                    System.out.println("Đây la itemlisst " + responseBody);
-                    // Cập nhật giao diện trong luồng UI
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            // Khởi tạo và thiết lập Adapter
-                            adapter = new ArrayProduct(DsSanPham.this, itemList);
-                            listView.setAdapter(adapter);
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onFailure(Call call, IOException e) {
-                System.out.println("fail");
-
-                e.printStackTrace();
-            }
-        });
+        new MyAsyncTask().execute();
+//        OkHttpClient client = new OkHttpClient();
+//        MediaType mediaType = MediaType.parse("text/plain");
+//        RequestBody body = RequestBody.create(mediaType, "");
+//        Request request = new Request.Builder()
+//                .url("http://14.225.211.190:4001/api/product/query")
+//                .method("POST", body)
+//                .addHeader("Authorization", "Bearer " + header)
+//                .build();
+//
+//        client.newCall(request).enqueue(new okhttp3.Callback() {
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                if (response.isSuccessful()) {
+//                    String responseBody = response.body().string();
+//                    Gson gson = new Gson();
+//                    Type listType = new TypeToken<List<Product>>() {
+//                    }.getType();
+//
+//                    itemList = gson.fromJson(responseBody, listType);
+//                    System.out.println("Đây la itemlisst " + responseBody);
+//                    // Cập nhật giao diện trong luồng UI
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            // Khởi tạo và thiết lập Adapter
+//                            adapter = new ArrayProduct(DsSanPham.this, itemList);
+//                            listView.setAdapter(adapter);
+//                        }
+//                    });
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                System.out.println("fail");
+//
+//                e.printStackTrace();
+//            }
+//        });
     }
+    private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+            OkHttpClient client = new OkHttpClient();
+            MediaType mediaType = MediaType.parse("text/plain");
+            RequestBody body = RequestBody.create(mediaType, "");
+            Request request = new Request.Builder()
+                    .url("http://14.225.211.190:4001/api/product/query")
+                    .method("POST", body)
+                    .addHeader("Authorization", "Bearer " + header)
+                    .build();
+            client.newCall(request).enqueue(new okhttp3.Callback() {
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        String responseBody = response.body().string();
+                        Gson gson = new Gson();
+                        Type listType = new TypeToken<List<Product>>() {
+                        }.getType();
+
+                        itemList = gson.fromJson(responseBody, listType);
+                        System.out.println("Đây la itemlisst " + responseBody);
+                        // Cập nhật giao diện trong luồng UI
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Khởi tạo và thiết lập Adapter
+                                adapter = new ArrayProduct(DsSanPham.this, itemList);
+                                listView.setAdapter(adapter);
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    System.out.println("fail");
+
+                    e.printStackTrace();
+                }
+            });
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            if (result) {
+//                System.out.println(jsonObject);
+//                Intent intent = new Intent(AddStorage.this, QLStorage.class);
+//                startActivity(intent);
+            } else {
+                System.out.println("lỗi ");
+            }
+        }
+    }
+
 }

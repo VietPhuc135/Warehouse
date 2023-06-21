@@ -36,6 +36,9 @@
         <activity
             android:name=".other.SplashScreen"
             android:exported="true" />
+        <activity
+            android:name=".additem.EditProduct"
+            android:exported="true" />
 
         <activity
             android:name=".MainActivity"

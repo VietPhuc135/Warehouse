@@ -20,6 +20,13 @@
         android:paddingLeft="16dp">
 
         <TextView
+            android:id="@+id/codeTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/nameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,5 +40,11 @@
             android:textSize="14sp" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/SuabtnProduct"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/images" />
 
 </LinearLayout>
