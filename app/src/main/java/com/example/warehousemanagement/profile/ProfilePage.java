@@ -33,7 +33,8 @@ public class ProfilePage extends AppCompatActivity {
         idname.setText(name);
         idemail.setText(DangNhap.account.getUser().getEmail());
         idphone.setText("123 678 999");
-        idAddress.setText(DangNhap.account.getUser().getAddress());
+        idAddress.setText("Ha Noi");
+        //idAddress.setText(DangNhap.account.getUser().getAddress());
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.info_app);

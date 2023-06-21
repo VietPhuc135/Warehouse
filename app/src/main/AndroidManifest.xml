@@ -14,29 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".Option"
-            android:exported="true"/>
-        <activity
-            android:name=".QLMarket"
-            android:exported="true" />
+        <activity android:name=".Option" android:exported="true"/>
+        <activity android:name=".QLMarket" android:exported="true" />
         <activity android:name=".market.AddMarket" android:exported="true"/>
-        <activity
-            android:name=".QLStorage"
-            android:exported="true" />
-        <activity
-            android:name=".additem.DanhSachImport"
-            android:exported="true" />
-        <activity
-            android:name=".DsSanPham"
-            android:exported="true" />
-        <activity
-            android:name=".XuatSanPham"
-            android:exported="true" />
-        <activity
-            android:name=".QLStore"
-            android:exported="true" />
+        <activity android:name=".QLStorage" android:exported="true" />
+        <activity android:name=".additem.DanhSachImport" android:exported="true" />
+        <activity android:name=".DsSanPham" android:exported="true" />
+        <activity android:name=".XuatSanPham" android:exported="true" />
+        <activity android:name=".QLStore" android:exported="true" />
         <activity android:name=".AddStorage" android:exported="true"/>
+
         <activity
             android:name=".QLNguoiDung"
             android:exported="true" />
@@ -49,6 +36,7 @@
         <activity
             android:name=".other.SplashScreen"
             android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
