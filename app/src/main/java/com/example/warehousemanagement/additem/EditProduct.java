@@ -44,7 +44,7 @@ public class EditProduct extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_additem);
+        setContentView(R.layout.activity_edititem);
         header = DangNhap.account.getToken();
         etName = findViewById(R.id.etName);
         etCode = findViewById(R.id.etCode);

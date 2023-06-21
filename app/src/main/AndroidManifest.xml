@@ -39,6 +39,8 @@
         <activity
             android:name=".additem.EditProduct"
             android:exported="true" />
+        <activity android:name=".other.StockerPage"
+            android:exported="true"/>
 
 
         <activity

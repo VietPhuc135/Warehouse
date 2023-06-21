@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -75,9 +76,11 @@ public class ArrayProduct extends ArrayAdapter<Product> {
                                     return true;
                                 case R.id.repair_product:
                                     // Xử lý khi người dùng chọn Edit
+                                    Toast.makeText(context, "Đang hoàn thiện", Toast.LENGTH_SHORT).show();
                                     return true;
                                 case R.id.delete_product:
                                     // Xử lý khi người dùng chọn Edit
+                                    Toast.makeText(context, "Đang hoàn thiện", Toast.LENGTH_SHORT).show();
                                     return true;
                                 default:
                                     return false;
@@ -89,7 +92,6 @@ public class ArrayProduct extends ArrayAdapter<Product> {
             }
         });
         Picasso.get().load(item.getImage()).into(imageView);
-
         nameTextView.setText(item.getName());
         codeTextView.setText(item.getCode());
         stockTextView.setText("Stock: " + String.valueOf(item.getStock()));

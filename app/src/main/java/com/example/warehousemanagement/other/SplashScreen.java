@@ -34,7 +34,7 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 if (role.equals("stocker")) {
-                    Intent intent = new Intent(SplashScreen.this, DsSanPham.class);
+                    Intent intent = new Intent(SplashScreen.this, StockerPage.class);
                     startActivity(intent);
                 } else if (role.equals("saler")) {
                     Intent intent = new Intent(SplashScreen.this, QLStorage.class);

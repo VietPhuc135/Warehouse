@@ -3,6 +3,8 @@ package com.example.warehousemanagement.profile;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +18,7 @@ import com.example.warehousemanagement.TrangChu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ProfilePage extends AppCompatActivity {
-    TextView idname,idemail,idphone,idAddress;
+    TextView idname, idemail, idphone, idAddress;
     String name;
 
     @Override
@@ -27,7 +29,16 @@ public class ProfilePage extends AppCompatActivity {
         idemail = (TextView) findViewById(R.id.idEmail);
         idphone = (TextView) findViewById(R.id.idPhone);
         idAddress = (TextView) findViewById(R.id.idAddress);
+        Button btnDangXuat = findViewById(R.id.btnDangXuat);
+        btnDangXuat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ProfilePage.this, DangNhap.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
 
+            }
+        });
         name = DangNhap.account.getUser().getName();
         System.out.println(name);
         idname.setText(name);

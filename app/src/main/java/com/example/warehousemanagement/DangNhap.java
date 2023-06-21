@@ -106,6 +106,7 @@ public class DangNhap extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 // Xử lý khi gặp lỗi
+                Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
             @Override
