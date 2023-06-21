@@ -56,7 +56,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/lvMarket"
         android:textColor="#431919"
-        android:layout_weight="9"/>
+        android:layout_weight="9"
+        android:padding="10dp"/>
 <!--<<<<<<< HEAD-->
 
 <!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
