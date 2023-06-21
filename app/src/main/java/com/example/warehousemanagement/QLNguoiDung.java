@@ -54,6 +54,9 @@ public class QLNguoiDung extends AppCompatActivity {
         );
         // Gọi phương thức để thực hiện yêu cầu HTTP và hiển thị danh sách
         fetchMarketList();
+
+        // Đăng ký menu context cho ListView, khi người dùng nhấn giữ trên một phần tử trong ListView
+        //registerForContextMenu(userList);
     }
 
     private void fetchMarketList() {

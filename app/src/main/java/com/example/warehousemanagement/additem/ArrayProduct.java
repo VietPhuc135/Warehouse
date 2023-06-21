@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.obj.Product;
 import com.squareup.picasso.Picasso;
+//import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import android.content.Context;
@@ -48,7 +49,7 @@ public class ArrayProduct extends ArrayAdapter<Product> {
 
         Product item = itemList.get(position);
 
-        Picasso.get().load(item.getImage()).into(imageView);
+        //Picasso.get().load(item.getImage()).into(imageView);
         nameTextView.setText(item.getName());
         stockTextView.setText("Stock: " + String.valueOf(item.getStock()));
 
