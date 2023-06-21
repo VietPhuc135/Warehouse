@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -56,7 +59,7 @@ public class QLNguoiDung extends AppCompatActivity {
         fetchMarketList();
 
         // Đăng ký menu context cho ListView, khi người dùng nhấn giữ trên một phần tử trong ListView
-        //registerForContextMenu(userList);
+        registerForContextMenu(userList);
     }
 
     private void fetchMarketList() {
@@ -111,5 +114,31 @@ public class QLNguoiDung extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
+    }
+
+    // Tạo menu context cho mỗi phần tử trong ListView
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_user, menu);
+    }
+
+    // Xử lý sự kiện khi mục của menu context được chọn
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_user:
+                Intent intent = new Intent(QLNguoiDung.this, AddNguoiDung.class);
+                startActivity(intent);
+                break;
+            case R.id.edit_user:
+                break;
+            case R.id.delete_user:
+                break;
+            default:
+                return super.onContextItemSelected(item);
+        }
+        return true;
     }
 }
