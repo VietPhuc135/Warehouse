@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/add_product"
-        android:title="Add"
+    <item android:id="@+id/detail_product"
+        android:title="Chi tiết sản phẩm"
         android:icon="@drawable/add"/>
     <item android:id="@+id/repair_product"
-        android:title="Edit"
+        android:title="Sửa sản phẩm"
         android:icon="@drawable/repair"/>
     <item android:id="@+id/delete_product"
-        android:title="Delete"
+        android:title="Xóa sản phẩm"
         android:icon="@drawable/delete"/>
 
 </menu>
