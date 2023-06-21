@@ -33,7 +33,6 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 if (role.equals("stocker")) {
                     Intent intent = new Intent(SplashScreen.this, QLStorage.class);
                     startActivity(intent);

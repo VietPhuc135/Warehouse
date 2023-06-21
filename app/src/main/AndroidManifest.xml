@@ -41,7 +41,7 @@
             android:name=".QLNguoiDung"
             android:exported="true" />
         <activity
-            android:name=".additem.AddImport"
+            android:name=".additem.AddProduct"
             android:exported="true" />
         <activity
             android:name=".profile.ProfilePage"

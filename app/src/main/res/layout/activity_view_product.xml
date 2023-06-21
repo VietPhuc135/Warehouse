@@ -7,7 +7,6 @@
     android:orientation="vertical"
     android:background="@drawable/background"
     android:layout_weight="10">
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,10 +45,15 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:id="@+id/imgArrageProduct"
+            android:id="@+id/imgAddProduct"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/arrange"/>
+            android:src="@drawable/add"/>
     </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
     <ListView
         android:layout_width="match_parent"
