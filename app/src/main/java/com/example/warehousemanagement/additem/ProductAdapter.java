@@ -39,7 +39,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         // Set data to views
         holder.title.setText(product.getName());
 
-        Picasso.get().load(product.getImage());
+        //Picasso.get().load(product.getImage());
     }
 
     @Override
