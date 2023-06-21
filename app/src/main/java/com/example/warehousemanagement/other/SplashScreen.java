@@ -1,5 +1,4 @@
 package com.example.warehousemanagement.other;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,8 +9,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.DangNhap;
-import com.example.warehousemanagement.DsSanPham;
-import com.example.warehousemanagement.QLStorage;
+import com.example.warehousemanagement.storage.QLStorage;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.TrangChu;
 

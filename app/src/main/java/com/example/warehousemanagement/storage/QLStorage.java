@@ -1,17 +1,24 @@
-package com.example.warehousemanagement;
+package com.example.warehousemanagement.storage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.example.warehousemanagement.market.AddMarket;
+import com.example.warehousemanagement.DangNhap;
+import com.example.warehousemanagement.R;
+import com.example.warehousemanagement.user.AddNguoiDung;
+import com.example.warehousemanagement.user.EditNguoiDung;
+import com.example.warehousemanagement.user.QLNguoiDung;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,6 +61,9 @@ public class QLStorage extends AppCompatActivity {
         );
         // Gọi phương thức để thực hiện yêu cầu HTTP và hiển thị danh sách
         fetchStorageList();
+
+        // Đăng ký menu context cho ListView, khi người dùng nhấn giữ trên một phần tử trong ListView
+        registerForContextMenu(storageList);
     }
 
     private void fetchStorageList() {
@@ -109,5 +119,39 @@ public class QLStorage extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
+    }
+
+    // Tạo menu context cho mỗi phần tử trong ListView
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_storage, menu);
+    }
+
+    // Xử lý sự kiện khi mục của menu context được chọn
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        // Lấy thông tin về phần tử trong ListView được chọn
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int position = info.position;
+
+        switch (item.getItemId()) {
+            case R.id.add_storage:
+                Intent intent = new Intent(QLStorage.this, AddStorage.class);
+                startActivity(intent);
+                return true;
+            case R.id.edit_storage:
+                Intent intent1 = new Intent(QLStorage.this, EditStorage.class);
+                startActivity(intent1);
+                return true;
+            case R.id.delete_storage:
+                // Xóa phần tử được chọn khỏi ListView
+                adapter.remove(adapter.getItem(position));
+                adapter.notifyDataSetChanged();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 }

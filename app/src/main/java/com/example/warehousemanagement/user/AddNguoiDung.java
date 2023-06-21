@@ -1,4 +1,4 @@
-package com.example.warehousemanagement;
+package com.example.warehousemanagement.user;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -9,7 +9,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.warehousemanagement.market.AddMarket;
+import com.example.warehousemanagement.DangNhap;
+import com.example.warehousemanagement.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,12 +39,12 @@ public class AddNguoiDung extends AppCompatActivity {
         email = findViewById(R.id.etEmail);
         name = findViewById(R.id.etName);
         role = findViewById(R.id.etRole);
-        address = findViewById(R.id.etCodeMarket);
+        address = findViewById(R.id.etAddress);
         marketId = findViewById(R.id.etMarketID);
 
         header = DangNhap.account.getToken();
 
-        btnSubmitUser = findViewById(R.id.btnSubmitMarket);
+        btnSubmitUser = findViewById(R.id.btnSubmitUser);
 
         btnSubmitUser.setOnClickListener(new View.OnClickListener() {
             @Override

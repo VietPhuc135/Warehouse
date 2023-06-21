@@ -1,4 +1,4 @@
-package com.example.warehousemanagement;
+package com.example.warehousemanagement.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,11 +9,13 @@ import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.example.warehousemanagement.market.AddMarket;
+import com.example.warehousemanagement.DangNhap;
+import com.example.warehousemanagement.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -127,18 +129,26 @@ public class QLNguoiDung extends AppCompatActivity {
     // Xử lý sự kiện khi mục của menu context được chọn
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        // Lấy thông tin về phần tử trong ListView được chọn
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int position = info.position;
+
         switch (item.getItemId()) {
             case R.id.add_user:
                 Intent intent = new Intent(QLNguoiDung.this, AddNguoiDung.class);
                 startActivity(intent);
-                break;
+                return true;
             case R.id.edit_user:
-                break;
+                Intent intent1 = new Intent(QLNguoiDung.this, EditNguoiDung.class);
+                startActivity(intent1);
+                return true;
             case R.id.delete_user:
-                break;
+                // Xóa phần tử được chọn khỏi ListView
+                adapter.remove(adapter.getItem(position));
+                adapter.notifyDataSetChanged();
+                return true;
             default:
                 return super.onContextItemSelected(item);
         }
-        return true;
     }
 }

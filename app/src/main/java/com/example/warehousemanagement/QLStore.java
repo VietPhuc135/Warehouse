@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.warehousemanagement.profile.ProfilePage;
+import com.example.warehousemanagement.storage.QLStorage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class QLStore extends AppCompatActivity {

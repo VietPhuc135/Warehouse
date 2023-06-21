@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="#FFFFFF">
-    <item android:id="@+id/add_user"
-        android:title="Thêm người dùng"
+    <item android:id="@+id/add_storage"
+        android:title="Add storage"
         android:icon="@drawable/add"/>
-    <item android:id="@+id/edit_user"
-        android:title="Sửa thông tin người dùng"
+    <item android:id="@+id/edit_storage"
+        android:title="Edit storage"
         android:icon="@drawable/repair"/>
-    <item android:id="@+id/delete_user"
-        android:title="Xóa người dùng"
+    <item android:id="@+id/delete_storage"
+        android:title="Delete storage"
         android:icon="@drawable/delete"/>
 </menu>

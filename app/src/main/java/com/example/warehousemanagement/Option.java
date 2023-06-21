@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.warehousemanagement.storage.QLStorage;
+
 public class Option extends AppCompatActivity {
 
     ImageView imgSaler, imgStocker;
