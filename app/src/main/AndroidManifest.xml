@@ -16,22 +16,22 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".Option" android:exported="true"/>
         <activity android:name=".QLMarket" android:exported="true" />
-        <activity android:name=".market.AddMarket" android:exported="true"/>
+        <activity android:name=".market.AddMarket" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>
         <activity android:name=".storage.QLStorage" android:exported="true" />
         <activity android:name=".additem.DanhSachImport" android:exported="true" />
         <activity android:name=".DsSanPham" android:exported="true" />
         <activity android:name=".XuatSanPham" android:exported="true" />
         <activity android:name=".QLStore" android:exported="true" />
-        <activity android:name=".storage.AddStorage" android:exported="true"/>
-        <activity android:name=".storage.EditStorage" android:exported="true"/>
+        <activity android:name=".storage.AddStorage" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>
+        <activity android:name=".storage.EditStorage" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>
         <activity android:name=".user.QLNguoiDung" android:exported="true" />
-        <activity android:name=".additem.AddProduct" android:exported="true" />
+        <activity android:name=".additem.AddProduct" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>
         <activity android:name=".profile.ProfilePage" android:exported="true" />
         <activity android:name=".other.SplashScreen" android:exported="true" />
-        <activity android:name=".additem.EditProduct" android:exported="true" />
+        <activity android:name=".additem.EditProduct" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>
         <activity android:name=".other.StockerPage" android:exported="true"/>
-        <activity android:name=".user.EditNguoiDung" android:exported="true"/>
-
+        <activity android:name=".user.EditNguoiDung" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>
+        <activity android:name=".user.AddNguoiDung" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
