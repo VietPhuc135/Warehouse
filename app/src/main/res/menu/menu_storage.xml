@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="#FFFFFF">
+    <item android:id="@+id/detail_storage"
+        android:title="Detail storage"
+        android:icon="@drawable/detail"/>
     <item android:id="@+id/add_storage"
         android:title="Add storage"
         android:icon="@drawable/add"/>

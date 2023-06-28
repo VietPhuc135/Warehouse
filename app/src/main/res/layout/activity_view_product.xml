@@ -48,6 +48,13 @@
             android:id="@+id/imgAddProduct"
             android:layout_marginLeft="10dp"
             android:src="@drawable/add"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/imgArrageProduct"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/arrange"/>
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
