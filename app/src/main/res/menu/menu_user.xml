@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#FFFFFF">
+    <item android:id="@+id/detail_user"
+        android:title="Detail user"
+        android:icon="@drawable/detail"/>
     <item android:id="@+id/add_user"
-        android:title="Thêm người dùng"
+        android:title="Add user"
         android:icon="@drawable/add"/>
     <item android:id="@+id/edit_user"
-        android:title="Sửa thông tin người dùng"
+        android:title="Edit user"
         android:icon="@drawable/repair"/>
     <item android:id="@+id/delete_user"
-        android:title="Xóa người dùng"
+        android:title="Delete user"
         android:icon="@drawable/delete"/>
-
 </menu>

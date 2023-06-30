@@ -92,7 +92,7 @@ public class ArrayProduct extends ArrayAdapter<Product> {
                 popupMenu.show();
             }
         });
-        Picasso.get().load(item.getImage()).into(imageView);
+        //Picasso.get().load(item.getImage()).into(imageView);
         nameTextView.setText(item.getName());
         codeTextView.setText(item.getCode());
         stockTextView.setText("Stock: " + String.valueOf(item.getStock()));

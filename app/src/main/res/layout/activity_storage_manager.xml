@@ -9,10 +9,10 @@
     android:layout_weight="10">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="9dp"
+        android:gravity="center"
+        android:background="#00BCD4"
         android:fontFamily="@font/lobster"
         android:text="Storage Manager"
         android:layout_weight="0.5"
@@ -42,6 +42,13 @@
             android:textColor="#000000"
             android:textColorHint="#423D3D"
             android:textSize="16dp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/imgAddProduct"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/add"/>
 
         <ImageView
             android:layout_width="30dp"

@@ -1,4 +1,4 @@
-package com.example.warehousemanagement;
+package com.example.warehousemanagement.storage;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -9,7 +9,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.warehousemanagement.market.AddMarket;
+import com.example.warehousemanagement.DangNhap;
+import com.example.warehousemanagement.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,7 +26,6 @@ import okhttp3.Response;
 public class AddStorage extends AppCompatActivity {
     EditText code, address;
 
-    Button btnSubmitStorage2;
     String header;
     JSONObject jsonObject;
 
