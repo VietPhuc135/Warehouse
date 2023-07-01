@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvOwnerId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OwnerId" />
+
+        <EditText
+            android:id="@+id/etOwnerIde"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvLineItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Line Items" />
+
+        <EditText
+            android:id="@+id/etLineItemse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvAcceptedLineItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Accepted Line Items" />
+
+        <EditText
+            android:id="@+id/tvAcceptedLineItemse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status" />
+
+        <EditText
+            android:id="@+id/tvStatuse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Message" />
+
+        <EditText
+            android:id="@+id/tvMessageE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tvStorageId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Storage Id" />
+
+
+        <EditText            android:id="@+id/tvStorageIdE"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvMarketId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Market Id" />
+
+        <EditText
+            android:id="@+id/tvMarketIdE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvFlag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Flag" />
+
+
+        <EditText
+            android:id="@+id/tvFlagE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvFlagMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Flag Message" />
+
+
+
+        <EditText
+        android:id="@+id/tvFlagMessageE"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

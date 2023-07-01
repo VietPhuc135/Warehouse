@@ -13,7 +13,7 @@
         android:id="@+id/imageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/add" />
+         />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -24,12 +24,6 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp">
 
-        <TextView
-            android:id="@+id/codeTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,15 +32,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ID người sở hữu: " />
-
-
+                android:text="Địa chỉ: " />
             <TextView
-                android:id="@+id/nameTextView"
+                android:id="@+id/nameTextViewSto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                android:textSize="14sp"
                 android:textColor="#000000"/>
 
 
@@ -60,15 +51,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trạng thái: " />
-
+                android:text="Mã: " />
 
             <TextView
-                android:id="@+id/stockTextView"
+                android:id="@+id/codeTextViewSto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#000000"/>
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
 
         </LinearLayout>
 
@@ -76,7 +67,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/SuabtnProduct"
+        android:id="@+id/SuabtnStorage"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/images" />

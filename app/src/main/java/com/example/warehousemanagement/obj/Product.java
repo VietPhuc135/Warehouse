@@ -1,6 +1,8 @@
 package com.example.warehousemanagement.obj;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product  implements Serializable {
     public String getId() {
         return id;
     }
@@ -105,4 +107,5 @@ public class Product {
         public void setImage(String image) {
             this.image = image;
         }
+
     }

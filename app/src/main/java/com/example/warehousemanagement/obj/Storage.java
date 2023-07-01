@@ -1,7 +1,15 @@
 package com.example.warehousemanagement.obj;
 
 public class Storage {
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    String id;
     String code;
     String address;
 
