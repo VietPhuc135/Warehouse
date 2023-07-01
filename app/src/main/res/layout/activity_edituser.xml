@@ -55,10 +55,22 @@
         android:hint="Address" />
 
     <EditText
+        android:id="@+id/etAge1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Age" />
+
+    <EditText
         android:id="@+id/etMarketID1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="MarketId" />
+
+    <EditText
+        android:id="@+id/etStorageId1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="StorageId" />
 
     <Button
         android:id="@+id/btnSubmitUser1"

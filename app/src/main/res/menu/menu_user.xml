@@ -4,9 +4,9 @@
     <item android:id="@+id/detail_user"
         android:title="Detail user"
         android:icon="@drawable/detail"/>
-    <item android:id="@+id/add_user"
-        android:title="Add user"
-        android:icon="@drawable/add"/>
+<!--    <item android:id="@+id/add_user"-->
+<!--        android:title="Add user"-->
+<!--        android:icon="@drawable/add"/>-->
     <item android:id="@+id/edit_user"
         android:title="Edit user"
         android:icon="@drawable/repair"/>

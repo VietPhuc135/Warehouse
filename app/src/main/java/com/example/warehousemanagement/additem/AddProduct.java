@@ -14,11 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.DangNhap;
-import com.example.warehousemanagement.DsSanPham;
-import com.example.warehousemanagement.QLMarket;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.TrangChu;
-import com.example.warehousemanagement.market.AddMarket;
 
 import org.json.JSONException;
 import org.json.JSONObject;

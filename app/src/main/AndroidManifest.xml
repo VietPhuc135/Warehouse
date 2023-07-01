@@ -18,8 +18,7 @@
         <activity android:name=".QLMarket" android:exported="true" />
         <activity android:name=".market.AddMarket" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>
         <activity android:name=".storage.QLStorage" android:exported="true" />
-        <activity android:name=".additem.DanhSachImport" android:exported="true" />
-        <activity android:name=".DsSanPham" android:exported="true" />
+        <activity android:name=".additem.DsSanPham" android:exported="true" />
         <activity android:name=".XuatSanPham" android:exported="true" />
         <activity android:name=".QLStore" android:exported="true" />
         <activity android:name=".storage.AddStorage" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>

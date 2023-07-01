@@ -1,56 +1,34 @@
-package com.example.warehousemanagement;
+package com.example.warehousemanagement.additem;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import android.os.Bundle;
-import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.warehousemanagement.additem.AddProduct;
-import com.example.warehousemanagement.additem.ArrayProduct;
+import com.example.warehousemanagement.DangNhap;
+import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.obj.Product;
-import com.example.warehousemanagement.other.SplashScreen;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class DsSanPham extends AppCompatActivity {
@@ -133,7 +111,7 @@ public class DsSanPham extends AppCompatActivity {
                         }.getType();
 
                         itemList = gson.fromJson(responseBody, listType);
-                        System.out.println("Đây la itemlisst " + responseBody);
+                        System.out.println("Đây la itemlist " + responseBody);
                         // Cập nhật giao diện trong luồng UI
                         runOnUiThread(new Runnable() {
                             @Override

@@ -1,30 +1,23 @@
 package com.example.warehousemanagement.storage;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.DangNhap;
-import com.example.warehousemanagement.DsSanPham;
+import com.example.warehousemanagement.additem.DsSanPham;
 import com.example.warehousemanagement.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;

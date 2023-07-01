@@ -26,26 +26,26 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class AddNguoiDung extends AppCompatActivity {
-    private EditText username, password, email, name, role, address, marketId;
+    private EditText username, password, email, name, role, address, age, marketId, storageId;
     private Button btnSubmitUser;
     String header;
-    JSONObject jsonObject;
-
+    JSONObject jsonObject = new JSONObject();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adduser);
+        header = DangNhap.account.getToken();
+
         username = findViewById(R.id.etUsername);
         password = findViewById(R.id.etPassword);
         email = findViewById(R.id.etEmail);
         name = findViewById(R.id.etName);
         role = findViewById(R.id.etRole);
         address = findViewById(R.id.etAddress);
+        age = findViewById(R.id.etAge);
         marketId = findViewById(R.id.etMarketID);
-
-        header = DangNhap.account.getToken();
-
+        storageId = findViewById(R.id.etStorageId);
         btnSubmitUser = findViewById(R.id.btnSubmitUser);
 
         btnSubmitUser.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +58,9 @@ public class AddNguoiDung extends AppCompatActivity {
                 String nametxt = name.getText().toString().trim();
                 String roletxt = role.getText().toString().trim();
                 String addresstxt = address.getText().toString().trim();
+                int agetxt = Integer.parseInt(age.getText().toString().trim());
                 String marketIdtxt = marketId.getText().toString().trim();
+                String storageIdtxt = storageId.getText().toString().trim();
 
                 // Tạo JSON object từ dữ liệu
 //                jsonObject = new JSONObject();
@@ -69,7 +71,9 @@ public class AddNguoiDung extends AppCompatActivity {
                     jsonObject.put("name", nametxt);
                     jsonObject.put("role", roletxt);
                     jsonObject.put("address", addresstxt);
+                    jsonObject.put("age", agetxt);
                     jsonObject.put("marketId", marketIdtxt);
+                    jsonObject.put("storageId", storageIdtxt);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -101,7 +105,7 @@ public class AddNguoiDung extends AppCompatActivity {
                 int i =  response.code();
                 if (i == 201) {
                     System.out.println(jsonObject);
-                    Intent intent = new Intent(AddNguoiDung.this, QLNguoiDung.class);
+                    Intent intent = new Intent(AddNguoiDung.this, TrangChu.class);
                     startActivity(intent);
                 } else {
                     System.out.println("lỗi " + response.toString());
