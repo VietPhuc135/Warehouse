@@ -41,9 +41,15 @@ public class EditProduct extends AppCompatActivity {
     String header ;
     TextView etDate;
     JSONObject jsonObject = new JSONObject();
+    String id  ;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        if (intent != null) {
+            id = intent.getStringExtra("id"); // Get the product ID from the intent
+            // Use the product ID as needed
+        }
         setContentView(R.layout.activity_edititem);
         header = DangNhap.account.getToken();
         etName = findViewById(R.id.etName);
@@ -86,9 +92,56 @@ public class EditProduct extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                new MyAsyncTask().execute(jsonObject.toString());
+//                new MyAsyncTask().execute(jsonObject.toString());
             }});
+        new FetchProductDetails().execute(id);
     }
+    private class FetchProductDetails extends AsyncTask<String, Void, JSONObject> {
+        @Override
+        protected JSONObject doInBackground(String... params) {
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url("http://14.225.211.190:4001/api/product/" + params[0])
+                    .addHeader("Authorization", "Bearer " + header)
+                    .build();
+
+            try {
+                Response response = client.newCall(request).execute();
+                if (response.isSuccessful()) {
+                    String responseData = response.body().string();
+                    return new JSONObject(responseData);
+                } else {
+                    // Handle error case
+                }
+            } catch (IOException | JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            if (result != null) {
+                try {
+                    // Populate the EditText fields with retrieved data
+                    etName.setText(result.getString("name"));
+                    etCode.setText(result.getString("code"));
+                    etDate.setText(result.getString("date"));
+                    etStock.setText(String.valueOf(result.getInt("stock")));
+                    etNote.setText(result.getString("note"));
+                    etProducer.setText(result.getString("producer"));
+                    etStatus.setText(result.getString("status"));
+                    etCategory.setText(result.getString("category"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                // Handle case when data retrieval fails
+            }
+        }
+    }
+
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
 
         @Override
@@ -97,9 +150,9 @@ public class EditProduct extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             RequestBody requestBody = RequestBody.create(mediaType, params[0]);
             Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/product")
+                    .url("http://14.225.211.190:4001/api/product/"+ id)
                     .addHeader("Authorization", "Bearer " +  header)
-                    .method("POST", requestBody)
+                    .method("GET", requestBody)
                     .build();
 
 

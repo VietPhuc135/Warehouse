@@ -68,11 +68,12 @@ public class ArrayProduct extends ArrayAdapter<Product> {
                     // Xử lý các sự kiện khi người dùng chọn một item trong menu
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            switch (item.getItemId()) {
+                        public boolean onMenuItemClick(MenuItem items) {
+                            switch (items.getItemId()) {
                                 case R.id.detail_product:
-                                    Intent i = new Intent(context, EditProduct.class);
-                                    context.startActivity(i);
+                                    Intent intent = new Intent(context, EditProduct.class);
+                                    intent.putExtra("id", item.getId());
+                                    context.startActivity(intent);// Pass the product ID to the EditProduct activity
                                     return true;
                                 case R.id.repair_product:
                                     // Xử lý khi người dùng chọn Edit

@@ -109,45 +109,6 @@ public class DsSanPham extends AppCompatActivity {
             }
         );
         new MyAsyncTask().execute();
-//        OkHttpClient client = new OkHttpClient();
-//        MediaType mediaType = MediaType.parse("text/plain");
-//        RequestBody body = RequestBody.create(mediaType, "");
-//        Request request = new Request.Builder()
-//                .url("http://14.225.211.190:4001/api/product/query")
-//                .method("POST", body)
-//                .addHeader("Authorization", "Bearer " + header)
-//                .build();
-//
-//        client.newCall(request).enqueue(new okhttp3.Callback() {
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                if (response.isSuccessful()) {
-//                    String responseBody = response.body().string();
-//                    Gson gson = new Gson();
-//                    Type listType = new TypeToken<List<Product>>() {
-//                    }.getType();
-//
-//                    itemList = gson.fromJson(responseBody, listType);
-//                    System.out.println("Đây la itemlisst " + responseBody);
-//                    // Cập nhật giao diện trong luồng UI
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            // Khởi tạo và thiết lập Adapter
-//                            adapter = new ArrayProduct(DsSanPham.this, itemList);
-//                            listView.setAdapter(adapter);
-//                        }
-//                    });
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                System.out.println("fail");
-//
-//                e.printStackTrace();
-//            }
-//        });
     }
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
 
