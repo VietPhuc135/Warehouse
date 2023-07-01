@@ -11,7 +11,7 @@ public class Product  implements Serializable {
         this.id = id;
     }
 
-          private  String id ;
+    private String id ;
         private String name;
         private String code;
         private String date;
@@ -19,8 +19,17 @@ public class Product  implements Serializable {
         private String note;
         private String producer;
         private String status;
-//        StorageId StorageIdObject;
-        private String category;
+        String storageId;
+
+    public String getstorageId() {
+        return storageId;
+    }
+
+    public void setStorageIdObject(String storageIdObject) {
+        storageId = storageIdObject;
+    }
+
+    private String category;
         private String image;
 
 
@@ -53,7 +62,7 @@ public class Product  implements Serializable {
         public String getStatus() {
             return status;
         }
-
+//
 //        public StorageId getStorageId() {
 //            return StorageIdObject;
 //        }

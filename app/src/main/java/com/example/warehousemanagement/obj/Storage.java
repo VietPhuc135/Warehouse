@@ -1,6 +1,8 @@
 package com.example.warehousemanagement.obj;
 
-public class Storage {
+import java.io.Serializable;
+
+public class Storage implements Serializable {
     public String getId() {
         return id;
     }

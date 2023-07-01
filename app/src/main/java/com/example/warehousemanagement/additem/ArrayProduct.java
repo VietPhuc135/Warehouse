@@ -50,6 +50,10 @@ public class ArrayProduct extends ArrayAdapter<Product> {
 
         ImageView imageView = rowView.findViewById(R.id.imageView);
         TextView nameTextView = rowView.findViewById(R.id.nameTextView);
+        TextView titlenameTextView = rowView.findViewById(R.id.titlenameTextView);
+        TextView titlestockTextView = rowView.findViewById(R.id.titlestockTextView);
+        titlestockTextView.setText("");
+        titlenameTextView.setText("");
         TextView codeTextView = rowView.findViewById(R.id.codeTextView);
         TextView stockTextView = rowView.findViewById(R.id.stockTextView);
         ImageView SuabtnProduct = rowView.findViewById(R.id.SuabtnProduct);
