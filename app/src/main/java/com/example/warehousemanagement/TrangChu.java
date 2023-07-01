@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.warehousemanagement.additem.DanhSachImport;
+import com.example.warehousemanagement.order.OrderList;
 import com.example.warehousemanagement.profile.ProfilePage;
 import com.example.warehousemanagement.user.QLNguoiDung;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -34,7 +35,7 @@ public class TrangChu extends AppCompatActivity {
         imgImport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TrangChu.this, DanhSachImport.class);
+                Intent intent = new Intent(TrangChu.this, OrderList.class);
                 startActivity(intent);
             }
         });

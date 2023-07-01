@@ -47,26 +47,28 @@ public class EditProduct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         if (intent != null) {
-            id = intent.getStringExtra("id"); // Get the product ID from the intent
-            // Use the product ID as needed
+            id = intent.getStringExtra("id");
+
         }
         setContentView(R.layout.activity_edititem);
         header = DangNhap.account.getToken();
-        etName = findViewById(R.id.etName);
-        etCode = findViewById(R.id.etCode);
-        etDate = findViewById(R.id.etDate);
-        etStock = findViewById(R.id.etStock);
-        etNote = findViewById(R.id.etNote);
-        etProducer = findViewById(R.id.etProducer);
-        etStatus = findViewById(R.id.etStatus);
-        etCategory = findViewById(R.id.etCategory);
-        btnSubmit = findViewById(R.id.btnSubmit);
+        etName = findViewById(R.id.etName2);
+        etCode = findViewById(R.id.etCode2);
+        etDate = findViewById(R.id.etDate2);
+        etStock = findViewById(R.id.etStock2);
+        etNote = findViewById(R.id.etNote2);
+        etProducer = findViewById(R.id.etProducer2);
+        etStatus = findViewById(R.id.etStatus2);
+        etCategory = findViewById(R.id.etCategory2);
+        btnSubmit = findViewById(R.id.btnSubmit2);
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog();
             }
         });
+        new FetchProductDetails().execute(id);
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,19 +94,20 @@ public class EditProduct extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-//                new MyAsyncTask().execute(jsonObject.toString());
+                new MyAsyncTask().execute(jsonObject.toString());
             }});
-        new FetchProductDetails().execute(id);
+
     }
     private class FetchProductDetails extends AsyncTask<String, Void, JSONObject> {
         @Override
         protected JSONObject doInBackground(String... params) {
             OkHttpClient client = new OkHttpClient();
+            MediaType mediaType = MediaType.parse("text/plain");
             Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/product/" + params[0])
-                    .addHeader("Authorization", "Bearer " + header)
+                    .url("http://14.225.211.190:4001/api/product/"+ id)
+                    .addHeader("Authorization", "Bearer " +  header)
+                    .method("GET",null)
                     .build();
-
             try {
                 Response response = client.newCall(request).execute();
                 if (response.isSuccessful()) {
@@ -137,13 +140,12 @@ public class EditProduct extends AppCompatActivity {
                     e.printStackTrace();
                 }
             } else {
-                // Handle case when data retrieval fails
+//                System.out.println(result.toString());
             }
         }
     }
 
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
-
         @Override
         protected Boolean doInBackground(String... params) {
             OkHttpClient client = new OkHttpClient();
@@ -152,17 +154,15 @@ public class EditProduct extends AppCompatActivity {
             Request request = new Request.Builder()
                     .url("http://14.225.211.190:4001/api/product/"+ id)
                     .addHeader("Authorization", "Bearer " +  header)
-                    .method("GET", requestBody)
+                    .method("PUT", requestBody)
                     .build();
-
-
             try {
                 Response response = client.newCall(request).execute();
                 int i =  response.code();
                 if (i == 201) {
                     System.out.println(jsonObject);
-                    Intent intent = new Intent(EditProduct.this, TrangChu.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(EditProduct.this, TrangChu.class);
+//                    startActivity(intent);
                 } else {
                     System.out.println("lỗi " + response.toString());
                 }

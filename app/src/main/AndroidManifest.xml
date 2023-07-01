@@ -32,6 +32,9 @@
         <activity android:name=".other.StockerPage" android:exported="true"/>
         <activity android:name=".user.EditNguoiDung" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>
         <activity android:name=".user.AddNguoiDung" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>
+        <activity android:name=".order.OrderList" android:exported="true"/>
+        <activity android:name=".order.AddOrder" android:exported="true"/>
+        <activity android:name=".order.DsSanPhamOrder" android:exported="true"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
