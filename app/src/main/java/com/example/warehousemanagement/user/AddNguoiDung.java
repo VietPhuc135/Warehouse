@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
+import com.example.warehousemanagement.TrangChu;
+import com.example.warehousemanagement.additem.AddProduct;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,11 +26,11 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class AddNguoiDung extends AppCompatActivity {
-    EditText username, password, email, name, role, address, marketId;
-
+    private EditText username, password, email, name, role, address, marketId;
+    private Button btnSubmitUser;
     String header;
     JSONObject jsonObject;
-    Button btnSubmitUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +52,24 @@ public class AddNguoiDung extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Lấy dữ liệu từ EditText
+                String usernametxt = username.getText().toString().trim();
+                String passwordtxt = password.getText().toString().trim();
+                String emailtxt = email.getText().toString().trim();
                 String nametxt = name.getText().toString().trim();
+                String roletxt = role.getText().toString().trim();
                 String addresstxt = address.getText().toString().trim();
+                String marketIdtxt = marketId.getText().toString().trim();
 
                 // Tạo JSON object từ dữ liệu
-                jsonObject = new JSONObject();
+//                jsonObject = new JSONObject();
                 try {
+                    jsonObject.put("username", usernametxt);
+                    jsonObject.put("password", passwordtxt);
+                    jsonObject.put("email", emailtxt);
                     jsonObject.put("name", nametxt);
+                    jsonObject.put("role", roletxt);
                     jsonObject.put("address", addresstxt);
-
+                    jsonObject.put("marketId", marketIdtxt);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -78,14 +89,22 @@ public class AddNguoiDung extends AppCompatActivity {
             Request request = new Request.Builder()
                     .url("http://14.225.211.190:4001/api/user")
                     .addHeader("Authorization", "Bearer " + header)
-                    .post(requestBody)
+                    .method("POST", requestBody)
                     .build();
 
             try {
                 Response response = client.newCall(request).execute();
 
-                if (response.isSuccessful()) {
-                    return true;
+//                if (response.isSuccessful()) {
+//                    return true;
+//                }
+                int i =  response.code();
+                if (i == 201) {
+                    System.out.println(jsonObject);
+                    Intent intent = new Intent(AddNguoiDung.this, QLNguoiDung.class);
+                    startActivity(intent);
+                } else {
+                    System.out.println("lỗi " + response.toString());
                 }
             } catch (IOException e) {
                 e.printStackTrace();
