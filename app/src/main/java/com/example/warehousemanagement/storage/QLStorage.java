@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.DsSanPham;
@@ -50,7 +51,8 @@ public class QLStorage extends AppCompatActivity {
     private ArrayList<String> storageNames;
     private List<Storage> itemList;
     private ArrayStorage adapter;
-
+    String role;
+    TextView title ;
     String header ;
 
     @Override
@@ -59,6 +61,7 @@ public class QLStorage extends AppCompatActivity {
         setContentView(R.layout.activity_storage_manager);
         header = DangNhap.account.getToken();
         storageList = findViewById(R.id.lvStorage);
+        role = DangNhap.account.getUser().getRole();
         storageNames = new ArrayList<>();
         adapter = new ArrayStorage(this, itemList);
         ImageView imgArrageStorage = findViewById(R.id.imgArrageStorage);
@@ -70,6 +73,10 @@ public class QLStorage extends AppCompatActivity {
                }
            }
         );
+        if (role.equals("saler")){
+            title = findViewById(R.id.titleStorage);
+            title.setText("Kho trực thuộc");
+        }
         // Gọi phương thức để thực hiện yêu cầu HTTP và hiển thị danh sách
 //        fetchStorageList();
 
@@ -97,7 +104,7 @@ public class QLStorage extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         String responseBody = response.body().string();
                         Gson gson = new Gson();
-                        Type listType = new TypeToken<List<Product>>() {
+                        Type listType = new TypeToken<List<Storage>>() {
                         }.getType();
 
                         itemList = gson.fromJson(responseBody, listType);

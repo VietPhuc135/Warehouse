@@ -61,8 +61,8 @@ public class OrderList extends AppCompatActivity {
         imgAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(OrderList.this, AddProduct.class);
-//                startActivity(intent);
+                Intent intent = new Intent(OrderList.this, AddOrder.class);
+                startActivity(intent);
             }
         });
         listView.setOnLongClickListener(new View.OnLongClickListener() {

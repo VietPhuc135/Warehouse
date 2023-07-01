@@ -61,7 +61,7 @@ public class DsSanPham extends AppCompatActivity {
     private List<Product> itemList;
     ImageView imgAddProduct;
     Context context;
-
+        String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +70,11 @@ public class DsSanPham extends AppCompatActivity {
         imgAddProduct = findViewById(R.id.imgAddProduct);
         listView = findViewById(R.id.lvProduct);
         header = DangNhap.account.getToken();
+        Intent intent = getIntent();
+        if (intent != null) {
+            id = intent.getStringExtra("id");
+
+        }
         adapter = new ArrayProduct(this, itemList);
         imgAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +117,6 @@ public class DsSanPham extends AppCompatActivity {
         new MyAsyncTask().execute();
     }
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
-
         @Override
         protected Boolean doInBackground(String... params) {
             OkHttpClient client = new OkHttpClient();
@@ -131,16 +135,33 @@ public class DsSanPham extends AppCompatActivity {
                         Gson gson = new Gson();
                         Type listType = new TypeToken<List<Product>>() {
                         }.getType();
-
                         itemList = gson.fromJson(responseBody, listType);
+
+                        List<Product> filteredList = new ArrayList<>();
+                        if (id != null){
+                            for (Product product : itemList) {
+                                String idSto = product.getstorageId();
+                                if (product.getstorageId().equals(id)) {
+                                    filteredList.add(product);
+                                }
+                            }
+                        }
                         System.out.println("Đây la itemlisst " + responseBody);
                         // Cập nhật giao diện trong luồng UI
+
+
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 // Khởi tạo và thiết lập Adapter
-                                adapter = new ArrayProduct(DsSanPham.this, itemList);
-                                listView.setAdapter(adapter);
+                                if (id != null){
+                                    adapter = new ArrayProduct(DsSanPham.this, filteredList);
+                                    listView.setAdapter(adapter);
+                                }
+                              else{
+                                    adapter = new ArrayProduct(DsSanPham.this, itemList);
+                                    listView.setAdapter(adapter);
+                                }
                             }
                         });
                     }

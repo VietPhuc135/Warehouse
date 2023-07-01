@@ -84,6 +84,7 @@ public class EditProduct extends AppCompatActivity {
                 // Tạo JSON object từ dữ liệu
 
                 try {
+
                     jsonObject.put("name", name);
                     jsonObject.put("code", code);
                     jsonObject.put("stock", stock);
@@ -98,52 +99,6 @@ public class EditProduct extends AppCompatActivity {
             }});
 
     }
-    private class FetchProductDetails extends AsyncTask<String, Void, JSONObject> {
-        @Override
-        protected JSONObject doInBackground(String... params) {
-            OkHttpClient client = new OkHttpClient();
-            MediaType mediaType = MediaType.parse("text/plain");
-            Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/product/"+ id)
-                    .addHeader("Authorization", "Bearer " +  header)
-                    .method("GET",null)
-                    .build();
-            try {
-                Response response = client.newCall(request).execute();
-                if (response.isSuccessful()) {
-                    String responseData = response.body().string();
-                    return new JSONObject(responseData);
-                } else {
-                    // Handle error case
-                }
-            } catch (IOException | JSONException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(JSONObject result) {
-            if (result != null) {
-                try {
-                    // Populate the EditText fields with retrieved data
-                    etName.setText(result.getString("name"));
-                    etCode.setText(result.getString("code"));
-                    etDate.setText(result.getString("date"));
-                    etStock.setText(String.valueOf(result.getInt("stock")));
-                    etNote.setText(result.getString("note"));
-                    etProducer.setText(result.getString("producer"));
-                    etStatus.setText(result.getString("status"));
-                    etCategory.setText(result.getString("category"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } else {
-//                System.out.println(result.toString());
-            }
-        }
-    }
 
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
         @Override
@@ -154,15 +109,18 @@ public class EditProduct extends AppCompatActivity {
             Request request = new Request.Builder()
                     .url("http://14.225.211.190:4001/api/product/"+ id)
                     .addHeader("Authorization", "Bearer " +  header)
-                    .method("PUT", requestBody)
+                    .put(requestBody)
                     .build();
+
+            System.out.println("body" +  params[0]);
             try {
                 Response response = client.newCall(request).execute();
                 int i =  response.code();
-                if (i == 201) {
+                if (response.isSuccessful()) {
                     System.out.println(jsonObject);
-//                    Intent intent = new Intent(EditProduct.this, TrangChu.class);
-//                    startActivity(intent);
+                    Intent intent = new Intent(EditProduct.this, DsSanPham.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     System.out.println("lỗi " + response.toString());
                 }
@@ -213,6 +171,52 @@ public class EditProduct extends AppCompatActivity {
 
         // Hiển thị DatePickerDialog
         datePickerDialog.show();
+    }
+    private class FetchProductDetails extends AsyncTask<String, Void, JSONObject> {
+        @Override
+        protected JSONObject doInBackground(String... params) {
+            OkHttpClient client = new OkHttpClient();
+            MediaType mediaType = MediaType.parse("text/plain");
+            Request request = new Request.Builder()
+                    .url("http://14.225.211.190:4001/api/product/"+ id)
+                    .addHeader("Authorization", "Bearer " +  header)
+                    .method("GET",null)
+                    .build();
+            try {
+                Response response = client.newCall(request).execute();
+                if (response.isSuccessful()) {
+                    String responseData = response.body().string();
+                    return new JSONObject(responseData);
+                } else {
+                    // Handle error case
+                }
+            } catch (IOException | JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            if (result != null) {
+                try {
+                    // Populate the EditText fields with retrieved data
+                    etName.setText(result.getString("name"));
+                    etCode.setText(result.getString("code"));
+                    etDate.setText(result.getString("date"));
+                    etStock.setText(String.valueOf(result.getInt("stock")));
+                    etNote.setText(result.getString("note"));
+                    etProducer.setText(result.getString("producer"));
+                    etStatus.setText(result.getString("status"));
+                    etCategory.setText(result.getString("category"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+//                System.out.println(result.toString());
+            }
+        }
     }
 
 }

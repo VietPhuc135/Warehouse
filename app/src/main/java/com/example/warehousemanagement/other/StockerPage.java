@@ -14,10 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.warehousemanagement.DsSanPham;
 import com.example.warehousemanagement.QLStore;
 import com.example.warehousemanagement.R;
+import com.example.warehousemanagement.TrangChu;
+import com.example.warehousemanagement.order.OrderList;
 import com.example.warehousemanagement.profile.ProfilePage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class StockerPage extends   AppCompatActivity{
+public class StockerPage extends  AppCompatActivity{
     Button btnDN, btnDangki;
     ImageView imgImport, imgProFile, imgProduct, imgUser;
 
@@ -47,8 +49,8 @@ public class StockerPage extends   AppCompatActivity{
         imgUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Đang hoàn thiện", Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(StockerPage.this, OrderList.class);
+                startActivity(intent);
             }
         });
 

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +37,7 @@ public class EditStorage extends AppCompatActivity {
     private EditText etName, etCode;
     private Button btnSubmit;
     String header ;
+    String role;
     JSONObject jsonObject = new JSONObject();
     String id  ;
     @Override
@@ -48,28 +50,37 @@ public class EditStorage extends AppCompatActivity {
         }
         setContentView(R.layout.activity_editstorage);
         header = DangNhap.account.getToken();
+        role = DangNhap.account.getUser().getRole();
         etName = findViewById(R.id.etAddressStorage2);
         etCode = findViewById(R.id.etCodeStorage2);
-        btnSubmit = findViewById(R.id.btnSubmit2);
+        btnSubmit = findViewById(R.id.btnSubmitStorage2);
 
         new FetchProductDetails().execute(id);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Lấy dữ liệu từ EditText
-                String name = etName.getText().toString().trim();
-                String code = etCode.getText().toString().trim();
 
-                // Tạo JSON object từ dữ liệu
-
-                try {
-                    jsonObject.put("name", name);
-                    jsonObject.put("code", code);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if (role.equals("saler") ){
+                    Toast.makeText(getBaseContext(), "Bạn là saler ! Bạn không có quyền sửa", Toast.LENGTH_SHORT).show();
+                    return ;
                 }
-                new MyAsyncTask().execute(jsonObject.toString());
+                // Lấy dữ liệu từ EditText
+              else{
+                  String name = etName.getText().toString().trim();
+                    String code = etCode.getText().toString().trim();
+
+                    // Tạo JSON object từ dữ liệu
+
+                    try {
+                        jsonObject.put("code", code);
+                        jsonObject.put("address", name);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    new MyAsyncTask().execute(jsonObject.toString());
+                }
+
             }});
 
     }
@@ -103,8 +114,9 @@ public class EditStorage extends AppCompatActivity {
             if (result != null) {
                 try {
                     // Populate the EditText fields with retrieved data
-                    etName.setText(result.getString("name"));
                     etCode.setText(result.getString("code"));
+                    etName.setText(result.getString("address"));
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -123,15 +135,17 @@ public class EditStorage extends AppCompatActivity {
             Request request = new Request.Builder()
                     .url("http://14.225.211.190:4001/api/storage/"+ id)
                     .addHeader("Authorization", "Bearer " +  header)
-                    .method("PUT", requestBody)
+                    .put(requestBody)
                     .build();
+
+                System.out.println(params[0]);
             try {
                 Response response = client.newCall(request).execute();
-                int i =  response.code();
-                if (i == 201) {
+                if (response.isSuccessful()) {
                     System.out.println(jsonObject);
-//                    Intent intent = new Intent(EditProduct.this, TrangChu.class);
-//                    startActivity(intent);
+                    Intent intent = new Intent(EditStorage.this, QLStorage.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     System.out.println("lỗi " + response.toString());
                 }
