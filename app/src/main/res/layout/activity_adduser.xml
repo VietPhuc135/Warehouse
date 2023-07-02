@@ -73,10 +73,30 @@
         android:layout_marginRight="15dp"/>
 
     <EditText
+        android:id="@+id/etAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Age"
+        android:padding="15dp"
+        android:inputType="number"
+        android:digits="0123456789"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+
+    <EditText
         android:id="@+id/etMarketID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="MarketId"
+        android:padding="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+
+    <EditText
+        android:id="@+id/etStorageId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="StorageId"
         android:padding="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"/>

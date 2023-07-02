@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.example.warehousemanagement.additem.DanhSachImport;
+import com.example.warehousemanagement.additem.DsSanPham;
 import com.example.warehousemanagement.order.OrderList;
 import com.example.warehousemanagement.profile.ProfilePage;
 import com.example.warehousemanagement.user.QLNguoiDung;

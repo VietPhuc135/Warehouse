@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
+import com.example.warehousemanagement.TrangChu;
+import com.example.warehousemanagement.additem.AddProduct;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,41 +26,54 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class AddNguoiDung extends AppCompatActivity {
-    EditText username, password, email, name, role, address, marketId;
-
+    private EditText username, password, email, name, role, address, age, marketId, storageId;
+    private Button btnSubmitUser;
     String header;
-    JSONObject jsonObject;
-    Button btnSubmitUser;
+    JSONObject jsonObject = new JSONObject();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adduser);
+        header = DangNhap.account.getToken();
+
         username = findViewById(R.id.etUsername);
         password = findViewById(R.id.etPassword);
         email = findViewById(R.id.etEmail);
         name = findViewById(R.id.etName);
         role = findViewById(R.id.etRole);
         address = findViewById(R.id.etAddress);
+        age = findViewById(R.id.etAge);
         marketId = findViewById(R.id.etMarketID);
-
-        header = DangNhap.account.getToken();
-
+        storageId = findViewById(R.id.etStorageId);
         btnSubmitUser = findViewById(R.id.btnSubmitUser);
 
         btnSubmitUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Lấy dữ liệu từ EditText
+                String usernametxt = username.getText().toString().trim();
+                String passwordtxt = password.getText().toString().trim();
+                String emailtxt = email.getText().toString().trim();
                 String nametxt = name.getText().toString().trim();
+                String roletxt = role.getText().toString().trim();
                 String addresstxt = address.getText().toString().trim();
+                int agetxt = Integer.parseInt(age.getText().toString().trim());
+                String marketIdtxt = marketId.getText().toString().trim();
+                String storageIdtxt = storageId.getText().toString().trim();
 
                 // Tạo JSON object từ dữ liệu
-                jsonObject = new JSONObject();
+//                jsonObject = new JSONObject();
                 try {
+                    jsonObject.put("username", usernametxt);
+                    jsonObject.put("password", passwordtxt);
+                    jsonObject.put("email", emailtxt);
                     jsonObject.put("name", nametxt);
+                    jsonObject.put("role", roletxt);
                     jsonObject.put("address", addresstxt);
-
+                    jsonObject.put("age", agetxt);
+                    jsonObject.put("marketId", marketIdtxt);
+                    jsonObject.put("storageId", storageIdtxt);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -78,14 +93,22 @@ public class AddNguoiDung extends AppCompatActivity {
             Request request = new Request.Builder()
                     .url("http://14.225.211.190:4001/api/user")
                     .addHeader("Authorization", "Bearer " + header)
-                    .post(requestBody)
+                    .method("POST", requestBody)
                     .build();
 
             try {
                 Response response = client.newCall(request).execute();
 
-                if (response.isSuccessful()) {
-                    return true;
+//                if (response.isSuccessful()) {
+//                    return true;
+//                }
+                int i =  response.code();
+                if (i == 201) {
+                    System.out.println(jsonObject);
+                    Intent intent = new Intent(AddNguoiDung.this, TrangChu.class);
+                    startActivity(intent);
+                } else {
+                    System.out.println("lỗi " + response.toString());
                 }
             } catch (IOException e) {
                 e.printStackTrace();

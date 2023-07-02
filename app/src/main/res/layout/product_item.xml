@@ -30,7 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="#2D40A6"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,7 +41,9 @@
                 android:id="@+id/titlenameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ID người sở hữu: " />
+                android:text="ID người sở hữu: "
+                android:textColor="#2D40A6"
+                android:textStyle="bold"/>
 
 
             <TextView
@@ -63,7 +66,9 @@
                 android:id="@+id/titlestockTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trạng thái: " />
+                android:text="Trạng thái: "
+                android:textColor="#2D40A6"
+                android:textStyle="bold"/>
 
 
             <TextView

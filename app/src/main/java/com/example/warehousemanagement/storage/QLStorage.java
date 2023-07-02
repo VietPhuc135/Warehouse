@@ -5,32 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.warehousemanagement.DangNhap;
-import com.example.warehousemanagement.DsSanPham;
 import com.example.warehousemanagement.R;
-import com.example.warehousemanagement.additem.ArrayProduct;
 import com.example.warehousemanagement.obj.Product;
 import com.example.warehousemanagement.obj.Storage;
-import com.example.warehousemanagement.user.AddNguoiDung;
-import com.example.warehousemanagement.user.EditNguoiDung;
-import com.example.warehousemanagement.user.QLNguoiDung;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
