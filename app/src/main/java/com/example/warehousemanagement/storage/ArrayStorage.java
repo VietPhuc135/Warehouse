@@ -13,7 +13,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.warehousemanagement.DsSanPham;
+import com.example.warehousemanagement.additem.DsSanPham;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.obj.Storage;
 

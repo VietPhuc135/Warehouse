@@ -33,7 +33,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Địa chỉ: " />
+                android:text="Địa chỉ: "
+                android:textColor="#374BB6"/>
             <TextView
                 android:id="@+id/nameTextViewSto"
                 android:layout_width="match_parent"
@@ -52,14 +53,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mã: " />
+                android:text="Mã: "
+                android:textColor="#374BB6"/>
 
             <TextView
                 android:id="@+id/codeTextViewSto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#000000"/>
 
 
         </LinearLayout>
