@@ -59,9 +59,6 @@ public class ArrayStorage extends ArrayAdapter<Storage> {
                                     context.startActivity(intent);
                                     // Pass the product ID to the EditProduct activity
                                     return true;
-                                case R.id.repair_product:
-                                    // Xử lý khi người dùng chọn Edit
-
                                 case R.id.delete_product:
                                     // Xử lý khi người dùng chọn Edit
                                     Toast.makeText(context, "Đang hoàn thiện", Toast.LENGTH_SHORT).show();

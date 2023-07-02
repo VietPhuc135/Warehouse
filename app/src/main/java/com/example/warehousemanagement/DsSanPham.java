@@ -98,9 +98,7 @@ public class DsSanPham extends AppCompatActivity {
                                 case R.id.detail_product:
                                     // Xử lý khi người dùng chọn Delete
                                     return true;
-                                case R.id.repair_product:
-                                    // Xử lý khi người dùng chọn Edit
-                                    return true;
+
                                 case R.id.delete_product:
                                     // Xử lý khi người dùng chọn Edit
                                     return true;

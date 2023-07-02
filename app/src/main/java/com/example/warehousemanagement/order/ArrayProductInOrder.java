@@ -1,4 +1,4 @@
-package com.example.warehousemanagement.additem;
+package com.example.warehousemanagement.order;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,39 +7,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-
-import com.example.warehousemanagement.R;
-import com.example.warehousemanagement.obj.Product;
-import com.example.warehousemanagement.order.EditProductInOrder;
-import com.squareup.picasso.Picasso;
-//import com.squareup.picasso.Picasso;
-
-import java.util.List;
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import com.example.warehousemanagement.R;
+import com.example.warehousemanagement.additem.EditProduct;
+import com.example.warehousemanagement.obj.Product;
 
-
+import java.util.ArrayList;
 import java.util.List;
 
-public class ArrayProduct extends ArrayAdapter<Product> {
+public class ArrayProductInOrder extends ArrayAdapter<Product> {
 
     private Context context;
     private List<Product> itemList;
 
-    public ArrayProduct(Context context, List<Product> itemList) {
+    public ArrayProductInOrder(Context context, List<Product> itemList) {
         super(context, R.layout.activity_view_product, itemList);
         this.context = context;
         this.itemList = itemList;
@@ -68,7 +54,7 @@ public class ArrayProduct extends ArrayAdapter<Product> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EditProductInOrder.class);
-                intent.putExtra("id", item.getId());
+                intent.putExtra("lineItems",item);
                 context.startActivity(intent);// Pass the product ID to the EditProduct activity
             }
         });
@@ -76,30 +62,30 @@ public class ArrayProduct extends ArrayAdapter<Product> {
         SuabtnProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    PopupMenu popupMenu = new PopupMenu(context, v);
-                    popupMenu.getMenuInflater().inflate(R.menu.menu_product, popupMenu.getMenu());
-                    popupMenu.show();
+                PopupMenu popupMenu = new PopupMenu(context, v);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_product, popupMenu.getMenu());
+                popupMenu.show();
 
-                    // Xử lý các sự kiện khi người dùng chọn một item trong menu
-                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem items) {
-                            switch (items.getItemId()) {
-                                case R.id.detail_product:
-                                    Intent intent = new Intent(context, EditProduct.class);
-                                    intent.putExtra("id", item.getId());
-                                    context.startActivity(intent);// Pass the product ID to the EditProduct activity
-                                    return true;
+                // Xử lý các sự kiện khi người dùng chọn một item trong menu
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem items) {
+                        switch (items.getItemId()) {
+                            case R.id.detail_product:
+//                                Intent intent = new Intent(context, EditProduct.class);
+//                                intent.putExtra("id", item.getId());
+//                                context.startActivity(intent);// Pass the product ID to the EditProduct activity
+                                return true;
 
-                                case R.id.delete_product:
-                                    // Xử lý khi người dùng chọn Edit
-                                    Toast.makeText(context, "Đang hoàn thiện", Toast.LENGTH_SHORT).show();
-                                    return true;
-                                default:
-                                    return false;
-                            }
+                            case R.id.delete_product:
+                                // Xử lý khi người dùng chọn Edit
+                                Toast.makeText(context, "Đang hoàn thiện", Toast.LENGTH_SHORT).show();
+                                return true;
+                            default:
+                                return false;
                         }
-                    });
+                    }
+                });
 
                 popupMenu.show();
             }

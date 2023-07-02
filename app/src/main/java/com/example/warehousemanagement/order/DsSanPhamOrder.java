@@ -35,7 +35,7 @@ import okhttp3.Response;
 public class DsSanPhamOrder extends AppCompatActivity {
     String header;
     private ListView listView;
-    private ArrayProduct adapter;
+    private ArrayProductInOrder adapter;
     private List<Product> itemList = new ArrayList<>(); // Khởi tạo danh sách sản phẩm
 
     ImageView imgAddProduct;
@@ -51,19 +51,13 @@ public class DsSanPhamOrder extends AppCompatActivity {
         Intent intent = getIntent();
 
 
-        adapter = new ArrayProduct(this, itemList); // Khởi tạo adapter và gán danh sách sản phẩm
+        adapter = new ArrayProductInOrder(this, itemList); // Khởi tạo adapter và gán danh sách sản phẩm
         listView.setAdapter(adapter); // Gán adapter cho listView
 
         ArrayList<Product> lineItems = (ArrayList<Product>) intent.getSerializableExtra("lineItems");
         updateProductList(lineItems); // Cập nhật danh sách sản phẩm từ Intent
-        System.out.println("lineItems" + lineItems.toString());
-        imgAddProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DsSanPhamOrder.this, AddProduct.class);
-                startActivity(intent);
-            }
-        });
+        System.out.println("lineItems" + lineItems);
+
     }
 
     public void updateProductList(ArrayList<Product> products) {
