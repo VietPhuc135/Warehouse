@@ -50,29 +50,6 @@ public class StockerPage extends  AppCompatActivity{
             }
         });
 
-//        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-//        bottomNavigationView.setSelectedItemId(R.id.home_apps);
-//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch (item.getItemId()) {
-//                    case R.id.home_apps:
-//
-//                        return true;
-////                    case R.id.list_apps:
-////                        startActivity(new Intent(StockerPage.this,
-////                                QLStore.class));
-////                        overridePendingTransition(0, 0);
-////                        return true;
-//                    case R.id.info_app:
-//                        startActivity(new Intent(StockerPage.this,
-//                                ProfilePage.class));
-//                        overridePendingTransition(0, 0);
-//                        return true;
-//                }
-//                return false;
-//            }
-//        });
     }
 
 }

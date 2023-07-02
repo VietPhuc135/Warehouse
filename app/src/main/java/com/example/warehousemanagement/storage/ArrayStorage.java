@@ -13,6 +13,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.additem.DsSanPham;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.obj.Storage;
@@ -23,6 +24,7 @@ public class ArrayStorage extends ArrayAdapter<Storage> {
 
     private Context context;
     private List<Storage> storageListList;
+    String role;
 
     public ArrayStorage(Context context, List<Storage> itemList) {
         super(context, R.layout.activity_storage_manager, itemList);
@@ -39,7 +41,11 @@ public class ArrayStorage extends ArrayAdapter<Storage> {
         TextView nameTextView = rowView.findViewById(R.id.nameTextViewSto);
         TextView codeTextView = rowView.findViewById(R.id.codeTextViewSto);
         ImageView SuabtnProduct = rowView.findViewById(R.id.SuabtnStorage);
-
+        role = DangNhap.account.getUser().getRole();
+        System.out.println("role"+ role);
+        if (role.equals("saler")){
+            SuabtnProduct.setVisibility(View.GONE);
+        }
         Storage item = (Storage) getItem(position);
         SuabtnProduct.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -103,7 +103,8 @@
             android:text="Storage Id" />
 
 
-        <EditText            android:id="@+id/tvStorageIdE"
+        <EditText
+            android:id="@+id/tvStorageIdE"
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
