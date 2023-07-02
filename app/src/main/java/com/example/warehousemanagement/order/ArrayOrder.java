@@ -2,12 +2,14 @@ package com.example.warehousemanagement.order;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,10 +43,19 @@ public class ArrayOrder extends ArrayAdapter<Order> {
         TextView stockTextView = rowView.findViewById(R.id.stockTextView);
         ImageView SuabtnProduct = rowView.findViewById(R.id.SuabtnProduct);
 
-
+        LinearLayout btnProductEach = rowView.findViewById(R.id.btnProductEach);
         Order item = itemList.get(position);
         ArrayList<Product>  lineItems = item.getLineItems();
-
+        btnProductEach.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, DsSanPhamOrder.class);
+                        intent.putExtra("lineItems",lineItems);
+                        context.startActivity(intent);// Pass the product ID to the EditProduct activity
+                    }
+                }
+        );
         SuabtnProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

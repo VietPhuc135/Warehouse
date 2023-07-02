@@ -2,10 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/detail_product"
         android:title="Chi tiết sản phẩm"
-        android:icon="@drawable/detail"/>
-    <item android:id="@+id/repair_product"
-        android:title="Sửa sản phẩm"
-        android:icon="@drawable/repair"/>
+        android:icon="@drawable/add"/>
     <item android:id="@+id/delete_product"
         android:title="Xóa sản phẩm"
         android:icon="@drawable/delete"/>
