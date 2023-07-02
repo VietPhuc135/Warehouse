@@ -124,7 +124,7 @@ public class DsSanPham extends AppCompatActivity {
                                 }
                             }
                         }
-                        System.out.println("Đây la itemlisst " + responseBody);
+                        System.out.println("Đây la itemlist " + responseBody);
                         // Cập nhật giao diện trong luồng UI
 
 
