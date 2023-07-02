@@ -3,9 +3,12 @@ package com.example.warehousemanagement.user;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +22,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -32,7 +37,8 @@ public class EditNguoiDung extends AppCompatActivity {
     String header ;
     JSONObject jsonObject = new JSONObject();
     String id  ;
-
+    List<String> items;
+    Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +48,6 @@ public class EditNguoiDung extends AppCompatActivity {
             id = intent.getStringExtra("id");
 
         }
-        setContentView(R.layout.activity_edititem);
         header = DangNhap.account.getToken();
         username = findViewById(R.id.etUsername1);
         password = findViewById(R.id.etPassword1);
@@ -53,7 +58,23 @@ public class EditNguoiDung extends AppCompatActivity {
         age = findViewById(R.id.etAge1);
         marketId = findViewById(R.id.etMarketID1);
         storageId = findViewById(R.id.etStorageId1);
-        btnSubmitUser = findViewById(R.id.btnSubmitUser);
+        btnSubmitUser = findViewById(R.id.btnSubmitUser1);
+         spinner = (Spinner) findViewById(R.id.spinnerRole1);
+        items = new ArrayList<>();
+        if (spinner != null) {
+            items.add("admin");
+            items.add("saler");
+            items.add("stocker");
+            ArrayAdapter<String> adapterSta = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
+            adapterSta.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapterSta);
+
+            // Thiết lập giá trị mặc định
+//            int defaultPosition = 0; // Vị trí mục mặc định (số thứ tự)
+//            spinner.setSelection(defaultPosition);
+        } else {
+            Log.e("Spinner Error", "Spinner not found or not initialized correctly");
+        }
 
         new EditNguoiDung.FetchUserDetails().execute(id);
 
@@ -65,7 +86,7 @@ public class EditNguoiDung extends AppCompatActivity {
                 String passwordtxt = password.getText().toString().trim();
                 String emailtxt = email.getText().toString().trim();
                 String nametxt = name.getText().toString().trim();
-                String roletxt = role.getText().toString().trim();
+                String roletxt = spinner.getSelectedItem().toString();
                 String addresstxt = address.getText().toString().trim();
                 int agetxt = Integer.parseInt(age.getText().toString().trim());
                 String marketIdtxt = marketId.getText().toString().trim();
@@ -119,6 +140,15 @@ public class EditNguoiDung extends AppCompatActivity {
         protected void onPostExecute(JSONObject result) {
             if (result != null) {
                 try {
+                    String apiStatus = result.getString("role"); // Giả sử giá trị trả về từ API là "Food"
+
+// Tìm vị trí của giá trị từ API trong danh sách
+                    int position = items.indexOf(apiStatus);
+                    if (position != -1) {
+                        spinner.setSelection(position);
+                    } else {
+
+                    }
                     // Populate the EditText fields with retrieved data
                     username.setText(result.getString("username"));
                     password.setText(result.getString("password"));
@@ -152,7 +182,7 @@ public class EditNguoiDung extends AppCompatActivity {
             try {
                 Response response = client.newCall(request).execute();
                 int i =  response.code();
-                if (i == 201) {
+                if (response.isSuccessful()) {
                     System.out.println(jsonObject);
 //                    Intent intent = new Intent(EditProduct.this, TrangChu.class);
 //                    startActivity(intent);

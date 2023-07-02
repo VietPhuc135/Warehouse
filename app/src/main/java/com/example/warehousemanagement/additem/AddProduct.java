@@ -40,10 +40,10 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class AddProduct extends AppCompatActivity {
-    private EditText etName, etCode, etStock, etNote, etProducer, etStatus, etCategory;
+    private EditText etName, etCode, etStock, etNote, etProducer ;
     private Button btnSubmit;
     String header ;
-    TextView etDate;
+    TextView etDate,etStatus,etCategory;
     JSONObject jsonObject = new JSONObject();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,9 +67,9 @@ public class AddProduct extends AppCompatActivity {
         if (spinner != null) {
             items.add("Available");
             items.add("Pending");
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner.setAdapter(adapter);
+            ArrayAdapter<String> adapterSta = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
+            adapterSta.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapterSta);
 
             // Thiết lập giá trị mặc định
             int defaultPosition = 0; // Vị trí mục mặc định (số thứ tự)
@@ -86,9 +86,9 @@ public class AddProduct extends AppCompatActivity {
             items1.add("Food");
             items1.add("Houseware");
             items1.add("Instant Food");
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items1);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner1.setAdapter(adapter);
+            ArrayAdapter<String> adapterCate = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items1);
+            adapterCate.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner1.setAdapter(adapterCate);
 
             // Thiết lập giá trị mặc định
             int defaultPosition = 0; // Vị trí mục mặc định (số thứ tự)
@@ -112,8 +112,8 @@ public class AddProduct extends AppCompatActivity {
                         int stock = Integer.parseInt(etStock.getText().toString().trim());
                         String note = etNote.getText().toString().trim();
                         String producer = etProducer.getText().toString().trim();
-                        String status = etStatus.getText().toString().trim();
-                        String category = etCategory.getText().toString().trim();
+                        String status = spinner.getSelectedItem().toString();
+                        String category =spinner1.getSelectedItem().toString();
 
                         // Tạo JSON object từ dữ liệu
 
@@ -148,7 +148,7 @@ public class AddProduct extends AppCompatActivity {
             try {
                 Response response = client.newCall(request).execute();
                    int i =  response.code();
-                if (i == 201) {
+                if (response.isSuccessful()) {
                     System.out.println(jsonObject);
                     Intent intent = new Intent(AddProduct.this, TrangChu.class);
                     startActivity(intent);

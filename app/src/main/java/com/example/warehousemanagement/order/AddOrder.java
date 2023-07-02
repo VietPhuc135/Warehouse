@@ -60,34 +60,34 @@ public class AddOrder extends AppCompatActivity {
                 showDatePickerDialog();
             }
         });
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Lấy dữ liệu từ EditText
-                String name = etName.getText().toString().trim();
-                String code = etCode.getText().toString().trim();
-                int stock = Integer.parseInt(etStock.getText().toString().trim());
-                String note = etNote.getText().toString().trim();
-                String producer = etProducer.getText().toString().trim();
-                String status = etStatus.getText().toString().trim();
-                String category = etCategory.getText().toString().trim();
-
-                // Tạo JSON object từ dữ liệu
-
-                try {
-                    jsonObject.put("ownerId",ownerId);
-                    jsonObject.put("name", name);
-                    jsonObject.put("code", code);
-                    jsonObject.put("stock", stock);
-                    jsonObject.put("note", note);
-                    jsonObject.put("producer", producer);
-                    jsonObject.put("status", status);
-                    jsonObject.put("category", category);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                new MyAsyncTask().execute(jsonObject.toString());
-            }});
+//        btnSubmit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Lấy dữ liệu từ EditText
+//                String name = etName.getText().toString().trim();
+//                String code = etCode.getText().toString().trim();
+//                int stock = Integer.parseInt(etStock.getText().toString().trim());
+//                String note = etNote.getText().toString().trim();
+//                String producer = etProducer.getText().toString().trim();
+//                String status = etStatus.getText().toString().trim();
+//                String category = etCategory.getText().toString().trim();
+//
+//                // Tạo JSON object từ dữ liệu
+//
+//                try {
+//                    jsonObject.put("ownerId",ownerId);
+//                    jsonObject.put("name", name);
+//                    jsonObject.put("code", code);
+//                    jsonObject.put("stock", stock);
+//                    jsonObject.put("note", note);
+//                    jsonObject.put("producer", producer);
+//                    jsonObject.put("status", status);
+//                    jsonObject.put("category", category);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//                new MyAsyncTask().execute(jsonObject.toString());
+//            }});
     }
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
 
@@ -106,7 +106,7 @@ public class AddOrder extends AppCompatActivity {
             try {
                 Response response = client.newCall(request).execute();
                 int i =  response.code();
-                if (i == 201) {
+                if (response.isSuccessful()) {
                     System.out.println(jsonObject);
                     Intent intent = new Intent(AddOrder.this, TrangChu.class);
                     startActivity(intent);

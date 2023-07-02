@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +20,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -30,6 +34,8 @@ public class AddNguoiDung extends AppCompatActivity {
     private Button btnSubmitUser;
     String header;
     JSONObject jsonObject = new JSONObject();
+    Spinner spinner;
+    List<String> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,16 @@ public class AddNguoiDung extends AppCompatActivity {
         marketId = findViewById(R.id.etMarketID);
         storageId = findViewById(R.id.etStorageId);
         btnSubmitUser = findViewById(R.id.btnSubmitUser);
-
+        spinner = (Spinner) findViewById(R.id.spinnerRole);
+        items = new ArrayList<>();
+        if (spinner != null) {
+            items.add("admin");
+            items.add("saler");
+            items.add("stocker");
+            ArrayAdapter<String> adapterSta = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
+            adapterSta.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapterSta);
+        }
         btnSubmitUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +71,7 @@ public class AddNguoiDung extends AppCompatActivity {
                 String passwordtxt = password.getText().toString().trim();
                 String emailtxt = email.getText().toString().trim();
                 String nametxt = name.getText().toString().trim();
-                String roletxt = role.getText().toString().trim();
+                String roletxt = spinner.getSelectedItem().toString();
                 String addresstxt = address.getText().toString().trim();
                 int agetxt = Integer.parseInt(age.getText().toString().trim());
                 String marketIdtxt = marketId.getText().toString().trim();

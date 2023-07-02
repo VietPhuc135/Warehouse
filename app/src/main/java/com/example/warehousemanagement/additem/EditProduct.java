@@ -196,6 +196,7 @@ public class EditProduct extends AppCompatActivity {
         @Override
         protected void onPostExecute(JSONObject result) {
             if (result != null) {
+
                 try {
                     // Populate the EditText fields with retrieved data
                     etName.setText(result.getString("name"));
