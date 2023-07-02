@@ -92,12 +92,29 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"/>
 
+    <Spinner
+        android:id="@+id/spinnerStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textSize="18dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+
     <EditText
         android:id="@+id/etCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Category"
         android:padding="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+    <Spinner
+        android:id="@+id/spinnerCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textSize="18dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"/>
 
