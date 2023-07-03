@@ -56,6 +56,8 @@ public class ArrayOrder extends ArrayAdapter<Order> {
                     }
                 }
         );
+
+        SuabtnProduct.setVisibility(View.GONE);
         SuabtnProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

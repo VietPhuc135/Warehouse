@@ -3,13 +3,6 @@ package com.example.warehousemanagement.obj;
 import java.io.Serializable;
 
 public class Product  implements Serializable {
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     private String id ;
         private String name;
@@ -34,6 +27,13 @@ public class Product  implements Serializable {
 
 
         // Getter Methods
+        public String getId() {
+            return id;
+        }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
         public String getName() {
             return name;

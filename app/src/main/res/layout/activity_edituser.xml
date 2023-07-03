@@ -42,11 +42,28 @@
         android:layout_height="wrap_content"
         android:hint="Name" />
 
-    <EditText
-        android:id="@+id/etRole1"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Role" />
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etRole1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="Role" />
+
+        <Spinner
+            android:id="@+id/spinnerRole1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:padding="15dp"
+            android:textSize="18dp" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/etAddress1"

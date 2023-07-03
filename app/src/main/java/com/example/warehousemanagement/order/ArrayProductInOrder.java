@@ -49,12 +49,12 @@ public class ArrayProductInOrder extends ArrayAdapter<Product> {
         LinearLayout btnArrayProduct = rowView.findViewById(R.id.btnProductEach);
         Product item = itemList.get(position);
 
-
+        System.out.println( "item in order" + item.getStock());
         btnArrayProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EditProductInOrder.class);
-                intent.putExtra("lineItems",item);
+                intent.putExtra("item",item);
                 context.startActivity(intent);// Pass the product ID to the EditProduct activity
             }
         });

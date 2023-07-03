@@ -32,10 +32,10 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class EditProduct extends AppCompatActivity {
-    private EditText etName, etCode, etStock, etNote, etProducer, etStatus, etCategory;
+    private EditText etName, etCode, etStock, etNote, etProducer, etStatus, etCategory,etDate;
     private Button btnSubmit;
     String header ;
-    TextView etDate;
+
     JSONObject jsonObject = new JSONObject();
     String id  ;
     @Override
@@ -196,6 +196,7 @@ public class EditProduct extends AppCompatActivity {
         @Override
         protected void onPostExecute(JSONObject result) {
             if (result != null) {
+
                 try {
                     // Populate the EditText fields with retrieved data
                     etName.setText(result.getString("name"));

@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.obj.Product;
 import com.example.warehousemanagement.order.EditProductInOrder;
@@ -38,6 +39,7 @@ public class ArrayProduct extends ArrayAdapter<Product> {
 
     private Context context;
     private List<Product> itemList;
+    String role;
 
     public ArrayProduct(Context context, List<Product> itemList) {
         super(context, R.layout.activity_view_product, itemList);
@@ -64,15 +66,11 @@ public class ArrayProduct extends ArrayAdapter<Product> {
         Product item = itemList.get(position);
 
 
-        btnArrayProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, EditProductInOrder.class);
-                intent.putExtra("id", item.getId());
-                context.startActivity(intent);// Pass the product ID to the EditProduct activity
-            }
-        });
-
+        role = DangNhap.account.getUser().getRole();
+        System.out.println("role"+ role);
+        if (role.equals("saler")){
+            SuabtnProduct.setVisibility(View.GONE);
+        }
         SuabtnProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

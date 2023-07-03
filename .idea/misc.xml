@@ -4,33 +4,41 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_add_item.xml" value="0.17708333333333334" />
-        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_additem.xml" value="0.4" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_additem.xml" value="0.264" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_addmarket.xml" value="0.21875" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_adduser.xml" value="0.4" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_dashboard.xml" value="0.128125" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_dashboard_stocker.xml" value="0.128125" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_edititem.xml" value="0.2" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_editmarket.xml" value="0.17708333333333334" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_editstorage.xml" value="0.12031408308004053" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_edituser.xml" value="0.2" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_export.xml" value="0.12760416666666666" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_import.xml" value="0.152" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_list_import_export_view_user.xml" value="0.1171875" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_list_market.xml" value="0.12056737588652482" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_list_storage_market.xml" value="0.1171875" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_list_user.xml" value="0.5289079229122056" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_login.xml" value="0.176" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_main.xml" value="0.1171875" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_market_manager.xml" value="0.12" />
-        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_orderadd.xml" value="0.40530973451327434" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_orderadd.xml" value="0.2" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_scan_items.xml" value="0.1171875" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_splashs.xml" value="0.12708333333333333" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_storage_manager.xml" value="0.1171875" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_store_management.xml" value="0.17708333333333334" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_user_manager.xml" value="0.21467391304347827" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_view_product.xml" value="0.1490036231884058" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/custom_layout_snackbar.xml" value="0.264" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/product_item.xml" value="0.264" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/product_list.xml" value="0.4" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/profile_page.xml" value="0.1" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/storage_item.xml" value="0.264" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/menu/menu_navigation.xml" value="0.24739583333333334" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/menu/menu_order.xml" value="0.24358974358974358" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/menu/menu_product.xml" value="0.24739583333333334" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/menu/menu_storage.xml" value="0.1" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/menu/menu_user.xml" value="0.13020833333333334" />
         <entry key="..\:/WarehouseManagement/WarehouseManagement/app/src/main/res/drawable/selector.xml" value="0.1" />
         <entry key="..\:/WarehouseManagement/WarehouseManagement/app/src/main/res/layout/activity_additem.xml" value="0.24791666666666667" />
         <entry key="..\:/WarehouseManagement/WarehouseManagement/app/src/main/res/layout/activity_dashboard.xml" value="0.24791666666666667" />

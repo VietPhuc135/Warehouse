@@ -26,6 +26,7 @@ import android.widget.PopupMenu;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.obj.Product;
+import com.example.warehousemanagement.order.AddOrder;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -41,6 +42,7 @@ public class DsSanPham extends AppCompatActivity {
     ImageView imgAddProduct;
     Context context;
         String id;
+        String role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,19 +51,33 @@ public class DsSanPham extends AppCompatActivity {
         imgAddProduct = findViewById(R.id.imgAddProduct);
         listView = findViewById(R.id.lvProduct);
         header = DangNhap.account.getToken();
+        role = DangNhap.account.getUser().getRole();
         Intent intent = getIntent();
         if (intent != null) {
             id = intent.getStringExtra("id");
 
         }
+
         adapter = new ArrayProduct(this, itemList);
-        imgAddProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DsSanPham.this, AddProduct.class);
-                startActivity(intent);
-            }
-        });
+
+        if (role.equals("saler")){
+            imgAddProduct.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(DsSanPham.this, AddOrder.class);
+                    startActivity(intent);
+                }
+            });
+        }else{
+            imgAddProduct.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(DsSanPham.this, AddProduct.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
         listView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
