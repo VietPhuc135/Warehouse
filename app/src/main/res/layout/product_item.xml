@@ -10,10 +10,10 @@
     android:background="@drawable/border">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView1"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/add" />
+        android:src="@drawable/cart2" />
 
     <LinearLayout
         android:id="@+id/btnProductEach"

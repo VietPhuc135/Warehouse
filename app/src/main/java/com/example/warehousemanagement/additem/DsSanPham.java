@@ -22,6 +22,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
@@ -39,7 +40,7 @@ public class DsSanPham extends AppCompatActivity {
     private ArrayProduct adapter;
     //    private ArrayAdapter<Product> adapter;
     private List<Product> itemList;
-    ImageView imgAddProduct;
+    ImageView imgAddProduct, imageView;
     Context context;
         String id;
         String role;
@@ -49,6 +50,7 @@ public class DsSanPham extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_product);
         imgAddProduct = findViewById(R.id.imgAddProduct);
+        imageView = findViewById(R.id.imageView1);
         listView = findViewById(R.id.lvProduct);
         header = DangNhap.account.getToken();
         role = DangNhap.account.getUser().getRole();
@@ -60,12 +62,20 @@ public class DsSanPham extends AppCompatActivity {
 
         adapter = new ArrayProduct(this, itemList);
 
+
+
         if (role.equals("saler")){
             imgAddProduct.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(DsSanPham.this, AddOrder.class);
                     startActivity(intent);
+                }
+            });
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(getApplicationContext(), "Đang hoàn thiện", Toast.LENGTH_LONG).show();
                 }
             });
         }else{
@@ -76,6 +86,12 @@ public class DsSanPham extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+//            imageView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Toast.makeText(getApplicationContext(), "Đang hoàn thiện", Toast.LENGTH_LONG).show();
+//                }
+//            });
         }
 
         listView.setOnLongClickListener(new View.OnLongClickListener() {
