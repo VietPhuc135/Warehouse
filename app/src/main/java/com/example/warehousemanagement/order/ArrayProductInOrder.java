@@ -93,7 +93,7 @@ public class ArrayProductInOrder extends ArrayAdapter<Product> {
         //Picasso.get().load(item.getImage()).into(imageView);
         nameTextView.setText(item.getName());
         codeTextView.setText(item.getCode());
-        stockTextView.setText("Stock: " + String.valueOf(item.getStock()));
+        stockTextView.setText("Số lượng yêu cầu: " + item.getQuanity());
 
         return rowView;
     }

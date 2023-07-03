@@ -6,14 +6,14 @@ import java.io.Serializable;
 
 public class LineItem  implements Serializable {
     String id;
-    String quanity;
+    double quanity;
 
     public String getId() {
         return id;
     }
 
     public LineItem(String id,
-                    String quanity) {
+                    double quanity) {
         this.id = id;
         this.quanity = quanity;
     }
@@ -22,11 +22,11 @@ public class LineItem  implements Serializable {
         this.id = id;
     }
 
-    public String getQuanity() {
+    public double getQuanity() {
         return quanity;
     }
 
-    public void setQuanity(String quanity) {
+    public void setQuanity(double quanity) {
         this.quanity = quanity;
     }
 }

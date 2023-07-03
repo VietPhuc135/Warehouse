@@ -105,6 +105,7 @@ public class ArrayProduct extends ArrayAdapter<Product> {
         //Picasso.get().load(item.getImage()).into(imageView);
         nameTextView.setText(item.getName());
         codeTextView.setText(item.getCode());
+
         stockTextView.setText("Stock: " + String.valueOf(item.getStock()));
 
         return rowView;

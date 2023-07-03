@@ -156,9 +156,9 @@ public class LineItemForm extends AppCompatActivity {
     private void addLineItem() {
         String lineItemId = etLineItemId.getText().toString().trim();
         String lineItemQuantity = etLineItemQuantity.getText().toString().trim();
-
+        Double Quantity = Double.parseDouble(lineItemId) ;
         // Create a new LineItem object
-        LineItem lineItem = new LineItem(lineItemId, lineItemQuantity);
+        LineItem lineItem = new LineItem(lineItemId, Quantity);
 
         // Pass the LineItem object back to the AddOrder activity
         Intent intent = new Intent();

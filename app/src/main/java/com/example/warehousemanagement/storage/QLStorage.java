@@ -63,14 +63,12 @@ public class QLStorage extends AppCompatActivity {
                }
            }
         );
+
         if (role.equals("saler")){
             title = findViewById(R.id.titleStorage);
-            title.setText("Kho trực thuộc");
+            title.setText("Kho ");
         }
-        // Gọi phương thức để thực hiện yêu cầu HTTP và hiển thị danh sách
-//        fetchStorageList();
 
-        // Đăng ký menu context cho ListView, khi người dùng nhấn giữ trên một phần tử trong ListView
         registerForContextMenu(storageList);
 
         new MyAsyncTask().execute();

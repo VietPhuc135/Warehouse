@@ -114,9 +114,7 @@ public class EditProduct extends AppCompatActivity {
                 int i =  response.code();
                 if (response.isSuccessful()) {
                     System.out.println(jsonObject);
-                    Intent intent = new Intent(EditProduct.this, DsSanPham.class);
-                    startActivity(intent);
-                    finish();
+                    return  true ;
                 } else {
                     System.out.println("lỗi " + response.toString());
                 }
@@ -130,9 +128,8 @@ public class EditProduct extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean result) {
             if (result) {
-                System.out.println(jsonObject);
-                Intent intent = new Intent(EditProduct.this, DsSanPham.class);
-                startActivity(intent);
+                System.out.println("Thành công ");
+                finish();
             } else {
                 System.out.println("lỗi ");
             }

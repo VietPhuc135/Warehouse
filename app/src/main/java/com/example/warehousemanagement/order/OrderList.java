@@ -56,8 +56,6 @@ public class OrderList extends AppCompatActivity {
         header = DangNhap.account.getToken();
         idTitle.setText("Order List");
 
-
-//        adapter = new ArrayProduct(this, itemList);
         imgAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,11 +95,8 @@ public class OrderList extends AppCompatActivity {
                                 // Khởi tạo và thiết lập Adapter
                                 adapter = new ArrayOrder(OrderList.this, orderList);
                                 listView.setAdapter(adapter);
-                            }
-                        });
-                    }
-                }
-
+                           }
+                       }); }                }
                 @Override
                 public void onFailure(Call call, IOException e) {
                     System.out.println("fail");
@@ -115,13 +110,14 @@ public class OrderList extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean result) {
             if (result) {
-//                System.out.println(jsonObject);
-//                Intent intent = new Intent(AddStorage.this, QLStorage.class);
-//                startActivity(intent);
+
             } else {
                 System.out.println("lỗi ");
             }
         }
     }
-
+    public void loadOrderList() {
+        new MyAsyncTask().execute();
+        adapter.notifyDataSetChanged();
+    }
 }

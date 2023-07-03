@@ -77,35 +77,7 @@ public class DsSanPham extends AppCompatActivity {
                 }
             });
         }
-//        listView.setOnLongClickListener(new View.OnLongClickListener() {
-//                @Override
-//                public boolean onLongClick(View v) {
-//                    PopupMenu popupMenu = new PopupMenu(context, v);
-//                    popupMenu.getMenuInflater().inflate(R.menu.menu_product, popupMenu.getMenu());
-//                    popupMenu.show();
-//
-//                    // Xử lý các sự kiện khi người dùng chọn một item trong menu
-//                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//                        @Override
-//                        public boolean onMenuItemClick(MenuItem item) {
-//                            switch (item.getItemId()) {
-//                                case R.id.detail_product:
-//                                    // Xử lý khi người dùng chọn Delete
-//                                    return true;
-//
-//                                case R.id.delete_product:
-//                                    // Xử lý khi người dùng chọn Edit
-//                                    return true;
-//                                default:
-//                                    return false;
-//                            }
-//                        }
-//                    });
-//
-//                    return true;
-//                }
-//            }
-//        );
+
         new MyAsyncTask().execute();
     }
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
