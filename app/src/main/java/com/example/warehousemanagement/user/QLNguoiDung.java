@@ -312,42 +312,4 @@ public class QLNguoiDung extends AppCompatActivity {
             }
         }
     }
-
-    // Tạo menu context cho mỗi phần tử trong ListView
-//    @Override
-//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-//        super.onCreateContextMenu(menu, v, menuInfo);
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.menu_user, menu);
-//    }
-//
-//    // Xử lý sự kiện khi mục của menu context được chọn
-//    @Override
-//    public boolean onContextItemSelected(MenuItem item) {
-//        // Lấy thông tin về phần tử trong ListView được chọn
-//        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-//        int position = info.position;
-//        //User item1 = itemList.get(position);
-//
-//        switch (item.getItemId()) {
-//            case R.id.detail_user:
-//                Intent intent = new Intent(QLNguoiDung.this, EditNguoiDung.class);
-////                intent.putExtra("id", item1.getId());
-////                context.startActivity(intent);// Pass the product ID to the EditProduct activity
-//                startActivity(intent);
-//                return true;
-//            case R.id.edit_user:
-////                Intent intent1 = new Intent(QLNguoiDung.this, EditNguoiDung.class);
-////                startActivity(intent1);
-//                return true;
-//            case R.id.delete_user:
-//                // Xóa phần tử được chọn khỏi ListView
-//                adapter.remove(adapter.getItem(position));
-//                //nguoiDungAdapter.notifyItemRemoved((int) nguoiDungAdapter.getItemId(position));
-//                adapter.notifyDataSetChanged();
-//                return true;
-//            default:
-//                return super.onContextItemSelected(item);
-//        }
-//    }
 }
