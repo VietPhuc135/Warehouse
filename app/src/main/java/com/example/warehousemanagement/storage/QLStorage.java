@@ -147,7 +147,7 @@ public class QLStorage extends AppCompatActivity {
         int position = info.position;
 
         switch (item.getItemId()) {
-            case R.id.edit_storage:
+            case R.id.detail_storage:
                 Intent intent1 = new Intent(QLStorage.this, EditStorage.class);
                 startActivity(intent1);
                 return true;

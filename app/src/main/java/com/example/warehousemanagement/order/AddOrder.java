@@ -122,18 +122,14 @@ public class AddOrder extends AppCompatActivity {
         // Lấy thông tin từ các trường nhập liệu
         String ownerId = ownerIdacc;
 
-
         // Kiểm tra dữ liệu đã nhập
         if (ownerId.isEmpty() || lineItems.isEmpty()) {
             Toast.makeText(this, "Hãy nhập LineItems", Toast.LENGTH_SHORT).show();
             return;
         }
-
         // Tạo JSON object để lưu thông tin đơn hàng
-
         try {
             orderJson.put("ownerId", ownerId);
-
             JSONArray lineItemsJson = new JSONArray();
             for (LineItem lineItem : lineItems) {
                 JSONObject lineItemJson = new JSONObject();
@@ -150,34 +146,8 @@ public class AddOrder extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        new OrderProcessingTask().execute(orderJson.toString());
+        new MyAsyncTask().execute(orderJson.toString());
     }
-    private class OrderProcessingTask extends AsyncTask<String, Void, JSONObject> {
-        @Override
-        protected JSONObject doInBackground(String... params) {
-            // Xử lý orderJson ở đây và trả về kết quả là JSONObject đã xử lý
-            JSONObject processedJson = null;
-            try {
-                processedJson = new JSONObject(params[0]);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return processedJson;
-        }
-
-        @Override
-        protected void onPostExecute(JSONObject processedJson) {
-            // Tiếp tục thực hiện các thao tác sau khi orderJson đã được xử lý
-            if (processedJson != null) {
-                System.out.println(processedJson);
-
-                new MyAsyncTask().execute(processedJson.toString());
-            } else {
-                System.out.println("Lỗi xử lý orderJson");
-            }
-        }
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -204,7 +174,6 @@ public class AddOrder extends AppCompatActivity {
                     .addHeader("Authorization", "Bearer " + header)
                     .method("POST", requestBody)
                     .build();
-
 
             try {
                 Response response = client.newCall(request).execute();
@@ -233,9 +202,6 @@ public class AddOrder extends AppCompatActivity {
             }
         }
     }
-
-
-
 }
 
 

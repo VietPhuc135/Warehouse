@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import okhttp3.Call;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -57,6 +58,15 @@ public class EditProduct extends AppCompatActivity {
         etStatus = findViewById(R.id.etStatus2);
         etCategory = findViewById(R.id.etCategory2);
         btnSubmit = findViewById(R.id.btnSubmit2);
+        Button btnDelete2 = findViewById(R.id.btnDelete2);
+        btnDelete2.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DeleteStorage(id);
+                    }
+                }
+        );
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +105,31 @@ public class EditProduct extends AppCompatActivity {
             }});
 
     }
+    private void DeleteStorage(String orderId) {
+        OkHttpClient client = new OkHttpClient();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = RequestBody.create(mediaType, "");
+        Request request = new Request.Builder()
+                .url("http://14.225.211.190:4001/api/product/" + orderId  )
+                .delete()
+                .addHeader("Authorization", "Bearer " + header)
+                .build();
 
+        client.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
         @Override
         protected Boolean doInBackground(String... params) {

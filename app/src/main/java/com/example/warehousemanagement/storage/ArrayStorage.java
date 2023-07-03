@@ -28,6 +28,7 @@ public class ArrayStorage extends ArrayAdapter<Storage> {
     private List<Storage> storageListList;
     String role;
 
+
     public ArrayStorage(Context context, List<Storage> itemList) {
         super(context, R.layout.activity_storage_manager, itemList);
         this.context = context;
@@ -38,7 +39,6 @@ public class ArrayStorage extends ArrayAdapter<Storage> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.storage_item, parent, false);
-
         LinearLayout tapStorage = rowView.findViewById(R.id.tapStorage);
         TextView nameTextView = rowView.findViewById(R.id.nameTextViewSto);
         TextView codeTextView = rowView.findViewById(R.id.codeTextViewSto);
@@ -52,32 +52,9 @@ public class ArrayStorage extends ArrayAdapter<Storage> {
         SuabtnProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    PopupMenu popupMenu = new PopupMenu(context, v);
-                    popupMenu.getMenuInflater().inflate(R.menu.menu_product, popupMenu.getMenu());
-                    popupMenu.show();
-
-                    // Xử lý các sự kiện khi người dùng chọn một item trong menu
-                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem items) {
-                            switch (items.getItemId()) {
-                                case R.id.detail_product:
-                                    Intent intent = new Intent(context, EditStorage.class);
-                                    intent.putExtra("id", item.getId());
-                                    context.startActivity(intent);
-                                    // Pass the product ID to the EditProduct activity
-                                    return true;
-                                case R.id.delete_product:
-                                    // Xử lý khi người dùng chọn Edit
-                                    Toast.makeText(context, "Đang hoàn thiện", Toast.LENGTH_SHORT).show();
-                                    return true;
-                                default:
-                                    return false;
-                            }
-                        }
-                    });
-
-                popupMenu.show();
+                Intent intent = new Intent(context, EditStorage.class);
+                intent.putExtra("id", item.getId());
+                context.startActivity(intent);
             }
         });
 
@@ -101,6 +78,7 @@ public void onClick(View v) {
                     return true;
                 case R.id.ds_order:
                     Intent intents = new Intent(context, OrderList.class);
+                    intents.putExtra("id", item.getId());
                     context.startActivity(intents);
                     return true;
                 default:

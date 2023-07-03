@@ -56,12 +56,12 @@ public class DangNhap extends AppCompatActivity {
                 String email =
 //                        "admin";
 //                        "thanhtest";
-                "phuc";
+//                "phuc";
                 editTextEmail.getText().toString();
                 String password =
-                        "123";
+//                        "123";
 //                        "sonha12";
-//                        editTextPassword.getText().toString();
+                        editTextPassword.getText().toString();
 
                 if (email.equals("") && password.equals("")) {
 
@@ -108,7 +108,12 @@ public class DangNhap extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 // Xử lý khi gặp lỗi
-                Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_SHORT).show();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_SHORT).show();
+                    }
+                });
                 e.printStackTrace();
             }
             @Override
@@ -116,13 +121,24 @@ public class DangNhap extends AppCompatActivity {
                 // Xử lý khi nhận được phản hồi từ server
                 String responseData = response.body().string();
                 // lưu dữ liệu trả về từ api
-                Gson gson = new Gson();
-                account = gson.fromJson(responseData, Account.class);
-                System.out.println( DangNhap.account.getToken());
+                System.out.println( "responseData" + responseData + "responseData");
+                if(responseData.trim().isEmpty()){
+                    System.out.println("ok");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(DangNhap.this, "Thông tin đăng nhập sai!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                Intent intent = new Intent(DangNhap.this, SplashScreen.class);
-                startActivity(intent);
-
+                }
+                else {
+                    Gson gson = new Gson();
+                    account = gson.fromJson(responseData, Account.class);
+                    System.out.println( DangNhap.account.getToken());
+                    Intent intent = new Intent(DangNhap.this, SplashScreen.class);
+                    startActivity(intent);
+                }
             }
         });
     }

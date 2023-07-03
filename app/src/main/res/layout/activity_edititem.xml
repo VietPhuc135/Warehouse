@@ -71,10 +71,22 @@
         android:layout_height="wrap_content"
         android:hint="Category" />
 
-    <Button
-        android:id="@+id/btnSubmit2"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit" />
+        android:orientation="horizontal"
+        android:gravity="center">
+        <Button
+            android:id="@+id/btnSubmit2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit" />
+
+        <Button
+            android:id="@+id/btnDelete2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete" />
+    </LinearLayout>
 
 </LinearLayout>

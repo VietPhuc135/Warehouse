@@ -80,11 +80,11 @@ public class AddProduct extends AppCompatActivity {
         Spinner spinner1 = (Spinner) findViewById(R.id.spinnerCategory);
         List<String> items1 = new ArrayList<>();
         if (spinner1 != null) {
-            items1.add("Cake");
-            items1.add("Candy");
-            items1.add("Food");
-            items1.add("Houseware");
-            items1.add("Instant Food");
+            items1.add("Bánh");
+            items1.add("Kẹo");
+            items1.add("Thịt");
+            items1.add("Sữa");
+            items1.add("Đồ đóng hộp");
             ArrayAdapter<String> adapterCate = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items1);
             adapterCate.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner1.setAdapter(adapterCate);

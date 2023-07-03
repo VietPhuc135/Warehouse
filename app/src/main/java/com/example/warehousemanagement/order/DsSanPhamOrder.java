@@ -47,11 +47,13 @@ public class DsSanPhamOrder extends AppCompatActivity {
     String role;
     ImageView imgAddProduct;
     Context context = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_product);
         imgAddProduct = findViewById(R.id.imgAddProduct);
+        ImageView imgAccepOrder = findViewById(R.id.imgAccepOrder);
         listView = findViewById(R.id.lvProduct);
         EditText searchProduct = findViewById(R.id.searchProduct);
         searchProduct.setVisibility(View.GONE);
@@ -61,75 +63,193 @@ public class DsSanPhamOrder extends AppCompatActivity {
         role = DangNhap.account.getUser().getRole();
         Intent intent = getIntent();
         String idorder = intent.getStringExtra("id");
+        String status = intent.getStringExtra("status");
+
+        if (status.equals("pending")){
+            imgAccepOrder.setImageResource(R.drawable.pending_icon);
+            imgAccepOrder.setVisibility(View.VISIBLE);
+            imgAccepOrder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopupMenu popupMenu = new PopupMenu(context, v);
+                    popupMenu.getMenuInflater().inflate(R.menu.menu_choose_order, popupMenu.getMenu());
+                    popupMenu.show();
+
+                    // Xử lý các sự kiện khi người dùng chọn một item trong menu
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem items) {
+
+                            switch (items.getItemId()) {
+                                case R.id.accepted_order:
+                                    acceptOrder(idorder, role);
+                                    return true;
+                                case R.id.cancel_order:
+                                    cancelOrder(idorder);
+                                    return true;
+                                default:
+                                    return false;
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        if (role.equals("saler")){
+            imgAddProduct.setVisibility(View.GONE);
+        }
         imgAddProduct.setImageResource(R.drawable.cancel);
         imgAddProduct.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick (View v){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Xác nhận xóa");
+        builder.setMessage("Bạn có muốn xóa order không?");
+
+        builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Xác nhận xóa");
-                builder.setMessage("Bạn có muốn xóa order không?");
+            public void onClick(DialogInterface dialog, int which) {
+                OkHttpClient client = new OkHttpClient();
+                MediaType mediaType = MediaType.parse("text/plain");
+                RequestBody body = RequestBody.create(mediaType, "");
+                Request request = new Request.Builder()
+                        .url("http://14.225.211.190:4001/api/order/" + idorder)
+                        .delete()
+                        .addHeader("Authorization", "Bearer " + header)
+                        .build();
 
-                builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
+                client.newCall(request).enqueue(new okhttp3.Callback() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        OkHttpClient client = new OkHttpClient();
-                        MediaType mediaType = MediaType.parse("text/plain");
-                        RequestBody body = RequestBody.create(mediaType, "");
-                        Request request = new Request.Builder()
-                                .url("http://14.225.211.190:4001/api/order/" + idorder)
-                                .delete()
-                                .addHeader("Authorization", "Bearer " + header)
-                                .build();
-
-                        client.newCall(request).enqueue(new okhttp3.Callback() {
-                            @Override
-                            public void onResponse(Call call, Response response) throws IOException {
-                                if (response.isSuccessful()) {
-                                    // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Toast.makeText(context, "Đã xóa order", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                                    new OrderList().loadOrderList();
-                                    finish();
+                    public void onResponse(Call call, Response response) throws IOException {
+                        if (response.isSuccessful()) {
+                            // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(context, "Đã xóa order", Toast.LENGTH_SHORT).show();
                                 }
-                            }
+                            });
+                            finish();
+                        }
+                    }
 
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        runOnUiThread(new Runnable() {
                             @Override
-                            public void onFailure(Call call, IOException e) {
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(context, "Không thành công", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                                e.printStackTrace();
+                            public void run() {
+                                Toast.makeText(context, "Không thành công", Toast.LENGTH_SHORT).show();
                             }
                         });
+                        e.printStackTrace();
                     }
                 });
-
-                builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
             }
-
         });
-        adapter = new ArrayProductInOrder(this, itemList); // Khởi tạo adapter và gán danh sách sản phẩm
+
+        builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    });
+    adapter =new
+
+    ArrayProductInOrder(this,itemList); // Khởi tạo adapter và gán danh sách sản phẩm
         listView.setAdapter(adapter); // Gán adapter cho listView
 
-        ArrayList<Product> lineItems = (ArrayList<Product>) intent.getSerializableExtra("lineItems");
-        updateProductList(lineItems); // Cập nhật danh sách sản phẩm từ Intent
-        System.out.println("lineItems" + lineItems);
+    ArrayList<Product> lineItems = (ArrayList<Product>) intent.getSerializableExtra("lineItems");
 
+    updateProductList(lineItems); // Cập nhật danh sách sản phẩm từ Intent
+        System.out.println("lineItems"+lineItems);
+
+}
+    private void acceptOrder(String orderId,String role) {
+        OkHttpClient client = new OkHttpClient();
+        MediaType mediaType = MediaType.parse("text/plain");
+
+        if (role.equals("stocker")){
+            RequestBody body = RequestBody.create(mediaType, "{\r\n    \"status\": \"accepted\"\r\n}");
+            Request request = new Request.Builder()
+                    .url("http://14.225.211.190:4001/api/order/" + orderId + "/status")
+                    .put(body)
+                    .addHeader("Authorization", "Bearer " + header)
+                    .build();
+            client.newCall(request).enqueue(new okhttp3.Callback() {
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        else
+        {
+            RequestBody body = RequestBody.create(mediaType, "");
+            Request request = new Request.Builder()
+                    .url("http://14.225.211.190:4001/api/order/" + orderId + "/accept")
+                    .put(body)
+                    .addHeader("Authorization", "Bearer " + header)
+                    .build();
+            client.newCall(request).enqueue(new okhttp3.Callback() {
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
+                       finish();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+
+
+
+    }
+
+    private void cancelOrder(String orderId) {
+        OkHttpClient client = new OkHttpClient();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = RequestBody.create(mediaType, "");
+        Request request = new Request.Builder()
+                .url("http://14.225.211.190:4001/api/order/" + orderId + "/cancel")
+                .method("PUT", body)
+                .addHeader("Authorization", "Bearer " + header)
+                .build();
+
+        client.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
+
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void updateProductList(ArrayList<Product> products) {
@@ -141,7 +261,7 @@ public class DsSanPhamOrder extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if ( resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK) {
             if (data != null) {
                 Product updatedProduct = (Product) data.getSerializableExtra("updatedProduct");
                 // Thực hiện cập nhật sản phẩm đã chỉnh sửa trong danh sách

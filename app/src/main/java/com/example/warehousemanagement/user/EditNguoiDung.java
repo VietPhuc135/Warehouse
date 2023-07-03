@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Call;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -59,6 +60,16 @@ public class EditNguoiDung extends AppCompatActivity {
         marketId = findViewById(R.id.etMarketID1);
         storageId = findViewById(R.id.etStorageId1);
         btnSubmitUser = findViewById(R.id.btnSubmitUser1);
+
+        Button btnDeleteUser1 = findViewById(R.id.btnDeleteUser1);
+        btnDeleteUser1.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DeleteUser(id);
+                    }
+                }
+        );
          spinner = (Spinner) findViewById(R.id.spinnerRole1);
         items = new ArrayList<>();
         if (spinner != null) {
@@ -109,6 +120,31 @@ public class EditNguoiDung extends AppCompatActivity {
                 }
                 new MyAsyncTask().execute(jsonObject.toString());
             }});
+    }
+    private void DeleteUser(String orderId) {
+        OkHttpClient client = new OkHttpClient();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = RequestBody.create(mediaType, "");
+        Request request = new Request.Builder()
+                .url("http://14.225.211.190:4001/api/user/" + orderId  )
+                .delete()
+                .addHeader("Authorization", "Bearer " + header)
+                .build();
+
+        client.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private class FetchUserDetails extends AsyncTask<String, Void, JSONObject> {

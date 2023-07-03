@@ -44,6 +44,7 @@ public class OrderList extends AppCompatActivity {
     Context context;
     TextView idTitle;
     EditText search;
+    String storageID,idMarket;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,24 +55,41 @@ public class OrderList extends AppCompatActivity {
         search = findViewById(R.id.searchProduct);
         search.setHint("Search order");
         header = DangNhap.account.getToken();
+        idMarket = DangNhap.account.getUser().getMarketId() != null ? DangNhap.account.getUser().getMarketId() : " ";
         idTitle.setText("Order List");
+         ImageView imgArrageProduct = findViewById(R.id.imgArrageProduct);
+        imgArrageProduct.setVisibility(View.GONE);
+        Intent intent = getIntent();
+        if (intent != null) {
+            storageID = intent.getStringExtra("id");
+        }
 
         imgAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(OrderList.this, AddOrder.class);
+                intent.putExtra("id", storageID);
                 startActivity(intent);
             }
         });
         new MyAsyncTask().execute();
     }
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        new MyAsyncTask().execute();
+    }
+
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
 
         @Override
         protected Boolean doInBackground(String... params) {
             OkHttpClient client = new OkHttpClient();
             MediaType mediaType = MediaType.parse("text/plain");
-            RequestBody body = RequestBody.create(mediaType, "");
+            RequestBody body = RequestBody.create(mediaType,
+                    "{\r\n    \"filter\":{\r\n        \"marketId\":{\r\n            \"eq\":" + idMarket+"\r\n        }\r\n    }\r\n}");
             Request request = new Request.Builder()
                     .url("http://14.225.211.190:4001/api/order/query")
                     .method("POST", body)

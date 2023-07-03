@@ -42,8 +42,8 @@ public class ArrayOrder extends ArrayAdapter<Order> {
     private List<Order> itemList;
     String header;
 
-    public ArrayOrder(Context context,List<Order> itemList) {
-        super(context, R.layout.activity_view_product ,itemList);
+    public ArrayOrder(Context context, List<Order> itemList) {
+        super(context, R.layout.activity_view_product, itemList);
         this.context = context;
         this.itemList = itemList;
     }
@@ -65,14 +65,15 @@ public class ArrayOrder extends ArrayAdapter<Order> {
         String role = DangNhap.account.getUser().getRole();
         String status = item.getStatus();
         codeTextView.setVisibility(View.GONE);
-        ArrayList<Product>  lineItems = item.getLineItems();
+        ArrayList<Product> lineItems = item.getLineItems();
         btnProductEach.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, DsSanPhamOrder.class);
-                        intent.putExtra("lineItems",lineItems);
-                        intent.putExtra("id",id);
+                        intent.putExtra("lineItems", lineItems);
+                        intent.putExtra("status",status);
+                        intent.putExtra("id", id);
                         context.startActivity(intent);// Pass the product ID to the EditProduct activity
                     }
                 }
@@ -80,42 +81,15 @@ public class ArrayOrder extends ArrayAdapter<Order> {
 
         SuabtnProduct.setVisibility(View.GONE);
 
-        if(status.equals("accepted")){
+        if (status.equals("accepted")) {
             imageView.setImageResource(R.drawable.accepted_icon);
-        }else{
-            if(status.equals("pending")){
+        } else {
+            if (status.equals("pending")) {
                 imageView.setImageResource(R.drawable.pending_icon);
-                imageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        PopupMenu popupMenu = new PopupMenu(context, v);
-                        popupMenu.getMenuInflater().inflate(R.menu.menu_choose_order, popupMenu.getMenu());
-                        popupMenu.show();
-
-                        // Xử lý các sự kiện khi người dùng chọn một item trong menu
-                        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                            @Override
-                            public boolean onMenuItemClick(MenuItem items) {
-
-                                switch (items.getItemId()) {
-                                    case R.id.accepted_order:
-                                        acceptOrder(id,role);
-                                        return true;
-                                    case R.id.cancel_order:
-                                        cancelOrder(id);
-                                        return true;
-                                    default:
-                                        return false;
-                                }
-                            }
-                        });
-                    }
-                });
-            }else{
-                if(status.equals("success")){
+            } else {
+                if (status.equals("success")) {
                     imageView.setImageResource(R.drawable.success_icon);
-                }
-                else {
+                } else {
                     imageView.setImageResource(R.drawable.cancel);
                 }
             }
@@ -127,84 +101,6 @@ public class ArrayOrder extends ArrayAdapter<Order> {
 
         return rowView;
     }
-    private void acceptOrder(String orderId,String role) {
-        OkHttpClient client = new OkHttpClient();
-        MediaType mediaType = MediaType.parse("text/plain");
-
-        if (role.equals("stocker")){
-            RequestBody body = RequestBody.create(mediaType, "{\r\n    \"status\": \"accepted\"\r\n}");
-            Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/order/" + orderId + "/status")
-                    .put(body)
-                    .addHeader("Authorization", "Bearer " + header)
-                    .build();
-            client.newCall(request).enqueue(new okhttp3.Callback() {
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    if (response.isSuccessful()) {
-                        // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
-                        new OrderList().loadOrderList();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    e.printStackTrace();
-                }
-            });
-        }
-        else
-        {
-            RequestBody body = RequestBody.create(mediaType, "");
-            Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/order/" + orderId + "/accept")
-                    .put(body)
-                    .addHeader("Authorization", "Bearer " + header)
-                    .build();
-            client.newCall(request).enqueue(new okhttp3.Callback() {
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    if (response.isSuccessful()) {
-                        // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
-                        new OrderList().loadOrderList();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    e.printStackTrace();
-                }
-            });
-        }
-
-
-
-    }
-
-    private void cancelOrder(String orderId) {
-        OkHttpClient client = new OkHttpClient();
-        MediaType mediaType = MediaType.parse("text/plain");
-        RequestBody body = RequestBody.create(mediaType, "");
-        Request request = new Request.Builder()
-                .url("http://14.225.211.190:4001/api/order/" + orderId + "/cancel")
-                .method("PUT", body)
-                .addHeader("Authorization", "Bearer " + header)
-                .build();
-
-        client.newCall(request).enqueue(new okhttp3.Callback() {
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
-                    new OrderList().loadOrderList();
-                }
-            }
-
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-        });
-    }
 }
+
 

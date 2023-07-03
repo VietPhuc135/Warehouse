@@ -55,7 +55,6 @@ public class DsSanPham extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             id = intent.getStringExtra("id");
-
         }
         adapter = new ArrayProduct(this, itemList);
 
@@ -85,7 +84,8 @@ public class DsSanPham extends AppCompatActivity {
         protected Boolean doInBackground(String... params) {
             OkHttpClient client = new OkHttpClient();
             MediaType mediaType = MediaType.parse("text/plain");
-            RequestBody body = RequestBody.create(mediaType, "");
+            RequestBody body = RequestBody.create(mediaType,
+                    "{\r\n    \"filter\":{\r\n        \"storageId\":{\r\n            \"eq\":" + id+"\r\n        }\r\n    }\r\n}");
             Request request = new Request.Builder()
                     .url("http://14.225.211.190:4001/api/product/query")
                     .method("POST", body)
