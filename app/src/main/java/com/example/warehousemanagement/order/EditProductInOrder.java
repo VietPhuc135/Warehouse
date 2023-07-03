@@ -58,6 +58,40 @@ public class EditProductInOrder extends AppCompatActivity {
             setValuesFromLineItems(lineItems);
         }
 
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Lấy thông tin sản phẩm từ các EditText
+                String name = etName.getText().toString();
+                String code = etCode.getText().toString();
+                String date = etDate.getText().toString();
+                float stock = Float.parseFloat(etStock.getText().toString());
+                String note = etNote.getText().toString();
+                String producer = etProducer.getText().toString();
+                String status = etStatus.getText().toString();
+                String category = etCategory.getText().toString();
+
+                // Tạo đối tượng Product mới với thông tin đã chỉnh sửa
+                Product updatedProduct = new Product();
+                updatedProduct.setId(id);
+                updatedProduct.setName(name);
+                updatedProduct.setCode(code);
+                updatedProduct.setDate(date);
+                updatedProduct.setStock(stock);
+                updatedProduct.setNote(note);
+                updatedProduct.setProducer(producer);
+                updatedProduct.setStatus(status);
+                updatedProduct.setCategory(category);
+
+                // Gửi thông tin sản phẩm đã chỉnh sửa trở lại DsSanPhamOrder
+                Intent intent = new Intent(EditProductInOrder.this, DsSanPhamOrder.class);
+                intent.putExtra("updatedProduct", updatedProduct);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
+
+
     }
 
     private void showDatePickerDialog() {

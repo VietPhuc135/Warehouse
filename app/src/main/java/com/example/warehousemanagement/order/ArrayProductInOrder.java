@@ -58,7 +58,7 @@ public class ArrayProductInOrder extends ArrayAdapter<Product> {
                 context.startActivity(intent);// Pass the product ID to the EditProduct activity
             }
         });
-
+        SuabtnProduct.setVisibility(View.GONE);
         SuabtnProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

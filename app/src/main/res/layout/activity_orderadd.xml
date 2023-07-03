@@ -13,12 +13,14 @@
             android:id="@+id/tvOwnerId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OwnerId" />
+            android:text="" />
 
         <EditText
             android:id="@+id/etOwnerIde"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
 
     </LinearLayout>
 
@@ -36,45 +38,18 @@
         <EditText
             android:id="@+id/etLineItemse"
             android:layout_width="match_parent"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:layout_height="wrap_content" />
+
 
     </LinearLayout>
 
-    <LinearLayout
+    <ListView
+        android:id="@+id/listViewLineItems"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="266dp" />
 
-        <TextView
-            android:id="@+id/tvAcceptedLineItems"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Accepted Line Items" />
-
-        <EditText
-            android:id="@+id/tvAcceptedLineItemse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tvStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Status" />
-
-        <EditText
-            android:id="@+id/tvStatuse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -128,24 +103,6 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tvFlag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Flag" />
-
-
-        <EditText
-            android:id="@+id/tvFlagE"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -162,11 +119,14 @@
 
         <EditText
         android:id="@+id/tvFlagMessageE"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-
-
+        <Button
+            android:id="@+id/btnSubmitOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add order"
+            />
 </LinearLayout>

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.DangNhap;
@@ -50,7 +51,6 @@ public class DsSanPhamOrder extends AppCompatActivity {
         header = DangNhap.account.getToken();
         Intent intent = getIntent();
 
-
         adapter = new ArrayProductInOrder(this, itemList); // Khởi tạo adapter và gán danh sách sản phẩm
         listView.setAdapter(adapter); // Gán adapter cho listView
 
@@ -65,4 +65,37 @@ public class DsSanPhamOrder extends AppCompatActivity {
         itemList.addAll(products); // Thêm các sản phẩm mới vào danh sách
         adapter.notifyDataSetChanged(); // Thông báo cho adapter cập nhật hiển thị
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ( resultCode == RESULT_OK) {
+            if (data != null) {
+                Product updatedProduct = (Product) data.getSerializableExtra("updatedProduct");
+                // Thực hiện cập nhật sản phẩm đã chỉnh sửa trong danh sách
+                updateProductInList(updatedProduct);
+            }
+        }
+    }
+
+    private void updateProductInList(Product updatedProduct) {
+        // Tìm sản phẩm trong danh sách itemList có cùng id với sản phẩm đã chỉnh sửa
+        for (int i = 0; i < itemList.size(); i++) {
+            Product product = itemList.get(i);
+            if (product.getId().equals(updatedProduct.getId())) {
+                // Cập nhật thông tin sản phẩm
+                product.setName(updatedProduct.getName());
+                product.setCode(updatedProduct.getCode());
+                product.setDate(updatedProduct.getDate());
+                product.setStock(updatedProduct.getStock());
+                product.setNote(updatedProduct.getNote());
+                product.setProducer(updatedProduct.getProducer());
+                product.setStatus(updatedProduct.getStatus());
+                product.setCategory(updatedProduct.getCategory());
+                break;
+            }
+        }
+        adapter.notifyDataSetChanged(); // Thông báo cập nhật hiển thị
+    }
+
 }

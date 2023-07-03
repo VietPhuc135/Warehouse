@@ -51,6 +51,7 @@ public class QLStorage extends AppCompatActivity {
         header = DangNhap.account.getToken();
         storageList = findViewById(R.id.lvStorage);
         role = DangNhap.account.getUser().getRole();
+
         storageNames = new ArrayList<>();
         adapter = new ArrayStorage(this, itemList);
         ImageView imgArrageStorage = findViewById(R.id.imgArrageStorage);
