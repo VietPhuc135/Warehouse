@@ -24,8 +24,12 @@ import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.additem.AddProduct;
 import com.example.warehousemanagement.additem.ArrayProduct;
 import com.example.warehousemanagement.obj.Product;
+import com.example.warehousemanagement.other.MyAsyncTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -73,6 +77,7 @@ public class DsSanPhamOrder extends AppCompatActivity {
                 public void onClick(View v) {
                     PopupMenu popupMenu = new PopupMenu(context, v);
                     popupMenu.getMenuInflater().inflate(R.menu.menu_choose_order, popupMenu.getMenu());
+
                     popupMenu.show();
 
                     // Xử lý các sự kiện khi người dùng chọn một item trong menu
@@ -82,10 +87,20 @@ public class DsSanPhamOrder extends AppCompatActivity {
 
                             switch (items.getItemId()) {
                                 case R.id.accepted_order:
-                                    acceptOrder(idorder, role);
+                                    try {
+                                        acceptOrder(idorder, role);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
                                     return true;
+
                                 case R.id.cancel_order:
-                                    cancelOrder(idorder);
+                                    if (role.equals("stocker")) {
+                                        Toast.makeText(context,"Bạn là stocker khoogn thể hủy",Toast.LENGTH_SHORT).show();
+                                    }
+                                    else{
+                                        cancelOrder(idorder);
+                                    }
                                     return true;
                                 default:
                                     return false;
@@ -171,23 +186,22 @@ public class DsSanPhamOrder extends AppCompatActivity {
         System.out.println("lineItems"+lineItems);
 
 }
-    private void acceptOrder(String orderId,String role) {
+    private void acceptOrder(String orderId,String role) throws JSONException {
         OkHttpClient client = new OkHttpClient();
         MediaType mediaType = MediaType.parse("text/plain");
 
         if (role.equals("stocker")){
             RequestBody body = RequestBody.create(mediaType, "{\r\n    \"status\": \"accepted\"\r\n}");
             Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/order/" + orderId + "/status")
-                    .put(body)
-                    .addHeader("Authorization", "Bearer " + header)
+                    .url("http://14.225.211.190:4001/api/order/"+orderId+"/status")
+                    .method("PUT", body)
+                    .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2IiwidXNlcm5hbWUiOiJzdG9ja2VyMSIsImVtYWlsIjoidHJhbmtoYW5oLnNvbjAzQGdtYWlsLmNvbSIsInJvbGUiOiJzdG9ja2VyIiwiYWRkcmVzcyI6bnVsbCwiYWdlIjoxMjEyLCJuYW1lIjoic3RvY2tlcjEiLCJpYXQiOjE2ODg0MzQzODQsImV4cCI6ODgwODg0MzQzODR9.ipKWV5wYw1MjGLukLO6FWAzKY7pgkU_tsSMk9FtrSvM")
                     .build();
             client.newCall(request).enqueue(new okhttp3.Callback() {
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     if (response.isSuccessful()) {
-                        // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
-
+                        finish();
                     }
                 }
 
@@ -211,6 +225,59 @@ public class DsSanPhamOrder extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
                        finish();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+
+
+
+    }
+    private void succesOrder(String orderId,String role) {
+        OkHttpClient client = new OkHttpClient();
+        MediaType mediaType = MediaType.parse("text/plain");
+
+        if (role.equals("stocker")){
+            RequestBody body = RequestBody.create(mediaType, "{\r\n    \"status\": \"in_transit\"\r\n}");
+            Request request = new Request.Builder()
+                    .url("http://14.225.211.190:4001/api/order/" + orderId + "/status")
+                    .put(body)
+                    .addHeader("Authorization", "Bearer " + header)
+                    .build();
+            client.newCall(request).enqueue(new okhttp3.Callback() {
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        else
+        {
+            RequestBody body = RequestBody.create(mediaType,"{\r\n    \"status\": \"success\"\r\n}");
+            Request request = new Request.Builder()
+                    .url("http://14.225.211.190:4001/api/order/" + orderId + "/accept")
+                    .put(body)
+                    .addHeader("Authorization", "Bearer " + header)
+                    .build();
+            client.newCall(request).enqueue(new okhttp3.Callback() {
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
+                        finish();
                     }
                 }
 

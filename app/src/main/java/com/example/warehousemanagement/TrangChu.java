@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.example.warehousemanagement.additem.DsSanPham;
 import com.example.warehousemanagement.order.OrderList;
 import com.example.warehousemanagement.profile.ProfilePage;
+import com.example.warehousemanagement.storage.QLStorage;
 import com.example.warehousemanagement.user.QLNguoiDung;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -28,7 +29,7 @@ public class TrangChu extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         imgImport = findViewById(R.id.imgImport);
-        imgExport = findViewById(R.id.imgExport);
+
         imgProduct = findViewById(R.id.imgProduct);
         imgUser = findViewById(R.id.imgUser);
 
@@ -40,13 +41,6 @@ public class TrangChu extends AppCompatActivity {
             }
         });
 
-        imgExport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TrangChu.this, XuatSanPham.class);
-                startActivity(intent);
-            }
-        });
 
         imgProduct.setOnClickListener(new View.OnClickListener() {
             @Override

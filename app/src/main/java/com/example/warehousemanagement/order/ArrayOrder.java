@@ -90,10 +90,14 @@ public class ArrayOrder extends ArrayAdapter<Order> {
                 if (status.equals("success")) {
                     imageView.setImageResource(R.drawable.success_icon);
                 } else {
-                    imageView.setImageResource(R.drawable.cancel);
+                    if (status.equals("in_transit")) {
+                        imageView.setImageResource(R.drawable.buy_cart);
+                    } else {
+                        imageView.setImageResource(R.drawable.cancel);
+                    }
                 }
-            }
 
+            }
         }
 
         nameTextView.setText(item.getOwnerId());

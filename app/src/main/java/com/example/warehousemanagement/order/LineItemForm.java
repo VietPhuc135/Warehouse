@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,15 +46,33 @@ public class LineItemForm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_line_item);
+        Button backBTN = findViewById(R.id.backBTN);
+
         header = DangNhap.account.getToken();
         etLineItemId = findViewById(R.id.tvLineItemId);
         etLineItemQuantity = findViewById(R.id.tvLineItemQuantity);
         btnAddLineItem = findViewById(R.id.addLineItem);
 
+        backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         btnAddLineItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addLineItem();
+                if (etLineItemId == null || etLineItemQuantity == null) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(LineItemForm.this, "Nhập đủ thông tin!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                else {
+                    addLineItem();
+                }
             }
         });
 //        String jsonData = "[\n" +

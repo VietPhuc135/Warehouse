@@ -4,7 +4,7 @@
         android:title="Home"
         android:icon="@drawable/home"/>
     <item android:id="@+id/list_apps"
-        android:title="Store manager"
+        android:title="Manager"
         android:icon="@drawable/ic_baseline_format_list"/>
     <item android:id="@+id/info_app"
         android:title="User Information"

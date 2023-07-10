@@ -4,10 +4,13 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -22,8 +25,10 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.MediaType;
@@ -67,6 +72,24 @@ public class EditProduct extends AppCompatActivity {
                     }
                 }
         );
+        Spinner spinner1 = (Spinner) findViewById(R.id.spinnerCategory);
+        List<String> items1 = new ArrayList<>();
+        if (spinner1 != null) {
+            items1.add("Bánh");
+            items1.add("Kẹo");
+            items1.add("Thịt");
+            items1.add("Sữa");
+            items1.add("Đồ đóng hộp");
+            ArrayAdapter<String> adapterCate = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items1);
+            adapterCate.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner1.setAdapter(adapterCate);
+
+            // Thiết lập giá trị mặc định
+            int defaultPosition = 0; // Vị trí mục mặc định (số thứ tự)
+            spinner1.setSelection(defaultPosition);
+        } else {
+            Log.e("Spinner Error", "Spinner not found or not initialized correctly");
+        }
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

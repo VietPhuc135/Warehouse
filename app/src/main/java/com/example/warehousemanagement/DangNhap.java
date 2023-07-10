@@ -55,14 +55,14 @@ public class DangNhap extends AppCompatActivity {
                 // Lấy giá trị email và password từ EditText
                 String email =
 //                        "admin";
-//                        "thanhtest";
+//                        "stocker1";
 //                "phuc";
                 editTextEmail.getText().toString();
                 String password =
 //                        "123";
-//                        "sonha12";
+//                        "sonha1";
                         editTextPassword.getText().toString();
-
+//
                 if (email.equals("") && password.equals("")) {
 
                     System.out.println("khong duoc null ");

@@ -164,7 +164,7 @@ public class AddProduct extends AppCompatActivity {
         protected void onPostExecute(Boolean result) {
             if (result) {
                 System.out.println(jsonObject);
-         finish();
+                finish();
             } else {
                 System.out.println("lỗi ");
             }

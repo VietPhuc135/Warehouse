@@ -19,12 +19,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ProfilePage extends AppCompatActivity {
     TextView idname, idemail, idphone, idAddress;
-    String name;
+    String name,role;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_page);
+        TextView idrole = findViewById(R.id.role);
         idname = (TextView) findViewById(R.id.IdName);
         idemail = (TextView) findViewById(R.id.idEmail);
         idphone = (TextView) findViewById(R.id.idPhone);
@@ -40,7 +41,9 @@ public class ProfilePage extends AppCompatActivity {
             }
         });
         name = DangNhap.account.getUser().getName();
+        role = DangNhap.account.getUser().getRole();
         System.out.println(name);
+        idrole.setText(role);
         idname.setText(name);
         idemail.setText(DangNhap.account.getUser().getEmail());
         idphone.setText("123 678 999");

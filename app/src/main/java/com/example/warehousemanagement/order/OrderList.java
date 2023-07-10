@@ -24,6 +24,9 @@ import com.example.warehousemanagement.obj.Product;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
@@ -44,7 +47,7 @@ public class OrderList extends AppCompatActivity {
     Context context;
     TextView idTitle;
     EditText search;
-    String storageID,idMarket;
+    String storageID,idMarket,role;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +58,8 @@ public class OrderList extends AppCompatActivity {
         search = findViewById(R.id.searchProduct);
         search.setHint("Search order");
         header = DangNhap.account.getToken();
+        role = DangNhap.account.getUser().getRole();
+
         idMarket = DangNhap.account.getUser().getMarketId() != null ? DangNhap.account.getUser().getMarketId() : " ";
         idTitle.setText("Order List");
          ImageView imgArrageProduct = findViewById(R.id.imgArrageProduct);
@@ -63,15 +68,17 @@ public class OrderList extends AppCompatActivity {
         if (intent != null) {
             storageID = intent.getStringExtra("id");
         }
+        if (!role.equals("stocker")){
+            imgAddProduct.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(OrderList.this, AddOrder.class);
+                    intent.putExtra("id", storageID);
+                    startActivity(intent);
+                }
+            });
+        }
 
-        imgAddProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OrderList.this, AddOrder.class);
-                intent.putExtra("id", storageID);
-                startActivity(intent);
-            }
-        });
         new MyAsyncTask().execute();
     }
 
@@ -88,42 +95,171 @@ public class OrderList extends AppCompatActivity {
         protected Boolean doInBackground(String... params) {
             OkHttpClient client = new OkHttpClient();
             MediaType mediaType = MediaType.parse("text/plain");
-            RequestBody body = RequestBody.create(mediaType,
-                    "{\r\n    \"filter\":{\r\n        \"marketId\":{\r\n            \"eq\":" + idMarket+"\r\n        }\r\n    }\r\n}");
-            Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/order/query")
-                    .method("POST", body)
-                    .addHeader("Authorization", "Bearer " + header)
-                    .build();
-            client.newCall(request).enqueue(new okhttp3.Callback() {
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    if (response.isSuccessful()) {
-                        String responseBody = response.body().string();
-                        Gson gson = new Gson();
-                        Type listType = new TypeToken<List<Order>>() {
-                        }.getType();
+            String requestBody;
+                if (role.equals("stocker")){
+                    String stoID = DangNhap.account.getUser().getStorageId();
+//
+                    JSONObject filterObject = new JSONObject();
+                    try {
+                        filterObject.put("eq", stoID);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
-                        orderList = gson.fromJson(responseBody, listType);
-                        System.out.println("Đây la orrderlisst " + responseBody);
-                        // Cập nhật giao diện trong luồng UI
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                // Khởi tạo và thiết lập Adapter
-                                adapter = new ArrayOrder(OrderList.this, orderList);
-                                listView.setAdapter(adapter);
-                           }
-                       }); }                }
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    System.out.println("fail");
+                    JSONObject storageIdObject = new JSONObject();
+                    try {
+                        storageIdObject.put("storageId", filterObject);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
-                    e.printStackTrace();
+                    JSONObject requestBodyObject = new JSONObject();
+                    try {
+                        requestBodyObject.put("filter", storageIdObject);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    requestBody = requestBodyObject.toString();
+
+                    System.out.println("order "+requestBody);
+                RequestBody body = RequestBody.create(mediaType,requestBody);
+                Request request = new Request.Builder()
+                        .url("http://14.225.211.190:4001/api/order/query")
+                        .post(body)
+                        .addHeader("Content-Type", "application/json")
+                        .addHeader("Authorization", "Bearer " + header)
+                        .build();
+
+                client.newCall(request).enqueue(new okhttp3.Callback() {
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        if (response.isSuccessful()) {
+                            String responseBody = response.body().string();
+                            Gson gson = new Gson();
+                            Type listType = new TypeToken<List<Order>>() {
+                            }.getType();
+
+                            orderList = gson.fromJson(responseBody, listType);
+                            System.out.println("Đây la orrderlisst " + responseBody);
+                            // Cập nhật giao diện trong luồng UI
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    // Khởi tạo và thiết lập Adapter
+                                    adapter = new ArrayOrder(OrderList.this, orderList);
+                                    listView.setAdapter(adapter);
+                                }
+                            }); }                }
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        System.out.println("fail");
+
+                        e.printStackTrace();
+                    }
+                });
+                return false;
+            }
+            else if (role.equals("saler")){
+                    JSONObject filterObject = new JSONObject();
+                    try {
+                        filterObject.put("eq", idMarket);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    JSONObject storageIdObject = new JSONObject();
+                    try {
+                        storageIdObject.put("marketId", filterObject);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    JSONObject requestBodyObject = new JSONObject();
+                    try {
+                        requestBodyObject.put("filter", storageIdObject);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    requestBody = requestBodyObject.toString();
+                    System.out.println("order saler "+requestBody);
+                RequestBody body = RequestBody.create(mediaType,requestBody);
+                Request request = new Request.Builder()
+                        .url("http://14.225.211.190:4001/api/order/query")
+                        .post(body)
+                        .addHeader("Authorization", "Bearer " + header)
+                        .build();
+
+                client.newCall(request).enqueue(new okhttp3.Callback() {
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        if (response.isSuccessful()) {
+                            String responseBody = response.body().string();
+                            Gson gson = new Gson();
+                            Type listType = new TypeToken<List<Order>>() {
+                            }.getType();
+
+                            orderList = gson.fromJson(responseBody, listType);
+                            System.out.println("Đây la orrderlisst " + responseBody);
+                            // Cập nhật giao diện trong luồng UI
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    // Khởi tạo và thiết lập Adapter
+                                    adapter = new ArrayOrder(OrderList.this, orderList);
+                                    listView.setAdapter(adapter);
+                                }
+                            }); }                }
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        System.out.println("fail");
+
+                        e.printStackTrace();
+                    }
+                });
+                return false;
+            }
+            else{
+                    System.out.println("order saler "+"requestBody");
+                    RequestBody body = RequestBody.create(mediaType,"");
+                    Request request = new Request.Builder()
+                            .url("http://14.225.211.190:4001/api/order/query")
+                            .post(body)
+                            .addHeader("Authorization", "Bearer " + header)
+                            .build();
+
+                    client.newCall(request).enqueue(new okhttp3.Callback() {
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            if (response.isSuccessful()) {
+                                String responseBody = response.body().string();
+                                Gson gson = new Gson();
+                                Type listType = new TypeToken<List<Order>>() {
+                                }.getType();
+
+                                orderList = gson.fromJson(responseBody, listType);
+                                System.out.println("Đây la orrderlisst " + responseBody);
+                                // Cập nhật giao diện trong luồng UI
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // Khởi tạo và thiết lập Adapter
+                                        adapter = new ArrayOrder(OrderList.this, orderList);
+                                        listView.setAdapter(adapter);
+                                    }
+                                }); }                }
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            System.out.println("fail");
+
+                            e.printStackTrace();
+                        }
+                    });
+                    return false;
                 }
-            });
-            return false;
-        }
+                }
+
 
         @Override
         protected void onPostExecute(Boolean result) {

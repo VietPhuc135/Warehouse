@@ -8,37 +8,37 @@
     android:background="#F6F5F5">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="#2196F3"
-            android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="242dp"
+        android:background="#2196F3"
+        android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="25dp"
-                android:foregroundGravity="center_horizontal"
-                app:cardCornerRadius="100dp">
+        <androidx.cardview.widget.CardView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:foregroundGravity="center_horizontal"
+            app:cardCornerRadius="100dp">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/user" />
-            </androidx.cardview.widget.CardView>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/user" />
+        </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/IdName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
+        <TextView
+            android:id="@+id/IdName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
 
-                android:textColor="#fff"
-                android:textSize="23dp"
-                android:textStyle="bold" />
-        </LinearLayout>
+            android:textColor="#fff"
+            android:textSize="23dp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,21 +52,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginLeft="25dp">
+            android:layout_marginLeft="25dp"
+            android:paddingBottom="5dp">
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:src="@drawable/enial"/>
+                android:src="@drawable/role_icon"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000"
-                android:id="@+id/idEmail"
+                android:id="@+id/role"
                 android:textSize="18dp"
                 android:paddingLeft="15dp"
                 android:layout_gravity="center_vertical"/>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/enial" />
+
+            <TextView
+                android:id="@+id/idEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:textColor="#000"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -16,6 +16,16 @@ public class User {
     private String name;
     private String marketId = null;
 
+    public String getStorageId() {
+        return storageId;
+    }
+
+    public void setStorageId(String storageId) {
+        this.storageId = storageId;
+    }
+
+    String storageId ;
+
 
     // Getter Methods
 
