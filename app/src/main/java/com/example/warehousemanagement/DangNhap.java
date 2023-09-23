@@ -58,11 +58,12 @@ public class DangNhap extends AppCompatActivity {
 //                        "stocker1";
 //                "phuc";
                 editTextEmail.getText().toString();
+                //String email1 = "admin";
                 String password =
 //                        "123";
 //                        "sonha1";
                         editTextPassword.getText().toString();
-//
+                //String password1 = "123";
                 if (email.equals("") && password.equals("")) {
 
                     System.out.println("khong duoc null ");
@@ -73,6 +74,10 @@ public class DangNhap extends AppCompatActivity {
                 }
                 if (password.equals("")){
                     Toast.makeText(getApplicationContext(), "Vui lòng điền password", Toast.LENGTH_SHORT).show();
+//                if (email1.equals("admin") && password1.equals("123")){
+//                    Intent intent = new Intent(DangNhap.this, SplashScreen.class);
+//                    startActivity(intent);
+//                }
                 }else{
                     loginAPI(email, password);
                 }

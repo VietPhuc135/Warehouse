@@ -12,11 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:background="#00BCD4"
+        android:background="@drawable/roof"
         android:fontFamily="@font/lobster"
         android:text="User Management"
         android:layout_weight="0.5"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="30dp"
         android:textStyle="bold"/>
 

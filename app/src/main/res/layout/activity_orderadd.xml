@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/backgroundgradient">
+    android:background="@drawable/backgroundgradient"
+    android:padding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,14 +30,16 @@
             android:id="@+id/tvLineItems"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Line Items" />
+            android:text="Line Items"
+            android:textSize="17dp"/>
 
         <EditText
             android:id="@+id/etLineItemse"
             android:layout_width="match_parent"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="17dp"/>
 
 
     </LinearLayout>
@@ -54,12 +57,14 @@
             android:id="@+id/tvMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Message" />
+            android:text="Message"
+            android:textSize="17dp"/>
 
         <EditText
             android:id="@+id/tvMessageE"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="17dp"/>
 
     </LinearLayout>
 
@@ -71,12 +76,13 @@
             android:id="@+id/tvStorageId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Storage Id" />
+            android:text="Storage Id"
+            android:textSize="17dp"/>
 
 
         <EditText
             android:id="@+id/tvStorageIdE"
-
+            android:textSize="17dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -90,12 +96,14 @@
             android:id="@+id/tvMarketId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Market Id" />
+            android:text="Market Id"
+            android:textSize="17dp"/>
 
         <EditText
             android:id="@+id/tvMarketIdE"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="17dp"/>
 
     </LinearLayout>
 
@@ -109,7 +117,8 @@
             android:id="@+id/tvFlagMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Flag Message" />
+            android:text="Flag Message"
+            android:textSize="17dp"/>
 
 
 
@@ -123,6 +132,7 @@
             android:id="@+id/btnSubmitOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="Add order"
-            />
+            android:textSize="17dp"/>
 </LinearLayout>
