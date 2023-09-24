@@ -11,8 +11,10 @@ public class Product  implements Serializable {
         private float stock;
         private String note;
         private String producer;
+        double quantity;
         private String status;
         String storageId;
+
 
     public String getstorageId() {
         return storageId;
@@ -39,7 +41,15 @@ public class Product  implements Serializable {
             return name;
         }
 
-        public String getCode() {
+    public double getQuanity() {
+        return quantity;
+    }
+
+    public void setQuanity(double quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getCode() {
             return code;
         }
 

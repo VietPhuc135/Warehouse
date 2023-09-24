@@ -54,15 +54,16 @@ public class DangNhap extends AppCompatActivity {
             public void onClick(View v) {
                 // Lấy giá trị email và password từ EditText
                 String email =
-                        "admin";
-//                        "thanhtest";
+//                        "admin";
+//                        "stocker1";
 //                "phuc";
                 editTextEmail.getText().toString();
+                //String email1 = "admin";
                 String password =
 //                        "123";
-                        "sonha12";
-//                        editTextPassword.getText().toString();
-
+//                        "sonha1";
+                        editTextPassword.getText().toString();
+                //String password1 = "123";
                 if (email.equals("") && password.equals("")) {
 
                     System.out.println("khong duoc null ");
@@ -73,6 +74,10 @@ public class DangNhap extends AppCompatActivity {
                 }
                 if (password.equals("")){
                     Toast.makeText(getApplicationContext(), "Vui lòng điền password", Toast.LENGTH_SHORT).show();
+//                if (email1.equals("admin") && password1.equals("123")){
+//                    Intent intent = new Intent(DangNhap.this, SplashScreen.class);
+//                    startActivity(intent);
+//                }
                 }else{
                     loginAPI(email, password);
                 }
@@ -98,7 +103,6 @@ public class DangNhap extends AppCompatActivity {
         Request request = new Request.Builder()
                 .url("http://14.225.211.190:4001/api/auth/login")
                 .post(requestBody)
-//                .addHeader("Authorization", "Bearer" + "" )
                 .build();
 
         // Tạo OkHttpClient
@@ -109,7 +113,12 @@ public class DangNhap extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 // Xử lý khi gặp lỗi
-                Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_SHORT).show();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_SHORT).show();
+                    }
+                });
                 e.printStackTrace();
             }
             @Override
@@ -117,13 +126,24 @@ public class DangNhap extends AppCompatActivity {
                 // Xử lý khi nhận được phản hồi từ server
                 String responseData = response.body().string();
                 // lưu dữ liệu trả về từ api
-                Gson gson = new Gson();
-                account = gson.fromJson(responseData, Account.class);
-                System.out.println( DangNhap.account.getToken());
+                System.out.println( "responseData" + responseData + "responseData");
+                if(responseData.trim().isEmpty()){
+                    System.out.println("ok");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(DangNhap.this, "Thông tin đăng nhập sai!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                Intent intent = new Intent(DangNhap.this, SplashScreen.class);
-                startActivity(intent);
-
+                }
+                else {
+                    Gson gson = new Gson();
+                    account = gson.fromJson(responseData, Account.class);
+                    System.out.println( DangNhap.account.getToken());
+                    Intent intent = new Intent(DangNhap.this, SplashScreen.class);
+                    startActivity(intent);
+                }
             }
         });
     }

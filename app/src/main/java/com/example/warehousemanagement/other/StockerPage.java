@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.additem.DsSanPham;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.TrangChu;
@@ -18,12 +19,12 @@ import com.example.warehousemanagement.profile.ProfilePage;
 public class StockerPage extends  AppCompatActivity{
     Button btnDN, btnDangki;
     ImageView imgImport, imgProFile, imgProduct, imgUser;
-
+    String idStor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_stocker);
-
+            idStor = DangNhap.account.getUser().getStorageId() != null ? DangNhap.account.getUser().getStorageId()   : " ";
         imgProduct = findViewById(R.id.imgProduct);
         imgUser = findViewById(R.id.imgUser);
         imgProFile = findViewById(R.id.imgProFile);
@@ -38,6 +39,7 @@ public class StockerPage extends  AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent2 = new Intent(StockerPage.this, DsSanPham.class);
+                intent2.putExtra("idSto",idStor);
                 startActivity(intent2);
             }
         });

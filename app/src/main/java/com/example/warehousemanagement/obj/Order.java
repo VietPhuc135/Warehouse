@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Order {
     private String id;
     private String ownerId;
-    ArrayList < Product > lineItems = new ArrayList < Product > ();
+    ArrayList <Product> lineItems = new ArrayList < Product > ();
 
     public ArrayList<Product> getLineItems() {
         return lineItems;

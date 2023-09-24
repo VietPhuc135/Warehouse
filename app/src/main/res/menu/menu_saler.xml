@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/ds_product"
+        android:title="Danh sách sản phẩm"
+        android:icon="@drawable/add"/>
+    <item android:id="@+id/ds_order"
+        android:title="Danh sách order"
+        android:icon="@drawable/delete"/>
+
+</menu>

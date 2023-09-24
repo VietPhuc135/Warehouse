@@ -114,6 +114,13 @@ public class QLNguoiDung extends AppCompatActivity {
         );
         new MyAsyncTask().execute();
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        new MyAsyncTask().execute();
+    }
+
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
 
         @Override
@@ -148,17 +155,11 @@ public class QLNguoiDung extends AppCompatActivity {
                                 // Khởi tạo và thiết lập Adapter
                                 adapter = new ArrayNguoiDung(QLNguoiDung.this, itemList);
                                 listView.setAdapter(adapter);
-//                                if (id != null){
-//                                    adapter = new ArrayNguoiDung(QLNguoiDung.this, filteredList);
-//                                    listView.setAdapter(adapter);
-//                                }
-//                                else{
-//                                    adapter = new ArrayNguoiDung(QLNguoiDung.this, itemList);
-//                                    listView.setAdapter(adapter);
-//                                }
                             }
                         });
+
                     }
+
                 }
 
                 @Override
@@ -174,9 +175,6 @@ public class QLNguoiDung extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean result) {
             if (result) {
-//                System.out.println(jsonObject);
-//                Intent intent = new Intent(AddStorage.this, QLStorage.class);
-//                startActivity(intent);
             } else {
                 System.out.println("lỗi ");
             }

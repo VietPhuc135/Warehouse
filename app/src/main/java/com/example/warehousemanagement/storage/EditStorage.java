@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import okhttp3.Call;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -29,7 +30,7 @@ import okhttp3.Response;
 
 public class EditStorage extends AppCompatActivity {
     private EditText etName, etCode;
-    private Button btnSubmit;
+    private Button btnSubmit,btnDeleteStorage2;
     String header ;
     String role;
     JSONObject jsonObject = new JSONObject();
@@ -48,9 +49,15 @@ public class EditStorage extends AppCompatActivity {
         etName = findViewById(R.id.etAddressStorage2);
         etCode = findViewById(R.id.etCodeStorage2);
         btnSubmit = findViewById(R.id.btnSubmitStorage2);
+        btnDeleteStorage2 = findViewById(R.id.btnDeleteStorage2);
 
         new FetchProductDetails().execute(id);
-
+        btnDeleteStorage2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DeleteStorage(id);
+            }
+        });
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +84,31 @@ public class EditStorage extends AppCompatActivity {
 
             }});
 
+    }
+    private void DeleteStorage(String orderId) {
+        OkHttpClient client = new OkHttpClient();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = RequestBody.create(mediaType, "");
+        Request request = new Request.Builder()
+                .url("http://14.225.211.190:4001/api/storage/" + orderId  )
+                .delete()
+                .addHeader("Authorization", "Bearer " + header)
+                .build();
+
+        client.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
     private class FetchProductDetails extends AsyncTask<String, Void, JSONObject> {
         @Override

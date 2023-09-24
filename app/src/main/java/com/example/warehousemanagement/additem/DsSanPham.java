@@ -22,7 +22,6 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
@@ -40,42 +39,37 @@ public class DsSanPham extends AppCompatActivity {
     private ArrayProduct adapter;
     //    private ArrayAdapter<Product> adapter;
     private List<Product> itemList;
-    ImageView imgAddProduct, imageView;
+    ImageView imgAddProduct;
     Context context;
         String id;
-        String role;
+        String role,dsSanPham;
+        String storageId;
+    RequestBody body,body1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_product);
         imgAddProduct = findViewById(R.id.imgAddProduct);
-        imageView = findViewById(R.id.imageView1);
         listView = findViewById(R.id.lvProduct);
         header = DangNhap.account.getToken();
         role = DangNhap.account.getUser().getRole();
+        storageId = DangNhap.account.getUser().getStorageId();
         Intent intent = getIntent();
         if (intent != null) {
             id = intent.getStringExtra("id");
-
         }
-
         adapter = new ArrayProduct(this, itemList);
-
-
-
+        if (role.equals("stocker")){
+            storageId = intent.getStringExtra("idSto");
+        }
         if (role.equals("saler")){
             imgAddProduct.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(DsSanPham.this, AddOrder.class);
+                    intent.putExtra("id", id);
                     startActivity(intent);
-                }
-            });
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getApplicationContext(), "Đang hoàn thiện", Toast.LENGTH_LONG).show();
                 }
             });
         }else{
@@ -86,54 +80,73 @@ public class DsSanPham extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-//            imageView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Toast.makeText(getApplicationContext(), "Đang hoàn thiện", Toast.LENGTH_LONG).show();
-//                }
-//            });
         }
 
-        listView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    PopupMenu popupMenu = new PopupMenu(context, v);
-                    popupMenu.getMenuInflater().inflate(R.menu.menu_product, popupMenu.getMenu());
-                    popupMenu.show();
-
-                    // Xử lý các sự kiện khi người dùng chọn một item trong menu
-                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            switch (item.getItemId()) {
-                                case R.id.detail_product:
-                                    // Xử lý khi người dùng chọn Delete
-                                    return true;
-
-                                case R.id.delete_product:
-                                    // Xử lý khi người dùng chọn Edit
-                                    return true;
-                                default:
-                                    return false;
-                            }
-                        }
-                    });
-
-                    return true;
-                }
-            }
-        );
         new MyAsyncTask().execute();
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        new MyAsyncTask().execute();
+
+    }
+
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
         @Override
         protected Boolean doInBackground(String... params) {
             OkHttpClient client = new OkHttpClient();
             MediaType mediaType = MediaType.parse("text/plain");
-            RequestBody body = RequestBody.create(mediaType, "");
-            Request request = new Request.Builder()
+            String requestBody = "{\n" +
+                    "    \"filter\":{\n" +
+                    "        \"storageId\":{\n" +
+                    "            \"eq\":" + storageId + "\n" +
+                    "        }\n" +
+                    "    }\n" +
+                    "}";
+            body = RequestBody.create(mediaType,requestBody);
+            String requestBody1 = "{\n" +
+                    "    \"filter\":{\n" +
+                    "        \"marketId\":{\n" +
+                    "            \"eq\": " + id + "\n" +
+                    "        }\n" +
+                    "    }\n" +
+                    "}";
+            body1 = RequestBody.create(mediaType,requestBody1);
+            if(role.equals("stocker"))
+            {
+                int stoID = Integer.parseInt(storageId);
+//                String requestBody = "{\n" +
+//                        "    \"filter\":{\n" +
+//                        "        \"storageId\":{\n" +
+//                        "            \"eq\": " + stoID + "\n" +
+//                        "        }\n" +
+//                        "    }\n" +
+//                        "}";
+                body = RequestBody.create(mediaType,requestBody);
+                         System.out.println( "stocker" + body);
+            }
+            else
+                if (role.equals("saler")){
+                if (id != null){
+//                    String requestBody = "{\n" +
+//                            "    \"filter\":{\n" +
+//                            "        \"marketId\":{\n" +
+//                            "            \"eq\": " + id + "\n" +
+//                            "        }\n" +
+//                            "    }\n" +
+//                            "}";
+                    body = RequestBody.create(mediaType,requestBody);
+                    System.out.println( "stocker" + body);     System.out.println("else" + body);
+                }
+
+            }
+                else {
+                    body = RequestBody.create(mediaType," ");
+                }
+             Request request = new Request.Builder()
                     .url("http://14.225.211.190:4001/api/product/query")
-                    .method("POST", body)
+                    .method("POST",role.equals("stocker") ? body :role.equals("saler") ? body1 :null)
                     .addHeader("Authorization", "Bearer " + header)
                     .build();
             client.newCall(request).enqueue(new okhttp3.Callback() {

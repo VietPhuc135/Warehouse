@@ -48,9 +48,8 @@ public class AddProduct extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        Dialog dialog = new Dialog(this);
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_additem);
+
         header = DangNhap.account.getToken();
                 etName = findViewById(R.id.etName);
                 etCode = findViewById(R.id.etCode);
@@ -81,11 +80,11 @@ public class AddProduct extends AppCompatActivity {
         Spinner spinner1 = (Spinner) findViewById(R.id.spinnerCategory);
         List<String> items1 = new ArrayList<>();
         if (spinner1 != null) {
-            items1.add("Cake");
-            items1.add("Candy");
-            items1.add("Food");
-            items1.add("Houseware");
-            items1.add("Instant Food");
+            items1.add("Bánh");
+            items1.add("Kẹo");
+            items1.add("Thịt");
+            items1.add("Sữa");
+            items1.add("Đồ đóng hộp");
             ArrayAdapter<String> adapterCate = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items1);
             adapterCate.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner1.setAdapter(adapterCate);
@@ -150,8 +149,7 @@ public class AddProduct extends AppCompatActivity {
                    int i =  response.code();
                 if (response.isSuccessful()) {
                     System.out.println(jsonObject);
-                    Intent intent = new Intent(AddProduct.this, TrangChu.class);
-                    startActivity(intent);
+                    return true;
                 } else {
                     System.out.println("lỗi " + response.toString());
                 }
@@ -166,8 +164,7 @@ public class AddProduct extends AppCompatActivity {
         protected void onPostExecute(Boolean result) {
             if (result) {
                 System.out.println(jsonObject);
-                Intent intent = new Intent(AddProduct.this, DsSanPham.class);
-                startActivity(intent);
+                finish();
             } else {
                 System.out.println("lỗi ");
             }

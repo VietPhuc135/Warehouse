@@ -74,37 +74,39 @@ public class ArrayProduct extends ArrayAdapter<Product> {
         SuabtnProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    PopupMenu popupMenu = new PopupMenu(context, v);
-                    popupMenu.getMenuInflater().inflate(R.menu.menu_product, popupMenu.getMenu());
-                    popupMenu.show();
-
-                    // Xử lý các sự kiện khi người dùng chọn một item trong menu
-                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem items) {
-                            switch (items.getItemId()) {
-                                case R.id.detail_product:
-                                    Intent intent = new Intent(context, EditProduct.class);
-                                    intent.putExtra("id", item.getId());
-                                    context.startActivity(intent);// Pass the product ID to the EditProduct activity
-                                    return true;
-
-                                case R.id.delete_product:
-                                    // Xử lý khi người dùng chọn Edit
-                                    Toast.makeText(context, "Đang hoàn thiện", Toast.LENGTH_SHORT).show();
-                                    return true;
-                                default:
-                                    return false;
-                            }
-                        }
-                    });
-
-                popupMenu.show();
+//                    PopupMenu popupMenu = new PopupMenu(context, v);
+//                    popupMenu.getMenuInflater().inflate(R.menu.menu_product, popupMenu.getMenu());
+//                    popupMenu.show();
+//
+//                    // Xử lý các sự kiện khi người dùng chọn một item trong menu
+//                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//                        @Override
+//                        public boolean onMenuItemClick(MenuItem items) {
+//                            switch (items.getItemId()) {
+//                                case R.id.detail_product:
+//
+//                                    return true;
+//
+//                                case R.id.delete_product:
+//                                    // Xử lý khi người dùng chọn Edit
+//                                    Toast.makeText(context, "Đang hoàn thiện", Toast.LENGTH_SHORT).show();
+//                                    return true;
+//                                default:
+//                                    return false;
+//                            }
+//                        }
+//                    });
+//
+//                popupMenu.show();
+                Intent intent = new Intent(context, EditProduct.class);
+                intent.putExtra("id", item.getId());
+                context.startActivity(intent);// Pass the product ID to the EditProduct activity
             }
         });
         //Picasso.get().load(item.getImage()).into(imageView);
         nameTextView.setText(item.getName());
         codeTextView.setText(item.getCode());
+
         stockTextView.setText("Stock: " + String.valueOf(item.getStock()));
 
         return rowView;

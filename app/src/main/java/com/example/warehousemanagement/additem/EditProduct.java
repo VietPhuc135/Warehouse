@@ -4,10 +4,13 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -22,9 +25,12 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import okhttp3.Call;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -57,6 +63,33 @@ public class EditProduct extends AppCompatActivity {
         etStatus = findViewById(R.id.etStatus2);
         etCategory = findViewById(R.id.etCategory2);
         btnSubmit = findViewById(R.id.btnSubmit2);
+        Button btnDelete2 = findViewById(R.id.btnDelete2);
+        btnDelete2.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DeleteStorage(id);
+                    }
+                }
+        );
+        Spinner spinner1 = (Spinner) findViewById(R.id.spinnerCategory);
+        List<String> items1 = new ArrayList<>();
+        if (spinner1 != null) {
+            items1.add("Bánh");
+            items1.add("Kẹo");
+            items1.add("Thịt");
+            items1.add("Sữa");
+            items1.add("Đồ đóng hộp");
+            ArrayAdapter<String> adapterCate = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items1);
+            adapterCate.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner1.setAdapter(adapterCate);
+
+            // Thiết lập giá trị mặc định
+            int defaultPosition = 0; // Vị trí mục mặc định (số thứ tự)
+            spinner1.setSelection(defaultPosition);
+        } else {
+            Log.e("Spinner Error", "Spinner not found or not initialized correctly");
+        }
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +128,31 @@ public class EditProduct extends AppCompatActivity {
             }});
 
     }
+    private void DeleteStorage(String orderId) {
+        OkHttpClient client = new OkHttpClient();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = RequestBody.create(mediaType, "");
+        Request request = new Request.Builder()
+                .url("http://14.225.211.190:4001/api/product/" + orderId  )
+                .delete()
+                .addHeader("Authorization", "Bearer " + header)
+                .build();
 
+        client.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
         @Override
         protected Boolean doInBackground(String... params) {
@@ -114,9 +171,7 @@ public class EditProduct extends AppCompatActivity {
                 int i =  response.code();
                 if (response.isSuccessful()) {
                     System.out.println(jsonObject);
-                    Intent intent = new Intent(EditProduct.this, DsSanPham.class);
-                    startActivity(intent);
-                    finish();
+                    return  true ;
                 } else {
                     System.out.println("lỗi " + response.toString());
                 }
@@ -130,9 +185,8 @@ public class EditProduct extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean result) {
             if (result) {
-                System.out.println(jsonObject);
-                Intent intent = new Intent(EditProduct.this, DsSanPham.class);
-                startActivity(intent);
+                System.out.println("Thành công ");
+                finish();
             } else {
                 System.out.println("lỗi ");
             }

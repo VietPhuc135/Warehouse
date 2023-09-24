@@ -35,6 +35,7 @@
         <activity android:name=".order.AddOrder" android:exported="true"/>
         <activity android:name=".order.DsSanPhamOrder" android:exported="true"/>
     <activity android:name=".order.EditProductInOrder" android:exported="true"/>
+        <activity android:name=".order.LineItemForm" android:exported="true"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

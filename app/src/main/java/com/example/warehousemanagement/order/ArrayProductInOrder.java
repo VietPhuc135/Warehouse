@@ -58,7 +58,7 @@ public class ArrayProductInOrder extends ArrayAdapter<Product> {
                 context.startActivity(intent);// Pass the product ID to the EditProduct activity
             }
         });
-
+        SuabtnProduct.setVisibility(View.GONE);
         SuabtnProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +93,7 @@ public class ArrayProductInOrder extends ArrayAdapter<Product> {
         //Picasso.get().load(item.getImage()).into(imageView);
         nameTextView.setText(item.getName());
         codeTextView.setText(item.getCode());
-        stockTextView.setText("Stock: " + String.valueOf(item.getStock()));
+        stockTextView.setText("Số lượng yêu cầu: " + item.getQuanity());
 
         return rowView;
     }
