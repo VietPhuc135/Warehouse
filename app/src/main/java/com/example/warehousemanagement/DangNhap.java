@@ -56,13 +56,13 @@ public class DangNhap extends AppCompatActivity {
                 String email =
 //                        "admin";
 //                        "stocker1";
-//                "phuc";
-                editTextEmail.getText().toString();
+                "duong";
+//                editTextEmail.getText().toString();
                 //String email1 = "admin";
                 String password =
-//                        "123";
+                        "123";
 //                        "sonha1";
-                        editTextPassword.getText().toString();
+//                        editTextPassword.getText().toString();
                 //String password1 = "123";
                 if (email.equals("") && password.equals("")) {
 
@@ -101,7 +101,7 @@ public class DangNhap extends AppCompatActivity {
 
         // Tạo yêu cầu POST
         Request request = new Request.Builder()
-                .url("http://14.225.211.190:4001/api/auth/login")
+                .url("http://192.168.1.81:8080/api/v1/auth/authenticate")
                 .post(requestBody)
                 .build();
 
@@ -138,6 +138,7 @@ public class DangNhap extends AppCompatActivity {
 
                 }
                 else {
+                    System.out.println(responseData);
                     Gson gson = new Gson();
                     account = gson.fromJson(responseData, Account.class);
                     System.out.println( DangNhap.account.getToken());

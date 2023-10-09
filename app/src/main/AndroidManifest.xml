@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.warehousemanagement">
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -14,28 +20,96 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Option" android:exported="true"/>
-        <activity android:name=".QLMarket" android:exported="true" />
-        <activity android:name=".market.AddMarket" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>
-        <activity android:name=".storage.QLStorage" android:exported="true" />
-        <activity android:name=".additem.DsSanPham" android:exported="true" />
-        <activity android:name=".XuatSanPham" android:exported="true" />
-        <activity android:name=".QLStore" android:exported="true" />
-        <activity android:name=".storage.AddStorage" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>
-        <activity android:name=".storage.EditStorage" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>
-        <activity android:name=".user.QLNguoiDung" android:exported="true" />
-        <activity android:name=".additem.AddProduct" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>
-        <activity android:name=".profile.ProfilePage" android:exported="true" />
-        <activity android:name=".other.SplashScreen" android:exported="true" />
-        <activity android:name=".additem.EditProduct" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>
-        <activity android:name=".other.StockerPage" android:exported="true"/>
-        <activity android:name=".user.EditNguoiDung" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>
-        <activity android:name=".user.AddNguoiDung" android:exported="true" android:theme="@style/Theme.AppCompat.Dialog"/>
-        <activity android:name=".order.OrderList" android:exported="true"/>
-        <activity android:name=".order.AddOrder" android:exported="true"/>
-        <activity android:name=".order.DsSanPhamOrder" android:exported="true"/>
-    <activity android:name=".order.EditProductInOrder" android:exported="true"/>
-        <activity android:name=".order.LineItemForm" android:exported="true"/>
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".storage.MapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".Option"
+            android:exported="true" />
+        <activity
+            android:name=".QLMarket"
+            android:exported="true" />
+        <activity
+            android:name=".market.AddMarket"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".storage.QLStorage"
+            android:exported="true" />
+        <activity
+            android:name=".additem.DsSanPham"
+            android:exported="true" />
+        <activity
+            android:name=".XuatSanPham"
+            android:exported="true" />
+        <activity
+            android:name=".QLStore"
+            android:exported="true" />
+        <activity
+            android:name=".storage.AddStorage"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".storage.EditStorage"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".user.QLNguoiDung"
+            android:exported="true" />
+        <activity
+            android:name=".additem.AddProduct"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".profile.ProfilePage"
+            android:exported="true" />
+        <activity
+            android:name=".other.SplashScreen"
+            android:exported="true" />
+        <activity
+            android:name=".additem.EditProduct"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".other.StockerPage"
+            android:exported="true" />
+        <activity
+            android:name=".user.EditNguoiDung"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".user.AddNguoiDung"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity
+            android:name=".order.OrderList"
+            android:exported="true" />
+        <activity
+            android:name=".order.AddOrder"
+            android:exported="true" />
+        <activity
+            android:name=".order.DsSanPhamOrder"
+            android:exported="true" />
+        <activity
+            android:name=".order.EditProductInOrder"
+            android:exported="true" />
+        <activity
+            android:name=".order.LineItemForm"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

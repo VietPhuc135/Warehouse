@@ -40,12 +40,12 @@ public class ProfilePage extends AppCompatActivity {
 
             }
         });
-        name = DangNhap.account.getUser().getName();
-        role = DangNhap.account.getUser().getRole();
+        name = DangNhap.account.getName();
+        role = DangNhap.account.getRole();
         System.out.println(name);
         idrole.setText(role);
         idname.setText(name);
-        idemail.setText(DangNhap.account.getUser().getEmail());
+        idemail.setText(DangNhap.account.getEmail());
         idphone.setText("123 678 999");
         idAddress.setText("Ha Noi");
         //idAddress.setText(DangNhap.account.getUser().getAddress());

@@ -58,9 +58,9 @@ public class OrderList extends AppCompatActivity {
         search = findViewById(R.id.searchProduct);
         search.setHint("Search order");
         header = DangNhap.account.getToken();
-        role = DangNhap.account.getUser().getRole();
+        role = DangNhap.account.getRole();
 
-        idMarket = DangNhap.account.getUser().getMarketId() != null ? DangNhap.account.getUser().getMarketId() : " ";
+        idMarket = DangNhap.account.getMarketId() != null ? DangNhap.account.getMarketId() : " ";
         idTitle.setText("Order List");
          ImageView imgArrageProduct = findViewById(R.id.imgArrageProduct);
         imgArrageProduct.setVisibility(View.GONE);
@@ -97,7 +97,7 @@ public class OrderList extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("text/plain");
             String requestBody;
                 if (role.equals("stocker")){
-                    String stoID = DangNhap.account.getUser().getStorageId();
+                    String stoID = DangNhap.account.getStorageId();
 //
                     JSONObject filterObject = new JSONObject();
                     try {

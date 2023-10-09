@@ -45,7 +45,7 @@ public class EditStorage extends AppCompatActivity {
         }
         setContentView(R.layout.activity_editstorage);
         header = DangNhap.account.getToken();
-        role = DangNhap.account.getUser().getRole();
+        role = DangNhap.account.getRole();
         etName = findViewById(R.id.etAddressStorage2);
         etCode = findViewById(R.id.etCodeStorage2);
         btnSubmit = findViewById(R.id.btnSubmitStorage2);

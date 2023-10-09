@@ -62,7 +62,7 @@ public class ArrayOrder extends ArrayAdapter<Order> {
         LinearLayout btnProductEach = rowView.findViewById(R.id.btnProductEach);
         Order item = itemList.get(position);
         String id = item.getId();
-        String role = DangNhap.account.getUser().getRole();
+        String role = DangNhap.account.getRole();
         String status = item.getStatus();
         codeTextView.setVisibility(View.GONE);
         ArrayList<Product> lineItems = item.getLineItems();
