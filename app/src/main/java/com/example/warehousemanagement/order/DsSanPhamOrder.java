@@ -64,7 +64,7 @@ public class DsSanPhamOrder extends AppCompatActivity {
         TextView idTitle = findViewById(R.id.idTitle);
         idTitle.setText("Sản phẩm trong Order");
         header = DangNhap.account.getToken();
-        role = DangNhap.account.getUser().getRole();
+        role = DangNhap.account.getRole();
         Intent intent = getIntent();
         String idorder = intent.getStringExtra("id");
         String status = intent.getStringExtra("status");

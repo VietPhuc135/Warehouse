@@ -53,8 +53,8 @@ public class DsSanPham extends AppCompatActivity {
         imgAddProduct = findViewById(R.id.imgAddProduct);
         listView = findViewById(R.id.lvProduct);
         header = DangNhap.account.getToken();
-        role = DangNhap.account.getUser().getRole();
-        storageId = DangNhap.account.getUser().getStorageId();
+        role = DangNhap.account.getRole();
+        storageId = DangNhap.account.getStorageId();
         Intent intent = getIntent();
         if (intent != null) {
             id = intent.getStringExtra("id");

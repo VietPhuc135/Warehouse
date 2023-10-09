@@ -60,12 +60,12 @@ public class AddOrder extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orderadd);
         header = DangNhap.account.getToken();
-        ownerIdacc = DangNhap.account.getUser().getId();
+        ownerIdacc = DangNhap.account.getId();
         Intent intent = getIntent();
         if (intent != null) {
             storageId = intent.getStringExtra("id");
         }
-        marketId = DangNhap.account.getUser().getMarketId();
+        marketId = DangNhap.account.getMarketId();
 //        etName = findViewById(R.id.etOwnerIde);
         etCode = findViewById(R.id.tvLineItems);
         etStock = findViewById(R.id.tvMessageE);

@@ -43,7 +43,7 @@ public class ArrayStorage extends ArrayAdapter<Storage> {
         TextView nameTextView = rowView.findViewById(R.id.nameTextViewSto);
         TextView codeTextView = rowView.findViewById(R.id.codeTextViewSto);
         ImageView SuabtnProduct = rowView.findViewById(R.id.SuabtnStorage);
-        role = DangNhap.account.getUser().getRole();
+        role = DangNhap.account.getRole();
         System.out.println("role"+ role);
         if (role.equals("saler")){
             SuabtnProduct.setVisibility(View.GONE);

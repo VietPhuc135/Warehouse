@@ -16,7 +16,7 @@ import com.example.warehousemanagement.TrangChu;
 public class SplashScreen extends AppCompatActivity {
 
     private static final int SPLASH_TIMEOUT = 2000; // Thời gian hiển thị SplashScreen (2 giây)
-    private  String role = DangNhap.account.getUser().getRole();
+    private  String role = DangNhap.account.getRole();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -24,7 +24,7 @@ public class StockerPage extends  AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_stocker);
-            idStor = DangNhap.account.getUser().getStorageId() != null ? DangNhap.account.getUser().getStorageId()   : " ";
+            idStor = DangNhap.account.getStorageId() != null ? DangNhap.account.getStorageId()   : " ";
         imgProduct = findViewById(R.id.imgProduct);
         imgUser = findViewById(R.id.imgUser);
         imgProFile = findViewById(R.id.imgProFile);
