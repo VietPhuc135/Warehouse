@@ -101,7 +101,7 @@ public class DangNhap extends AppCompatActivity {
 
         // Tạo yêu cầu POST
         Request request = new Request.Builder()
-                .url("http://192.168.1.81:8080/api/v1/auth/authenticate")
+                .url("http://192.168.1.5:8080/api/v1/auth/authenticate")
                 .post(requestBody)
                 .build();
 

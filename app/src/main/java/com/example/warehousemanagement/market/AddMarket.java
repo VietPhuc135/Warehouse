@@ -75,7 +75,7 @@ public class AddMarket extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             RequestBody requestBody = RequestBody.create(mediaType, params[0]);
             Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/market")
+                    .url("http://192.168.1.5:8080/market/add")
                     .addHeader("Authorization", "Bearer " + header)
                     .post(requestBody)
                     .build();

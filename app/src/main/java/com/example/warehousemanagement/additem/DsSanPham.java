@@ -1,27 +1,14 @@
 package com.example.warehousemanagement.additem;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import java.io.IOException;
-import java.lang.reflect.Type;
-
-import okhttp3.Call;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-
-import android.widget.PopupMenu;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
@@ -30,8 +17,17 @@ import com.example.warehousemanagement.order.AddOrder;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class DsSanPham extends AppCompatActivity {
     String header;
@@ -145,7 +141,7 @@ public class DsSanPham extends AppCompatActivity {
                     body = RequestBody.create(mediaType," ");
                 }
              Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/product/query")
+                    .url("http://192.168.1.5:8080/product/add")
                     .method("POST",role.equals("STOCKER") ? body :role.equals("SALER") ? body1 :null)
                     .addHeader("Authorization", "Bearer " + header)
                     .build();

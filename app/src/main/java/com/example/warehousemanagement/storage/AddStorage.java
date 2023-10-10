@@ -83,7 +83,7 @@ public class AddStorage extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             RequestBody requestBody = RequestBody.create(mediaType, params[0]);
             Request request = new Request.Builder()
-                    .url("http://192.168.1.81:8080/storage/add")
+                    .url("http://192.168.1.5:8080/storage/add")
                     .addHeader("Authorization", "Bearer " + header)
                     .post(requestBody)
                     .build();

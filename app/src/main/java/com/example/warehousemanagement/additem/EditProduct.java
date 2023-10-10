@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -133,7 +132,7 @@ public class EditProduct extends AppCompatActivity {
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
-                .url("http://14.225.211.190:4001/api/product/" + orderId  )
+                .url("http://192.168.1.5:8080/product/delete/" + orderId  )
                 .delete()
                 .addHeader("Authorization", "Bearer " + header)
                 .build();
