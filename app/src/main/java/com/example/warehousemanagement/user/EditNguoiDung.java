@@ -75,7 +75,7 @@ public class EditNguoiDung extends AppCompatActivity {
         if (spinner != null) {
             items.add("admin");
             items.add("saler");
-            items.add("stocker");
+            items.add("STOCKER");
             ArrayAdapter<String> adapterSta = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
             adapterSta.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(adapterSta);

@@ -95,7 +95,7 @@ public class DsSanPhamOrder extends AppCompatActivity {
                                     return true;
 
                                 case R.id.cancel_order:
-                                    if (role.equals("stocker")) {
+                                    if (role.equals("STOCKER")) {
                                         Toast.makeText(context,"Bạn là stocker khoogn thể hủy",Toast.LENGTH_SHORT).show();
                                     }
                                     else{
@@ -111,7 +111,7 @@ public class DsSanPhamOrder extends AppCompatActivity {
             });
         }
 
-        if (role.equals("saler")){
+        if (role.equals("SALER")){
             imgAddProduct.setVisibility(View.GONE);
         }
         imgAddProduct.setImageResource(R.drawable.cancel);
@@ -190,7 +190,7 @@ public class DsSanPhamOrder extends AppCompatActivity {
         OkHttpClient client = new OkHttpClient();
         MediaType mediaType = MediaType.parse("text/plain");
 
-        if (role.equals("stocker")){
+        if (role.equals("STOCKER")){
             RequestBody body = RequestBody.create(mediaType, "{\r\n    \"status\": \"accepted\"\r\n}");
             Request request = new Request.Builder()
                     .url("http://14.225.211.190:4001/api/order/"+orderId+"/status")
@@ -242,7 +242,7 @@ public class DsSanPhamOrder extends AppCompatActivity {
         OkHttpClient client = new OkHttpClient();
         MediaType mediaType = MediaType.parse("text/plain");
 
-        if (role.equals("stocker")){
+        if (role.equals("STOCKER")){
             RequestBody body = RequestBody.create(mediaType, "{\r\n    \"status\": \"in_transit\"\r\n}");
             Request request = new Request.Builder()
                     .url("http://14.225.211.190:4001/api/order/" + orderId + "/status")

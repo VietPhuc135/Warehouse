@@ -68,7 +68,7 @@ public class OrderList extends AppCompatActivity {
         if (intent != null) {
             storageID = intent.getStringExtra("id");
         }
-        if (!role.equals("stocker")){
+        if (!role.equals("STOCKER")){
             imgAddProduct.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -96,7 +96,7 @@ public class OrderList extends AppCompatActivity {
             OkHttpClient client = new OkHttpClient();
             MediaType mediaType = MediaType.parse("text/plain");
             String requestBody;
-                if (role.equals("stocker")){
+                if (role.equals("STOCKER")){
                     String stoID = DangNhap.account.getStorageId();
 //
                     JSONObject filterObject = new JSONObject();
@@ -160,7 +160,7 @@ public class OrderList extends AppCompatActivity {
                 });
                 return false;
             }
-            else if (role.equals("saler")){
+            else if (role.equals("SALER")){
                     JSONObject filterObject = new JSONObject();
                     try {
                         filterObject.put("eq", idMarket);

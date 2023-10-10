@@ -64,7 +64,7 @@ public class QLStorage extends AppCompatActivity {
            }
         );
 
-        if (role.equals("saler")){
+        if (role.equals("SALER")){
             title = findViewById(R.id.titleStorage);
             title.setText("Kho ");
         }
@@ -74,15 +74,14 @@ public class QLStorage extends AppCompatActivity {
         new MyAsyncTask().execute();
     }
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
-
         @Override
         protected Boolean doInBackground(String... params) {
             OkHttpClient client = new OkHttpClient();
             MediaType mediaType = MediaType.parse("text/plain");
-            RequestBody body = RequestBody.create(mediaType, "");
+//            RequestBody body = RequestBody.create(mediaType, "");
             Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/storage/query")
-                    .method("POST", body)
+                    .url("http://192.168.1.81:8080/storage/getList")
+                    .method("GET",null)
                     .addHeader("Authorization", "Bearer " + header)
                     .build();
 

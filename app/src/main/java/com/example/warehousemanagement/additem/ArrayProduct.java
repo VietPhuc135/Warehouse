@@ -68,7 +68,7 @@ public class ArrayProduct extends ArrayAdapter<Product> {
 
         role = DangNhap.account.getRole();
         System.out.println("role"+ role);
-        if (role.equals("saler")){
+        if (role.equals("SALER")){
             SuabtnProduct.setVisibility(View.GONE);
         }
         SuabtnProduct.setOnClickListener(new View.OnClickListener() {
