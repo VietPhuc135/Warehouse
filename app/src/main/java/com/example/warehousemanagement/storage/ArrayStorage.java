@@ -45,7 +45,7 @@ public class ArrayStorage extends ArrayAdapter<Storage> {
         ImageView SuabtnProduct = rowView.findViewById(R.id.SuabtnStorage);
         role = DangNhap.account.getRole();
         System.out.println("role"+ role);
-        if (role.equals("saler")){
+        if (role.equals("SALER")){
             SuabtnProduct.setVisibility(View.GONE);
         }
         Storage item = (Storage) getItem(position);
@@ -90,8 +90,8 @@ public void onClick(View v) {
     popupMenu.show();
 }
         });
-        nameTextView.setText(item.getAddress());
-        codeTextView.setText(item.getCode());
+        nameTextView.setText(item.getName());
+        codeTextView.setText(item.getAddress());
 
         return rowView;
     }

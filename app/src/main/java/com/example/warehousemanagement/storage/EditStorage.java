@@ -62,7 +62,7 @@ public class EditStorage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (role.equals("saler") ){
+                if (role.equals("SALER") ){
                     Toast.makeText(getBaseContext(), "Bạn là saler ! Bạn không có quyền sửa", Toast.LENGTH_SHORT).show();
                     return ;
                 }

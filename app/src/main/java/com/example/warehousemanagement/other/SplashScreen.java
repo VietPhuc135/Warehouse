@@ -31,10 +31,10 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (role.equals("stocker")) {
+                if (role.equals("STOCKER")) {
                     Intent intent = new Intent(SplashScreen.this, StockerPage.class);
                     startActivity(intent);
-                } else if (role.equals("saler")) {
+                } else if (role.equals("SALER")) {
                     Intent intent = new Intent(SplashScreen.this, QLStorage.class);
                     startActivity(intent);
                 } else {

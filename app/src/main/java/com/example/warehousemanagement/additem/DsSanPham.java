@@ -60,10 +60,10 @@ public class DsSanPham extends AppCompatActivity {
             id = intent.getStringExtra("id");
         }
         adapter = new ArrayProduct(this, itemList);
-        if (role.equals("stocker")){
+        if (role.equals("STOCKER")){
             storageId = intent.getStringExtra("idSto");
         }
-        if (role.equals("saler")){
+        if (role.equals("SALER")){
             imgAddProduct.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -113,7 +113,7 @@ public class DsSanPham extends AppCompatActivity {
                     "    }\n" +
                     "}";
             body1 = RequestBody.create(mediaType,requestBody1);
-            if(role.equals("stocker"))
+            if(role.equals("STOCKER"))
             {
                 int stoID = Integer.parseInt(storageId);
 //                String requestBody = "{\n" +
@@ -127,7 +127,7 @@ public class DsSanPham extends AppCompatActivity {
                          System.out.println( "stocker" + body);
             }
             else
-                if (role.equals("saler")){
+                if (role.equals("SALER")){
                 if (id != null){
 //                    String requestBody = "{\n" +
 //                            "    \"filter\":{\n" +
@@ -146,7 +146,7 @@ public class DsSanPham extends AppCompatActivity {
                 }
              Request request = new Request.Builder()
                     .url("http://14.225.211.190:4001/api/product/query")
-                    .method("POST",role.equals("stocker") ? body :role.equals("saler") ? body1 :null)
+                    .method("POST",role.equals("STOCKER") ? body :role.equals("SALER") ? body1 :null)
                     .addHeader("Authorization", "Bearer " + header)
                     .build();
             client.newCall(request).enqueue(new okhttp3.Callback() {

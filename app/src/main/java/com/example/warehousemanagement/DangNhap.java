@@ -55,8 +55,8 @@ public class DangNhap extends AppCompatActivity {
                 // Lấy giá trị email và password từ EditText
                 String email =
 //                        "admin";
-//                        "stocker1";
-                "duong";
+                       "stocker";
+//                "duong";
 //                editTextEmail.getText().toString();
                 //String email1 = "admin";
                 String password =
