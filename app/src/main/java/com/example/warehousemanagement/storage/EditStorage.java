@@ -6,15 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
-import com.example.warehousemanagement.additem.DsSanPham;
 import com.example.warehousemanagement.R;
+import com.example.warehousemanagement.additem.DsSanPham;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -90,7 +90,7 @@ public class EditStorage extends AppCompatActivity {
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
-                .url("http://14.225.211.190:4001/api/storage/" + orderId  )
+                .url(Api.baseURL + "/storage/delete/" + orderId  )
                 .delete()
                 .addHeader("Authorization", "Bearer " + header)
                 .build();
@@ -116,7 +116,7 @@ public class EditStorage extends AppCompatActivity {
             OkHttpClient client = new OkHttpClient();
             MediaType mediaType = MediaType.parse("text/plain");
             Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/storage/"+ id)
+                    .url("http://192.168.1.5:8080/storage/getList/"+ id)
                     .addHeader("Authorization", "Bearer " +  header)
                     .method("GET",null)
                     .build();
@@ -159,7 +159,7 @@ public class EditStorage extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             RequestBody requestBody = RequestBody.create(mediaType, params[0]);
             Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/storage/"+ id)
+                    .url("http://192.168.1.5:8080/storage/getList/"+ id)
                     .addHeader("Authorization", "Bearer " +  header)
                     .put(requestBody)
                     .build();

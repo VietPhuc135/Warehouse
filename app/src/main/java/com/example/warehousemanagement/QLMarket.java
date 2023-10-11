@@ -1,15 +1,14 @@
 package com.example.warehousemanagement;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.market.AddMarket;
 
@@ -62,7 +61,7 @@ public class QLMarket extends AppCompatActivity {
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
-                .url("http://14.225.211.190:4001/api/market/query")
+                .url(Api.baseURL +  "/market/add")
                 .method("POST", body)
                 .addHeader("Authorization", "Bearer " + header)
                 .build();

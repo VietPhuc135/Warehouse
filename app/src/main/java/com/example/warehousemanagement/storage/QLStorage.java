@@ -1,7 +1,5 @@
 package com.example.warehousemanagement.storage;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,9 +12,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
-import com.example.warehousemanagement.obj.Product;
 import com.example.warehousemanagement.obj.Storage;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -30,7 +30,6 @@ import okhttp3.Call;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class QLStorage extends AppCompatActivity {
@@ -54,7 +53,7 @@ public class QLStorage extends AppCompatActivity {
 
         storageNames = new ArrayList<>();
         adapter = new ArrayStorage(this, itemList);
-        ImageView imgArrageStorage = findViewById(R.id.imgArrageStorage);
+        ImageView imgArrageStorage = findViewById(R.id.imgAddProduct);
         imgArrageStorage.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
@@ -64,12 +63,21 @@ public class QLStorage extends AppCompatActivity {
            }
         );
 
-        ImageView imgAdd = findViewById(R.id.imgAddProduct);
-        imgAdd.setOnClickListener(new View.OnClickListener() {
+//<<<<<<< HEAD
+//        ImageView imgAdd = findViewById(R.id.imgAddProduct);
+//        imgAdd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(QLStorage.this, MapsActivity.class);
+//                startActivity(intent);
+//=======
+        ImageView imgMap = findViewById(R.id.imgArrageMap);
+        imgMap.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(QLStorage.this, MapsActivity.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                Intent intent1 = new Intent(QLStorage.this, MapsActivity.class);
+                startActivity(intent1);
+//>>>>>>> main
             }
         });
 
@@ -89,7 +97,7 @@ public class QLStorage extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("text/plain");
 //            RequestBody body = RequestBody.create(mediaType, "");
             Request request = new Request.Builder()
-                    .url("http://192.168.1.81:8080/storage/getList")
+                    .url(Api.baseURL + "/storage/getList")
                     .method("GET",null)
                     .addHeader("Authorization", "Bearer " + header)
                     .build();

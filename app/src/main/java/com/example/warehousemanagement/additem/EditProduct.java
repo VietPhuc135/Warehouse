@@ -11,11 +11,11 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
 
@@ -133,7 +133,7 @@ public class EditProduct extends AppCompatActivity {
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
-                .url("http://14.225.211.190:4001/api/product/" + orderId  )
+                .url(Api.baseURL + "/product/delete/" + orderId  )
                 .delete()
                 .addHeader("Authorization", "Bearer " + header)
                 .build();
@@ -160,7 +160,7 @@ public class EditProduct extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             RequestBody requestBody = RequestBody.create(mediaType, params[0]);
             Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/product/"+ id)
+                    .url(Api.baseURL + "/product/update/"+ id)
                     .addHeader("Authorization", "Bearer " +  header)
                     .put(requestBody)
                     .build();
@@ -228,7 +228,7 @@ public class EditProduct extends AppCompatActivity {
             OkHttpClient client = new OkHttpClient();
             MediaType mediaType = MediaType.parse("text/plain");
             Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/product/"+ id)
+                    .url(Api.baseURL + "/product/getlist/"+ id)
                     .addHeader("Authorization", "Bearer " +  header)
                     .method("GET",null)
                     .build();

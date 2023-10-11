@@ -1,43 +1,26 @@
 package com.example.warehousemanagement.user;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.ContextMenu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
-import com.example.warehousemanagement.additem.AddProduct;
-import com.example.warehousemanagement.additem.ArrayProduct;
-import com.example.warehousemanagement.additem.DsSanPham;
-import com.example.warehousemanagement.additem.ProductAdapter;
-import com.example.warehousemanagement.obj.Product;
 import com.example.warehousemanagement.obj.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.Call;
@@ -129,8 +112,8 @@ public class QLNguoiDung extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("text/plain");
             RequestBody body = RequestBody.create(mediaType, "");
             Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/user/query")
-                    .method("POST", body)
+                    .url(Api.baseURL + "/user/getList")
+                    .method("GET", null)
                     .addHeader("Authorization", "Bearer " + header)
                     .build();
             client.newCall(request).enqueue(new okhttp3.Callback() {

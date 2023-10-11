@@ -3,11 +3,9 @@ package com.example.warehousemanagement.order;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -15,24 +13,17 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
-import com.example.warehousemanagement.additem.AddProduct;
-import com.example.warehousemanagement.additem.ArrayProduct;
 import com.example.warehousemanagement.obj.Product;
-import com.example.warehousemanagement.other.MyAsyncTask;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -129,7 +120,7 @@ public class DsSanPhamOrder extends AppCompatActivity {
                 MediaType mediaType = MediaType.parse("text/plain");
                 RequestBody body = RequestBody.create(mediaType, "");
                 Request request = new Request.Builder()
-                        .url("http://14.225.211.190:4001/api/order/" + idorder)
+                        .url(Api.baseURL + "/order/getlist" + idorder)
                         .delete()
                         .addHeader("Authorization", "Bearer " + header)
                         .build();
@@ -171,7 +162,7 @@ public class DsSanPhamOrder extends AppCompatActivity {
         });
 
         AlertDialog dialog = builder.create();
-        dialog.show();
+        //dialog.show();
     }
 
     });
@@ -193,7 +184,7 @@ public class DsSanPhamOrder extends AppCompatActivity {
         if (role.equals("STOCKER")){
             RequestBody body = RequestBody.create(mediaType, "{\r\n    \"status\": \"accepted\"\r\n}");
             Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/order/"+orderId+"/status")
+                    .url(Api.baseURL + "http://14.225.211.190:4001/api/order/"+orderId+"/status")
                     .method("PUT", body)
                     .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2IiwidXNlcm5hbWUiOiJzdG9ja2VyMSIsImVtYWlsIjoidHJhbmtoYW5oLnNvbjAzQGdtYWlsLmNvbSIsInJvbGUiOiJzdG9ja2VyIiwiYWRkcmVzcyI6bnVsbCwiYWdlIjoxMjEyLCJuYW1lIjoic3RvY2tlcjEiLCJpYXQiOjE2ODg0MzQzODQsImV4cCI6ODgwODg0MzQzODR9.ipKWV5wYw1MjGLukLO6FWAzKY7pgkU_tsSMk9FtrSvM")
                     .build();

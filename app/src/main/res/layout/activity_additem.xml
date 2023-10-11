@@ -6,7 +6,8 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="@drawable/backgroundgradient"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:theme="@style/DialogNoTitle">
 
     <TextView
         android:layout_width="wrap_content"

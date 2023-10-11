@@ -9,14 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
-import com.example.warehousemanagement.additem.DsSanPham;
-import com.example.warehousemanagement.additem.EditProduct;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -126,7 +123,7 @@ public class EditNguoiDung extends AppCompatActivity {
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
-                .url("http://14.225.211.190:4001/api/user/" + orderId  )
+                .url("http://192.168.1.5:8080/user/delete/" + orderId  )
                 .delete()
                 .addHeader("Authorization", "Bearer " + header)
                 .build();
