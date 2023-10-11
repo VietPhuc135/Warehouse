@@ -28,7 +28,7 @@
         android:id="@+id/etCode2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Code" />
+        android:hint="Mã Sp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
         android:id="@+id/etNote2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Note" />
+        android:hint="StorageId" />
 
     <EditText
         android:id="@+id/etProducer2"

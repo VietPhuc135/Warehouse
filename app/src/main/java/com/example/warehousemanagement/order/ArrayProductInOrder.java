@@ -46,7 +46,7 @@ public class ArrayProductInOrder extends ArrayAdapter<Product> {
         TextView stockTextView = rowView.findViewById(R.id.stockTextView);
         ImageView SuabtnProduct = rowView.findViewById(R.id.SuabtnProduct);
         codeTextView.setVisibility(View.GONE);
-        imageView.setImageResource(R.drawable.buy_cart);
+//        imageView.setImageResource(R.drawable.buy_cart);
 
         LinearLayout btnArrayProduct = rowView.findViewById(R.id.btnProductEach);
         Product item = itemList.get(position);

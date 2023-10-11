@@ -64,19 +64,19 @@ public class QLStorage extends AppCompatActivity {
         );
 
 //<<<<<<< HEAD
-//        ImageView imgAdd = findViewById(R.id.imgAddProduct);
-//        imgAdd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(QLStorage.this, MapsActivity.class);
-//                startActivity(intent);
-//=======
-        ImageView imgMap = findViewById(R.id.imgArrageMap);
-        imgMap.setOnClickListener(new View.OnClickListener() {
+        ImageView imgAdd = findViewById(R.id.imgAddProduct);
+        imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent1 = new Intent(QLStorage.this, MapsActivity.class);
-                startActivity(intent1);
+            public void onClick(View v) {
+                Intent intent = new Intent(QLStorage.this, MapsActivity.class);
+                startActivity(intent);
+//=======
+//        ImageView imgMap = findViewById(R.id.imgArrageMap);
+//        imgMap.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent1 = new Intent(QLStorage.this, MapsActivity.class);
+//                startActivity(intent1);
 //>>>>>>> main
             }
         });

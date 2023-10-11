@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
+import com.example.warehousemanagement.obj.Product;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,16 +46,20 @@ public class EditProduct extends AppCompatActivity {
 
     JSONObject jsonObject = new JSONObject();
     String id  ;
+    Product item ;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         if (intent != null) {
-            id = intent.getStringExtra("id");
-
+//            id = intent.getStringExtra("id");
+            item = (Product) getIntent().getSerializableExtra("id");
+            id = item.getId();
         }
         setContentView(R.layout.activity_edititem);
         header = DangNhap.account.getToken();
+        String storId = DangNhap.account.getStorageId();
         etName = findViewById(R.id.etName2);
         etCode = findViewById(R.id.etCode2);
         etDate = findViewById(R.id.etDate2);
@@ -68,18 +74,18 @@ public class EditProduct extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        DeleteStorage(id);
+                        DeleteProduct(id);
                     }
                 }
         );
         Spinner spinner1 = (Spinner) findViewById(R.id.spinnerCategory);
         List<String> items1 = new ArrayList<>();
         if (spinner1 != null) {
-            items1.add("Bánh");
-            items1.add("Kẹo");
-            items1.add("Thịt");
-            items1.add("Sữa");
-            items1.add("Đồ đóng hộp");
+            items1.add("Cake");
+            items1.add("Candy");
+            items1.add("Meat");
+            items1.add("Milk");
+            items1.add("Canned Food");
             ArrayAdapter<String> adapterCate = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items1);
             adapterCate.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner1.setAdapter(adapterCate);
@@ -113,13 +119,11 @@ public class EditProduct extends AppCompatActivity {
                 // Tạo JSON object từ dữ liệu
 
                 try {
-
                     jsonObject.put("name", name);
-                    jsonObject.put("code", code);
-                    jsonObject.put("stock", stock);
-                    jsonObject.put("note", note);
-                    jsonObject.put("producer", producer);
-                    jsonObject.put("status", status);
+                    jsonObject.put("maSp", code);
+                    jsonObject.put("storageId", storId);
+                    jsonObject.put("soLuong", stock);
+                    jsonObject.put("date", note);
                     jsonObject.put("category", category);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -128,7 +132,7 @@ public class EditProduct extends AppCompatActivity {
             }});
 
     }
-    private void DeleteStorage(String orderId) {
+    private void DeleteProduct(String orderId) {
         OkHttpClient client = new OkHttpClient();
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create(mediaType, "");
@@ -143,12 +147,25 @@ public class EditProduct extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
                     // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
+                    EditProduct.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(EditProduct.this,"Xóa thành công", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     finish();
                 }
             }
 
             @Override
             public void onFailure(Call call, IOException e) {
+                EditProduct.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(EditProduct.this,"Đã có lỗi xảy ra", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                finish();
                 e.printStackTrace();
             }
         });
@@ -185,7 +202,13 @@ public class EditProduct extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean result) {
             if (result) {
-                System.out.println("Thành công ");
+                System.out.println("Thành công");
+                EditProduct.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(EditProduct.this,"Sửa thành công", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 finish();
             } else {
                 System.out.println("lỗi ");
@@ -250,17 +273,22 @@ public class EditProduct extends AppCompatActivity {
         @Override
         protected void onPostExecute(JSONObject result) {
             if (result != null) {
-
                 try {
                     // Populate the EditText fields with retrieved data
-                    etName.setText(result.getString("name"));
-                    etCode.setText(result.getString("code"));
-                    etDate.setText(result.getString("date"));
-                    etStock.setText(String.valueOf(result.getInt("stock")));
-                    etNote.setText(result.getString("note"));
-                    etProducer.setText(result.getString("producer"));
+                    etName.setText(item.getName());
+                    etCode.setText(item.getMaSp());
+                    etDate.setText(item.getDate());
+                    etStock.setText(String.valueOf(item.getSoLuong()));
+//                    etNote.setText();
+//                    etStatus.setText();
+                    etCategory.setText(item.getCategory());
+//                    etName.setText(result.getString("name"));
+//                    etCode.setText(result.getString("maSp"));
+//                    etDate.setText(result.getString("date"));
+//                    etStock.setText(String.valueOf(result.getInt("soLuong")));
+//                    etNote.setText(result.getString("storageId"));
                     etStatus.setText(result.getString("status"));
-                    etCategory.setText(result.getString("category"));
+//                    etCategory.setText(result.getString("category"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

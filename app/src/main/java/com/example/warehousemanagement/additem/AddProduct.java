@@ -46,7 +46,7 @@ public class AddProduct extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additem);
-
+        String storId = DangNhap.account.getStorageId();
         header = DangNhap.account.getToken();
                 etName = findViewById(R.id.etName);
                 etCode = findViewById(R.id.etCode);
@@ -57,7 +57,7 @@ public class AddProduct extends AppCompatActivity {
                 etStatus = findViewById(R.id.etStatus);
                 etCategory = findViewById(R.id.etCategory);
                 btnSubmit = findViewById(R.id.btnSubmit);
-
+ etProducer.setVisibility(View.GONE);
         Spinner spinner = (Spinner) findViewById(R.id.spinnerStatus);
         List<String> items = new ArrayList<>();
         if (spinner != null) {
@@ -77,11 +77,11 @@ public class AddProduct extends AppCompatActivity {
         Spinner spinner1 = (Spinner) findViewById(R.id.spinnerCategory);
         List<String> items1 = new ArrayList<>();
         if (spinner1 != null) {
-            items1.add("Bánh");
-            items1.add("Kẹo");
-            items1.add("Thịt");
-            items1.add("Sữa");
-            items1.add("Đồ đóng hộp");
+            items1.add("Cake");
+            items1.add("Candy");
+            items1.add("Meat");
+            items1.add("Milk");
+            items1.add("Canned Food");
             ArrayAdapter<String> adapterCate = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items1);
             adapterCate.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner1.setAdapter(adapterCate);
@@ -107,7 +107,7 @@ public class AddProduct extends AppCompatActivity {
                         String code = etCode.getText().toString().trim();
                         int stock = Integer.parseInt(etStock.getText().toString().trim());
                         String note = etNote.getText().toString().trim();
-                        String producer = etProducer.getText().toString().trim();
+//                        String producer = etProducer.getText().toString().trim();
                         String status = spinner.getSelectedItem().toString();
                         String category =spinner1.getSelectedItem().toString();
 
@@ -115,11 +115,10 @@ public class AddProduct extends AppCompatActivity {
 
                         try {
                             jsonObject.put("name", name);
-                            jsonObject.put("code", code);
-                            jsonObject.put("stock", stock);
-                            jsonObject.put("note", note);
-                            jsonObject.put("producer", producer);
-                            jsonObject.put("status", status);
+                            jsonObject.put("maSp", code);
+                            jsonObject.put("storageId", storId);
+                            jsonObject.put("soLuong", stock);
+                            jsonObject.put("date", note);
                             jsonObject.put("category", category);
                         } catch (JSONException e) {
                             e.printStackTrace();

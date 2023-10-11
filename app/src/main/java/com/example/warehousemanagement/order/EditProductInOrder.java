@@ -148,7 +148,7 @@ public class EditProductInOrder extends AppCompatActivity {
 //            etNote.setText(product.getNote() != null ? product.getNote() : "");
 //            etProducer.setText(product.getProducer() != null ? product.getProducer() : "");
 //            etStatus.setText(product.getStatus() != null ? product.getStatus() : "");
-//            etCategory.setText(product.getCategory() != null ? product.getCategory() : "");
+            etCategory.setText(product.getCategory() != null ? product.getCategory() : "");
         }
     }
 

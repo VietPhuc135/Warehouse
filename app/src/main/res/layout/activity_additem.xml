@@ -22,7 +22,7 @@
         android:id="@+id/etName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
+        android:hint="Tên SP"
         android:padding="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"/>
@@ -32,7 +32,7 @@
         android:id="@+id/etCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Code"
+        android:hint="Mã sp"
         android:padding="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"/>
@@ -49,7 +49,7 @@
         android:id="@+id/etDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Date"
+        android:hint="HSD"
         android:textSize="18dp"
         android:padding="15dp"
         android:layout_marginLeft="15dp"
@@ -61,7 +61,7 @@
         android:id="@+id/etStock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Stock"
+        android:hint="Số lượng"
         android:padding="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"/>
@@ -70,7 +70,7 @@
         android:id="@+id/etNote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Note"
+        android:hint="Ghi chú"
         android:padding="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"/>
@@ -79,7 +79,7 @@
         android:id="@+id/etProducer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Producer"
+        android:hint="StorageId"
         android:padding="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"/>

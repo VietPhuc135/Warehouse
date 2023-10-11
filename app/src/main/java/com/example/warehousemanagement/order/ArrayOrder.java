@@ -53,7 +53,7 @@ public class ArrayOrder extends ArrayAdapter<Order> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.product_item, parent, false);
 
-        ImageView imageView = rowView.findViewById(R.id.imageView);
+        ImageView imageView = rowView.findViewById(R.id.imageView1);
         TextView nameTextView = rowView.findViewById(R.id.nameTextView);
         TextView codeTextView = rowView.findViewById(R.id.codeTextView);
         TextView stockTextView = rowView.findViewById(R.id.stockTextView);
@@ -66,6 +66,7 @@ public class ArrayOrder extends ArrayAdapter<Order> {
         String status = item.getStatus();
         codeTextView.setVisibility(View.GONE);
         ArrayList<Product> lineItems = item.getLineItems();
+
         btnProductEach.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -83,9 +84,12 @@ public class ArrayOrder extends ArrayAdapter<Order> {
 
         if (status.equals("ACCEPTED")) {
             imageView.setImageResource(R.drawable.accepted_icon);
+            imageView.setPadding(5,5,5,5);
         } else {
             if (status.equals("WAITING")) {
                 imageView.setImageResource(R.drawable.pending_icon);
+                imageView.setPadding(5,5,5,5);
+
             } else {
                 if (status.equals("success")) {
                     imageView.setImageResource(R.drawable.success_icon);
@@ -94,6 +98,8 @@ public class ArrayOrder extends ArrayAdapter<Order> {
                         imageView.setImageResource(R.drawable.buy_cart);
                     } else {
                         imageView.setImageResource(R.drawable.cancel);
+                        imageView.setPadding(10,10,10,10);
+
                     }
                 }
 

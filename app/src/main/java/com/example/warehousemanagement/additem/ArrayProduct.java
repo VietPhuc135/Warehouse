@@ -57,7 +57,7 @@ public class ArrayProduct extends ArrayAdapter<Product> {
         TextView titlenameTextView = rowView.findViewById(R.id.titlenameTextView);
         TextView titlestockTextView = rowView.findViewById(R.id.titlestockTextView);
         titlestockTextView.setText("");
-        titlenameTextView.setText("Tên sản phẩm: ");
+        titlenameTextView.setText("Tên SP: ");
         TextView codeTextView = rowView.findViewById(R.id.codeTextView);
         TextView stockTextView = rowView.findViewById(R.id.stockTextView);
         ImageView SuabtnProduct = rowView.findViewById(R.id.SuabtnProduct);
@@ -99,14 +99,13 @@ public class ArrayProduct extends ArrayAdapter<Product> {
 //
 //                popupMenu.show();
                 Intent intent = new Intent(context, EditProduct.class);
-                intent.putExtra("id", item.getId());
+                intent.putExtra("id", item);
                 context.startActivity(intent);// Pass the product ID to the EditProduct activity
             }
         });
         //Picasso.get().load(item.getImage()).into(imageView);
         nameTextView.setText(item.getName());
         codeTextView.setText("Loại: " + item.getMaSp());
-
         stockTextView.setText("Stock: " + String.valueOf(item.getSoLuong()));
 
         return rowView;

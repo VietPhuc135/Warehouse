@@ -170,6 +170,12 @@ public class AddOrder extends AppCompatActivity {
                 Response response = client.newCall(request).execute();
                 if (response.isSuccessful()) {
                     System.out.println(params[0]);
+                    AddOrder.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(AddOrder.this,"Thêm thành công", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     return true;
                 } else {
                     AddOrder.this.runOnUiThread(new Runnable() {

@@ -60,7 +60,7 @@ public class DsSanPhamOrder extends AppCompatActivity {
         String idorder = intent.getStringExtra("id");
         String status = intent.getStringExtra("status");
 
-        if (status.equals("pending")){
+        if (status.equals("WAITING")){
             imgAccepOrder.setImageResource(R.drawable.pending_icon);
             imgAccepOrder.setVisibility(View.VISIBLE);
             imgAccepOrder.setOnClickListener(new View.OnClickListener() {
@@ -86,12 +86,12 @@ public class DsSanPhamOrder extends AppCompatActivity {
                                     return true;
 
                                 case R.id.cancel_order:
-                                    if (role.equals("STOCKER")) {
-                                        Toast.makeText(context,"Bạn là stocker khoogn thể hủy",Toast.LENGTH_SHORT).show();
-                                    }
-                                    else{
+//                                    if (role.equals("STOCKER")) {
+//                                        Toast.makeText(context,"Bạn là stocker khoogn thể hủy",Toast.LENGTH_SHORT).show();
+//                                    }
+//                                    else{
                                         cancelOrder(idorder);
-                                    }
+//                                    }
                                     return true;
                                 default:
                                     return false;
@@ -106,6 +106,7 @@ public class DsSanPhamOrder extends AppCompatActivity {
             imgAddProduct.setVisibility(View.GONE);
         }
         imgAddProduct.setImageResource(R.drawable.cancel);
+
         imgAddProduct.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick (View v){
@@ -184,9 +185,9 @@ public class DsSanPhamOrder extends AppCompatActivity {
         if (role.equals("STOCKER")){
             RequestBody body = RequestBody.create(mediaType, "{\r\n    \"status\": \"accepted\"\r\n}");
             Request request = new Request.Builder()
-                    .url(Api.baseURL + "http://14.225.211.190:4001/api/order/"+orderId+"/status")
-                    .method("PUT", body)
-                    .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2IiwidXNlcm5hbWUiOiJzdG9ja2VyMSIsImVtYWlsIjoidHJhbmtoYW5oLnNvbjAzQGdtYWlsLmNvbSIsInJvbGUiOiJzdG9ja2VyIiwiYWRkcmVzcyI6bnVsbCwiYWdlIjoxMjEyLCJuYW1lIjoic3RvY2tlcjEiLCJpYXQiOjE2ODg0MzQzODQsImV4cCI6ODgwODg0MzQzODR9.ipKWV5wYw1MjGLukLO6FWAzKY7pgkU_tsSMk9FtrSvM")
+                    .url(Api.baseURL + "/order/status/accepted"+orderId)
+                    .get()
+                    .addHeader("Authorization", "Bearer "+ header)
                     .build();
             client.newCall(request).enqueue(new okhttp3.Callback() {
                 @Override
@@ -288,8 +289,8 @@ public class DsSanPhamOrder extends AppCompatActivity {
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
-                .url("http://14.225.211.190:4001/api/order/" + orderId + "/cancel")
-                .method("PUT", body)
+                .url(Api.baseURL + "/order/status/cancel/" + orderId )
+                .method("GET", null)
                 .addHeader("Authorization", "Bearer " + header)
                 .build();
 
