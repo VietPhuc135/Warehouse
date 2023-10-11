@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.obj.Storage;
@@ -52,7 +53,7 @@ public class QLStorage extends AppCompatActivity {
 
         storageNames = new ArrayList<>();
         adapter = new ArrayStorage(this, itemList);
-        ImageView imgArrageStorage = findViewById(R.id.imgArrageStorage);
+        ImageView imgArrageStorage = findViewById(R.id.imgAddProduct);
         imgArrageStorage.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
@@ -61,6 +62,15 @@ public class QLStorage extends AppCompatActivity {
                }
            }
         );
+
+        ImageView imgMap = findViewById(R.id.imgArrageMap);
+        imgMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(QLStorage.this, MapsActivity.class);
+                startActivity(intent1);
+            }
+        });
 
         if (role.equals("SALER")){
             title = findViewById(R.id.titleStorage);
@@ -78,7 +88,7 @@ public class QLStorage extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("text/plain");
 //            RequestBody body = RequestBody.create(mediaType, "");
             Request request = new Request.Builder()
-                    .url("http://192.168.1.5:8080/storage/getList")
+                    .url(Api.baseURL + "/storage/getList")
                     .method("GET",null)
                     .addHeader("Authorization", "Bearer " + header)
                     .build();

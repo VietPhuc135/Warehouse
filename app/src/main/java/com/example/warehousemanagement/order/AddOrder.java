@@ -1,13 +1,11 @@
 package com.example.warehousemanagement.order;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,11 +14,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
-import com.example.warehousemanagement.TrangChu;
-import com.example.warehousemanagement.additem.AddProduct;
-import com.example.warehousemanagement.additem.DsSanPham;
 import com.example.warehousemanagement.obj.LineItem;
 
 import org.json.JSONArray;
@@ -28,11 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -170,7 +162,7 @@ public class AddOrder extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             RequestBody requestBody = RequestBody.create(mediaType, params[0]);
             Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/order")
+                    .url(Api.baseURL + "/order/add")
                     .addHeader("Authorization", "Bearer " + header)
                     .method("POST", requestBody)
                     .build();

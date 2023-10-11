@@ -11,10 +11,10 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.TrangChu;
-import com.example.warehousemanagement.additem.AddProduct;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -106,7 +106,7 @@ public class AddNguoiDung extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             RequestBody requestBody = RequestBody.create(mediaType, params[0]);
             Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/user")
+                    .url(Api.baseURL + "/user/add")
                     .addHeader("Authorization", "Bearer " + header)
                     .method("POST", requestBody)
                     .build();

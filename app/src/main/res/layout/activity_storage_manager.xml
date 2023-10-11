@@ -36,7 +36,7 @@
             android:layout_marginLeft="25dp"
             android:background="#11AA9E9E"
             android:drawableLeft="@drawable/ic_search_black_24dp"
-            android:ems="15"
+            android:ems="12"
             android:hint="Search Storage"
             android:inputType="textPersonName"
             android:gravity="center"
@@ -57,6 +57,13 @@
             android:id="@+id/imgArrageStorage"
             android:layout_marginLeft="10dp"
             android:src="@drawable/arrange"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/imgArrageMap"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/map"/>
     </LinearLayout>
 
     <ListView

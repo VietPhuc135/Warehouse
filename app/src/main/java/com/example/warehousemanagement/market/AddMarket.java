@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.QLMarket;
 import com.example.warehousemanagement.R;
@@ -75,7 +76,7 @@ public class AddMarket extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             RequestBody requestBody = RequestBody.create(mediaType, params[0]);
             Request request = new Request.Builder()
-                    .url("http://192.168.1.5:8080/market/add")
+                    .url(Api.baseURL + "/market/add")
                     .addHeader("Authorization", "Bearer " + header)
                     .post(requestBody)
                     .build();

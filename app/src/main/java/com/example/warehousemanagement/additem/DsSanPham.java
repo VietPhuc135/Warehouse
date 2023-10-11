@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.obj.Product;
@@ -141,7 +142,7 @@ public class DsSanPham extends AppCompatActivity {
                     body = RequestBody.create(mediaType," ");
                 }
              Request request = new Request.Builder()
-                    .url("http://192.168.1.5:8080/product/add")
+                    .url(Api.baseURL + "/product/add")
                     .method("POST",role.equals("STOCKER") ? body :role.equals("SALER") ? body1 :null)
                     .addHeader("Authorization", "Bearer " + header)
                     .build();

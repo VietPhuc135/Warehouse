@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
 
@@ -134,7 +135,7 @@ public class AddProduct extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             RequestBody requestBody = RequestBody.create(mediaType, params[0]);
             Request request = new Request.Builder()
-                    .url("http://192.168.1.5:8080/product/add")
+                    .url(Api.baseURL + "/product/add")
                     .addHeader("Authorization", "Bearer " +  header)
                     .method("POST", requestBody)
                     .build();

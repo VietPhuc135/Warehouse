@@ -4,23 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
-import com.example.warehousemanagement.additem.AddProduct;
-import com.example.warehousemanagement.additem.ArrayProduct;
 import com.example.warehousemanagement.obj.Order;
-import com.example.warehousemanagement.obj.Product;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -125,7 +120,7 @@ public class OrderList extends AppCompatActivity {
                     System.out.println("order "+requestBody);
                 RequestBody body = RequestBody.create(mediaType,requestBody);
                 Request request = new Request.Builder()
-                        .url("http://14.225.211.190:4001/api/order/query")
+                        .url(Api.baseURL + "/order/add")
                         .post(body)
                         .addHeader("Content-Type", "application/json")
                         .addHeader("Authorization", "Bearer " + header)
@@ -186,7 +181,7 @@ public class OrderList extends AppCompatActivity {
                     System.out.println("order saler "+requestBody);
                 RequestBody body = RequestBody.create(mediaType,requestBody);
                 Request request = new Request.Builder()
-                        .url("http://14.225.211.190:4001/api/order/query")
+                        .url(Api.baseURL + "/order/add")
                         .post(body)
                         .addHeader("Authorization", "Bearer " + header)
                         .build();
@@ -224,7 +219,7 @@ public class OrderList extends AppCompatActivity {
                     System.out.println("order saler "+"requestBody");
                     RequestBody body = RequestBody.create(mediaType,"");
                     Request request = new Request.Builder()
-                            .url("http://14.225.211.190:4001/api/order/query")
+                            .url(Api.baseURL + "/order/add")
                             .post(body)
                             .addHeader("Authorization", "Bearer " + header)
                             .build();
