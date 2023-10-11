@@ -45,11 +45,13 @@ public class ArrayProductInOrder extends ArrayAdapter<Product> {
         TextView codeTextView = rowView.findViewById(R.id.codeTextView);
         TextView stockTextView = rowView.findViewById(R.id.stockTextView);
         ImageView SuabtnProduct = rowView.findViewById(R.id.SuabtnProduct);
+        codeTextView.setVisibility(View.GONE);
+        imageView.setImageResource(R.drawable.buy_cart);
 
         LinearLayout btnArrayProduct = rowView.findViewById(R.id.btnProductEach);
         Product item = itemList.get(position);
 
-        System.out.println( "item in order" + item.getStock());
+        System.out.println( "item in order" + item.getSoLuong());
         btnArrayProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,9 +93,9 @@ public class ArrayProductInOrder extends ArrayAdapter<Product> {
             }
         });
         //Picasso.get().load(item.getImage()).into(imageView);
-        nameTextView.setText(item.getName());
-        codeTextView.setText(item.getCode());
-        stockTextView.setText("Số lượng yêu cầu: " + item.getQuanity());
+        nameTextView.setText("Id của sản phẩm: "+item.getId());
+//        codeTextView.setText(item.getCategory());
+        stockTextView.setText("Số lượng yêu cầu: " + item.getSoLuong());
 
         return rowView;
     }

@@ -124,21 +124,20 @@ public class AddOrder extends AppCompatActivity {
 
         // Kiểm tra dữ liệu đã nhập
         if (ownerId.isEmpty() || lineItems.isEmpty()) {
-            Toast.makeText(this, "Hãy nhập LineItems", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Hãy nhập đủ", Toast.LENGTH_SHORT).show();
             return;
         }
         // Tạo JSON object để lưu thông tin đơn hàng
         try {
-            orderJson.put("ownerId", ownerId);
+//            orderJson.put("ownerId", ownerId);
             JSONArray lineItemsJson = new JSONArray();
             for (LineItem lineItem : lineItems) {
                 JSONObject lineItemJson = new JSONObject();
                 lineItemJson.put("id", lineItem.getId());
-                lineItemJson.put("quantity", lineItem.getQuanity());
+                lineItemJson.put("soLuong", lineItem.getsoLuong());
                 lineItemsJson.put(lineItemJson);
             }
             orderJson.put("lineItems", lineItemsJson);
-
             orderJson.put("option", "default");
             orderJson.put("message", JSONObject.NULL);
             orderJson.put("storageId", storageId);
@@ -170,7 +169,7 @@ public class AddOrder extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             RequestBody requestBody = RequestBody.create(mediaType, params[0]);
             Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/order")
+                    .url("http://192.168.1.81:8080/order/add")
                     .addHeader("Authorization", "Bearer " + header)
                     .method("POST", requestBody)
                     .build();
@@ -179,11 +178,17 @@ public class AddOrder extends AppCompatActivity {
                 Response response = client.newCall(request).execute();
                 if (response.isSuccessful()) {
                     System.out.println(params[0]);
-
                     return true;
                 } else {
+                    AddOrder.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(AddOrder.this," Quá số lượng", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     System.out.println(params[0]);
                     System.out.println("lỗi " + response.toString());
+                    return false ;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -199,6 +204,8 @@ public class AddOrder extends AppCompatActivity {
                 finish();
             } else {
                 System.out.println("lỗi ");
+                finish();
+
             }
         }
     }

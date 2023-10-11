@@ -58,7 +58,7 @@ public class LineItemAdapter extends ArrayAdapter<LineItem> {
 
         // Lấy đối tượng LineItem tại vị trí hiện tại
         LineItem lineItem = lineItems.get(position);
-        double quantity =  lineItem.getQuanity();
+        double quantity =  lineItem.getsoLuong();
         // Hiển thị thông tin LineItem trong TextViews
         tvLineItemId.setText(lineItem.getId());
         tvLineItemQuantity.setText(String.valueOf(quantity));

@@ -6,27 +6,27 @@ import java.io.Serializable;
 
 public class LineItem  implements Serializable {
     String id;
-    double quanity;
+    double soLuong;
 
     public String getId() {
         return id;
     }
 
     public LineItem(String id,
-                    double quanity) {
+                    double soLuong) {
         this.id = id;
-        this.quanity = quanity;
+        this.soLuong = soLuong;
     }
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public double getQuanity() {
-        return quanity;
+    public double getsoLuong() {
+        return soLuong;
     }
 
-    public void setQuanity(double quanity) {
-        this.quanity = quanity;
+    public void setsoLuong(double soLuong) {
+        this.soLuong = soLuong;
     }
 }

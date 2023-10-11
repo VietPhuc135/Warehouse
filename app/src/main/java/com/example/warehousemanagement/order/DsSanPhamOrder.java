@@ -343,14 +343,14 @@ public class DsSanPhamOrder extends AppCompatActivity {
             Product product = itemList.get(i);
             if (product.getId().equals(updatedProduct.getId())) {
                 // Cập nhật thông tin sản phẩm
-                product.setName(updatedProduct.getName());
-                product.setCode(updatedProduct.getCode());
-                product.setDate(updatedProduct.getDate());
-                product.setStock(updatedProduct.getStock());
-                product.setNote(updatedProduct.getNote());
-                product.setProducer(updatedProduct.getProducer());
-                product.setStatus(updatedProduct.getStatus());
-                product.setCategory(updatedProduct.getCategory());
+//                product.setName(updatedProduct.getName());
+//                product.setCode(updatedProduct.getCode());
+//                product.setDate(updatedProduct.getDate());
+//                product.setStock(updatedProduct.getStock());
+//                product.setNote(updatedProduct.getNote());
+//                product.setProducer(updatedProduct.getProducer());
+//                product.setStatus(updatedProduct.getStatus());
+//                product.setCategory(updatedProduct.getCategory());
                 break;
             }
         }

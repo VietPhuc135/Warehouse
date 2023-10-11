@@ -39,7 +39,7 @@ public class DsSanPham extends AppCompatActivity {
     private ArrayProduct adapter;
     //    private ArrayAdapter<Product> adapter;
     private List<Product> itemList;
-    ImageView imgAddProduct;
+    ImageView imgAddProduct,imaArrange;
     Context context;
         String id;
         String role,dsSanPham;
@@ -51,6 +51,7 @@ public class DsSanPham extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_product);
         imgAddProduct = findViewById(R.id.imgAddProduct);
+        imaArrange = findViewById(R.id.imgArrageProduct);
         listView = findViewById(R.id.lvProduct);
         header = DangNhap.account.getToken();
         role = DangNhap.account.getRole();
@@ -72,6 +73,7 @@ public class DsSanPham extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+            imaArrange.setVisibility(View.GONE);
         }else{
             imgAddProduct.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -97,56 +99,56 @@ public class DsSanPham extends AppCompatActivity {
         protected Boolean doInBackground(String... params) {
             OkHttpClient client = new OkHttpClient();
             MediaType mediaType = MediaType.parse("text/plain");
-            String requestBody = "{\n" +
-                    "    \"filter\":{\n" +
-                    "        \"storageId\":{\n" +
-                    "            \"eq\":" + storageId + "\n" +
-                    "        }\n" +
-                    "    }\n" +
-                    "}";
-            body = RequestBody.create(mediaType,requestBody);
-            String requestBody1 = "{\n" +
-                    "    \"filter\":{\n" +
-                    "        \"marketId\":{\n" +
-                    "            \"eq\": " + id + "\n" +
-                    "        }\n" +
-                    "    }\n" +
-                    "}";
-            body1 = RequestBody.create(mediaType,requestBody1);
-            if(role.equals("STOCKER"))
-            {
-                int stoID = Integer.parseInt(storageId);
-//                String requestBody = "{\n" +
-//                        "    \"filter\":{\n" +
-//                        "        \"storageId\":{\n" +
-//                        "            \"eq\": " + stoID + "\n" +
-//                        "        }\n" +
-//                        "    }\n" +
-//                        "}";
-                body = RequestBody.create(mediaType,requestBody);
-                         System.out.println( "stocker" + body);
-            }
-            else
-                if (role.equals("SALER")){
-                if (id != null){
-//                    String requestBody = "{\n" +
-//                            "    \"filter\":{\n" +
-//                            "        \"marketId\":{\n" +
-//                            "            \"eq\": " + id + "\n" +
-//                            "        }\n" +
-//                            "    }\n" +
-//                            "}";
-                    body = RequestBody.create(mediaType,requestBody);
-                    System.out.println( "stocker" + body);     System.out.println("else" + body);
-                }
-
-            }
-                else {
-                    body = RequestBody.create(mediaType," ");
-                }
+//            String requestBody = "{\n" +
+//                    "    \"filter\":{\n" +
+//                    "        \"storageId\":{\n" +
+//                    "            \"eq\":" + storageId + "\n" +
+//                    "        }\n" +
+//                    "    }\n" +
+//                    "}";
+//            body = RequestBody.create(mediaType,requestBody);
+//            String requestBody1 = "{\n" +
+//                    "    \"filter\":{\n" +
+//                    "        \"marketId\":{\n" +
+//                    "            \"eq\": " + id + "\n" +
+//                    "        }\n" +
+//                    "    }\n" +
+//                    "}";
+//            body1 = RequestBody.create(mediaType,requestBody1);
+//            if(role.equals("STOCKER"))
+//            {
+//                int stoID = Integer.parseInt(storageId);
+////                String requestBody = "{\n" +
+////                        "    \"filter\":{\n" +
+////                        "        \"storageId\":{\n" +
+////                        "            \"eq\": " + stoID + "\n" +
+////                        "        }\n" +
+////                        "    }\n" +
+////                        "}";
+//                body = RequestBody.create(mediaType,requestBody);
+//                         System.out.println( "stocker" + body);
+//            }
+//            else
+//                if (role.equals("SALER")){
+//                if (id != null){
+////                    String requestBody = "{\n" +
+////                            "    \"filter\":{\n" +
+////                            "        \"marketId\":{\n" +
+////                            "            \"eq\": " + id + "\n" +
+////                            "        }\n" +
+////                            "    }\n" +
+////                            "}";
+//                    body = RequestBody.create(mediaType,requestBody);
+//                    System.out.println( "stocker" + body);     System.out.println("else" + body);
+//                }
+//
+//            }
+//                else {
+//                    body = RequestBody.create(mediaType," ");
+//                }
              Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/product/query")
-                    .method("POST",role.equals("STOCKER") ? body :role.equals("SALER") ? body1 :null)
+                    .url("http://192.168.1.81:8080/product/getlist")
+                    .method("GET",null)
                     .addHeader("Authorization", "Bearer " + header)
                     .build();
             client.newCall(request).enqueue(new okhttp3.Callback() {
@@ -160,16 +162,15 @@ public class DsSanPham extends AppCompatActivity {
                         itemList = gson.fromJson(responseBody, listType);
                         System.out.println("Đây la itemlist " + responseBody);
 
-                        List<Product> filteredList = new ArrayList<>();
-                        if (id != null){
-                            for (Product product : itemList) {
-                                String idSto = product.getstorageId();
-                                if (product.getstorageId().equals(id)) {
-                                    filteredList.add(product);
-                                }
-                            }
-                        }
-                        System.out.println("Đây la itemlist " + responseBody);
+//                        List<Product> filteredList = new ArrayList<>();
+//                        if (id != null){
+//                            for (Product product : itemList) {
+//                                String idSto = product.getStorageId();
+//                                if (product.getStorageId().equals(id)) {
+//                                    filteredList.add(product);
+//                                }
+//                            }
+//                        }
                         // Cập nhật giao diện trong luồng UI
 
 
@@ -178,7 +179,7 @@ public class DsSanPham extends AppCompatActivity {
                             public void run() {
                                 // Khởi tạo và thiết lập Adapter
                                 if (id != null){
-                                    adapter = new ArrayProduct(DsSanPham.this, filteredList);
+                                    adapter = new ArrayProduct(DsSanPham.this, itemList);
                                     listView.setAdapter(adapter);
                                 }
                               else{

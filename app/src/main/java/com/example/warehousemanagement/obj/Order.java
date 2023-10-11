@@ -5,6 +5,16 @@ public class Order {
     private String id;
     private String ownerId;
     ArrayList <Product> lineItems = new ArrayList < Product > ();
+//    ArrayList < Product > acceptedLineItems = new ArrayList < Product > ();
+    private String status;
+    private String option;
+    private String message = null;
+    private String storageId;
+    private String marketId;
+//    private String flag = null;
+//    private String flagMessage = null;
+
+
 
     public ArrayList<Product> getLineItems() {
         return lineItems;
@@ -14,24 +24,13 @@ public class Order {
         this.lineItems = lineItems;
     }
 
-    public ArrayList<Product> getAcceptedLineItems() {
-        return acceptedLineItems;
-    }
-
-    public void setAcceptedLineItems(ArrayList<Product> acceptedLineItems) {
-        this.acceptedLineItems = acceptedLineItems;
-    }
-
-    ArrayList < Product > acceptedLineItems = new ArrayList < Product > ();
-    private String status;
-    private String option;
-    private String message = null;
-    private String storageId;
-    private String marketId;
-    private String flag = null;
-    private String flagMessage = null;
-
-
+//    public ArrayList<Product> getAcceptedLineItems() {
+//        return acceptedLineItems;
+//    }
+//
+//    public void setAcceptedLineItems(ArrayList<Product> acceptedLineItems) {
+//        this.acceptedLineItems = acceptedLineItems;
+//    }
     // Getter Methods
 
     public String getId() {
@@ -61,14 +60,14 @@ public class Order {
     public String getMarketId() {
         return marketId;
     }
-
-    public String getFlag() {
-        return flag;
-    }
-
-    public String getFlagMessage() {
-        return flagMessage;
-    }
+//
+//    public String getFlag() {
+//        return flag;
+//    }
+//
+//    public String getFlagMessage() {
+//        return flagMessage;
+//    }
 
     // Setter Methods
 
@@ -100,11 +99,11 @@ public class Order {
         this.marketId = marketId;
     }
 
-    public void setFlag(String flag) {
-        this.flag = flag;
-    }
-
-    public void setFlagMessage(String flagMessage) {
-        this.flagMessage = flagMessage;
-    }
+//    public void setFlag(String flag) {
+//        this.flag = flag;
+//    }
+//
+//    public void setFlagMessage(String flagMessage) {
+//        this.flagMessage = flagMessage;
+//    }
 }

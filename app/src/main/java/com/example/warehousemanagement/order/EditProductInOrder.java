@@ -75,12 +75,12 @@ public class EditProductInOrder extends AppCompatActivity {
                 Product updatedProduct = new Product();
                 updatedProduct.setId(id);
                 updatedProduct.setName(name);
-                updatedProduct.setCode(code);
-                updatedProduct.setDate(date);
-                updatedProduct.setStock(stock);
-                updatedProduct.setNote(note);
-                updatedProduct.setProducer(producer);
-                updatedProduct.setStatus(status);
+//                updatedProduct.setCode(code);
+//                updatedProduct.setDate(date);
+//                updatedProduct.setStock(stock);
+//                updatedProduct.setNote(note);
+//                updatedProduct.setProducer(producer);
+//                updatedProduct.setStatus(status);
                 updatedProduct.setCategory(category);
 
                 // Gửi thông tin sản phẩm đã chỉnh sửa trở lại DsSanPhamOrder
@@ -142,13 +142,13 @@ public class EditProductInOrder extends AppCompatActivity {
 
             // Lấy phần tử đầu tiên từ danh sách lineItems (có thể điều chỉnh tùy vào logic của bạn)
             etName.setText(product.getName() != null ? product.getName() : "");
-            etCode.setText(product.getCode() != null ? product.getCode() : "");
-            etDate.setText(product.getDate() != null ? formattedDate : "");
-            etStock.setText(product.getStock() != 0 ? String.valueOf(product.getStock()) : "");
-            etNote.setText(product.getNote() != null ? product.getNote() : "");
-            etProducer.setText(product.getProducer() != null ? product.getProducer() : "");
-            etStatus.setText(product.getStatus() != null ? product.getStatus() : "");
-            etCategory.setText(product.getCategory() != null ? product.getCategory() : "");
+//            etCode.setText(product.getCode() != null ? product.getCode() : "");
+//            etDate.setText(product.getDate() != null ? formattedDate : "");
+//            etStock.setText(product.getStock() != 0 ? String.valueOf(product.getStock()) : "");
+//            etNote.setText(product.getNote() != null ? product.getNote() : "");
+//            etProducer.setText(product.getProducer() != null ? product.getProducer() : "");
+//            etStatus.setText(product.getStatus() != null ? product.getStatus() : "");
+//            etCategory.setText(product.getCategory() != null ? product.getCategory() : "");
         }
     }
 

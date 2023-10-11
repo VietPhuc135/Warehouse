@@ -81,10 +81,10 @@ public class ArrayOrder extends ArrayAdapter<Order> {
 
         SuabtnProduct.setVisibility(View.GONE);
 
-        if (status.equals("accepted")) {
+        if (status.equals("ACCEPTED")) {
             imageView.setImageResource(R.drawable.accepted_icon);
         } else {
-            if (status.equals("pending")) {
+            if (status.equals("WAITING")) {
                 imageView.setImageResource(R.drawable.pending_icon);
             } else {
                 if (status.equals("success")) {

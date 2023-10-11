@@ -38,7 +38,7 @@ public class QLStorage extends AppCompatActivity {
     private ListView storageList;
 //    private ArrayAdapter<String> adapter;
     private ArrayList<String> storageNames;
-    private List<Storage> itemList;
+    private List<Storage> itemList, mapList;
     private ArrayStorage adapter;
     String role;
     TextView title ;
@@ -63,6 +63,15 @@ public class QLStorage extends AppCompatActivity {
                }
            }
         );
+
+        ImageView imgAdd = findViewById(R.id.imgAddProduct);
+        imgAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(QLStorage.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         if (role.equals("SALER")){
             title = findViewById(R.id.titleStorage);
@@ -95,6 +104,7 @@ public class QLStorage extends AppCompatActivity {
                         }.getType();
 
                         itemList = gson.fromJson(responseBody, listType);
+                        mapList = itemList;
                         System.out.println("Đây la itemlisst " + responseBody);
                         // Cập nhật giao diện trong luồng UI
                         runOnUiThread(new Runnable() {

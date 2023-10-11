@@ -125,7 +125,7 @@ public class OrderList extends AppCompatActivity {
                     System.out.println("order "+requestBody);
                 RequestBody body = RequestBody.create(mediaType,requestBody);
                 Request request = new Request.Builder()
-                        .url("http://14.225.211.190:4001/api/order/query")
+                        .url("http://192.168.1.81:8080/order/getlist")
                         .post(body)
                         .addHeader("Content-Type", "application/json")
                         .addHeader("Authorization", "Bearer " + header)
@@ -186,8 +186,8 @@ public class OrderList extends AppCompatActivity {
                     System.out.println("order saler "+requestBody);
                 RequestBody body = RequestBody.create(mediaType,requestBody);
                 Request request = new Request.Builder()
-                        .url("http://14.225.211.190:4001/api/order/query")
-                        .post(body)
+                        .url("http://192.168.1.81:8080/order/getlist")
+                        .get()
                         .addHeader("Authorization", "Bearer " + header)
                         .build();
 
