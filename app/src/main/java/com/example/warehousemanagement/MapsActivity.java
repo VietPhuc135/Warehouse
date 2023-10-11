@@ -1,11 +1,10 @@
-package com.example.warehousemanagement.storage;
+package com.example.warehousemanagement;
 
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.databinding.ActivityMapStorageBinding;
 import com.example.warehousemanagement.obj.Storage;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,10 +17,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-   private List<Storage> itemList ;
+    public static List<Storage> getItem;
+    private List<Storage> itemList ;
     private GoogleMap mMap;
     private ActivityMapStorageBinding binding;
-
 
 
     @Override
@@ -36,6 +35,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+
+//        Intent intent = getIntent();
+
+//        if (intent.hasExtra("key")) {
+//            itemList = intent.getStringExtra("key");        }
     }
 
     /**
@@ -50,7 +54,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-//        for (Storage item : itemList) {
+        System.out.println(itemList);
+//        for (Storage item : getItem) {
 //            double latitude = Double.parseDouble(item.getLatitude());
 //            double longitude = Double.parseDouble(item.getLongtitude());
 //

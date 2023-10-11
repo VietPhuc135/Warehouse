@@ -56,13 +56,13 @@ public class DangNhap extends AppCompatActivity {
                 String email =
 //                        "admin";
 //                       "stocker";
-                "duong";
-//                editTextEmail.getText().toString();
+//                "duong";
+                editTextEmail.getText().toString();
                 //String email1 = "admin";
                 String password =
-                        "123";
+//                        "123";
 //                        "sonha1";
-//                        editTextPassword.getText().toString();
+                        editTextPassword.getText().toString();
                 //String password1 = "123";
                 if (email.equals("") && password.equals("")) {
 

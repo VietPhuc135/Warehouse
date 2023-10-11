@@ -32,11 +32,11 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="AIzaSyD-7fEn5p0Z-gITbPQWKBlB0gur2gvN7tk" />
 
         <activity
-            android:name=".storage.MapsActivity"
-            android:exported="false"
+            android:name=".MapsActivity"
+            android:exported="true"
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".Option"

@@ -16,12 +16,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
+import com.example.warehousemanagement.MapsActivity;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.obj.Storage;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +44,7 @@ public class QLStorage extends AppCompatActivity {
     String role;
     TextView title ;
     String header ;
+    MapsActivity map ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +53,6 @@ public class QLStorage extends AppCompatActivity {
         header = DangNhap.account.getToken();
         storageList = findViewById(R.id.lvStorage);
         role = DangNhap.account.getRole();
-
         storageNames = new ArrayList<>();
         adapter = new ArrayStorage(this, itemList);
         ImageView imgArrageStorage = findViewById(R.id.imgAddProduct);
@@ -69,6 +71,9 @@ public class QLStorage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(QLStorage.this, MapsActivity.class);
+
+//                intent.putParcelableArrayListExtra("key", new ArrayList<>(itemList)); // Sử dụng putParcelableArrayListExtra nếu Storage đã implement Parcelable
+
                 startActivity(intent);
 //=======
 //        ImageView imgMap = findViewById(R.id.imgArrageMap);
@@ -113,6 +118,7 @@ public class QLStorage extends AppCompatActivity {
 
                         itemList = gson.fromJson(responseBody, listType);
                         mapList = itemList;
+
                         System.out.println("Đây la itemlisst " + responseBody);
                         // Cập nhật giao diện trong luồng UI
                         runOnUiThread(new Runnable() {
