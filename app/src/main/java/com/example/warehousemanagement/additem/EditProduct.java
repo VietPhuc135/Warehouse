@@ -65,8 +65,13 @@ public class EditProduct extends AppCompatActivity {
         etDate = findViewById(R.id.etDate2);
         etStock = findViewById(R.id.etStock2);
         etNote = findViewById(R.id.etNote2);
+
         etProducer = findViewById(R.id.etProducer2);
+        etProducer.setVisibility(View.GONE);
+
         etStatus = findViewById(R.id.etStatus2);
+        etStatus.setVisibility(View.GONE);
+
         etCategory = findViewById(R.id.etCategory2);
         btnSubmit = findViewById(R.id.btnSubmit2);
         Button btnDelete2 = findViewById(R.id.btnDelete2);
@@ -251,7 +256,7 @@ public class EditProduct extends AppCompatActivity {
             OkHttpClient client = new OkHttpClient();
             MediaType mediaType = MediaType.parse("text/plain");
             Request request = new Request.Builder()
-                    .url(Api.baseURL + "/product/getlist/"+ id)
+                    .url(Api.baseURL + "/product/"+ id)
                     .addHeader("Authorization", "Bearer " +  header)
                     .method("GET",null)
                     .build();
@@ -273,25 +278,21 @@ public class EditProduct extends AppCompatActivity {
         @Override
         protected void onPostExecute(JSONObject result) {
             if (result != null) {
-                try {
-                    // Populate the EditText fields with retrieved data
-                    etName.setText(item.getName());
-                    etCode.setText(item.getMaSp());
-                    etDate.setText(item.getDate());
-                    etStock.setText(String.valueOf(item.getSoLuong()));
+                // Populate the EditText fields with retrieved data
+                etName.setText(item.getName());
+                etCode.setText(item.getMaSp());
+                etDate.setText(item.getDate());
+                etStock.setText(String.valueOf(item.getSoLuong()));
 //                    etNote.setText();
 //                    etStatus.setText();
-                    etCategory.setText(item.getCategory());
+                etCategory.setText(item.getCategory());
 //                    etName.setText(result.getString("name"));
 //                    etCode.setText(result.getString("maSp"));
 //                    etDate.setText(result.getString("date"));
 //                    etStock.setText(String.valueOf(result.getInt("soLuong")));
-//                    etNote.setText(result.getString("storageId"));
-                    etStatus.setText(result.getString("status"));
+                    etNote.setText(item.getStorageId());
+//                    etStatus.setText(result.getString("status"));
 //                    etCategory.setText(result.getString("category"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
             } else {
 //                System.out.println(result.toString());
             }
