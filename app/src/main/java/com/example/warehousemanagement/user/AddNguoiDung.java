@@ -30,7 +30,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class AddNguoiDung extends AppCompatActivity {
-    private EditText username, password, email, name, role, address, age, marketId, storageId;
+    private EditText username, password, email, name, role, phone, marketId, storageId;
     private Button btnSubmitUser;
     String header;
     JSONObject jsonObject = new JSONObject();
@@ -48,8 +48,8 @@ public class AddNguoiDung extends AppCompatActivity {
         email = findViewById(R.id.etEmail);
         name = findViewById(R.id.etName);
         role = findViewById(R.id.etRole);
-        address = findViewById(R.id.etAddress);
-        age = findViewById(R.id.etAge);
+        phone = findViewById(R.id.etPhone);
+        //age = findViewById(R.id.etAge);
         marketId = findViewById(R.id.etMarketID);
         storageId = findViewById(R.id.etStorageId);
         btnSubmitUser = findViewById(R.id.btnSubmitUser);
@@ -72,8 +72,8 @@ public class AddNguoiDung extends AppCompatActivity {
                 String emailtxt = email.getText().toString().trim();
                 String nametxt = name.getText().toString().trim();
                 String roletxt = spinner.getSelectedItem().toString();
-                String addresstxt = address.getText().toString().trim();
-                int agetxt = Integer.parseInt(age.getText().toString().trim());
+                String phonetxt = phone.getText().toString().trim();
+                //int agetxt = Integer.parseInt(age.getText().toString().trim());
                 String marketIdtxt = marketId.getText().toString().trim();
                 String storageIdtxt = storageId.getText().toString().trim();
 
@@ -85,8 +85,8 @@ public class AddNguoiDung extends AppCompatActivity {
                     jsonObject.put("email", emailtxt);
                     jsonObject.put("name", nametxt);
                     jsonObject.put("role", roletxt);
-                    jsonObject.put("address", addresstxt);
-                    jsonObject.put("age", agetxt);
+                    jsonObject.put("phone", phonetxt);
+                    //jsonObject.put("age", agetxt);
                     jsonObject.put("marketId", marketIdtxt);
                     jsonObject.put("storageId", storageIdtxt);
                 } catch (JSONException e) {

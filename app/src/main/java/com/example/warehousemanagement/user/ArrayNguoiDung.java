@@ -3,19 +3,14 @@ package com.example.warehousemanagement.user;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.warehousemanagement.R;
-import com.example.warehousemanagement.additem.EditProduct;
-import com.example.warehousemanagement.obj.Product;
 import com.example.warehousemanagement.obj.User;
 
 import java.util.List;
@@ -78,8 +73,12 @@ public class ArrayNguoiDung extends ArrayAdapter<User> {
 
         //Picasso.get().load(item.getImage()).into(imageView);
         nameTextView.setText(item.getName());
-        infoTextView.setText("Vai trò: " + item.getRole());
-        phoneTextView.setText("Phone: "+ item.getPhone());
+//<<<<<<< HEAD
+//        infoTextView.setText("Vai trò: " + item.getRole());
+//        phoneTextView.setText("Phone: "+ item.getPhone());
+//=======
+        infoTextView.setText("Email: " + item.getEmail());
+//>>>>>>> main
 
         return rowView;
     }

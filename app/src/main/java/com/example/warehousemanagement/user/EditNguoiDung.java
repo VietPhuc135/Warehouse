@@ -12,6 +12,7 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
 
@@ -30,7 +31,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class EditNguoiDung extends AppCompatActivity {
-    private EditText username, password, email, name, role, address, age, marketId, storageId;
+    private EditText username, password, email, name, role, phone, marketId, storageId;
     private Button btnSubmitUser;
     String header ;
     JSONObject jsonObject = new JSONObject();
@@ -52,8 +53,8 @@ public class EditNguoiDung extends AppCompatActivity {
         email = findViewById(R.id.etEmail1);
         name = findViewById(R.id.etName1);
         role = findViewById(R.id.etRole1);
-        address = findViewById(R.id.etAddress1);
-        age = findViewById(R.id.etAge1);
+        phone = findViewById(R.id.etAddress1);
+        //age = findViewById(R.id.etAge1);
         marketId = findViewById(R.id.etMarketID1);
         storageId = findViewById(R.id.etStorageId1);
         btnSubmitUser = findViewById(R.id.btnSubmitUser1);
@@ -70,8 +71,8 @@ public class EditNguoiDung extends AppCompatActivity {
          spinner = (Spinner) findViewById(R.id.spinnerRole1);
         items = new ArrayList<>();
         if (spinner != null) {
-            items.add("admin");
-            items.add("saler");
+            items.add("ADMIN");
+            items.add("SALER");
             items.add("STOCKER");
             ArrayAdapter<String> adapterSta = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
             adapterSta.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -95,8 +96,8 @@ public class EditNguoiDung extends AppCompatActivity {
                 String emailtxt = email.getText().toString().trim();
                 String nametxt = name.getText().toString().trim();
                 String roletxt = spinner.getSelectedItem().toString();
-                String addresstxt = address.getText().toString().trim();
-                int agetxt = Integer.parseInt(age.getText().toString().trim());
+                String phonetxt = phone.getText().toString().trim();
+                //int agetxt = Integer.parseInt(age.getText().toString().trim());
                 String marketIdtxt = marketId.getText().toString().trim();
                 String storageIdtxt = storageId.getText().toString().trim();
 
@@ -108,8 +109,8 @@ public class EditNguoiDung extends AppCompatActivity {
                     jsonObject.put("email", emailtxt);
                     jsonObject.put("name", nametxt);
                     jsonObject.put("role", roletxt);
-                    jsonObject.put("address", addresstxt);
-                    jsonObject.put("age", agetxt);
+                    jsonObject.put("phone", phonetxt);
+                    //jsonObject.put("age", agetxt);
                     jsonObject.put("marketId", marketIdtxt);
                     jsonObject.put("storageId", storageIdtxt);
                 } catch (JSONException e) {
@@ -123,7 +124,7 @@ public class EditNguoiDung extends AppCompatActivity {
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
-                .url("http://192.168.1.5:8080/user/delete/" + orderId  )
+                .url(Api.baseURL +  "/user/delete/" + orderId  )
                 .delete()
                 .addHeader("Authorization", "Bearer " + header)
                 .build();
@@ -150,7 +151,7 @@ public class EditNguoiDung extends AppCompatActivity {
             OkHttpClient client = new OkHttpClient();
             MediaType mediaType = MediaType.parse("text/plain");
             Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/user/"+ id)
+                    .url(Api.baseURL + "/user/getList"+ id)
                     .addHeader("Authorization", "Bearer " +  header)
                     .method("GET",null)
                     .build();
@@ -188,8 +189,8 @@ public class EditNguoiDung extends AppCompatActivity {
                     email.setText(result.getString("email"));
                     name.setText(String.valueOf(result.getInt("name")));
                     role.setText(result.getString("role"));
-                    address.setText(result.getString("adđress"));
-                    age.setText(result.getString("age"));
+                    phone.setText(result.getString("adđress"));
+                    //age.setText(result.getString("age"));
                     marketId.setText(result.getString("marketId"));
                     storageId.setText(result.getString("storageId"));
                 } catch (JSONException e) {
@@ -208,7 +209,7 @@ public class EditNguoiDung extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             RequestBody requestBody = RequestBody.create(mediaType, params[0]);
             Request request = new Request.Builder()
-                    .url("http://14.225.211.190:4001/api/user/"+ id)
+                    .url(Api.baseURL + "/user/update"+ id)
                     .addHeader("Authorization", "Bearer " +  header)
                     .method("PUT", requestBody)
                     .build();
