@@ -83,7 +83,7 @@ public class QLMarket extends AppCompatActivity {
                             String marketName = jsonObject.optString("address");
                             String address = jsonObject.getString("address");
                             String code = jsonObject.getString("name");
-                            String marketInfo = "Address: " + address + "\nCode: " + code;
+                            String marketInfo = "Address: " + address + "\nName: " + code;
                             marketNames.add(marketInfo);
 
                         }
