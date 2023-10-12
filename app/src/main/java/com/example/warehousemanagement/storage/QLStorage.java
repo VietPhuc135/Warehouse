@@ -3,6 +3,7 @@ package com.example.warehousemanagement.storage;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -35,15 +36,15 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class QLStorage extends AppCompatActivity {
-
+    private List<Storage> itemList;
+    private List<Storage> mapList = new ArrayList<>();
     private ListView storageList;
 //    private ArrayAdapter<String> adapter;
     private ArrayList<String> storageNames;
-    private List<Storage> itemList, mapList;
     private ArrayStorage adapter;
     String role;
     TextView title ;
-    String header ;
+    String header, responseC ;
     MapsActivity map ;
 
     @Override
@@ -71,9 +72,7 @@ public class QLStorage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(QLStorage.this, MapsActivity.class);
-
-//                intent.putParcelableArrayListExtra("key", new ArrayList<>(itemList)); // Sử dụng putParcelableArrayListExtra nếu Storage đã implement Parcelable
-
+                intent.putExtra("item",responseC);
                 startActivity(intent);
 //=======
 //        ImageView imgMap = findViewById(R.id.imgArrageMap);
@@ -117,7 +116,7 @@ public class QLStorage extends AppCompatActivity {
                         }.getType();
 
                         itemList = gson.fromJson(responseBody, listType);
-                        mapList = itemList;
+                        responseC = responseBody;
 
                         System.out.println("Đây la itemlisst " + responseBody);
                         // Cập nhật giao diện trong luồng UI
