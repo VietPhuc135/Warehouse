@@ -69,13 +69,13 @@
         android:id="@+id/etAddress1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Address" />
+        android:hint="Phone" />
 
-    <EditText
-        android:id="@+id/etAge1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Age" />
+<!--    <EditText-->
+<!--        android:id="@+id/etAge1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Age" />-->
 
     <EditText
         android:id="@+id/etMarketID1"

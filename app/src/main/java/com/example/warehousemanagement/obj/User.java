@@ -8,6 +8,7 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private String phone;
     private String age = null;
     private String address = null;
     private String code = null;
@@ -55,6 +56,10 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public String getAge() {
@@ -113,6 +118,10 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setPhone(String email) {
+        this.phone = phone;
     }
 
     public void setAge(String age) {
