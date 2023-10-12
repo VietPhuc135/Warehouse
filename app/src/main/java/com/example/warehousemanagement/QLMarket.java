@@ -61,8 +61,8 @@ public class QLMarket extends AppCompatActivity {
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
-                .url(Api.baseURL +  "/market/add")
-                .method("POST", body)
+                .url(Api.baseURL +  "/market/getlist")
+                .get()
                 .addHeader("Authorization", "Bearer " + header)
                 .build();
 
@@ -70,7 +70,7 @@ public class QLMarket extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 int statusCode = response.code();
-                if (statusCode == 201) {
+                if (statusCode == 200) {
                     String jsonData = response.body().string();
                     System.out.println("thành công");
                     Log.d("Response", jsonData);
@@ -82,7 +82,7 @@ public class QLMarket extends AppCompatActivity {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                             String marketName = jsonObject.optString("address");
                             String address = jsonObject.getString("address");
-                            String code = jsonObject.getString("code");
+                            String code = jsonObject.getString("name");
                             String marketInfo = "Address: " + address + "\nCode: " + code;
                             marketNames.add(marketInfo);
 
