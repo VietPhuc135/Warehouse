@@ -56,7 +56,7 @@ public class AddNguoiDung extends AppCompatActivity {
         spinner = (Spinner) findViewById(R.id.spinnerRole);
         items = new ArrayList<>();
         if (spinner != null) {
-            items.add("admin");
+            items.add("ADMIN");
             items.add("SALER");
             items.add("STOCKER");
             ArrayAdapter<String> adapterSta = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
@@ -118,7 +118,7 @@ public class AddNguoiDung extends AppCompatActivity {
 //                    return true;
 //                }
                 int i =  response.code();
-                if (i == 201) {
+                if (i == 200) {
                     System.out.println(jsonObject);
                     Intent intent = new Intent(AddNguoiDung.this, TrangChu.class);
                     startActivity(intent);
