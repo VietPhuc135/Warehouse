@@ -56,7 +56,7 @@ public class QLStorage extends AppCompatActivity {
         role = DangNhap.account.getRole();
         storageNames = new ArrayList<>();
         adapter = new ArrayStorage(this, itemList);
-        ImageView imgArrageStorage = findViewById(R.id.imgAddProduct);
+        ImageView imgArrageStorage = findViewById(R.id.imgArrageStorage);
         imgArrageStorage.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {

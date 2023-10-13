@@ -11,6 +11,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -160,8 +161,20 @@ public class AddProduct extends AppCompatActivity {
         protected void onPostExecute(Boolean result) {
             if (result) {
                 System.out.println(jsonObject);
+                AddProduct.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(AddProduct.this,"Thêm thành công", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 finish();
             } else {
+                AddProduct.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(AddProduct.this,"Thêm không thành công!!! ", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 System.out.println("lỗi ");
             }
         }
