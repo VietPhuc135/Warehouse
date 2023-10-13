@@ -16,7 +16,7 @@
         android:fontFamily="@font/lobster"
         android:text="User Management"
         android:layout_weight="0.5"
-        android:textColor="#FFFFFF"
+        android:textColor="#DDE2E3"
         android:textSize="30dp"
         android:textStyle="bold"/>
 
