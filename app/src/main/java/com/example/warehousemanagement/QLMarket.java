@@ -62,7 +62,7 @@ public class QLMarket extends AppCompatActivity {
         RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
                 .url(Api.baseURL +  "/market/getlist")
-                .method("GET", null)
+                .get()
                 .addHeader("Authorization", "Bearer " + header)
                 .build();
 

@@ -219,8 +219,8 @@ public class OrderList extends AppCompatActivity {
                     System.out.println("order saler "+"requestBody");
                     RequestBody body = RequestBody.create(mediaType,"");
                     Request request = new Request.Builder()
-                            .url(Api.baseURL + "/order/add")
-                            .post(body)
+                            .url(Api.baseURL + "/order/getlist")
+                            .get()
                             .addHeader("Authorization", "Bearer " + header)
                             .build();
 

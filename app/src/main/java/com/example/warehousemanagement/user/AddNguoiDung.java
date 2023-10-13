@@ -118,7 +118,7 @@ public class AddNguoiDung extends AppCompatActivity {
 //                    return true;
 //                }
                 int i =  response.code();
-                if (i == 201) {
+                if (i == 200) {
                     System.out.println(jsonObject);
                     Intent intent = new Intent(AddNguoiDung.this, TrangChu.class);
                     startActivity(intent);

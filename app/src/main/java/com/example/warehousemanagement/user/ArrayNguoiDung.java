@@ -33,6 +33,8 @@ public class ArrayNguoiDung extends ArrayAdapter<User> {
         ImageView imageView = rowView.findViewById(R.id.imgListUser);
         TextView nameTextView = rowView.findViewById(R.id.txtNameUser);
         TextView infoTextView = rowView.findViewById(R.id.txtInfoUser);
+        TextView phoneTextView = rowView.findViewById(R.id.txtPhoneUser);
+
         LinearLayout userTap = rowView.findViewById(R.id.userTap);
 
         User userItem = itemList.get(position);
@@ -71,7 +73,12 @@ public class ArrayNguoiDung extends ArrayAdapter<User> {
 
         //Picasso.get().load(item.getImage()).into(imageView);
         nameTextView.setText(item.getName());
+//<<<<<<< HEAD
+//        infoTextView.setText("Vai trò: " + item.getRole());
+//        phoneTextView.setText("Phone: "+ item.getPhone());
+//=======
         infoTextView.setText("Email: " + item.getEmail());
+//>>>>>>> main
 
         return rowView;
     }
