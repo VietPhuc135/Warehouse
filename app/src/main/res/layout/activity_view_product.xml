@@ -5,66 +5,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/background"
-    android:layout_weight="10">
-    <TextView
-        android:id="@+id/idTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/lobster"
-        android:text="Product Manager"
-        android:layout_weight="0.5"
-        android:textColor="#DDE2E3"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:background="@drawable/roof"/>
+    android:background="#A8CADA">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="0.5"
-        android:padding="5dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center">
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/imgAccepOrder"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/add"
-            android:visibility="gone" />
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:background="@drawable/header_background2">
 
-
-        <EditText
-            android:id="@+id/searchProduct"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/idTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:background="#11AA9E9E"
-            android:drawableLeft="@drawable/ic_search_black_24dp"
-            android:ems="15"
-            android:hint="Search Product"
-            android:inputType="textPersonName"
-            android:gravity="center"
+            android:fontFamily="@font/lobster"
+            android:text="Product Manager"
             android:textColor="#000000"
-            android:textColorHint="#423D3D"
-            android:textSize="16dp" />
+            android:textSize="34dp"
+            android:textStyle="bold"
+            android:gravity="center"/>
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/imgAddProduct"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/add"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/imgAccepOrder"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/add"
+                android:visibility="gone" />
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/imgArrageProduct"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/arrange"/>
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="32dp"
+                android:background="@drawable/search_background"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="4dp">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="6dp"
+                    android:src="@drawable/ic_search_black_24dp"/>
+                <EditText
+                    android:id="@+id/searchProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center_vertical"
+                    android:hint="Search"
+                    android:background="@null"
+                    android:textColorHint="#888080"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    tools:ignore="Autofill"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/imgAddProduct"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/add"/>
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/imgArrageProduct"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/arrange"/>
+        </LinearLayout>
     </LinearLayout>
 
     <ListView

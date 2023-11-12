@@ -95,7 +95,8 @@
             android:layout_toRightOf="@+id/profile_image"
             android:includeFontPadding="false"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -109,8 +110,7 @@
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="1"
-            android:layout_margin="10dp"
-            android:cardElevation="10dp">
+            android:layout_margin="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -150,8 +150,7 @@
             android:layout_height="100dp"
             android:layout_weight="1"
             android:layout_margin="10dp"
-            android:background="#5A67AE"
-            android:cardElevation="10dp">
+            android:background="#5A67AE">
 
             <RelativeLayout
                 android:layout_width="match_parent"
