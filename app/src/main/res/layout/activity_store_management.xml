@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bgstore">
+    android:background="@color/purple_200">
 
     <TextView
         android:layout_width="wrap_content"
@@ -15,27 +15,51 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="5dp"
         android:layout_marginTop="28dp"
-        android:layout_marginBottom="30dp"
         android:fontFamily="@font/allura"
         android:text="Store Manager"
+        android:layout_gravity="center"
         android:textStyle="bold"
         android:textColor="#F57C00"
         android:textSize="40sp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="5dp" />
 
-    <GridLayout
-        android:id="@+id/mainGrid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:alignmentMode="alignMargins"
-        android:columnCount="1"
-        android:layout_weight="10"
-        android:columnOrderPreserved="false"
-        android:padding="14dp"
-        android:rowCount="2">
+    <ImageView
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_gravity="center"
+        android:src="@drawable/illustration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"/>
 
+<!--    <GridLayout-->
+<!--        android:id="@+id/mainGrid"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="13dp"-->
+<!--        android:alignmentMode="alignMargins"-->
+<!--        android:columnCount="1"-->
+<!--        android:layout_weight="10"-->
+<!--        android:columnOrderPreserved="false"-->
+<!--        android:padding="14dp"-->
+<!--        android:rowCount="2">-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="0dp"
+        android:gravity="center"
+        android:background="@drawable/bg_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="150dp"
@@ -45,7 +69,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:id="@+id/btnImport"
-            android:background="#FFFFFF">
+            android:background="@drawable/shape_rectangle">
 
             <ImageView
                 android:id="@+id/imgStorage"
@@ -68,7 +92,7 @@
             android:layout_margin="16dp"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="#FFFFFF">
+            android:background="@drawable/shape_rectangle">
 
             <ImageView
                 android:id="@+id/imgMarket"
@@ -83,7 +107,8 @@
                 android:textSize="20dp"
                 />
         </LinearLayout>
-    </GridLayout>
+    </LinearLayout>
+<!--    </GridLayout>-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
