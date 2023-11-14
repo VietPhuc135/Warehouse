@@ -330,7 +330,7 @@
         android:textColor="#FFFFFF"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:itemBackground="@color/purple_500"
+        android:background="@drawable/backgroundgradient"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -14,7 +14,7 @@
         android:textColor="#FFFFFF"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:itemBackground="@color/purple_500"
+        android:background="@drawable/backgroundgradient"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -95,7 +95,7 @@
                     android:fontFamily="@font/allura"
                     android:text="Home"
                     android:textStyle="bold"
-                    android:textColor="#CF6D09"
+                    android:textColor="#000000"
                     android:textSize="40sp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="5dp" />
