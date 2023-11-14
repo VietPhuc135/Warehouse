@@ -14,6 +14,7 @@ import android.os.Bundle;
 
 import com.example.warehousemanagement.additem.DsSanPham;
 import com.example.warehousemanagement.databinding.ActivityMapStorageBinding;
+import com.example.warehousemanagement.obj.Market;
 import com.example.warehousemanagement.obj.Storage;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -59,12 +60,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Type listType = new TypeToken<List<Storage>>() {}.getType();
         itemList = gson.fromJson(item, listType);
         System.out.println(  "itemmmmmmmmmm \n"+itemList + "\n" + item );
+
     }
 
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
         Intent intent = new Intent(MapsActivity.this, DsSanPham.class);
-        intent.putExtra("id", marker.getId());
+        String id = marker.getTag().toString();
+        intent.putExtra("id",id);
         startActivity(intent);
         return true;
 
@@ -84,12 +87,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             System.out.println(  "mmmitem \n\n" + storageList.toString() );
 
             for (Storage item : storageList) {
-
                 double latitude = Double.parseDouble(item.getLatitude());
                 double longitude = Double.parseDouble(item.getLongtitude());
-                LatLng location = new LatLng(latitude, longitude);
-                mMap.addMarker(new MarkerOptions().position(location).title(item.getName()));
+                LatLng location = new LatLng( longitude,latitude);
+                Marker marker =  mMap.addMarker(new MarkerOptions().position(location).title(item.getName()));
+                marker.setTag(item.getId());
             }
+
         }
     }
 }

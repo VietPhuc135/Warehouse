@@ -183,7 +183,6 @@ public class DsSanPhamOrder extends AppCompatActivity {
         MediaType mediaType = MediaType.parse("text/plain");
 
         if (role.equals("STOCKER")){
-            RequestBody body = RequestBody.create(mediaType, "{\r\n    \"status\": \"accepted\"\r\n}");
             Request request = new Request.Builder()
                     .url(Api.baseURL + "/order/status/accepted/"+orderId)
                     .get()

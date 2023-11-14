@@ -40,12 +40,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="-65dp"
         android:background="#11000000"
-        android:drawablePadding="10dp"
         android:drawableLeft="@drawable/ic_account_user"
+        android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="User Name"
-        android:textColor="#fff"
+        android:hint="Username"
         android:inputType="textPersonName"
+        android:textColor="#fff"
         android:textColorHint="#ffff"
         android:textSize="16dp" />
 
@@ -55,17 +55,17 @@
         android:layout_height="40dp"
         android:layout_alignBottom="@+id/emailSignIn"
         android:layout_centerHorizontal="true"
-        android:drawablePadding="10dp"
         android:layout_marginTop="22dp"
         android:layout_marginBottom="-50dp"
         android:background="#11000000"
-        android:textColorHint="#ffff"
-        android:textColor="#fff"
+        android:drawableLeft="@drawable/ic_password"
+        android:drawablePadding="10dp"
         android:ems="10"
         android:hint="Password"
+        android:inputType="textPassword"
         android:password="true"
-        android:drawableLeft="@drawable/ic_password"
-        android:inputType="textPassword" />
+        android:textColor="#fff"
+        android:textColorHint="#ffff" />
 
 
     <Button
