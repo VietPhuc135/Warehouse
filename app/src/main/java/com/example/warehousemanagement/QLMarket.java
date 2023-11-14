@@ -45,12 +45,12 @@ public class QLMarket extends AppCompatActivity {
         header = DangNhap.account.getToken();
         ImageView imgArrageMarket = findViewById(R.id.imgArrageMarket);
         imgArrageMarket.setOnClickListener(new View.OnClickListener() {
-                                               @Override
-                                               public void onClick(View v) {
-                                                   Intent intent = new Intent(QLMarket.this, AddMarket.class);
-                                                   startActivity(intent);
-                                               }
-                                           }
+               @Override
+               public void onClick(View v) {
+                   Intent intent = new Intent(QLMarket.this, AddMarket.class);
+                   startActivity(intent);
+               }
+           }
         );
         // Gọi phương thức để thực hiện yêu cầu HTTP và hiển thị danh sách
         fetchMarketList();

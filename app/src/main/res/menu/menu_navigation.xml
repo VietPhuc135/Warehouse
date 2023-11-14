@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/home_apps"
         android:title="Home"
-        android:icon="@drawable/home"/>
+        android:icon="@drawable/ic_home"/>
     <item android:id="@+id/list_apps"
         android:title="Manager"
-        android:icon="@drawable/ic_baseline_format_list"/>
+        android:icon="@drawable/ic_manager"/>
     <item android:id="@+id/info_app"
         android:title="User Information"
-        android:icon="@drawable/man"/>
+        android:icon="@drawable/ic_man"/>
 
 </menu>
