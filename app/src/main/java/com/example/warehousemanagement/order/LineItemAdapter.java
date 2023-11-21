@@ -17,9 +17,9 @@ import com.example.warehousemanagement.obj.LineItem;
 import java.util.List;
 
 public class LineItemAdapter extends ArrayAdapter<LineItem> {
-    private Context context;
-    private List<LineItem> lineItems;
-    private AddOrder addOrder;
+    private final Context context;
+    private final List<LineItem> lineItems;
+    private final AddOrder addOrder;
 
 
     public LineItemAdapter(Context context, List<LineItem> lineItems, AddOrder addOrder) {

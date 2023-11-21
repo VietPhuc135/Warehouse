@@ -17,9 +17,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
+import com.example.warehousemanagement.MainActivity;
 import com.example.warehousemanagement.MapsActivity;
 import com.example.warehousemanagement.R;
+import com.example.warehousemanagement.additem.DsSanPham;
 import com.example.warehousemanagement.obj.Storage;
+import com.example.warehousemanagement.profile.ProfilePage;
+import com.example.warehousemanagement.user.SaveLogin;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -39,13 +43,13 @@ public class QLStorage extends AppCompatActivity {
     private List<Storage> itemList;
     private List<Storage> mapList = new ArrayList<>();
     private ListView storageList;
-//    private ArrayAdapter<String> adapter;
+    //    private ArrayAdapter<String> adapter;
     private ArrayList<String> storageNames;
     private ArrayStorage adapter;
     String role;
-    TextView title ;
-    String header, responseC ;
-    MapsActivity map ;
+    TextView title;
+    String header, responseC;
+    MapsActivity map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,34 +62,38 @@ public class QLStorage extends AppCompatActivity {
         adapter = new ArrayStorage(this, itemList);
         ImageView imgArrageStorage = findViewById(R.id.imgArrageStorage);
         imgArrageStorage.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                   Intent intent = new Intent(QLStorage.this, AddStorage.class);
-                   startActivity(intent);
-               }
-           }
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(QLStorage.this, AddStorage.class);
+                    startActivity(intent);
+                }
+            }
         );
 
-//<<<<<<< HEAD
         ImageView imgAdd = findViewById(R.id.imgAddProduct);
         imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(QLStorage.this, MapsActivity.class);
-                intent.putExtra("item",responseC);
+                intent.putExtra("item", responseC);
                 startActivity(intent);
-//=======
-//        ImageView imgMap = findViewById(R.id.imgArrageMap);
-//        imgMap.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent1 = new Intent(QLStorage.this, MapsActivity.class);
-//                startActivity(intent1);
-//>>>>>>> main
+
+
+            }
+
+        });
+        ImageView imLogout = findViewById(R.id.imgLogout);
+        imLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(QLStorage.this, MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
+                SaveLogin saveLogin = new SaveLogin(getApplicationContext());
+                saveLogin.clearSession();
             }
         });
-
-        if (role.equals("SALER")){
+        if (role.equals("SALER")) {
             title = findViewById(R.id.titleStorage);
             title.setText("Kho ");
         }
@@ -94,6 +102,14 @@ public class QLStorage extends AppCompatActivity {
 
         new MyAsyncTask().execute();
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        new MyAsyncTask().execute();
+
+    }
+
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
         @Override
         protected Boolean doInBackground(String... params) {
@@ -102,7 +118,7 @@ public class QLStorage extends AppCompatActivity {
 //            RequestBody body = RequestBody.create(mediaType, "");
             Request request = new Request.Builder()
                     .url(Api.baseURL + "/storage/getList")
-                    .method("GET",null)
+                    .method("GET", null)
                     .addHeader("Authorization", "Bearer " + header)
                     .build();
 

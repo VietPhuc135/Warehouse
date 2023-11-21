@@ -12,9 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.DangNhap;
+import com.example.warehousemanagement.MainActivity;
 import com.example.warehousemanagement.QLStore;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.TrangChu;
+import com.example.warehousemanagement.user.SaveLogin;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ProfilePage extends AppCompatActivity {
@@ -34,10 +36,11 @@ public class ProfilePage extends AppCompatActivity {
         btnDangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ProfilePage.this, DangNhap.class);
+                Intent i = new Intent(ProfilePage.this, MainActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
-
+                SaveLogin saveLogin = new SaveLogin(getApplicationContext());
+                saveLogin.clearSession();
             }
         });
         name = DangNhap.account.getName();
@@ -51,6 +54,9 @@ public class ProfilePage extends AppCompatActivity {
         //idAddress.setText(DangNhap.account.getUser().getAddress());
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        if (!role.equals("ADMIN")){
+            bottomNavigationView.setVisibility(View.GONE);
+        }
         bottomNavigationView.setSelectedItemId(R.id.info_app);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

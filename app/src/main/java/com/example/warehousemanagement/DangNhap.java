@@ -10,13 +10,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.obj.Account;
+import com.example.warehousemanagement.other.MyAsyncTask;
 import com.example.warehousemanagement.other.SplashScreen;
+import com.example.warehousemanagement.user.SaveLogin;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -79,11 +82,24 @@ public class DangNhap extends AppCompatActivity {
 //                    startActivity(intent);
 //                }
                 }else{
-                    loginAPI(email, password);
+//                    loginAPI(email, password);
+                    try {
+                        testmahoa(email, password);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 // Gọi phương thức gửi yêu cầu POST API
             }
         });
+    }
+    private  void testmahoa(String email, String password) throws Exception {
+        MyAsyncTask.generateKey();
+        byte[] byteArrray = email.getBytes();
+        System.out.println(Arrays.toString(MyAsyncTask.encryptData(byteArrray)));
+        byte[] encrypte = MyAsyncTask.encryptData(byteArrray);
+        System.out.println(Arrays.toString(MyAsyncTask.decryptData(encrypte)));
+
     }
 
     private void loginAPI(String email, String password) {
@@ -144,7 +160,11 @@ public class DangNhap extends AppCompatActivity {
                     account = gson.fromJson(responseData, Account.class);
                     System.out.println( DangNhap.account.getToken());
                     Intent intent = new Intent(DangNhap.this, SplashScreen.class);
+
+                    SaveLogin saveLogin = new SaveLogin(getApplicationContext());
+                    saveLogin.saveUserInfo(responseData);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

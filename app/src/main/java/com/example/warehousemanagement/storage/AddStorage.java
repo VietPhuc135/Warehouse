@@ -105,6 +105,7 @@ public class AddStorage extends AppCompatActivity {
         protected void onPostExecute(Boolean result) {
             if (result) {
                 System.out.println(jsonObject);
+                finish();
                 Intent intent = new Intent(AddStorage.this, QLStorage.class);
                 startActivity(intent);
             } else {

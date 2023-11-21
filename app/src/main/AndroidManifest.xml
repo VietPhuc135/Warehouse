@@ -73,8 +73,7 @@
             android:exported="true" />
         <activity
             android:name=".additem.AddProduct"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            android:exported="true" />
         <activity
             android:name=".profile.ProfilePage"
             android:exported="true" />
@@ -110,6 +109,9 @@
             android:exported="true" />
         <activity
             android:name=".order.LineItemForm"
+            android:exported="true" />
+        <activity
+            android:name=".order.ProductPickPage"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
