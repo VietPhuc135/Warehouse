@@ -82,12 +82,12 @@ public class DangNhap extends AppCompatActivity {
 //                    startActivity(intent);
 //                }
                 }else{
-//                    loginAPI(email, password);
-                    try {
-                        testmahoa(email, password);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    loginAPI(email, password);
+//                    try {
+//                        testmahoa(email, password);
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
                 }
                 // Gọi phương thức gửi yêu cầu POST API
             }
