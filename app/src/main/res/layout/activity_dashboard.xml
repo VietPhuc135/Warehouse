@@ -9,7 +9,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="55dp"
         android:textColor="#FFFFFF"
         android:textSize="20dp"
@@ -72,7 +72,7 @@
                 android:contentDescription="App name"
                 android:padding="7dp"
                 android:src="@drawable/ic_baseline_menu_24"
-                android:tint="#FFFFFF"
+                app:tint="#FFFFFF"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 

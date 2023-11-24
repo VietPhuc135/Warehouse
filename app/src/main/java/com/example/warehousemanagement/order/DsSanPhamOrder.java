@@ -183,9 +183,8 @@ public class DsSanPhamOrder extends AppCompatActivity {
         MediaType mediaType = MediaType.parse("text/plain");
 
         if (role.equals("STOCKER")){
-            RequestBody body = RequestBody.create(mediaType, "{\r\n    \"status\": \"accepted\"\r\n}");
             Request request = new Request.Builder()
-                    .url(Api.baseURL + "/order/status/accepted"+orderId)
+                    .url(Api.baseURL + "/order/status/accepted/"+orderId)
                     .get()
                     .addHeader("Authorization", "Bearer "+ header)
                     .build();
@@ -193,13 +192,25 @@ public class DsSanPhamOrder extends AppCompatActivity {
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     if (response.isSuccessful()) {
+                        DsSanPhamOrder.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(DsSanPhamOrder.this,"Đã chấp nhận", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         finish();
                     }
                 }
 
                 @Override
                 public void onFailure(Call call, IOException e) {
-                    e.printStackTrace();
+                    DsSanPhamOrder.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(DsSanPhamOrder.this,"Lỗi không thể chấp nhận", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    finish();e.printStackTrace();
                 }
             });
         }

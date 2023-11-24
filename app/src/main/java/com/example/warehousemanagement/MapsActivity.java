@@ -14,9 +14,8 @@ import android.os.Bundle;
 
 import com.example.warehousemanagement.additem.DsSanPham;
 import com.example.warehousemanagement.databinding.ActivityMapStorageBinding;
+import com.example.warehousemanagement.obj.Market;
 import com.example.warehousemanagement.obj.Storage;
-import com.example.warehousemanagement.storage.ArrayStorage;
-import com.example.warehousemanagement.storage.QLStorage;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -31,12 +30,6 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
-import okhttp3.Call;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private ArrayList<Storage> getItem;
@@ -64,17 +57,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         Gson gson = new Gson();
-        Type listType = new TypeToken<List<Storage>>() {
-        }.getType();
-
+        Type listType = new TypeToken<List<Storage>>() {}.getType();
         itemList = gson.fromJson(item, listType);
-        System.out.println(  "itemmmmmmmmmm \n"+itemList);
+        System.out.println(  "itemmmmmmmmmm \n"+itemList + "\n" + item );
+
     }
 
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
         Intent intent = new Intent(MapsActivity.this, DsSanPham.class);
-        intent.putExtra("id", marker.getId());
+        String id = marker.getTag().toString();
+        intent.putExtra("id",id);
         startActivity(intent);
         return true;
 
@@ -87,13 +80,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // Sử dụng latitude và longitude
             mMap.addMarker(new MarkerOptions().position(myLoca).title("Vị trí của bạn"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(myLoca));
-        if (!itemList.isEmpty()){
-            for (Storage item : itemList) {
+        if (item != null ){
+            System.out.println(  "mmmmmmm \n\n" + item );
+            Gson gson = new Gson();
+            List<Storage> storageList = gson.fromJson(item, new TypeToken<List<Storage>>() {}.getType());
+            System.out.println(  "mmmitem \n\n" + storageList.toString() );
+
+            for (Storage item : storageList) {
                 double latitude = Double.parseDouble(item.getLatitude());
                 double longitude = Double.parseDouble(item.getLongtitude());
-                LatLng location = new LatLng(latitude, longitude);
-                mMap.addMarker(new MarkerOptions().position(location).title(item.getName()));
+                LatLng location = new LatLng( longitude,latitude);
+                Marker marker =  mMap.addMarker(new MarkerOptions().position(location).title(item.getName()));
+                marker.setTag(item.getId());
             }
+
         }
     }
 }

@@ -8,13 +8,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
+import com.example.warehousemanagement.TrangChu;
+import com.example.warehousemanagement.additem.DsSanPham;
 import com.example.warehousemanagement.obj.LineItem;
 import com.example.warehousemanagement.obj.Product;
 
@@ -38,9 +42,10 @@ import okhttp3.Response;
 public class LineItemForm extends AppCompatActivity {
     private EditText etLineItemId;
     private EditText etLineItemQuantity;
-    private Button btnAddLineItem;
-    String selectedLineItemId, header;
+    String  header;
     List<Product> lineItems;
+    private static final int REQUEST_PICK_PRODUCT = 1;
+    Product pickedProductId ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +54,19 @@ public class LineItemForm extends AppCompatActivity {
         Button backBTN = findViewById(R.id.backBTN);
 
         header = DangNhap.account.getToken();
+        TextView idSp = findViewById(R.id.Idsp);
         etLineItemId = findViewById(R.id.tvLineItemId);
         etLineItemQuantity = findViewById(R.id.tvLineItemQuantity);
-        btnAddLineItem = findViewById(R.id.addLineItem);
+        Button btnAddLineItem = findViewById(R.id.addLineItem);
+
+        idSp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LineItemForm.this, ProductPickPage.class);
+                startActivityForResult(intent, REQUEST_PICK_PRODUCT);
+                startActivity(intent);
+            }
+        });
 
         backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +74,8 @@ public class LineItemForm extends AppCompatActivity {
                 finish();
             }
         });
+
+
         btnAddLineItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,10 +189,23 @@ public class LineItemForm extends AppCompatActivity {
 //        });
 //    }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ( resultCode == RESULT_OK) {
+            // Nhận dữ liệu từ Intent
+            if (data != null) {
+                 pickedProductId =(Product) data.getSerializableExtra("pickedProductId");
+                 etLineItemId.setText(pickedProductId.getName());
+            }
+        }
+    }
+
     private void addLineItem() {
-        String lineItemId = etLineItemId.getText().toString().trim();
+        String lineItemId = pickedProductId.getId();
         String lineItemQuantity = etLineItemQuantity.getText().toString().trim();
-        Double Quantity = Double.parseDouble(lineItemQuantity) ;
+        double Quantity = Double.parseDouble(lineItemQuantity) ;
         // Create a new LineItem object
         LineItem lineItem = new LineItem(lineItemId, Quantity);
 

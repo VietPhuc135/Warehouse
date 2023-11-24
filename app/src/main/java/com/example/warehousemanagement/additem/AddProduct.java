@@ -11,6 +11,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +43,7 @@ public class AddProduct extends AppCompatActivity {
     String header ;
     TextView etDate,etStatus,etCategory;
     JSONObject jsonObject = new JSONObject();
+    private ArrayProduct adapter ;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +59,7 @@ public class AddProduct extends AppCompatActivity {
                 etStatus = findViewById(R.id.etStatus);
                 etCategory = findViewById(R.id.etCategory);
                 btnSubmit = findViewById(R.id.btnSubmit);
- etProducer.setVisibility(View.GONE);
+                    etProducer.setVisibility(View.GONE);
         Spinner spinner = (Spinner) findViewById(R.id.spinnerStatus);
         List<String> items = new ArrayList<>();
         if (spinner != null) {
@@ -160,8 +162,22 @@ public class AddProduct extends AppCompatActivity {
         protected void onPostExecute(Boolean result) {
             if (result) {
                 System.out.println(jsonObject);
+                AddProduct.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(AddProduct.this,"Thêm thành công", Toast.LENGTH_SHORT).show();
+//                        adapter.notifyDataSetChanged();
+                    }
+                });
+
                 finish();
             } else {
+                AddProduct.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(AddProduct.this,"Thêm không thành công!!! ", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 System.out.println("lỗi ");
             }
         }

@@ -145,32 +145,14 @@ public class User {
 
 
     private String id;
-//<<<<<<< HEAD
-//=======
-    private String createdAt;
-    private String updatedAt;
-    private String deletedAt = null;
-    private String username;
-    private String password;
-    private String email;
-    private String phone;
-    private String age = null;
-    private String address = null;
-    private String code = null;
-    private boolean avaialeble;
-    private String role;
     private String name;
-    private String marketId = null;
+    private String email;
+    private String password;
+    private String username;
+    private String phone;
     private String storageId;
-//>>>>>>> main
-//    private String name;
-//    private String email;
-//    private String password;
-//    private String username;
-//    private String phone;
-//    private String storageId;
-//    private String marketId;
-//    private String role;
+    private String marketId;
+    private String role;
 
 
     // Getter Methods
@@ -188,13 +170,12 @@ public class User {
     }
 
 //<<<<<<< HEAD
-//    public String getPassword() {
-//        return password;
+    public String getPassword() {
+        return password;
 //=======
 
-
-    public String getAge() {
-        return age;
+//    public String getAge() {
+//        return age;
 //>>>>>>> main
     }
 
@@ -236,11 +217,14 @@ public class User {
 //    public void setPassword(String password) {
 //        this.password = password;
 //=======
-
-    public void setAge(String age) {
-        this.age = age;
+//    public void setPhone(String email) {
+//        this.phone = phone;
+//    }
+//
+//    public void setAge(String age) {
+//        this.age = age;
 //>>>>>>> main
-    }
+//    }
 
     public void setUsername(String username) {
         this.username = username;

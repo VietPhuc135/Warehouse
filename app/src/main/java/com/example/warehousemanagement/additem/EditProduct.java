@@ -115,20 +115,20 @@ public class EditProduct extends AppCompatActivity {
                 // Lấy dữ liệu từ EditText
                 String name = etName.getText().toString().trim();
                 String code = etCode.getText().toString().trim();
-                int stock = Integer.parseInt(etStock.getText().toString().trim());
+                float stock = Float.parseFloat(etStock.getText().toString().trim());
                 String note = etNote.getText().toString().trim();
                 String producer = etProducer.getText().toString().trim();
                 String status = etStatus.getText().toString().trim();
                 String category = etCategory.getText().toString().trim();
-
+                    String date = etDate.getText().toString().trim();
                 // Tạo JSON object từ dữ liệu
 
                 try {
+                    jsonObject.put("id",id);
                     jsonObject.put("name", name);
                     jsonObject.put("maSp", code);
-                    jsonObject.put("storageId", storId);
                     jsonObject.put("soLuong", stock);
-                    jsonObject.put("date", note);
+                    jsonObject.put("date", date);
                     jsonObject.put("category", category);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -182,7 +182,7 @@ public class EditProduct extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             RequestBody requestBody = RequestBody.create(mediaType, params[0]);
             Request request = new Request.Builder()
-                    .url(Api.baseURL + "/product/update/"+ id)
+                    .url(Api.baseURL + "/product/update")
                     .addHeader("Authorization", "Bearer " +  header)
                     .put(requestBody)
                     .build();
@@ -195,6 +195,12 @@ public class EditProduct extends AppCompatActivity {
                     System.out.println(jsonObject);
                     return  true ;
                 } else {
+                    EditProduct.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(EditProduct.this,"Đã có lỗi"+ response.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     System.out.println("lỗi " + response.toString());
                 }
             } catch (IOException e) {
@@ -216,6 +222,12 @@ public class EditProduct extends AppCompatActivity {
                 });
                 finish();
             } else {
+                EditProduct.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(EditProduct.this,"Đã có lxooi ", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 System.out.println("lỗi ");
             }
         }

@@ -8,32 +8,33 @@
 
     <LinearLayout
         android:id="@+id/itemLinebtn"
-        android:padding="5dp"
+        android:padding="2dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
     <LinearLayout
-        android:padding="5dp"
+        android:paddingStart="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/Idsp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ID của sản phẩm :"
-            android:textSize="20dp"
+            android:text="Sản phẩm :"
+            android:textSize="19sp"
             android:textColor="#2F43AF"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tvLineItemId"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textColor="#000000"/>
     </LinearLayout>
 
     <LinearLayout
-        android:padding="5dp"
+        android:paddingStart="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -41,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Số lượng sp:"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textColor="#2F43AF"/>
         <EditText
             android:layout_width="match_parent"
@@ -51,7 +52,7 @@
             android:textColor="#000000"/>
     </LinearLayout>
         <LinearLayout
-            android:padding="5dp"
+            android:padding="2dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -59,6 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/backBTN"
+                android:padding='0dp'
                 android:text='Hủy '
                 />
             <Button
