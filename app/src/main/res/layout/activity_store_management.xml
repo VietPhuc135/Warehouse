@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/purple_200">
+    android:background="@color/purple_200"
+    android:layout_weight="10">
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,6 +15,7 @@
         android:layout_marginTop="28dp"
         android:fontFamily="@font/allura"
         android:text="Store Manager"
+        android:layout_weight="1"
         android:layout_gravity="center"
         android:textStyle="bold"
         android:textColor="#F57C00"
@@ -27,6 +29,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
         android:layout_gravity="center"
+        android:layout_weight="4"
         android:src="@drawable/illustration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -42,6 +45,7 @@
         android:background="@drawable/bg_menu"
         android:gravity="center"
         android:orientation="horizontal"
+        android:layout_weight="4"
         android:padding="0dp">
 
 
@@ -104,6 +108,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textColor="#FFFFFF"
+        android:layout_weight="1"
         app:itemBackground="@color/purple_500"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"

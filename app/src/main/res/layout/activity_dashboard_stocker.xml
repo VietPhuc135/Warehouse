@@ -26,7 +26,7 @@
             android:fontFamily="@font/allura"
             android:text="Home"
             android:textStyle="bold"
-            android:textColor="#F57C00"
+            android:textColor="#000000"
             android:textSize="40sp"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="5dp" />
@@ -34,95 +34,92 @@
         <GridLayout
             android:id="@+id/mainGrid"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="250dp"
             android:layout_marginTop="13dp"
-            android:layout_weight="8"
             android:alignmentMode="alignMargins"
             android:columnCount="2"
             android:columnOrderPreserved="false"
-            android:padding="14dp"
-            android:rowCount="2">
+            android:padding="14dp">
 
-
-                <LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="200dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:background="#FFFFFF">
-
-                    <ImageView
-                        android:id="@+id/imgProduct"
-                        android:layout_width="85dp"
-                        android:layout_height="85dp"
-                        android:src="@drawable/product"
-                        />
-
-                    <TextView
-                        android:layout_marginTop="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#000000"
-                        android:text="Product View"
-                        android:textSize="17dp"/>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="200dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical"
-                    android:background="#FFFFFF"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:id="@+id/imgUser"
-                        android:gravity="center"
-                        android:layout_width="74dp"
-                        android:layout_height="85dp"
-                        android:src="@drawable/cart" />
-
-                    <TextView
-                        android:layout_marginTop="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#000000"
-                        android:text="Order"
-                        android:textSize="17dp"/>
-                </LinearLayout>
 
             <LinearLayout
                 android:layout_width="150dp"
                 android:layout_height="200dp"
-                android:layout_row="0"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_margin="16dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/shape_rectangle"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imgProFile"
-                    android:layout_width="74dp"
+                    android:id="@+id/imgProduct"
+                    android:layout_width="85dp"
                     android:layout_height="85dp"
-                    android:gravity="center"
-                    android:src="@drawable/user" />
+                    android:src="@drawable/product" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="My Profile"
+                    android:text="Product View"
+                    android:textColor="#000000"
+                    android:textSize="17dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:background="@drawable/shape_rectangle"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imgUser"
+                    android:layout_width="74dp"
+                    android:layout_height="85dp"
+                    android:gravity="center"
+                    android:src="@drawable/cart" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Order"
                     android:textColor="#000000"
                     android:textSize="17dp" />
             </LinearLayout>
 
         </GridLayout>
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:layout_row="0"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="16dp"
+            android:background="@drawable/shape_rectangle"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgProFile"
+                android:layout_width="74dp"
+                android:layout_height="85dp"
+                android:gravity="center"
+                android:src="@drawable/user" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="My Profile"
+                android:textColor="#000000"
+                android:textSize="17dp" />
+        </LinearLayout>
 
 <!--        <com.google.android.material.bottomnavigation.BottomNavigationView-->
 <!--            android:id="@+id/bottom_navigation"-->

@@ -15,7 +15,8 @@
         android:id="@+id/imgListUser"
         android:src="@drawable/user2"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"/>
     <LinearLayout
         android:id="@+id/userTap"
         android:layout_width="0dp"

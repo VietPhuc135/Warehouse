@@ -13,7 +13,8 @@
         android:id="@+id/imageView1"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/cart2" />
+        android:src="@drawable/cart2"
+        android:layout_marginLeft="10dp"/>
 
     <LinearLayout
         android:id="@+id/btnProductEach"
@@ -88,6 +89,7 @@
         android:id="@+id/SuabtnProduct"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/repair" />
+        android:src="@drawable/repair"
+        android:layout_marginRight="10dp"/>
 
 </LinearLayout>
