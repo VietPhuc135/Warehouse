@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.obj.Account;
@@ -68,7 +69,6 @@ public class DangNhap extends AppCompatActivity {
                         editTextPassword.getText().toString();
                 //String password1 = "123";
                 if (email.equals("") && password.equals("")) {
-
                     System.out.println("khong duoc null ");
                     Toast.makeText(getApplicationContext(), "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 }
@@ -82,25 +82,13 @@ public class DangNhap extends AppCompatActivity {
 //                    startActivity(intent);
 //                }
                 }else{
-//                    loginAPI(email, password);
-                    try {
-                        testmahoa(email, password);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    loginAPI(email, password);
                 }
                 // Gọi phương thức gửi yêu cầu POST API
             }
         });
     }
-    private  void testmahoa(String email, String password) throws Exception {
-        MyAsyncTask.generateKey();
-        byte[] byteArrray = email.getBytes();
-        System.out.println(Arrays.toString(MyAsyncTask.encryptData(byteArrray)));
-        byte[] encrypte = MyAsyncTask.encryptData(byteArrray);
-        System.out.println(Arrays.toString(MyAsyncTask.decryptData(encrypte)));
 
-    }
 
     private void loginAPI(String email, String password) {
         // Tạo JSON body
@@ -139,7 +127,7 @@ public class DangNhap extends AppCompatActivity {
                 e.printStackTrace();
             }
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 // Xử lý khi nhận được phản hồi từ server
                 String responseData = response.body().string();
                 // lưu dữ liệu trả về từ api

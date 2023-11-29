@@ -1,5 +1,6 @@
 package com.example.warehousemanagement.order;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,12 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.obj.Product;
 
@@ -21,13 +20,11 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 public class EditProductInOrder extends AppCompatActivity {
     private EditText etName, etCode, etStock, etNote, etProducer, etStatus, etCategory,etDate;
-    private Button btnSubmit;
     JSONObject jsonObject = new JSONObject();
     String id;
 
@@ -44,7 +41,7 @@ public class EditProductInOrder extends AppCompatActivity {
         etProducer = findViewById(R.id.etProducer2);
         etStatus = findViewById(R.id.etStatus2);
         etCategory = findViewById(R.id.etCategory2);
-        btnSubmit = findViewById(R.id.btnSubmit2);
+        Button btnSubmit = findViewById(R.id.btnSubmit2);
         etDate =  findViewById(R.id.etDate2);
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +108,7 @@ public class EditProductInOrder extends AppCompatActivity {
 
                 // Gửi giá trị ngày đã chọn lên API
                 try {
-                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                     Date date = format.parse(selectedDate);
                     long timestamp = date.getTime();
                     jsonObject.put("date", timestamp);
@@ -128,7 +125,7 @@ public class EditProductInOrder extends AppCompatActivity {
     private void setValuesFromLineItems(Product product) {
         if (product != null ) {
             String dateTimeString = product.getDate();
-            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
             Date date = null;
             try {
                 date = inputFormat.parse(dateTimeString);
@@ -137,7 +134,7 @@ public class EditProductInOrder extends AppCompatActivity {
             }
 
             // Format lại chỉ có ngày
-            SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
             String formattedDate = outputFormat.format(date);
 
             // Lấy phần tử đầu tiên từ danh sách lineItems (có thể điều chỉnh tùy vào logic của bạn)

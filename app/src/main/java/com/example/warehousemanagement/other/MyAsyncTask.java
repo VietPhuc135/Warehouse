@@ -3,6 +3,8 @@ package com.example.warehousemanagement.other;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 
+import androidx.annotation.NonNull;
+
 import java.security.KeyStore;
 
 import javax.crypto.Cipher;
@@ -28,21 +30,6 @@ public class MyAsyncTask {
 
         keyGenerator.init(keyGenParameterSpec);
         keyGenerator.generateKey();
-    }
-
-    public static byte[] encryptData(byte[] data) throws Exception {
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
-
-        // Generate a new IV for each encryption
-        cipher.init(Cipher.ENCRYPT_MODE, getSecretKey());
-        byte[] iv = cipher.getIV();
-
-        // Prepend IV to the encrypted data
-        byte[] encryptedDataWithIV = new byte[iv.length + cipher.doFinal(data).length];
-        System.arraycopy(iv, 0, encryptedDataWithIV, 0, iv.length);
-        System.arraycopy(cipher.doFinal(data), 0, encryptedDataWithIV, iv.length, cipher.doFinal(data).length);
-
-        return encryptedDataWithIV;
     }
 
     public static byte[] decryptData(byte[] encryptedDataWithIV) throws Exception {
