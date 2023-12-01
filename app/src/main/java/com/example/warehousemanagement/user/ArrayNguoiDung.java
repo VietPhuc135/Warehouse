@@ -33,7 +33,7 @@ public class ArrayNguoiDung extends ArrayAdapter<User> {
         ImageView imageView = rowView.findViewById(R.id.imgListUser);
         TextView nameTextView = rowView.findViewById(R.id.txtNameUser);
         TextView infoTextView = rowView.findViewById(R.id.txtInfoUser);
-        TextView phoneTextView = rowView.findViewById(R.id.txtPhoneUser);
+        //TextView phoneTextView = rowView.findViewById(R.id.txtPhoneUser);
 
         LinearLayout userTap = rowView.findViewById(R.id.userTap);
 

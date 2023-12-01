@@ -1,9 +1,6 @@
 package com.example.warehousemanagement;
 
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,10 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.warehousemanagement.additem.DsSanPham;
 import com.example.warehousemanagement.order.OrderList;
 import com.example.warehousemanagement.profile.ProfilePage;
-import com.example.warehousemanagement.storage.QLStorage;
 import com.example.warehousemanagement.user.QLNguoiDung;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -53,8 +52,7 @@ public class TrangChu extends AppCompatActivity {
         imgUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent3 = new Intent(TrangChu.this, OrderList
-                        .class);
+                Intent intent3 = new Intent(TrangChu.this, QLNguoiDung.class);
                 startActivity(intent3);
             }
         });

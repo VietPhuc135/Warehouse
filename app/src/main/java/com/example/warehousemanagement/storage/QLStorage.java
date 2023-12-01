@@ -3,7 +3,6 @@ package com.example.warehousemanagement.storage;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,18 +16,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
-import com.example.warehousemanagement.MainActivity;
 import com.example.warehousemanagement.MapsActivity;
 import com.example.warehousemanagement.R;
-import com.example.warehousemanagement.additem.DsSanPham;
 import com.example.warehousemanagement.obj.Storage;
 import com.example.warehousemanagement.profile.ProfilePage;
-import com.example.warehousemanagement.user.SaveLogin;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,11 +81,13 @@ public class QLStorage extends AppCompatActivity {
         imLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(QLStorage.this, MainActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                Intent i = new Intent(QLStorage.this, MainActivity.class);
+//                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                startActivity(i);
+//                SaveLogin saveLogin = new SaveLogin(getApplicationContext());
+//                saveLogin.clearSession();
+                Intent i = new Intent(QLStorage.this, ProfilePage.class);
                 startActivity(i);
-                SaveLogin saveLogin = new SaveLogin(getApplicationContext());
-                saveLogin.clearSession();
             }
         });
         if (role.equals("SALER")) {

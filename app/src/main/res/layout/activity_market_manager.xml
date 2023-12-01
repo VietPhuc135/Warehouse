@@ -68,7 +68,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:id="@+id/imgAddProduct"
+                android:id="@+id/imgAddMarket"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/add"/>
 

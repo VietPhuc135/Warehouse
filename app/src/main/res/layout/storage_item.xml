@@ -13,7 +13,7 @@
         android:id="@+id/imageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/storage"
+        android:src="@drawable/storage2"
         android:layout_marginLeft="5dp"/>
 
     <LinearLayout

@@ -34,6 +34,10 @@
         android:id="@+id/btnSubmitMarket2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit" />
+        android:text="Submit"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:background="@drawable/shape_rectangle"
+        android:textColor="#3F51B5"/>
 
 </LinearLayout>

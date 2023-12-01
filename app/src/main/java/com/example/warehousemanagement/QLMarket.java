@@ -44,7 +44,8 @@ public class QLMarket extends AppCompatActivity {
         marketList.setAdapter(adapter);
         header = DangNhap.account.getToken();
         ImageView imgArrageMarket = findViewById(R.id.imgArrageMarket);
-        imgArrageMarket.setOnClickListener(new View.OnClickListener() {
+        ImageView imgAddMarket = findViewById(R.id.imgAddMarket);
+        imgAddMarket.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
                    Intent intent = new Intent(QLMarket.this, AddMarket.class);
