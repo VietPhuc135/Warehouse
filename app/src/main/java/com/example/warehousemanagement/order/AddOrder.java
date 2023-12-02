@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +38,7 @@ public class AddOrder extends AppCompatActivity {
     private EditText etName, etStock, etNote, etProducer, etStatus, etCategory,tvMarketIdE;
     private Button btnSubmit;
     String header, ownerIdacc, storageId, marketId;
-    TextView etDate, etCode;
+    TextView etDate;
     private LineItemForm lineItemForm;
     JSONObject jsonObject = new JSONObject();
     JSONObject orderJson = new JSONObject();
@@ -59,14 +60,17 @@ public class AddOrder extends AppCompatActivity {
         }
         marketId = DangNhap.account.getMarketId();
 //        etName = findViewById(R.id.etOwnerIde);
-        etCode = findViewById(R.id.tvLineItems);
+      LinearLayout etCode = findViewById(R.id.tvLineItems);
         etStock = findViewById(R.id.tvMessageE);
         etNote = findViewById(R.id.tvStorageIdE);
         etStatus = findViewById(R.id.tvFlagMessageE);
         btnSubmit = findViewById(R.id.btnSubmitOrder);
         tvMarketIdE = findViewById(R.id.tvMarketIdE);
         listViewLineItems =findViewById(R.id.listViewLineItems);
+        EditText etLineItemse = findViewById(R.id.etLineItemse);
 
+        tvMarketIdE.setVisibility(View.GONE);
+      etNote.setVisibility(View.GONE);
             etNote.setText(storageId);
         tvMarketIdE.setText(marketId);
         lineItems = new ArrayList<>();
@@ -89,6 +93,13 @@ public class AddOrder extends AppCompatActivity {
                 showLineItemForm();
             }
         });
+        etLineItemse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLineItemForm();
+            }
+        });
+
 
         // Xử lý sự kiện khi nhấn nút "Submit"
         btnSubmit.setOnClickListener(new View.OnClickListener() {

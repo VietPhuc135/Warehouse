@@ -6,32 +6,28 @@
     android:background="@drawable/backgroundgradient"
     android:padding="10dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
-        <EditText
-            android:id="@+id/etOwnerIde"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusable="false"
-            android:focusableInTouchMode="false"/>
-
-    </LinearLayout>
+        android:layout_gravity="center"
+        android:fontFamily="@font/lobster"
+        android:text="Add Order"
+        android:textColor="#F1E6E6"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <LinearLayout
+        android:id="@+id/tvLineItems"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tvLineItems"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Line Items"
-            android:textSize="17dp"/>
+            android:text="Danh sách sản phẩm"
+            android:textSize="17sp"/>
 
         <EditText
             android:id="@+id/etLineItemse"
@@ -39,56 +35,58 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:layout_height="wrap_content"
-            android:textSize="17dp"/>
-
-
+            android:textSize="17sp"/>
     </LinearLayout>
 
     <ListView
         android:id="@+id/listViewLineItems"
         android:layout_width="match_parent"
-        android:layout_height="266dp" />
+        android:layout_height="350dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:orientation="horizontal">
         <TextView
             android:id="@+id/tvMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Message"
-            android:textSize="17dp"/>
+            android:text=""
+            android:textSize="17sp"/>
 
         <EditText
             android:id="@+id/tvMessageE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="17dp"/>
+            android:textSize="17sp"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/tvStorageId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Storage Id"
-            android:textSize="17dp"/>
+            android:textSize="17sp"/>
 
 
         <EditText
             android:id="@+id/tvStorageIdE"
-            android:textSize="17dp"
+            android:textSize="17sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -97,13 +95,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Market Id"
-            android:textSize="17dp"/>
+            android:textSize="17sp"/>
 
         <EditText
             android:id="@+id/tvMarketIdE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="17dp"/>
+            android:textSize="17sp"/>
 
     </LinearLayout>
 
@@ -117,11 +115,8 @@
             android:id="@+id/tvFlagMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Flag Message"
-            android:textSize="17dp"/>
-
-
-
+            android:text="Ghi chú"
+            android:textSize="17sp"/>
         <EditText
         android:id="@+id/tvFlagMessageE"
             android:layout_width="match_parent"
@@ -134,5 +129,5 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Add order"
-            android:textSize="17dp"/>
+            android:textSize="17sp"/>
 </LinearLayout>

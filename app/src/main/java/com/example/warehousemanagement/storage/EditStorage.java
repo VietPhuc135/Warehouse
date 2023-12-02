@@ -29,9 +29,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class EditStorage extends AppCompatActivity {
-    private EditText etName, etCode;
-    private Button btnSubmit,btnDeleteStorage2;
-    String header ;
+    private EditText etName, etCode,latlng , longlng;
+    String header , marketId;
     String role;
     JSONObject jsonObject = new JSONObject();
     String id  ;
@@ -46,10 +45,13 @@ public class EditStorage extends AppCompatActivity {
         setContentView(R.layout.activity_editstorage);
         header = DangNhap.account.getToken();
         role = DangNhap.account.getRole();
-        etName = findViewById(R.id.etAddressStorage2);
-        etCode = findViewById(R.id.etCodeStorage2);
-        btnSubmit = findViewById(R.id.btnSubmitStorage2);
-        btnDeleteStorage2 = findViewById(R.id.btnDeleteStorage2);
+        etName = findViewById(R.id.etCodeStorage2);
+        etCode = findViewById(R.id.etAddressStorage2);
+        latlng = findViewById(R.id.etLatitudeStorage2);
+        longlng = findViewById(R.id.etLongStorage2);
+
+        Button btnSubmit = findViewById(R.id.btnSubmitStorage2);
+        Button btnDeleteStorage2 = findViewById(R.id.btnDeleteStorage2);
 
         new FetchProductDetails().execute(id);
         btnDeleteStorage2.setOnClickListener(new View.OnClickListener() {
@@ -68,14 +70,19 @@ public class EditStorage extends AppCompatActivity {
                 }
                 // Lấy dữ liệu từ EditText
               else{
-                  String name = etName.getText().toString().trim();
-                    String code = etCode.getText().toString().trim();
+                     String name = etName.getText().toString().trim();
+                     String addresstxt = etCode.getText().toString().trim();
+                    String lattext = latlng.getText().toString().trim();
+                    String longtext = longlng.getText().toString().trim();
 
                     // Tạo JSON object từ dữ liệu
 
                     try {
-                        jsonObject.put("code", code);
-                        jsonObject.put("address", name);
+                        jsonObject.put("name", name);
+                        jsonObject.put("address", addresstxt);
+                        jsonObject.put("latitude", lattext);
+                        jsonObject.put("longtitude", longtext);
+                        jsonObject.put("marketId", marketId);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -99,7 +106,6 @@ public class EditStorage extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
-                    // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
                     finish();
                 }
             }
@@ -116,7 +122,7 @@ public class EditStorage extends AppCompatActivity {
             OkHttpClient client = new OkHttpClient();
             MediaType mediaType = MediaType.parse("text/plain");
             Request request = new Request.Builder()
-                    .url("http://192.168.1.5:8080/storage/getList/"+ id)
+                    .url(Api.baseURL + "/storage/getList/"+ id)
                     .addHeader("Authorization", "Bearer " +  header)
                     .method("GET",null)
                     .build();
@@ -140,9 +146,10 @@ public class EditStorage extends AppCompatActivity {
             if (result != null) {
                 try {
                     // Populate the EditText fields with retrieved data
-                    etCode.setText(result.getString("code"));
-                    etName.setText(result.getString("address"));
-
+                    etCode.setText(result.getString("address"));
+                    etName.setText(result.getString("name"));
+                    latlng.setText(result.getString("latitude"));
+                    longlng.setText(result.getString("longtitude"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -159,7 +166,7 @@ public class EditStorage extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             RequestBody requestBody = RequestBody.create(mediaType, params[0]);
             Request request = new Request.Builder()
-                    .url("http://192.168.1.5:8080/storage/getList/"+ id)
+                    .url(Api.baseURL + "/storage/getList/"+ id)
                     .addHeader("Authorization", "Bearer " +  header)
                     .put(requestBody)
                     .build();
@@ -193,8 +200,6 @@ public class EditStorage extends AppCompatActivity {
             }
         }
     }
-
-
 }
 
 

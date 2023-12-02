@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/lobster"
-        android:text="Edit storage"
+        android:text="Add storage"
         android:textColor="#F1E6E6"
         android:textSize="30dp"
         android:textStyle="bold"/>
@@ -21,14 +21,36 @@
         android:id="@+id/etCodeStorage2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Code"/>
+        android:hint="Tên kho"
+        android:padding="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
     <requestFocus/>
 
     <EditText
         android:id="@+id/etAddressStorage2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Address" />
+        android:hint="Địa chỉ"
+        android:padding="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+    <EditText
+        android:id="@+id/etLatitudeStorage2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Vĩ độ"
+        android:padding="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+    <EditText
+        android:id="@+id/etLongStorage2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Kinh độ"
+        android:padding="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
 
 
     <LinearLayout

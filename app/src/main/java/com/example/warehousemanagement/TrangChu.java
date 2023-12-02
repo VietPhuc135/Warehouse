@@ -53,7 +53,7 @@ public class TrangChu extends AppCompatActivity {
         imgUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent3 = new Intent(TrangChu.this, OrderList
+                Intent intent3 = new Intent(TrangChu.this, QLNguoiDung
                         .class);
                 startActivity(intent3);
             }

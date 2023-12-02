@@ -1,12 +1,16 @@
 package com.example.warehousemanagement.order;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,6 +45,7 @@ public class ProductPickPage extends AppCompatActivity {
     String role;
     String storageId;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,16 +53,30 @@ public class ProductPickPage extends AppCompatActivity {
         imgAddProduct = findViewById(R.id.imgAddProduct);
         imaArrange = findViewById(R.id.imgArrageProduct);
         listView = findViewById(R.id.lvProduct);
+        TextView idTitle = findViewById(R.id.idTitle);
+        LinearLayout searchBarviewpd = findViewById(R.id.searchBarviewpd);
+
+        Log.d("goitao","1");
+      searchBarviewpd.setVisibility(View.GONE);
+        idTitle.setText("Danh sách sản phẩm");
         header = DangNhap.account.getToken();
         adapter = new ProductPickAdapter(this, itemList);
         new MyAsyncTask().execute();
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        new MyAsyncTask().execute();
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        new MyAsyncTask().execute();
+//
+//    }
 
+
+    @Override
+    public void onBackPressed() {
+       super.onBackPressed();
+        Log.d("dat1","2");
+        finish();
     }
 
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
@@ -84,28 +103,27 @@ public class ProductPickPage extends AppCompatActivity {
                             @Override
                             public void run() {
                                 // Khởi tạo và thiết lập Adapter
-                                if (id != null){
+//                                if (id != null){
+//                                    adapter = new ProductPickAdapter(ProductPickPage.this, itemList);
+//                                    adapter.setOnProductClickListener(new ProductPickAdapter.OnProductClickListener() {
+//                                        @Override
+//                                        public void onProductClick(Product product) {
+//                                            // Tạo Intent để chuyển dữ liệu về
+//                                            Intent resultIntent = new Intent();
+//                                            resultIntent.putExtra("pickedProductId", product);
+//
+//                                            // Đặt kết quả là RESULT_OK và gửi Intent về cho Activity gọi PickProduct
+//                                            setResult(RESULT_OK, resultIntent);
+//                                            finish();
+//                                        }
+//                                    });
+//                                    listView.setAdapter(adapter);
+//                                }
+//                                else{
                                     adapter = new ProductPickAdapter(ProductPickPage.this, itemList);
                                     adapter.setOnProductClickListener(new ProductPickAdapter.OnProductClickListener() {
                                         @Override
                                         public void onProductClick(Product product) {
-                                            // Tạo Intent để chuyển dữ liệu về
-                                            Intent resultIntent = new Intent();
-                                            resultIntent.putExtra("pickedProductId", product);
-
-                                            // Đặt kết quả là RESULT_OK và gửi Intent về cho Activity gọi PickProduct
-                                            setResult(RESULT_OK, resultIntent);
-                                            finish();
-                                        }
-                                    });
-                                    listView.setAdapter(adapter);
-                                }
-                                else{
-                                    adapter = new ProductPickAdapter(ProductPickPage.this, itemList);
-                                    adapter.setOnProductClickListener(new ProductPickAdapter.OnProductClickListener() {
-                                        @Override
-                                        public void onProductClick(Product product) {
-
                                             Intent resultIntent = new Intent();
                                             resultIntent.putExtra("pickedProductId", product);
                                             setResult(RESULT_OK, resultIntent);
@@ -113,7 +131,7 @@ public class ProductPickPage extends AppCompatActivity {
                                             }
                                     });
                                     listView.setAdapter(adapter);
-                                }
+//                                }
                             }
                         });
                     }
@@ -125,7 +143,7 @@ public class ProductPickPage extends AppCompatActivity {
                     e.printStackTrace();
                 }
             });
-            return false;
+            return true;
         }
 
         @Override

@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private ArrayList<Storage> getItem;
@@ -64,22 +65,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    public boolean onMarkerClick(@NonNull Marker marker) {
+    public boolean onMarkerClick(Marker marker) {
+        System.out.println("Đax bấm" + marker.getTag());
         Intent intent = new Intent(MapsActivity.this, DsSanPham.class);
-        String id = marker.getTag().toString();
+        String id = Objects.requireNonNull(marker.getTag()).toString();
         intent.putExtra("id",id);
         startActivity(intent);
-        return true;
-
+        return false;
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+//        Location myl = mMap.getMyLocation();
         LatLng myLoca = new LatLng(20.9808, 105.7936);
             // Sử dụng latitude và longitude
-            mMap.addMarker(new MarkerOptions().position(myLoca).title("Vị trí của bạn"));
+//                    LatLng newl = new LatLng(myl.getLatitude(),myl.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(myLoca).title("Vị trí của bạn")).showInfoWindow();
             mMap.moveCamera(CameraUpdateFactory.newLatLng(myLoca));
+            mMap.setMinZoomPreference(13.5f);
+            mMap.setMaxZoomPreference(20.0f);
+
         if (item != null ){
             System.out.println(  "mmmmmmm \n\n" + item );
             Gson gson = new Gson();
@@ -92,6 +98,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 LatLng location = new LatLng( longitude,latitude);
                 Marker marker =  mMap.addMarker(new MarkerOptions().position(location).title(item.getName()));
                 marker.setTag(item.getId());
+                googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                    @Override
+                    public void onInfoWindowClick(@NonNull Marker marker) {
+                        if (!marker.getPosition().equals(myLoca)) {
+                            System.out.println("Đax bấm" + marker.getTag());
+                            Intent intent = new Intent(MapsActivity.this, DsSanPham.class);
+                            String id = item.getId();
+                            intent.putExtra("id", id);
+                            startActivity(intent);
+                        }
+                    }
+
+//                    @Override
+//                    public boolean onMarkerClick(@NonNull Marker marker) {
+//                        if (!marker.getPosition().equals(myLoca)) {
+//                            System.out.println("Đax bấm" + marker.getTag());
+//                            Intent intent = new Intent(MapsActivity.this, DsSanPham.class);
+//                            String id = item.getId();
+//                            intent.putExtra("id", id);
+//                            startActivity(intent);
+//                        }
+//                        return false ;
+//                    }
+                });
             }
 
         }
