@@ -78,14 +78,16 @@
 
     <Button
         android:id="@+id/btnSubmitMarket"
-        android:layout_width="375dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Submit"
         android:textStyle="bold"
         android:textSize="18dp"
         android:background="@drawable/shape_rectangle"
-        android:textColor="#3F51B5"/>
+        android:textColor="#3F51B5"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

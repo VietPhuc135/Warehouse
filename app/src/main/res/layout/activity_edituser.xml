@@ -1,45 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:background="@drawable/backgroundgradient"
-    android:padding="10dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F2F2F2">
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/lobster"-->
+<!--        android:text="Edit user"-->
+<!--        android:textColor="#F1E6E6"-->
+<!--        android:textSize="30dp"-->
+<!--        android:textStyle="bold"/>-->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="412dp"
+        android:layout_height="186dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/top_bg" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lobster"
+        android:id="@+id/textView"
         android:text="Edit user"
-        android:textColor="#F1E6E6"
-        android:textSize="30dp"
-        android:textStyle="bold"/>
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView">
 
     <EditText
         android:id="@+id/etUsername1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:background="@drawable/edittext_background"
+        android:textColor="#000000"
+        android:textColorHint="#707070"
+        android:layout_marginBottom="5dp"
+        android:padding="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:hint="Username"/>
     <requestFocus/>
 
     <EditText
         android:id="@+id/etPassword1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:background="@drawable/edittext_background"
+        android:textColor="#000000"
+        android:textColorHint="#707070"
+        android:layout_marginBottom="5dp"
+        android:padding="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:hint="Password" />
 
     <EditText
         android:id="@+id/etEmail1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:background="@drawable/edittext_background"
+        android:textColor="#000000"
+        android:textColorHint="#707070"
+        android:layout_marginBottom="5dp"
+        android:padding="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:hint="Email" />
 
     <EditText
         android:id="@+id/etName1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:background="@drawable/edittext_background"
+        android:textColor="#000000"
+        android:textColorHint="#707070"
+        android:layout_marginBottom="5dp"
+        android:padding="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:hint="Name" />
 
     <LinearLayout
@@ -54,13 +115,20 @@
             android:layout_height="wrap_content"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:hint="Role" />
+            android:hint="Role"
+            android:textColorHint="#000000"
+            android:textSize="18dp"
+            android:textColor="#000000"/>
 
         <Spinner
             android:id="@+id/spinnerRole1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="235dp"
+            android:layout_height="48dp"
+            android:background="@drawable/backgroundgradient"
+            android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
             android:padding="15dp"
             android:textSize="18dp" />
     </LinearLayout>
@@ -68,7 +136,15 @@
     <EditText
         android:id="@+id/etAddress1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:background="@drawable/edittext_background"
+        android:textColor="#000000"
+        android:textColorHint="#707070"
+        android:layout_marginBottom="5dp"
+        android:padding="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:hint="Phone" />
 
 <!--    <EditText-->
@@ -80,13 +156,29 @@
     <EditText
         android:id="@+id/etMarketID1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:background="@drawable/edittext_background"
+        android:textColor="#000000"
+        android:textColorHint="#707070"
+        android:layout_marginBottom="5dp"
+        android:padding="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:hint="MarketId" />
 
     <EditText
         android:id="@+id/etStorageId1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:background="@drawable/edittext_background"
+        android:textColor="#000000"
+        android:textColorHint="#707070"
+        android:layout_marginBottom="5dp"
+        android:padding="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:hint="StorageId" />
 
     <LinearLayout
@@ -113,6 +205,6 @@
             android:background="@drawable/shape_rectangle"
             android:textColor="#3F51B5"/>
     </LinearLayout>
+    </LinearLayout>
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
