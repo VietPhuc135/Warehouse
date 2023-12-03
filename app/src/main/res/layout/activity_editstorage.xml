@@ -8,11 +8,19 @@
     android:background="@drawable/backgroundgradient"
     android:padding="10dp">
 
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/lobster"-->
+<!--        android:text="Add storage"-->
+<!--        android:textColor="#F1E6E6"-->
+<!--        android:textSize="30dp"-->
+<!--        android:textStyle="bold"/>-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/lobster"
-        android:text="Add storage"
+        android:text="Edit storage"
         android:textColor="#F1E6E6"
         android:textSize="30dp"
         android:textStyle="bold"/>

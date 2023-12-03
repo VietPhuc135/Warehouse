@@ -123,11 +123,13 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-        <Button
-            android:id="@+id/btnSubmitOrder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Add order"
-            android:textSize="17sp"/>
+    <Button
+        android:id="@+id/btnSubmitOrder"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Add order"
+        android:textSize="17sp"
+        android:background="@drawable/shape_rectangle"
+        android:textColor="#3F51B5"/>
 </LinearLayout>
