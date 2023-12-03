@@ -95,7 +95,7 @@
                     android:fontFamily="@font/allura"
                     android:text="Home"
                     android:textStyle="bold"
-                    android:textColor="#000000"
+                    android:textColor="#FFFFFF"
                     android:textSize="40sp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="5dp" />

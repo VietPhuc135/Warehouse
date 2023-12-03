@@ -1,29 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:background="@drawable/backgroundgradient"
-    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F2F2F2"
     android:theme="@style/DialogNoTitle">
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/lobster"-->
+<!--        android:text="Add product"-->
+<!--        android:textColor="#F1E6E6"-->
+<!--        android:textSize="30dp"-->
+<!--        android:textStyle="bold"/>-->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="412dp"
+        android:layout_height="186dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/top_bg" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lobster"
+        android:id="@+id/textView"
         android:text="Add product"
-        android:textColor="#F1E6E6"
-        android:textSize="30dp"
-        android:textStyle="bold"/>
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView">
 
     <EditText
         android:id="@+id/etName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:background="@drawable/edittext_background"
+        android:textColor="#000000"
+        android:textColorHint="#707070"
         android:hint="Tên SP"
         android:padding="15dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"/>
     <requestFocus/>
@@ -31,7 +65,12 @@
     <EditText
         android:id="@+id/etCode"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:background="@drawable/edittext_background"
+        android:textColor="#000000"
+        android:textColorHint="#707070"
+        android:layout_marginBottom="5dp"
         android:hint="Mã sp"
         android:padding="15dp"
         android:layout_marginLeft="15dp"
@@ -49,9 +88,12 @@
         android:id="@+id/etDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textColorHint="#707070"
         android:hint="HSD"
         android:textSize="18dp"
         android:padding="15dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:clickable="true"
@@ -60,7 +102,12 @@
     <EditText
         android:id="@+id/etStock"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:background="@drawable/edittext_background"
+        android:textColor="#000000"
+        android:textColorHint="#707070"
+        android:layout_marginBottom="5dp"
         android:hint="Số lượng"
         android:padding="15dp"
         android:layout_marginLeft="15dp"
@@ -69,7 +116,12 @@
     <EditText
         android:id="@+id/etNote"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:background="@drawable/edittext_background"
+        android:textColor="#000000"
+        android:textColorHint="#707070"
+        android:layout_marginBottom="5dp"
         android:hint="Ghi chú"
         android:padding="15dp"
         android:layout_marginLeft="15dp"
@@ -78,7 +130,12 @@
     <EditText
         android:id="@+id/etProducer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:background="@drawable/edittext_background"
+        android:textColor="#000000"
+        android:textColorHint="#707070"
+        android:layout_marginBottom="5dp"
         android:hint="StorageId"
         android:padding="15dp"
         android:layout_marginLeft="15dp"
@@ -87,23 +144,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp">
 
         <TextView
             android:id="@+id/etStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Status"
+            android:textSize="18dp"
+            android:textColor="#000000"
             android:padding="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"/>
 
         <Spinner
             android:id="@+id/spinnerStatus"
-            android:layout_width="264dp"
-            android:layout_height="match_parent"
+            android:layout_width="255dp"
+            android:layout_height="48dp"
+            android:background="@drawable/backgroundgradient"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
             android:padding="15dp"
             android:textSize="18dp" />
     </LinearLayout>
@@ -111,22 +174,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp">
         <TextView
             android:id="@+id/etCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Category"
+            android:textColorHint="#000000"
+            android:textSize="18dp"
+            android:textColor="#000000"
             android:padding="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"/>
 
         <Spinner
             android:id="@+id/spinnerCategory"
-            android:layout_width="249dp"
-            android:layout_height="match_parent"
+            android:layout_width="235dp"
+            android:layout_height="48dp"
+            android:background="@drawable/backgroundgradient"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
             android:padding="15dp"
             android:textSize="18dp" />
     </LinearLayout>
@@ -134,15 +204,18 @@
 
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
+        android:layout_width="375dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="Submit"
         android:padding="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:textStyle="bold"
         android:textSize="18dp"
         android:background="@drawable/shape_rectangle"
         android:textColor="#3F51B5"/>
+    </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

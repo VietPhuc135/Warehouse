@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/purple_500"
+    android:background="#2196F3"
     android:layout_weight="10">
 
     <TextView
@@ -18,7 +18,7 @@
         android:layout_weight="1"
         android:layout_gravity="center"
         android:textStyle="bold"
-        android:textColor="#F57C00"
+        android:textColor="#FFFFFF"
         android:textSize="40sp"
         tools:ignore="HardcodedText" />
 
