@@ -96,53 +96,6 @@ public class DsSanPham extends AppCompatActivity {
         protected Boolean doInBackground(String... params) {
             OkHttpClient client = new OkHttpClient();
             MediaType mediaType = MediaType.parse("text/plain");
-//            String requestBody = "{\n" +
-//                    "    \"filter\":{\n" +
-//                    "        \"storageId\":{\n" +
-//                    "            \"eq\":" + storageId + "\n" +
-//                    "        }\n" +
-//                    "    }\n" +
-//                    "}";
-//            body = RequestBody.create(mediaType,requestBody);
-//            String requestBody1 = "{\n" +
-//                    "    \"filter\":{\n" +
-//                    "        \"marketId\":{\n" +
-//                    "            \"eq\": " + id + "\n" +
-//                    "        }\n" +
-//                    "    }\n" +
-//                    "}";
-//            body1 = RequestBody.create(mediaType,requestBody1);
-//            if(role.equals("STOCKER"))
-//            {
-//                int stoID = Integer.parseInt(storageId);
-////                String requestBody = "{\n" +
-////                        "    \"filter\":{\n" +
-////                        "        \"storageId\":{\n" +
-////                        "            \"eq\": " + stoID + "\n" +
-////                        "        }\n" +
-////                        "    }\n" +
-////                        "}";
-//                body = RequestBody.create(mediaType,requestBody);
-//                         System.out.println( "stocker" + body);
-//            }
-//            else
-//                if (role.equals("SALER")){
-//                if (id != null){
-////                    String requestBody = "{\n" +
-////                            "    \"filter\":{\n" +
-////                            "        \"marketId\":{\n" +
-////                            "            \"eq\": " + id + "\n" +
-////                            "        }\n" +
-////                            "    }\n" +
-////                            "}";
-//                    body = RequestBody.create(mediaType,requestBody);
-//                    System.out.println( "stocker" + body);     System.out.println("else" + body);
-//                }
-//
-//            }
-//                else {
-//                    body = RequestBody.create(mediaType," ");
-//                }
              Request request = new Request.Builder()
                     .url(Api.baseURL + "/product/getlist")
                     .method("GET",null)
@@ -169,8 +122,6 @@ public class DsSanPham extends AppCompatActivity {
 //                            }
 //                        }
                         // Cập nhật giao diện trong luồng UI
-
-
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {

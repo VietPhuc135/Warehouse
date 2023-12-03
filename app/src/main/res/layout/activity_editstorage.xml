@@ -1,79 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#F2F2F2">
-
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:fontFamily="@font/lobster"-->
-<!--        android:text="Edit storage"-->
-<!--        android:textColor="#F1E6E6"-->
-<!--        android:textSize="30dp"-->
-<!--        android:textStyle="bold"/>-->
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="412dp"
-        android:layout_height="186dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/top_bg" />
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/backgroundgradient"
+    android:padding="10dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:text="Edit storage"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="#ffffff"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView">
+        android:fontFamily="@font/lobster"
+        android:text="Add storage"
+        android:textColor="#F1E6E6"
+        android:textSize="30dp"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/etCodeStorage2"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:ems="10"
-        android:background="@drawable/edittext_background"
-        android:textColor="#000000"
-        android:textColorHint="#707070"
-        android:layout_marginBottom="5dp"
+        android:layout_height="wrap_content"
+        android:hint="Tên kho"
         android:padding="15dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:hint="Code"/>
+        android:layout_marginRight="15dp"/>
     <requestFocus/>
 
     <EditText
         android:id="@+id/etAddressStorage2"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:ems="10"
-        android:background="@drawable/edittext_background"
-        android:textColor="#000000"
-        android:textColorHint="#707070"
-        android:layout_marginBottom="5dp"
+        android:layout_height="wrap_content"
+        android:hint="Địa chỉ"
         android:padding="15dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:hint="Address" />
+        android:layout_marginRight="15dp"/>
+    <EditText
+        android:id="@+id/etLatitudeStorage2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Vĩ độ"
+        android:padding="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
+    <EditText
+        android:id="@+id/etLongStorage2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Kinh độ"
+        android:padding="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"/>
 
 
     <LinearLayout
@@ -85,22 +62,13 @@
             android:id="@+id/btnSubmitStorage2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submit"
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:background="@drawable/shape_rectangle"
-            android:textColor="#3F51B5"/>
+            android:text="Submit" />
         <Button
             android:id="@+id/btnDeleteStorage2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete"
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:background="@drawable/shape_rectangle"
-            android:textColor="#3F51B5"/>
-    </LinearLayout>
+            android:text="Delete" />
     </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -40,6 +40,7 @@ public class ProductPickAdapter extends ArrayAdapter<Product> {
         void onProductClick(Product product);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -62,27 +63,19 @@ public class ProductPickAdapter extends ArrayAdapter<Product> {
 
         role = DangNhap.account.getRole();
         System.out.println("role" + role);
-        if (role.equals("SALER")) {
+        if (role.equals("SALER") || role.equals("ADMIN")) {
             SuabtnProduct.setVisibility(View.GONE);
         }
         btnArrayProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onProductClickListener.onProductClick(itemList.get(position));
-
             }
         });
-//        rowView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (onProductClickListener != null) {
-//                }
-//            }
-//        });
 
         nameTextView.setText(item.getName());
         codeTextView.setText("Loại: " + item.getMaSp()/*+ "\t\tKho: " + item.getStorageId()*/);
-        stockTextView.setText("Id: " + item.getId() + "\tStock: " + String.valueOf(item.getSoLuong()));
+        stockTextView.setText("Stock: " + item.getSoLuong());
 
         return rowView;
     }

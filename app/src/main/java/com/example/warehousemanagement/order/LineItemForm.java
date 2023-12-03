@@ -59,12 +59,19 @@ public class LineItemForm extends AppCompatActivity {
         etLineItemQuantity = findViewById(R.id.tvLineItemQuantity);
         Button btnAddLineItem = findViewById(R.id.addLineItem);
 
+
         idSp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LineItemForm.this, ProductPickPage.class);
                 startActivityForResult(intent, REQUEST_PICK_PRODUCT);
-                startActivity(intent);
+            }
+        });
+        etLineItemId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LineItemForm.this, ProductPickPage.class);
+                startActivityForResult(intent, REQUEST_PICK_PRODUCT);
             }
         });
 
