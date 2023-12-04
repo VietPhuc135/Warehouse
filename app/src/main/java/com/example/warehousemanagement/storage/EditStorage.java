@@ -15,6 +15,7 @@ import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.additem.DsSanPham;
+import com.example.warehousemanagement.obj.Storage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,13 +35,15 @@ public class EditStorage extends AppCompatActivity {
     String role;
     JSONObject jsonObject = new JSONObject();
     String id  ;
+    private Storage data ;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         if (intent != null) {
             id = intent.getStringExtra("id");
-
+           data = intent.getParcelableExtra("data");
         }
         setContentView(R.layout.activity_editstorage);
         header = DangNhap.account.getToken();
@@ -64,20 +67,21 @@ public class EditStorage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (role.equals("SALER") ){
-                    Toast.makeText(getBaseContext(), "Bạn là saler ! Bạn không có quyền sửa", Toast.LENGTH_SHORT).show();
-                    return ;
-                }
+//                if (role.equals("SALER") ){
+//                    Toast.makeText(getBaseContext(), "Bạn là saler ! Bạn không có quyền sửa", Toast.LENGTH_SHORT).show();
+//                    return ;
+//                }
                 // Lấy dữ liệu từ EditText
-              else{
+//              else{
                      String name = etName.getText().toString().trim();
                      String addresstxt = etCode.getText().toString().trim();
-                    String lattext = latlng.getText().toString().trim();
-                    String longtext = longlng.getText().toString().trim();
+                     String lattext = latlng.getText().toString().trim();
+                     String longtext = longlng.getText().toString().trim();
 
                     // Tạo JSON object từ dữ liệu
 
                     try {
+                        jsonObject.put("id",id);
                         jsonObject.put("name", name);
                         jsonObject.put("address", addresstxt);
                         jsonObject.put("latitude", lattext);
@@ -87,7 +91,7 @@ public class EditStorage extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     new MyAsyncTask().execute(jsonObject.toString());
-                }
+//                }
 
             }});
 
@@ -116,6 +120,15 @@ public class EditStorage extends AppCompatActivity {
             }
         });
     }
+
+    public Storage getData() {
+        return data;
+    }
+
+    public void setData(Storage data) {
+        this.data = data;
+    }
+
     private class FetchProductDetails extends AsyncTask<String, Void, JSONObject> {
         @Override
         protected JSONObject doInBackground(String... params) {
@@ -143,19 +156,10 @@ public class EditStorage extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject result) {
-            if (result != null) {
-                try {
-                    // Populate the EditText fields with retrieved data
-                    etCode.setText(result.getString("address"));
-                    etName.setText(result.getString("name"));
-                    latlng.setText(result.getString("latitude"));
-                    longlng.setText(result.getString("longtitude"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } else {
-//                System.out.println(result.toString());
-            }
+            etCode.setText(data.getAddress());
+            etName.setText(data.getName());
+            latlng.setText(data.getLatitude());
+            longlng.setText(data.getLongtitude());
         }
     }
 
@@ -166,7 +170,7 @@ public class EditStorage extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             RequestBody requestBody = RequestBody.create(mediaType, params[0]);
             Request request = new Request.Builder()
-                    .url(Api.baseURL + "/storage/getList/"+ id)
+                    .url(Api.baseURL + "/storage/update")
                     .addHeader("Authorization", "Bearer " +  header)
                     .put(requestBody)
                     .build();
