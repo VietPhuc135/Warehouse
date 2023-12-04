@@ -20,7 +20,7 @@
             android:gravity="center"
             android:fontFamily="@font/lobster"
             android:text="Storage Manager"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="34dp"
             android:textStyle="bold"/>
 
@@ -80,7 +80,7 @@
                 android:layout_height="30dp"
                 android:id="@+id/imgLogout"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_person_login"/>
+                android:src="@drawable/user1"/>
 
 
         </LinearLayout>
