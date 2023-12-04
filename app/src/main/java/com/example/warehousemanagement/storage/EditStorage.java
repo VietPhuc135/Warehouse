@@ -44,6 +44,11 @@ public class EditStorage extends AppCompatActivity {
         if (intent != null) {
             id = intent.getStringExtra("id");
            data = intent.getParcelableExtra("data");
+
+            etCode.setText(data.getAddress());
+            etName.setText(data.getName());
+            latlng.setText(data.getLatitude());
+            longlng.setText(data.getLongtitude());
         }
         setContentView(R.layout.activity_editstorage);
         header = DangNhap.account.getToken();
@@ -56,7 +61,7 @@ public class EditStorage extends AppCompatActivity {
         Button btnSubmit = findViewById(R.id.btnSubmitStorage2);
         Button btnDeleteStorage2 = findViewById(R.id.btnDeleteStorage2);
 
-        new FetchProductDetails().execute(id);
+//        new FetchProductDetails().execute(id);
         btnDeleteStorage2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,39 +134,39 @@ public class EditStorage extends AppCompatActivity {
         this.data = data;
     }
 
-    private class FetchProductDetails extends AsyncTask<String, Void, JSONObject> {
-        @Override
-        protected JSONObject doInBackground(String... params) {
-            OkHttpClient client = new OkHttpClient();
-            MediaType mediaType = MediaType.parse("text/plain");
-            Request request = new Request.Builder()
-                    .url(Api.baseURL + "/storage/getList/"+ id)
-                    .addHeader("Authorization", "Bearer " +  header)
-                    .method("GET",null)
-                    .build();
-            try {
-                Response response = client.newCall(request).execute();
-                if (response.isSuccessful()) {
-                    String responseData = response.body().string();
-                    return new JSONObject(responseData);
-                } else {
-                    // Handle error case
-                }
-            } catch (IOException | JSONException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(JSONObject result) {
-            etCode.setText(data.getAddress());
-            etName.setText(data.getName());
-            latlng.setText(data.getLatitude());
-            longlng.setText(data.getLongtitude());
-        }
-    }
+//    private class FetchProductDetails extends AsyncTask<String, Void, JSONObject> {
+//        @Override
+//        protected JSONObject doInBackground(String... params) {
+//            OkHttpClient client = new OkHttpClient();
+//            MediaType mediaType = MediaType.parse("text/plain");
+//            Request request = new Request.Builder()
+//                    .url(Api.baseURL + "/storage/getList/"+ id)
+//                    .addHeader("Authorization", "Bearer " +  header)
+//                    .method("GET",null)
+//                    .build();
+//            try {
+//                Response response = client.newCall(request).execute();
+//                if (response.isSuccessful()) {
+//                    String responseData = response.body().string();
+//                    return new JSONObject(responseData);
+//                } else {
+//                    // Handle error case
+//                }
+//            } catch (IOException | JSONException e) {
+//                e.printStackTrace();
+//            }
+//
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(JSONObject result) {
+//            etCode.setText(data.getAddress());
+//            etName.setText(data.getName());
+//            latlng.setText(data.getLatitude());
+//            longlng.setText(data.getLongtitude());
+//        }
+//    }
 
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
         @Override
