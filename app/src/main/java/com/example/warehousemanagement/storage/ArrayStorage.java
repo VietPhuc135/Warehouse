@@ -53,6 +53,7 @@ public class ArrayStorage extends ArrayAdapter<Storage> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EditStorage.class);
+                intent.putExtra("data", item);
                 intent.putExtra("id", item.getId());
                 context.startActivity(intent);
             }
