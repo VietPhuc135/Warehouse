@@ -3,6 +3,7 @@ package com.example.warehousemanagement.storage;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,13 +43,10 @@ public class EditStorage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         if (intent != null) {
-            id = intent.getStringExtra("id");
-           data = intent.getParcelableExtra("data");
 
-            etCode.setText(data.getAddress());
-            etName.setText(data.getName());
-            latlng.setText(data.getLatitude());
-            longlng.setText(data.getLongtitude());
+//            id = intent.getStringExtra("id");
+           data = (Storage) intent.getSerializableExtra("data");
+            Log.d("EditStorage", "data: " + data);
         }
         setContentView(R.layout.activity_editstorage);
         header = DangNhap.account.getToken();
@@ -61,6 +59,13 @@ public class EditStorage extends AppCompatActivity {
         Button btnSubmit = findViewById(R.id.btnSubmitStorage2);
         Button btnDeleteStorage2 = findViewById(R.id.btnDeleteStorage2);
 
+            if (data != null ){
+                id = data.getId();
+                etCode.setText(data.getAddress());
+                etName.setText(data.getName());
+                latlng.setText(data.getLatitude());
+                longlng.setText(data.getLongtitude());
+            }
 //        new FetchProductDetails().execute(id);
         btnDeleteStorage2.setOnClickListener(new View.OnClickListener() {
             @Override

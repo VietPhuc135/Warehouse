@@ -44,52 +44,52 @@ public class ArrayStorage extends ArrayAdapter<Storage> {
         TextView codeTextView = rowView.findViewById(R.id.codeTextViewSto);
         ImageView SuabtnProduct = rowView.findViewById(R.id.SuabtnStorage);
         role = DangNhap.account.getRole();
-        System.out.println("role"+ role);
-        if (role.equals("SALER")){
+        System.out.println("role" + role);
+        if (role.equals("SALER")) {
             SuabtnProduct.setVisibility(View.GONE);
         }
-        Storage item = (Storage) getItem(position);
+        Storage item = getItem(position);
         SuabtnProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EditStorage.class);
                 intent.putExtra("data", item);
-                intent.putExtra("id", item.getId());
+//                intent.putExtra("id", item.getId());
                 context.startActivity(intent);
             }
         });
 
         tapStorage.setOnClickListener(new View.OnClickListener() {
 
-@Override
-public void onClick(View v) {
-    PopupMenu popupMenu = new PopupMenu(context, v);
-    popupMenu.getMenuInflater().inflate(R.menu.menu_saler, popupMenu.getMenu());
-    popupMenu.show();
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(context, v);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_saler, popupMenu.getMenu());
+                popupMenu.show();
 
-    // Xử lý các sự kiện khi người dùng chọn một item trong menu
-    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-        @Override
-        public boolean onMenuItemClick(MenuItem items) {
-            switch (items.getItemId()) {
-                case R.id.ds_product:
-                Intent intent = new Intent(context, DsSanPham.class);
-                intent.putExtra("id", item.getId());
-                context.startActivity(intent);
-                    return true;
-                case R.id.ds_order:
-                    Intent intents = new Intent(context, OrderList.class);
-                    intents.putExtra("id", item.getId());
-                    context.startActivity(intents);
-                    return true;
-                default:
-                    return false;
+                // Xử lý các sự kiện khi người dùng chọn một item trong menu
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem items) {
+                        switch (items.getItemId()) {
+                            case R.id.ds_product:
+                                Intent intent = new Intent(context, DsSanPham.class);
+                                intent.putExtra("id", item.getId());
+                                context.startActivity(intent);
+                                return true;
+                            case R.id.ds_order:
+                                Intent intents = new Intent(context, OrderList.class);
+                                intents.putExtra("id", item.getId());
+                                context.startActivity(intents);
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                });
+
+                popupMenu.show();
             }
-        }
-    });
-
-    popupMenu.show();
-}
         });
         nameTextView.setText(item.getName());
         codeTextView.setText(item.getAddress());

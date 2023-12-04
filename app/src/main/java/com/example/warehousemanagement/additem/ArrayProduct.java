@@ -88,7 +88,7 @@ public class ArrayProduct extends ArrayAdapter<Product> {
         //Picasso.get().load(item.getImage()).into(imageView);
         nameTextView.setText(item.getName());
         codeTextView.setText("Loại: " + item.getMaSp()/*+ "\t\tKho: " + item.getStorageId()*/);
-        stockTextView.setText("Id: " + item.getId() + "\tStock: " + String.valueOf(item.getSoLuong()));
+        stockTextView.setText("Số lượng: " + String.valueOf(item.getSoLuong()));
 
         return rowView;
     }

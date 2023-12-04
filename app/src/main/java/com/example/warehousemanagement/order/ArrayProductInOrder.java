@@ -1,5 +1,6 @@
 package com.example.warehousemanagement.order;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -31,6 +32,7 @@ public class ArrayProductInOrder extends ArrayAdapter<Product> {
         this.itemList = itemList;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -93,7 +95,7 @@ public class ArrayProductInOrder extends ArrayAdapter<Product> {
             }
         });
         //Picasso.get().load(item.getImage()).into(imageView);
-        nameTextView.setText("Id của sản phẩm: "+item.getId());
+        nameTextView.setText("Sản phẩm: "+ item.getId());
 //        codeTextView.setText(item.getCategory());
         stockTextView.setText("Số lượng yêu cầu: " + item.getSoLuong());
 
