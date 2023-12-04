@@ -1,57 +1,98 @@
 package com.example.warehousemanagement.other;
 
+import android.os.AsyncTask;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 
 import androidx.annotation.NonNull;
 
+import com.example.warehousemanagement.Api;
+import com.example.warehousemanagement.additem.ArrayProduct;
+import com.example.warehousemanagement.additem.DsSanPham;
+import com.example.warehousemanagement.obj.Product;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.security.KeyStore;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 
-public class MyAsyncTask {
+import okhttp3.Call;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
-    private static final String KEY_ALIAS = "MyKeyAlias";
-
-    public static void generateKey() throws Exception {
-        KeyGenerator keyGenerator = KeyGenerator.getInstance(
-                KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
-
-        KeyGenParameterSpec keyGenParameterSpec = new KeyGenParameterSpec.Builder(
-                KEY_ALIAS,
-                KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
-                .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
-                .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7)
-                .setRandomizedEncryptionRequired(false)
+public class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
+    @Override
+    protected Boolean doInBackground(String... params) {
+        OkHttpClient client = new OkHttpClient();
+        MediaType mediaType = MediaType.parse("text/plain");
+        Request request = new Request.Builder()
+                .url(Api.baseURL + "/product/getlist")
+                .method("GET",null)
+                .addHeader("Authorization", "Bearer " + Api.header)
                 .build();
+        client.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String responseBody = response.body().string();
+                    Gson gson = new Gson();
+                    Type listType = new TypeToken<List<Product>>() {
+                    }.getType();
+                    List<Product> itemList;
+                    itemList = gson.fromJson(responseBody, listType);
+                    System.out.println("Đây la itemlist " + responseBody);
+                    // Chuyển đổi danh sách từ Product sang ParaItem
+                    List<ParaItem> paraItemList = convertProductListToParaItemList(itemList);
 
-        keyGenerator.init(keyGenParameterSpec);
-        keyGenerator.generateKey();
+                    // In danh sách mới có ParaItem
+                    for (ParaItem item : paraItemList) {
+                        System.out.println("Id: " + item.getId() + ", Name: " + item.getName());
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                System.out.println("fail");
+                e.printStackTrace();
+            }
+        });
+        return false;
     }
 
-    public static byte[] decryptData(byte[] encryptedDataWithIV) throws Exception {
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
+    private List<ParaItem> convertProductListToParaItemList(List<Product> productList) {
+        List<ParaItem> paraItemList = new ArrayList<>();
 
-        // Extract IV from the encrypted data
-        byte[] iv = new byte[16];  // Assuming 16 bytes IV
-        System.arraycopy(encryptedDataWithIV, 0, iv, 0, iv.length);
+        for (Product product : productList) {
+            ParaItem paraItem = new ParaItem();
+            paraItem.setId(product.getId());
+            paraItem.setName(product.getName());
+            paraItemList.add(paraItem);
+        }
 
-        // Initialize the decryption Cipher with IV
-        cipher.init(Cipher.DECRYPT_MODE, getSecretKey(), new IvParameterSpec(iv));
-
-        // Decrypt the data without the IV
-        byte[] decryptedData = cipher.doFinal(encryptedDataWithIV, iv.length, encryptedDataWithIV.length - iv.length);
-
-        return decryptedData;
+        return paraItemList;
     }
-    private static SecretKey getSecretKey() throws Exception {
-        KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
-        keyStore.load(null);
-
-        return (SecretKey) keyStore.getKey(KEY_ALIAS, null);
+    @Override
+    protected void onPostExecute(Boolean result) {
+        if (result) {
+//                System.out.println(jsonObject);
+//                Intent intent = new Intent(AddStorage.this, QLStorage.class);
+//                startActivity(intent);
+        } else {
+            System.out.println("lỗi ");
+        }
     }
 
 }
+

@@ -9,6 +9,10 @@ public class ParaItem {
         this.Id = Id;
     }
 
+    public ParaItem() {
+
+    }
+
     public String getId() {
         return Id;
     }
