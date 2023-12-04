@@ -50,7 +50,7 @@
     <EditText
         android:id="@+id/etName2"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -65,7 +65,8 @@
     <EditText
         android:id="@+id/etCode2"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -90,7 +91,8 @@
     <EditText
         android:id="@+id/etDate2"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -105,7 +107,8 @@
     <EditText
         android:id="@+id/etStock2"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -119,7 +122,8 @@
     <EditText
         android:id="@+id/etNote2"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -133,7 +137,8 @@
     <EditText
         android:id="@+id/etProducer2"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -147,7 +152,8 @@
     <EditText
         android:id="@+id/etStatus2"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -161,7 +167,8 @@
     <EditText
         android:id="@+id/etCategory2"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"

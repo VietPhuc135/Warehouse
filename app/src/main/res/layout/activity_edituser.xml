@@ -49,7 +49,8 @@
     <EditText
         android:id="@+id/etUsername1"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -64,7 +65,8 @@
     <EditText
         android:id="@+id/etPassword1"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -78,7 +80,8 @@
     <EditText
         android:id="@+id/etEmail1"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -92,7 +95,8 @@
     <EditText
         android:id="@+id/etName1"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -123,7 +127,8 @@
         <Spinner
             android:id="@+id/spinnerRole1"
             android:layout_width="235dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
+
             android:background="@drawable/backgroundgradient"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
@@ -136,7 +141,8 @@
     <EditText
         android:id="@+id/etAddress1"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -156,7 +162,8 @@
     <EditText
         android:id="@+id/etMarketID1"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -170,7 +177,8 @@
     <EditText
         android:id="@+id/etStorageId1"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"

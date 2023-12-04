@@ -1,13 +1,16 @@
 package com.example.warehousemanagement.order;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -43,6 +46,7 @@ public class DsSanPhamOrder extends AppCompatActivity {
     ImageView imgAddProduct;
     Context context = this;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +63,11 @@ public class DsSanPhamOrder extends AppCompatActivity {
         Intent intent = getIntent();
         String idorder = intent.getStringExtra("id");
         String status = intent.getStringExtra("status");
+
+        LinearLayout searchBarInOrder = findViewById(R.id.searchBarInOrder);
+        searchBarInOrder.setVisibility(View.GONE);
+        ImageView imgArrageProduct = findViewById(R.id.imgArrageProduct);
+        imgArrageProduct.setVisibility(View.GONE);
 
         if (status.equals("WAITING")){
             imgAccepOrder.setImageResource(R.drawable.pending_icon);
@@ -105,7 +114,17 @@ public class DsSanPhamOrder extends AppCompatActivity {
         if (role.equals("SALER")){
             imgAddProduct.setVisibility(View.GONE);
         }
-        imgAddProduct.setImageResource(R.drawable.cancel);
+        if(status.equals("ACCEPTED"))
+        imgAddProduct.setImageResource(R.drawable.accepted_icon);
+        ViewGroup.LayoutParams params = imgAddProduct.getLayoutParams();
+
+// Đặt chiều cao và chiều rộng tối đa
+        params.height = 70;
+        params.width = 70;
+
+        if(status.equals("CANCELLED"))
+            imgAddProduct.setImageResource(R.drawable.cancel);
+
 
         imgAddProduct.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -308,9 +327,13 @@ public class DsSanPhamOrder extends AppCompatActivity {
         client.newCall(request).enqueue(new okhttp3.Callback() {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    // Gọi lại MyAsyncTask để tải lại danh sách đơn hàng
-
+                    if (response.isSuccessful()) {
+                        DsSanPhamOrder.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(DsSanPhamOrder.this,"Đã hủy", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     finish();
                 }
             }

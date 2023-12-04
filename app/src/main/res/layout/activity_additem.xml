@@ -50,7 +50,8 @@
     <EditText
         android:id="@+id/etName"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -65,7 +66,8 @@
     <EditText
         android:id="@+id/etCode"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -102,7 +104,8 @@
     <EditText
         android:id="@+id/etStock"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -116,7 +119,8 @@
     <EditText
         android:id="@+id/etNote"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -130,7 +134,8 @@
     <EditText
         android:id="@+id/etProducer"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:background="@drawable/edittext_background"
         android:textColor="#000000"
@@ -161,7 +166,8 @@
         <Spinner
             android:id="@+id/spinnerStatus"
             android:layout_width="255dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
+
             android:background="@drawable/backgroundgradient"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
@@ -191,7 +197,8 @@
         <Spinner
             android:id="@+id/spinnerCategory"
             android:layout_width="235dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
+
             android:background="@drawable/backgroundgradient"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"

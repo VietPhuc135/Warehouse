@@ -40,6 +40,7 @@
                 android:visibility="gone" />
 
             <LinearLayout
+                android:id="@+id/searchBarInOrder"
                 android:layout_width="300dp"
                 android:layout_height="32dp"
                 android:background="@drawable/search_background"

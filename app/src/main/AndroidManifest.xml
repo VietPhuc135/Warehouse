@@ -47,7 +47,7 @@
         <activity
             android:name=".market.AddMarket"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            />
         <activity
             android:name=".storage.QLStorage"
             android:exported="true" />
@@ -63,11 +63,12 @@
         <activity
             android:name=".storage.AddStorage"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+            />
         <activity
             android:name=".storage.EditStorage"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+
+            />
         <activity
             android:name=".user.QLNguoiDung"
             android:exported="true" />
@@ -83,18 +84,18 @@
         <activity
             android:name=".additem.EditProduct"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+             />
         <activity
             android:name=".other.StockerPage"
             android:exported="true" />
         <activity
             android:name=".user.EditNguoiDung"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+             />
         <activity
             android:name=".user.AddNguoiDung"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.Dialog" />
+             />
         <activity
             android:name=".order.OrderList"
             android:exported="true" />

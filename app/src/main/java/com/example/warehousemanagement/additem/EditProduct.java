@@ -127,6 +127,7 @@ public class EditProduct extends AppCompatActivity {
                     jsonObject.put("id",id);
                     jsonObject.put("name", name);
                     jsonObject.put("maSp", code);
+                    jsonObject.put("storageId",item.getStorageId());
                     jsonObject.put("soLuong", stock);
                     jsonObject.put("date", date);
                     jsonObject.put("category", category);
