@@ -18,8 +18,16 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled true
+            useProguard true //Không làm rối code chọn false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro'
+        }
+
         release {
             minifyEnabled false
+            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

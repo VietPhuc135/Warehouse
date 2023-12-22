@@ -50,6 +50,7 @@ public class EditProduct extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(R.style.Base_Theme_AppCompat_Dialog);
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         if (intent != null) {

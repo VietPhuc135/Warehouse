@@ -126,14 +126,8 @@ public class DsSanPham extends AppCompatActivity {
                             @Override
                             public void run() {
                                 // Khởi tạo và thiết lập Adapter
-                                if (id != null){
-                                    adapter = new ArrayProduct(DsSanPham.this, itemList);
-                                    listView.setAdapter(adapter);
-                                }
-                              else{
-                                    adapter = new ArrayProduct(DsSanPham.this, itemList);
-                                    listView.setAdapter(adapter);
-                                }
+                                adapter = new ArrayProduct(DsSanPham.this, itemList);
+                                listView.setAdapter(adapter);
                             }
                         });
                     }

@@ -46,6 +46,7 @@ public class AddProduct extends AppCompatActivity {
     private ArrayProduct adapter ;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(R.style.Base_Theme_AppCompat_Dialog);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additem);
         String storId = DangNhap.account.getStorageId();
