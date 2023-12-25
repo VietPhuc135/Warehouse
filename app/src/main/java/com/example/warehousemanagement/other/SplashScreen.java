@@ -6,13 +6,14 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import androidx.annotation.Keep;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.storage.QLStorage;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.TrangChu;
 
+@Keep
 public class SplashScreen extends AppCompatActivity {
 
     private static final int SPLASH_TIMEOUT = 2000; // Thời gian hiển thị SplashScreen (2 giây)
@@ -31,18 +32,24 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (role.equals("STOCKER")) {
-                    Intent intent = new Intent(SplashScreen.this, StockerPage.class);
-                    startActivity(intent);
-                } else if (role.equals("SALER")) {
-                    Intent intent = new Intent(SplashScreen.this, QLStorage.class);
-                    startActivity(intent);
-                } else {
-                    Intent intent = new Intent(SplashScreen.this, TrangChu.class);
-                    startActivity(intent);
-                }
-
-                finish(); // Đóng SplashScreenActivity để không quay lại sau khi chuyển màn hình
+//                if(role != null ){
+                    if (role.equals("STOCKER")) {
+                        Intent intent = new Intent(SplashScreen.this, StockerPage.class);
+                        startActivity(intent);
+                    } else if (role.equals("SALER")) {
+                        Intent intent = new Intent(SplashScreen.this, QLStorage.class);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(SplashScreen.this, TrangChu.class);
+                        startActivity(intent);
+                    }
+//
+//                }
+//                else {
+//                    Intent intent = new Intent(SplashScreen.this, DangNhap.class);
+//                    startActivity(intent);
+//                }
+                finish();           // Đóng SplashScreenActivity để không quay lại sau khi chuyển màn hình
             }
         }, SPLASH_TIMEOUT);
     }

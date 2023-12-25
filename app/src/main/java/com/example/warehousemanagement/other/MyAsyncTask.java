@@ -38,7 +38,7 @@ public class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
         Request request = new Request.Builder()
                 .url(Api.baseURL + "/product/getlist")
                 .method("GET",null)
-                .addHeader("Authorization", "Bearer " + Api.header)
+                .addHeader("Authorization", "Bearer " )
                 .build();
         client.newCall(request).enqueue(new okhttp3.Callback() {
             @Override
