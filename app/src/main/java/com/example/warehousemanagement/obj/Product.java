@@ -1,7 +1,10 @@
 package com.example.warehousemanagement.obj;
 
+import androidx.annotation.Keep;
+
 import java.io.Serializable;
 
+@Keep
 public class Product  implements Serializable {
 //
 //    private String id ;

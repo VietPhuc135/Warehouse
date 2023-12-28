@@ -1,5 +1,8 @@
 package com.example.warehousemanagement.obj;
 
+import androidx.annotation.Keep;
+
+@Keep
 public class User {
 //    private String id;
 //    private String createdAt;

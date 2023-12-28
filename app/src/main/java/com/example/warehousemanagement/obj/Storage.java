@@ -1,7 +1,10 @@
 package com.example.warehousemanagement.obj;
 
+import androidx.annotation.Keep;
+
 import java.io.Serializable;
 
+@Keep
 public class Storage implements Serializable {
 //    public String getId() {
 //        return id;

@@ -1,6 +1,10 @@
 package com.example.warehousemanagement.obj;
 
+import androidx.annotation.Keep;
+
 import java.util.ArrayList;
+
+@Keep
 public class Order {
     private String id;
     private String ownerId;

@@ -1,5 +1,8 @@
 package com.example.warehousemanagement.obj;
 
+import androidx.annotation.Keep;
+
+@Keep
 public class Market {
     String name ;
     String address;

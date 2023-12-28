@@ -1,9 +1,11 @@
 package com.example.warehousemanagement.obj;
 
+import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 
+@Keep
 public class LineItem  implements Serializable {
     String id;
     double soLuong;
