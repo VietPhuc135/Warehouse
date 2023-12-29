@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">WarehouseManagement</string>
     <string name="title_activity_maps">MapsActivity</string>
+
+    <string-array name="sort_options">
+        <item>Sort by Name</item>
+        <item>Sort by Quantity</item>
+    </string-array>
 </resources>

@@ -198,4 +198,5 @@ public class Product  implements Serializable {
     public void setStorageId(String storageId) {
         this.storageId = storageId;
     }
-    }
+
+}

@@ -8,6 +8,7 @@
     android:background="#A8CADA">
 
     <LinearLayout
+        android:id="@+id/layoutProduct"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="vertical"
@@ -86,6 +87,16 @@
                 android:src="@drawable/arrange"/>
         </LinearLayout>
     </LinearLayout>
+
+    <Spinner
+        android:id="@+id/sortSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:layout_below="@id/layoutProduct"
+        android:layout_marginLeft="350dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"/>
 
     <ListView
         android:layout_width="match_parent"

@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +24,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import okhttp3.Call;
@@ -42,6 +47,7 @@ public class DsSanPham extends AppCompatActivity {
         String role,dsSanPham;
         String storageId;
     RequestBody body,body1;
+    Spinner sortSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,13 @@ public class DsSanPham extends AppCompatActivity {
         header = DangNhap.account.getToken();
         role = DangNhap.account.getRole();
         storageId = DangNhap.account.getStorageId();
+        sortSpinner = findViewById(R.id.sortSpinner);
+
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
+                this, R.array.sort_options, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sortSpinner.setAdapter(spinnerAdapter);
+
         Intent intent = getIntent();
         if (intent != null) {
             id = intent.getStringExtra("id");
@@ -79,9 +92,54 @@ public class DsSanPham extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+
+            imaArrange.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Toggle visibility of the Spinner
+                    toggleSpinnerVisibility();
+                }
+            });
+
+            // Set up item selected listener for Spinner
+            sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                    // Handle sorting logic here based on the selected option
+                    String selectedOption = adapterView.getItemAtPosition(position).toString();
+                    sortPhoneNames(selectedOption);
+                    // Refresh the ListView accordingly
+                    adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+                    // Do nothing
+                }
+            });
         }
 
         new MyAsyncTask().execute();
+    }
+
+    private void toggleSpinnerVisibility() {
+        // Toggle visibility of the Spinner
+        int visibility = sortSpinner.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE;
+        sortSpinner.setVisibility(visibility);
+    }
+
+    private void sortPhoneNames(String selectedOption) {
+        // Handle sorting logic based on the selected option
+        if ("Sort by Quantity".equals(selectedOption)) {
+            // Implement sorting by date logic
+            // For example, sort alphabetically for simplicity in this example
+            //Collections.sort(itemList);
+        } else if ("Sort by Name".equals(selectedOption)) {
+            // Implement sorting by name logic
+            // For example, reverse the order for simplicity in this example
+            ProductComparator productComparator = new ProductComparator();
+            Collections.sort(itemList, productComparator);
+        }
     }
 
     @Override
