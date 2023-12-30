@@ -5,7 +5,7 @@ import androidx.annotation.Keep;
 import java.io.Serializable;
 
 @Keep
-public class Product  implements Serializable {
+public class Product  implements Serializable, Comparable<Product>{
 //
 //    private String id ;
 //        private String name;
@@ -199,4 +199,9 @@ public class Product  implements Serializable {
         this.storageId = storageId;
     }
 
+
+    @Override
+    public int compareTo(Product product) {
+        return this.getCategory().compareTo(product.getCategory());
+    }
 }

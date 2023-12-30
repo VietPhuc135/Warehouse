@@ -4,9 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -41,7 +45,9 @@ public class DsSanPham extends AppCompatActivity {
     private ArrayProduct adapter;
     //    private ArrayAdapter<Product> adapter;
     private List<Product> itemList;
+    private List<Product> filteredData;
     ImageView imgAddProduct,imaArrange;
+    AutoCompleteTextView edtSearchProduct;
     Context context;
         String id;
         String role,dsSanPham;
@@ -55,6 +61,7 @@ public class DsSanPham extends AppCompatActivity {
         setContentView(R.layout.activity_view_product);
         imgAddProduct = findViewById(R.id.imgAddProduct);
         imaArrange = findViewById(R.id.imgArrageProduct);
+        edtSearchProduct = findViewById(R.id.searchProduct);
         listView = findViewById(R.id.lvProduct);
         header = DangNhap.account.getToken();
         role = DangNhap.account.getRole();
@@ -119,7 +126,50 @@ public class DsSanPham extends AppCompatActivity {
             });
         }
 
+        edtSearchProduct.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
+                // Do nothing
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                // Filter the data based on the entered text
+                filterData(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Do nothing
+            }
+        });
+
         new MyAsyncTask().execute();
+    }
+
+    private void filterData(String query) {
+        if (filteredData == null) {
+            // Nếu chưa khởi tạo, hãy tạo một ArrayList mới
+            filteredData = new ArrayList<>();
+        } else {
+            // Nếu đã khởi tạo, tiến hành làm sạch danh sách
+            filteredData.clear();
+
+            // If the query is empty, show all original data
+            if (query.isEmpty()) {
+                filteredData.addAll(itemList);
+            } else {
+                // Filter data based on the query
+                for (Product item : itemList) {
+                    if (item.getName().toLowerCase().contains(query.toLowerCase())) {
+                        filteredData.add(item);
+                    }
+                }
+            }
+        }
+
+        // Notify the adapter that the data has changed
+        adapter.notifyDataSetChanged();
     }
 
     private void toggleSpinnerVisibility() {
@@ -130,10 +180,10 @@ public class DsSanPham extends AppCompatActivity {
 
     private void sortPhoneNames(String selectedOption) {
         // Handle sorting logic based on the selected option
-        if ("Sort by Quantity".equals(selectedOption)) {
+        if ("Sort by Category".equals(selectedOption)) {
             // Implement sorting by date logic
             // For example, sort alphabetically for simplicity in this example
-            //Collections.sort(itemList);
+            Collections.sort(itemList);
         } else if ("Sort by Name".equals(selectedOption)) {
             // Implement sorting by name logic
             // For example, reverse the order for simplicity in this example
@@ -154,7 +204,7 @@ public class DsSanPham extends AppCompatActivity {
         protected Boolean doInBackground(String... params) {
             OkHttpClient client = new OkHttpClient();
             MediaType mediaType = MediaType.parse("text/plain");
-             Request request = new Request.Builder()
+            Request request = new Request.Builder()
                     .url(Api.baseURL + "/product/getlist")
                     .method("GET",null)
                     .addHeader("Authorization", "Bearer " + header)
