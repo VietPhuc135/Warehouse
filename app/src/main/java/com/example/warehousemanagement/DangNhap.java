@@ -2,6 +2,9 @@ package com.example.warehousemanagement;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.security.KeyPairGeneratorSpec;
+import android.security.keystore.KeyProperties;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +23,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.KeyPairGenerator;
+import java.security.KeyStore;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.util.Arrays;
+import java.util.Calendar;
+
+import javax.crypto.Cipher;
+import javax.security.auth.x500.X500Principal;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -38,7 +51,6 @@ public class DangNhap extends AppCompatActivity {
     public static Account account;
     boolean isResponseReceived = false;
 
-
     public static Account getAccount() {
         return account;
     }
@@ -51,8 +63,8 @@ public class DangNhap extends AppCompatActivity {
         // Ánh xạ các EditText
         editTextEmail = findViewById(R.id.emailSignIn);
         editTextPassword = findViewById(R.id.password);
-
         buttonLogin = findViewById(R.id.Login);
+
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +100,6 @@ public class DangNhap extends AppCompatActivity {
             }
         });
     }
-
 
     private void loginAPI(String email, String password) {
         // Tạo JSON body

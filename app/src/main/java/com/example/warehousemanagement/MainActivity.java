@@ -27,7 +27,12 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         // Chuyển sang TrangChuActivity
                         SaveLogin login = new SaveLogin(getApplicationContext());
-                        String info = login.getUserInfo();
+                        String info = null;
+                        try {
+                            info = login.getUserInfo();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         if (info != null) {
                             Gson gson = new Gson();
                             DangNhap.account = gson.fromJson(info, Account.class);
