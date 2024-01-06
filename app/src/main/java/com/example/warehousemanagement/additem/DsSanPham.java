@@ -109,7 +109,7 @@ public class DsSanPham extends AppCompatActivity {
             });
 
             // Set up item selected listener for Spinner
-            sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            /*sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                     // Handle sorting logic here based on the selected option
@@ -122,6 +122,38 @@ public class DsSanPham extends AppCompatActivity {
                 @Override
                 public void onNothingSelected(AdapterView<?> adapterView) {
                     // Do nothing
+                }
+            });*/
+
+            sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                    // Xử lý sự kiện sắp xếp danh sách khi chọn mục trong Spinner
+                    String selectedItem = parentView.getItemAtPosition(position).toString();
+                    if (selectedItem.equals(getString(R.string.sort_by_name))) {
+                        // Sắp xếp theo tên sản phẩm
+                        Collections.sort(itemList, new Comparator<Product>() {
+                            @Override
+                            public int compare(Product p1, Product p2) {
+                                return p1.getName().compareToIgnoreCase(p2.getName());
+                            }
+                        });
+                    } else if (selectedItem.equals(getString(R.string.sort_by_type))) {
+                        // Sắp xếp theo loại sản phẩm
+                        Collections.sort(itemList, new Comparator<Product>() {
+                            @Override
+                            public int compare(Product p1, Product p2) {
+                                return p1.getCategory().compareToIgnoreCase(p2.getCategory());
+                            }
+                        });
+                    }
+                    // Cập nhật lại ListView sau khi sắp xếp
+                    adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parentView) {
+                    // Không có hành động cụ thể khi không chọn mục nào
                 }
             });
         }
