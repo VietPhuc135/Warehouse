@@ -96,38 +96,31 @@ public class AddProduct extends AppCompatActivity {
             Log.e("Spinner Error", "Spinner not found or not initialized correctly");
         }
 
-        etDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog();
-            }
-        });
-                btnSubmit.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Lấy dữ liệu từ EditText
-                        String name = etName.getText().toString().trim();
-                        String code = etCode.getText().toString().trim();
-                        int stock = Integer.parseInt(etStock.getText().toString().trim());
-                        String note = etNote.getText().toString().trim();
+        etDate.setOnClickListener(v -> showDatePickerDialog());
+                btnSubmit.setOnClickListener(v -> {
+                    // Lấy dữ liệu từ EditText
+                    String name = etName.getText().toString().trim();
+                    String code = etCode.getText().toString().trim();
+                    int stock = Integer.parseInt(etStock.getText().toString().trim());
+                    String note = etNote.getText().toString().trim();
 //                        String producer = etProducer.getText().toString().trim();
-                        String status = spinner.getSelectedItem().toString();
-                        String category =spinner1.getSelectedItem().toString();
+                    String status = spinner.getSelectedItem().toString();
+                    String category =spinner1.getSelectedItem().toString();
 
-                        // Tạo JSON object từ dữ liệu
+                    // Tạo JSON object từ dữ liệu
 
-                        try {
-                            jsonObject.put("name", name);
-                            jsonObject.put("maSp", code);
-                            jsonObject.put("storageId", storId);
-                            jsonObject.put("soLuong", stock);
-                            jsonObject.put("date", note);
-                            jsonObject.put("category", category);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        new MyAsyncTask().execute(jsonObject.toString());
-                    }});
+                    try {
+                        jsonObject.put("name", name);
+                        jsonObject.put("maSp", code);
+                        jsonObject.put("storageId", storId);
+                        jsonObject.put("soLuong", stock);
+                        jsonObject.put("date", note);
+                        jsonObject.put("category", category);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    new MyAsyncTask().execute(jsonObject.toString());
+                });
             }
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
 

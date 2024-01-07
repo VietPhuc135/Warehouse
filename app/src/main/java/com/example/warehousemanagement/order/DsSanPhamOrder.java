@@ -39,9 +39,8 @@ import okhttp3.Response;
 
 public class DsSanPhamOrder extends AppCompatActivity {
     String header;
-    private ListView listView;
     private ArrayProductInOrder adapter;
-    private List<Product> itemList = new ArrayList<>(); // Khởi tạo danh sách sản phẩm
+    private final List<Product> itemList = new ArrayList<>(); // Khởi tạo danh sách sản phẩm
     String role;
     ImageView imgAddProduct;
     Context context = this;
@@ -53,7 +52,7 @@ public class DsSanPhamOrder extends AppCompatActivity {
         setContentView(R.layout.activity_view_product);
         imgAddProduct = findViewById(R.id.imgAddProduct);
         ImageView imgAccepOrder = findViewById(R.id.imgAccepOrder);
-        listView = findViewById(R.id.lvProduct);
+        ListView listView = findViewById(R.id.lvProduct);
         EditText searchProduct = findViewById(R.id.searchProduct);
         searchProduct.setVisibility(View.GONE);
         TextView idTitle = findViewById(R.id.idTitle);

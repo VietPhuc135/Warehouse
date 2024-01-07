@@ -24,6 +24,7 @@ import java.security.cert.CertificateException;
 import java.util.Calendar;
 
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
 import javax.security.auth.x500.X500Principal;
 
 public class SaveLogin {
@@ -31,9 +32,9 @@ public class SaveLogin {
     private static final String KEY_USER_INFO = "userInfo";
     private static final String KEY_ALIAS = "MyKeyAlias";
 
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor editor;
-    private Context context;
+    private final SharedPreferences sharedPreferences;
+    private final SharedPreferences.Editor editor;
+    private final Context context;
 
     public SaveLogin(Context context) {
         this.context = context;
@@ -70,6 +71,7 @@ public class SaveLogin {
             String encodedInfo = encrypt(publicKey, userInfoJson.getBytes());
 
             editor.putString(KEY_USER_INFO, encodedInfo);
+//            editor.putString(KEY_USER_INFO,userInfoJson);
             editor.apply();
 
         } catch (Exception e) {
@@ -81,16 +83,20 @@ public class SaveLogin {
         Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
         byte[] encryptedInfo = cipher.doFinal(inputData);
-        String encodedEncryptedInfo = Base64.encodeToString(encryptedInfo, Base64.DEFAULT);
-        return encodedEncryptedInfo;
+        return Base64.encodeToString(encryptedInfo, Base64.DEFAULT);
     }
 
     private static String decrypt(PrivateKey privateKey, byte[] encryptedData) throws Exception {
-        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-        cipher.init(Cipher.DECRYPT_MODE, privateKey);
-        byte[] decryptedInfo = cipher.doFinal(encryptedData);
-        String decryptedcodedInfo = new String(decryptedInfo, StandardCharsets.UTF_8);
-        return decryptedcodedInfo;
+        try {
+                Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            cipher.init(Cipher.DECRYPT_MODE, privateKey);
+            byte[] decryptedInfo = cipher.doFinal(encryptedData);
+            return new String(decryptedInfo, StandardCharsets.UTF_8);
+        } catch (IllegalBlockSizeException e) {
+            // Handle the exception or print more details
+            e.printStackTrace();
+            throw new Exception("Error during decryption: " + e.getMessage());
+        }
     }
 
     public String getUserInfo() throws Exception {
@@ -117,8 +123,8 @@ public class SaveLogin {
         }
         PrivateKey privateKey = (PrivateKey) keyStore.getKey(KEY_ALIAS, null);
         String userInfo = sharedPreferences.getString(KEY_USER_INFO, null);
-        String decryptedInfo = decrypt(privateKey, userInfo.getBytes());
-        return decryptedInfo;
+        return decrypt(privateKey, userInfo.getBytes());
+//        return userInfo;
     }
 
     public void clearSession() {
