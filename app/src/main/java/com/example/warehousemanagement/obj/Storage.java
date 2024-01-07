@@ -5,7 +5,7 @@ import androidx.annotation.Keep;
 import java.io.Serializable;
 
 @Keep
-public class Storage implements Serializable, Comparable<Storage> {
+public class Storage implements Serializable{
 //    public String getId() {
 //        return id;
 //    }
@@ -94,9 +94,5 @@ public class Storage implements Serializable, Comparable<Storage> {
         this.marketId = marketId;
     }
 
-    @Override
-    public int compareTo(Storage storage) {
-        return this.getAddress().compareTo(storage.getAddress());
-    }
 }
 

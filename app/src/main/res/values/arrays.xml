@@ -1,6 +1,16 @@
 <resources>
     <string-array name="sort_options">
         <item>@string/sort_by_name</item>
-        <item>@string/sort_by_type</item>
+        <item>@string/sort_by_quantity</item>
+    </string-array>
+
+    <string-array name="sort_options1">
+        <item>@string/sort_by_name</item>
+        <item>@string/sort_by_address</item>
+    </string-array>
+
+    <string-array name="sort_options2">
+        <item>@string/sort_by_name</item>
+        <item>@string/sort_by_email</item>
     </string-array>
 </resources>

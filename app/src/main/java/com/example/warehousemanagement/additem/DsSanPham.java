@@ -108,23 +108,6 @@ public class DsSanPham extends AppCompatActivity {
                 }
             });
 
-            // Set up item selected listener for Spinner
-            /*sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                    // Handle sorting logic here based on the selected option
-                    String selectedOption = adapterView.getItemAtPosition(position).toString();
-                    sortPhoneNames(selectedOption);
-                    // Refresh the ListView accordingly
-                    adapter.notifyDataSetChanged();
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
-                    // Do nothing
-                }
-            });*/
-
             sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -138,12 +121,13 @@ public class DsSanPham extends AppCompatActivity {
                                 return p1.getName().compareToIgnoreCase(p2.getName());
                             }
                         });
-                    } else if (selectedItem.equals(getString(R.string.sort_by_type))) {
-                        // Sắp xếp theo loại sản phẩm
+                    } else if (selectedItem.equals(getString(R.string.sort_by_quantity))) {
+                        // Sắp xếp theo số lượng sản phẩm
                         Collections.sort(itemList, new Comparator<Product>() {
                             @Override
                             public int compare(Product p1, Product p2) {
-                                return p1.getCategory().compareToIgnoreCase(p2.getCategory());
+                                // Đổi sang kiểu số và so sánh
+                                return Float.compare(p1.getSoLuong(), p2.getSoLuong());
                             }
                         });
                     }
@@ -208,20 +192,6 @@ public class DsSanPham extends AppCompatActivity {
         // Toggle visibility of the Spinner
         int visibility = sortSpinner.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE;
         sortSpinner.setVisibility(visibility);
-    }
-
-    private void sortPhoneNames(String selectedOption) {
-        // Handle sorting logic based on the selected option
-        if ("Sort by Category".equals(selectedOption)) {
-            // Implement sorting by date logic
-            // For example, sort alphabetically for simplicity in this example
-            Collections.sort(itemList);
-        } else if ("Sort by Name".equals(selectedOption)) {
-            // Implement sorting by name logic
-            // For example, reverse the order for simplicity in this example
-            ProductComparator productComparator = new ProductComparator();
-            Collections.sort(itemList, productComparator);
-        }
     }
 
     @Override
