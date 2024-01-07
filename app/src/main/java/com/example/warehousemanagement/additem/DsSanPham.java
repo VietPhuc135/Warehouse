@@ -108,20 +108,36 @@ public class DsSanPham extends AppCompatActivity {
                 }
             });
 
-            // Set up item selected listener for Spinner
             sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                    // Handle sorting logic here based on the selected option
-                    String selectedOption = adapterView.getItemAtPosition(position).toString();
-                    sortPhoneNames(selectedOption);
-                    // Refresh the ListView accordingly
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                    // Xử lý sự kiện sắp xếp danh sách khi chọn mục trong Spinner
+                    String selectedItem = parentView.getItemAtPosition(position).toString();
+                    if (selectedItem.equals(getString(R.string.sort_by_name))) {
+                        // Sắp xếp theo tên sản phẩm
+                        Collections.sort(itemList, new Comparator<Product>() {
+                            @Override
+                            public int compare(Product p1, Product p2) {
+                                return p1.getName().compareToIgnoreCase(p2.getName());
+                            }
+                        });
+                    } else if (selectedItem.equals(getString(R.string.sort_by_quantity))) {
+                        // Sắp xếp theo số lượng sản phẩm
+                        Collections.sort(itemList, new Comparator<Product>() {
+                            @Override
+                            public int compare(Product p1, Product p2) {
+                                // Đổi sang kiểu số và so sánh
+                                return Float.compare(p1.getSoLuong(), p2.getSoLuong());
+                            }
+                        });
+                    }
+                    // Cập nhật lại ListView sau khi sắp xếp
                     adapter.notifyDataSetChanged();
                 }
 
                 @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
-                    // Do nothing
+                public void onNothingSelected(AdapterView<?> parentView) {
+                    // Không có hành động cụ thể khi không chọn mục nào
                 }
             });
         }
@@ -176,20 +192,6 @@ public class DsSanPham extends AppCompatActivity {
         // Toggle visibility of the Spinner
         int visibility = sortSpinner.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE;
         sortSpinner.setVisibility(visibility);
-    }
-
-    private void sortPhoneNames(String selectedOption) {
-        // Handle sorting logic based on the selected option
-        if ("Sort by Category".equals(selectedOption)) {
-            // Implement sorting by date logic
-            // For example, sort alphabetically for simplicity in this example
-            Collections.sort(itemList);
-        } else if ("Sort by Name".equals(selectedOption)) {
-            // Implement sorting by name logic
-            // For example, reverse the order for simplicity in this example
-            ProductComparator productComparator = new ProductComparator();
-            Collections.sort(itemList, productComparator);
-        }
     }
 
     @Override

@@ -20,7 +20,6 @@ import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.MapsActivity;
 import com.example.warehousemanagement.R;
-import com.example.warehousemanagement.additem.ProductComparator;
 import com.example.warehousemanagement.obj.Storage;
 import com.example.warehousemanagement.profile.ProfilePage;
 import com.google.gson.Gson;
@@ -30,6 +29,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import okhttp3.Call;
@@ -71,27 +71,43 @@ public class QLStorage extends AppCompatActivity {
             }
         });
 
-        // Set up item selected listener for Spinner
-        sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                // Handle sorting logic here based on the selected option
-                String selectedOption = adapterView.getItemAtPosition(position).toString();
-                sortPhoneNames(selectedOption);
-                // Refresh the ListView accordingly
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                // Do nothing
-            }
-        });
-
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
                 this, R.array.sort_options1, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sortSpinner.setAdapter(spinnerAdapter);
+
+        sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Xử lý sự kiện sắp xếp danh sách khi chọn mục trong Spinner
+                String selectedItem = parentView.getItemAtPosition(position).toString();
+                if (selectedItem.equals(getString(R.string.sort_by_name))) {
+                    // Sắp xếp theo tên sản phẩm
+                    Collections.sort(itemList, new Comparator<Storage>() {
+                        @Override
+                        public int compare(Storage p1, Storage p2) {
+                            return p1.getName().compareToIgnoreCase(p2.getName());
+                        }
+                    });
+                } else if (selectedItem.equals(getString(R.string.sort_by_address))) {
+                    // Sắp xếp theo số lượng sản phẩm
+                    Collections.sort(itemList, new Comparator<Storage>() {
+                        @Override
+                        public int compare(Storage p1, Storage p2) {
+                            // Đổi sang kiểu số và so sánh
+                            return p1.getAddress().compareToIgnoreCase(p2.getAddress());
+                        }
+                    });
+                }
+                // Cập nhật lại ListView sau khi sắp xếp
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Không có hành động cụ thể khi không chọn mục nào
+            }
+        });
 
         ImageView imgAddStorage = findViewById(R.id.imgAddStorage);
         imgAddStorage.setOnClickListener(new View.OnClickListener() {
@@ -140,20 +156,6 @@ public class QLStorage extends AppCompatActivity {
         // Toggle visibility of the Spinner
         int visibility = sortSpinner.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE;
         sortSpinner.setVisibility(visibility);
-    }
-
-    private void sortPhoneNames(String selectedOption) {
-        // Handle sorting logic based on the selected option
-        if ("Sort by Category".equals(selectedOption)) {
-            // Implement sorting by date logic
-            // For example, sort alphabetically for simplicity in this example
-            Collections.sort(itemList);
-        } else if ("Sort by Name".equals(selectedOption)) {
-            // Implement sorting by name logic
-            // For example, reverse the order for simplicity in this example
-            StorageComparator storageComparator = new StorageComparator();
-            Collections.sort(itemList, storageComparator);
-        }
     }
 
     @Override
