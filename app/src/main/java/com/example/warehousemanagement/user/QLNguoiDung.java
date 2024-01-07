@@ -6,21 +6,27 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
+import com.example.warehousemanagement.obj.Storage;
 import com.example.warehousemanagement.obj.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import okhttp3.Call;
@@ -37,7 +43,8 @@ public class QLNguoiDung extends AppCompatActivity {
     private ArrayNguoiDung adapter;
     //    private ArrayAdapter<Product> adapter;
     private List<User> itemList;
-    ImageView imgAddUser;
+    ImageView imgAddUser, imgArrUser;
+    Spinner sortSpinner;
     Context context;
     String id;
 
@@ -46,7 +53,9 @@ public class QLNguoiDung extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_manager);
         imgAddUser = findViewById(R.id.imgAddUser);
+        imgArrUser = findViewById(R.id.imgArrageUser);
         listView = findViewById(R.id.lvUser);
+        sortSpinner = findViewById(R.id.sortSpinner2);
         header = DangNhap.account.getToken();
         Intent intent = getIntent();
         if (intent != null) {
@@ -54,6 +63,53 @@ public class QLNguoiDung extends AppCompatActivity {
 
         }
         adapter = new ArrayNguoiDung(this, itemList);
+
+        imgArrUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toggle visibility of the Spinner
+                toggleSpinnerVisibility();
+            }
+        });
+
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
+                this, R.array.sort_options2, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sortSpinner.setAdapter(spinnerAdapter);
+
+        sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Xử lý sự kiện sắp xếp danh sách khi chọn mục trong Spinner
+                String selectedItem = parentView.getItemAtPosition(position).toString();
+                if (selectedItem.equals(getString(R.string.sort_by_name))) {
+                    // Sắp xếp theo tên sản phẩm
+                    Collections.sort(itemList, new Comparator<User>() {
+                        @Override
+                        public int compare(User p1, User p2) {
+                            return p1.getName().compareToIgnoreCase(p2.getName());
+                        }
+                    });
+                } else if (selectedItem.equals(getString(R.string.sort_by_email))) {
+                    // Sắp xếp theo số lượng sản phẩm
+                    Collections.sort(itemList, new Comparator<User>() {
+                        @Override
+                        public int compare(User p1, User p2) {
+                            // Đổi sang kiểu số và so sánh
+                            return p1.getEmail().compareToIgnoreCase(p2.getEmail());
+                        }
+                    });
+                }
+                // Cập nhật lại ListView sau khi sắp xếp
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Không có hành động cụ thể khi không chọn mục nào
+            }
+        });
+
         imgAddUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +152,12 @@ public class QLNguoiDung extends AppCompatActivity {
         }
         );
         new MyAsyncTask().execute();
+    }
+
+    private void toggleSpinnerVisibility() {
+        // Toggle visibility of the Spinner
+        int visibility = sortSpinner.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE;
+        sortSpinner.setVisibility(visibility);
     }
 
     @Override

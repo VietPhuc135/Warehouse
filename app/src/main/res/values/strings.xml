@@ -2,17 +2,9 @@
     <string name="app_name">WarehouseManagement</string>
     <string name="title_activity_maps">MapsActivity</string>
 
-<!--    <string-array name="sort_options">-->
-<!--        <item>Sort by Name</item>-->
-<!--        <item>Sort by Category</item>-->
-<!--    </string-array>-->
-
     <string name="sort_by_name">Sort by Name</string>
     <string name="sort_by_quantity">Sort by Quantity</string>
     <string name="sort_by_email">Sort by Email</string>
     <string name="sort_by_address">Sort by Address</string>
-<!--    <string-array name="sort_options1">-->
-<!--        <item>Sort by Address</item>-->
-<!--        <item>Sort by Name</item>-->
-<!--    </string-array>-->
+
 </resources>
