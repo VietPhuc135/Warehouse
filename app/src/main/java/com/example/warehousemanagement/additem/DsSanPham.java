@@ -81,10 +81,10 @@ public class DsSanPham extends AppCompatActivity {
         storageId = DangNhap.account.getStorageId();
         sortSpinner = findViewById(R.id.sortSpinner);
 
-        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
-                this, R.array.sort_options, android.R.layout.simple_spinner_item);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sortSpinner.setAdapter(spinnerAdapter);
+//        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
+//                this, R.array.sort_options, android.R.layout.simple_spinner_item);
+//        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        sortSpinner.setAdapter(spinnerAdapter);
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -120,6 +120,11 @@ public class DsSanPham extends AppCompatActivity {
                     toggleSpinnerVisibility();
                 }
             });
+
+            ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
+                    this, R.array.sort_options, android.R.layout.simple_spinner_item);
+            spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            sortSpinner.setAdapter(spinnerAdapter);
 
             sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
