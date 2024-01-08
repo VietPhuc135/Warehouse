@@ -106,12 +106,13 @@
 
     <Button
         android:id="@+id/btnThongKe"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="Statistical"
         android:textStyle="bold"
         android:layout_marginTop="5dp"
-        android:background="#263EC3"
+        android:background="@drawable/shape_rectangle"
+        android:textColor="#3F51B5"
         android:layout_gravity="center"/>
 
     <ListView

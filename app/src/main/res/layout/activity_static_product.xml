@@ -8,16 +8,25 @@
     android:background="#A8CADA"
     tools:context=".storage.StaticProduct">
 
-    <TextView
-        android:id="@+id/titleStorage"
+    <LinearLayout
+        android:id="@+id/layoutStorage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:fontFamily="@font/lobster"
-        android:text="Kho hàng"
-        android:textColor="#000000"
-        android:textSize="34dp"
-        android:textStyle="bold"/>
+        android:layout_height="70dp"
+        android:orientation="vertical"
+        android:background="@drawable/header_background2">
+
+        <TextView
+            android:id="@+id/titleStorage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:fontFamily="@font/lobster"
+            android:layout_marginTop="10dp"
+            android:text="Kho hàng"
+            android:textColor="#FFFFFF"
+            android:textSize="34dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +41,7 @@
             android:textStyle="bold"
             android:layout_marginLeft="10dp"
             android:textColor="#000000"
-            android:textSize="20dp"/>
+            android:textSize="24dp"/>
 
         <TextView
             android:id="@+id/txtSoLuongStorage"
@@ -42,7 +51,7 @@
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
             android:textColor="#000000"
-            android:textSize="20dp"/>
+            android:textSize="24dp"/>
     </LinearLayout>
 
     <Button
@@ -52,7 +61,8 @@
         android:text="Danh sách hết hạn"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
-        android:background="#263EC3"
+        android:background="@drawable/shape_rectangle"
+        android:textColor="#3F51B5"
         android:layout_gravity="center"/>
 
     <Button
@@ -62,7 +72,8 @@
         android:text="Danh sách sắp hết hạn"
         android:textStyle="bold"
         android:layout_marginTop="10dp"
-        android:background="#263EC3"
+        android:background="@drawable/shape_rectangle"
+        android:textColor="#3F51B5"
         android:layout_gravity="center"/>
 
     <Button
@@ -72,7 +83,9 @@
         android:text="Toàn bộ sản phẩm"
         android:textStyle="bold"
         android:layout_marginTop="10dp"
-        android:background="#263EC3"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/shape_rectangle"
+        android:textColor="#3F51B5"
         android:layout_gravity="center"/>
 
     <com.github.mikephil.charting.charts.PieChart
