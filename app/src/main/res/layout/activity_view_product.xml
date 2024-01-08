@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/layoutProduct"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="110dp"
         android:background="@drawable/header_background2"
         android:orientation="vertical">
 
@@ -20,9 +20,10 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/lobster"
             android:gravity="center"
+            android:layout_marginTop="10dp"
             android:text="Product Manager"
             android:textColor="#FFFFFF"
-            android:textSize="34dp"
+            android:textSize="34sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -37,7 +38,7 @@
                 android:id="@+id/imgAccepOrder"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/add"
                 android:visibility="gone" />
 
@@ -99,16 +100,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/layoutProduct"
         android:layout_marginStart="350dp"
+        android:text=" Hkjsaljdlạd"
         android:layout_marginTop="16dp"
         android:textColor="#000000"
-        android:visibility="gone" />
-
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pieChart"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-     >
-    </com.github.mikephil.charting.charts.PieChart>
+         />
 
     <ListView
         android:id="@+id/lvProduct"

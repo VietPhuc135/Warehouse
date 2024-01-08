@@ -50,7 +50,6 @@ public class EditProduct extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setTheme(R.style.Base_Theme_AppCompat_Dialog);
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         if (intent != null) {
@@ -301,7 +300,7 @@ public class EditProduct extends AppCompatActivity {
                 etStock.setText(String.valueOf(item.getSoLuong()));
 //                    etNote.setText();
 //                    etStatus.setText();
-                etCategory.setText(item.getCategory());
+                etCategory.setText(item.getType());
 //                    etName.setText(result.getString("name"));
 //                    etCode.setText(result.getString("maSp"));
 //                    etDate.setText(result.getString("date"));

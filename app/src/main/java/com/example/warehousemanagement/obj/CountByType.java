@@ -19,14 +19,14 @@ public class CountByType {
         this.type = type;
     }
 
-    public float getSoLuong() {
+    public int getSoLuong() {
         return soLuong;
     }
 
-    public void setSoLuong(float soLuong) {
+    public void setSoLuong(int soLuong) {
         this.soLuong = soLuong;
     }
 
     String type;
-    float soLuong;
+    int soLuong;
 }

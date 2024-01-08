@@ -63,7 +63,6 @@ public class DsSanPham extends AppCompatActivity {
         String role;
     String storageId;
     Spinner sortSpinner;
-    PieChart piechart;
     String type = "MEAT";
 
     @Override
@@ -71,7 +70,6 @@ public class DsSanPham extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_product);
 
-        piechart = findViewById(R.id.pieChart);
         imgAddProduct = findViewById(R.id.imgAddProduct);
         imaArrange = findViewById(R.id.imgArrageProduct);
         edtSearchProduct = findViewById(R.id.searchProduct);
@@ -85,6 +83,8 @@ public class DsSanPham extends AppCompatActivity {
                 this, R.array.sort_options, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sortSpinner.setAdapter(spinnerAdapter);
+        sortSpinner.setVisibility(View.VISIBLE);
+
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -117,7 +117,7 @@ public class DsSanPham extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     // Toggle visibility of the Spinner
-                    toggleSpinnerVisibility();
+//                    toggleSpinnerVisibility();
                 }
             });
 
@@ -128,7 +128,7 @@ public class DsSanPham extends AppCompatActivity {
                     String selectedItem = parentView.getItemAtPosition(position).toString();
                     if (selectedItem.equals(getString(R.string.sort_by_Cake))) {
                         type = "CAKE";
-
+                     parentView.getItemAtPosition(position);
                     } else if (selectedItem.equals(getString(R.string.sort_by_Candy))) {
                         type = "CANDY";
                     }
@@ -173,7 +173,6 @@ public class DsSanPham extends AppCompatActivity {
 
 //=======
 //        });
-        new LoadDataPieTask(piechart).execute();
 //>>>>>>> Stashed changes
         new MyAsyncTask().execute();
 
@@ -251,7 +250,6 @@ public class DsSanPham extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         new MyAsyncTask().execute();
-        new LoadDataPieTask(piechart).execute();
     }
 
     public static class LoadDataPieTask extends AsyncTask<Void, Void, List<CountByType>> {
@@ -335,7 +333,6 @@ public class DsSanPham extends AppCompatActivity {
                         }.getType();
                         itemList = gson.fromJson(responseBody, listType);
                         System.out.println("Đây la itemlist " + responseBody);
-
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -344,6 +341,7 @@ public class DsSanPham extends AppCompatActivity {
                                 listView.setAdapter(adapter);
                             }
                         });
+
                     }
                 }
 

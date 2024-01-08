@@ -37,9 +37,10 @@ import okhttp3.Response;
 public class StaticProduct extends AppCompatActivity {
 
     Button btnDsHetHan, btnDsSapHetHan, btnAllSanPham;
-    PieChart piechart ;
-    String idStor,soluongHang;
+    PieChart piechart;
+    String idStor, soluongHang;
     TextView txtSoLuongStorage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,28 +51,31 @@ public class StaticProduct extends AppCompatActivity {
         txtSoLuongStorage = findViewById(R.id.txtSoLuongStorage);
         btnDsSapHetHan = findViewById(R.id.btnDsSapHetHan);
 
-        idStor = DangNhap.account.getStorageId() != null ? DangNhap.account.getStorageId()   : " ";
+        idStor = DangNhap.account.getStorageId() != null ? DangNhap.account.getStorageId() : " ";
 
 
         btnDsSapHetHan.setOnClickListener(view -> {
             Intent intent = new Intent(StaticProduct.this, ListProduct.class);
+            intent.putExtra("id", "1");
             startActivity(intent);
         });
 
         btnDsHetHan.setOnClickListener(view -> {
             Intent intent1 = new Intent(StaticProduct.this, ListProduct.class);
+            intent1.putExtra("id","2");
             startActivity(intent1);
         });
 
         btnAllSanPham.setOnClickListener(view -> {
             Intent intent2 = new Intent(StaticProduct.this, DsSanPham.class);
-            intent2.putExtra("idSto",idStor);
+            intent2.putExtra("idSto", idStor);
             startActivity(intent2);
         });
         new LoadDataPieTask(piechart).execute();
         new LoadSoLuongHang().execute();
 
     }
+
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -79,7 +83,7 @@ public class StaticProduct extends AppCompatActivity {
         new LoadSoLuongHang().execute();
     }
 
-    public class LoadSoLuongHang extends  AsyncTask<Void, Void , String>{
+    public class LoadSoLuongHang extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... voids) {
             try {
@@ -97,8 +101,8 @@ public class StaticProduct extends AppCompatActivity {
                     String responseBody = response.body().string();
 //                    Gson gson = new Gson();
 //                    Type listType = new TypeToken<List<CountByType>>() {}.getType();
-                     soluongHang = responseBody;
-                     System.out.println("Só lượng hàng "+responseBody);
+                    soluongHang = responseBody;
+                    System.out.println("Só lượng hàng " + responseBody);
                     return soluongHang;
                 } else {
                     return "__";
@@ -119,6 +123,7 @@ public class StaticProduct extends AppCompatActivity {
             }
         }
     }
+
     public static class LoadDataPieTask extends AsyncTask<Void, Void, List<CountByType>> {
         @SuppressLint("StaticFieldLeak")
         private final PieChart pieChart;
@@ -143,7 +148,8 @@ public class StaticProduct extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     String responseBody = response.body().string();
                     Gson gson = new Gson();
-                    Type listType = new TypeToken<List<CountByType>>() {}.getType();
+                    Type listType = new TypeToken<List<CountByType>>() {
+                    }.getType();
                     return gson.fromJson(responseBody, listType);
                 } else {
                     return null;
@@ -162,12 +168,17 @@ public class StaticProduct extends AppCompatActivity {
                     entries.add(new PieEntry(product.getSoLuong(), product.getType()));
                 }
 
-                PieDataSet dataSet = new PieDataSet(entries, "Sản phẩm");
+                PieDataSet dataSet = new PieDataSet(entries, "");
                 dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                dataSet.setValueTextSize(16);
 
                 PieData pieData = new PieData(dataSet);
                 pieChart.setData(pieData);
+                pieChart.setPadding(100,5,5,5);
+                pieChart.getDescription().setEnabled(false);
+                pieChart.setCenterText("Tổng số hàng");
                 pieChart.invalidate();
+
             } else {
                 // Xử lý khi có lỗi
             }
