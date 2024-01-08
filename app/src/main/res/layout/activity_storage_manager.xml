@@ -91,6 +91,7 @@
                 android:src="@drawable/user1"/>
 
         </LinearLayout>
+
     </LinearLayout>
 
     <Spinner
@@ -102,6 +103,16 @@
         android:layout_marginLeft="350dp"
         android:layout_marginTop="16dp"
         android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btnThongKe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Statistical"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:background="#263EC3"
+        android:layout_gravity="center"/>
 
     <ListView
         android:id="@+id/lvStorage"

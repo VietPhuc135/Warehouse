@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -142,7 +143,7 @@ public class DsSanPham extends AppCompatActivity {
             });
         }
 
-        edtSearchProduct.addTextChangedListener(new TextWatcher() {
+        /*edtSearchProduct.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
                 // Do nothing
@@ -158,12 +159,50 @@ public class DsSanPham extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 // Do nothing
             }
-        });
+        });*/
 
         new MyAsyncTask().execute();
+
+        // Thiết lập adapter cho AutoCompleteTextView
+        ArrayAdapter<Product> autoCompleteAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_dropdown_item_1line, itemList);
+        edtSearchProduct.setAdapter(autoCompleteAdapter);
+
+        // Xử lý sự kiện chọn mục trong AutoCompleteTextView
+        edtSearchProduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Xử lý sự kiện khi chọn một mục từ danh sách gợi ý
+                Product selectedProduct = (Product) parent.getItemAtPosition(position);
+                // Hiển thị thông tin sản phẩm hoặc thực hiện hành động mong muốn
+                Toast.makeText(DsSanPham.this, selectedProduct.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Xử lý sự kiện thay đổi văn bản trong AutoCompleteTextView để lọc danh sách
+        edtSearchProduct.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Không cần xử lý trước sự thay đổi văn bản
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Lọc danh sách sản phẩm theo văn bản nhập vào
+                adapter.getFilter().filter(charSequence.toString());
+                //adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Không cần xử lý sau sự thay đổi văn bản
+            }
+        });
+
+
     }
 
-    private void filterData(String query) {
+    /*private void filterData(String query) {
         if (filteredData == null) {
             // Nếu chưa khởi tạo, hãy tạo một ArrayList mới
             filteredData = new ArrayList<>();
@@ -186,7 +225,7 @@ public class DsSanPham extends AppCompatActivity {
 
         // Notify the adapter that the data has changed
         adapter.notifyDataSetChanged();
-    }
+    }*/
 
     private void toggleSpinnerVisibility() {
         // Toggle visibility of the Spinner
