@@ -31,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     if (info != null) {
-                        Gson gson = new Gson();
-                        DangNhap.account = gson.fromJson(info, Account.class);
+//                        Gson gson = new Gson();
+//                        DangNhap.account = gson.fromJson(info, Account.class);
+                        DangNhap.account.setToken(info);
                         Intent intent = new Intent(MainActivity.this, SplashScreen.class);
                         startActivity(intent);
                     } else {

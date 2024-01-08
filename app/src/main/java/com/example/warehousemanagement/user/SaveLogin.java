@@ -142,3 +142,162 @@ public class SaveLogin {
     }
 
 }
+//
+//package com.example.warehousemanagement.user;
+//
+//import android.content.Context;
+//import android.content.SharedPreferences;
+//import android.os.Build;
+//import android.security.KeyPairGeneratorSpec;
+//import android.security.keystore.KeyGenParameterSpec;
+//import android.security.keystore.KeyProperties;
+//import android.util.Base64;
+//
+//import java.io.ByteArrayOutputStream;
+//import java.math.BigInteger;
+//import java.nio.charset.StandardCharsets;
+//import java.security.InvalidAlgorithmParameterException;
+//import java.security.KeyPair;
+//import java.security.KeyPairGenerator;
+//import java.security.KeyStore;
+//import java.security.NoSuchAlgorithmException;
+//import java.security.NoSuchProviderException;
+//import java.security.PrivateKey;
+//import java.security.PublicKey;
+//import java.security.spec.ECGenParameterSpec;
+//import java.util.Calendar;
+//
+//import javax.crypto.Cipher;
+//import javax.crypto.CipherOutputStream;
+//import javax.security.auth.x500.X500Principal;
+//
+//public class SaveLogin {
+//    private static final String PREF_NAME = "UserSession";
+//    private static final String KEY_USER_INFO = "userInfo";
+//    private static final String KEY_ALIAS = "MyKeyAlias";
+//    KeyPair keyPair;
+//    private SharedPreferences sharedPreferences;
+//    private SharedPreferences.Editor editor;
+//    private Context context;
+//
+//    public SaveLogin(Context context) {
+//        this.context = context;
+//        sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+//        editor = sharedPreferences.edit();
+//    }
+//
+//
+//    public void createKeys() throws NoSuchProviderException, NoSuchAlgorithmException, InvalidAlgorithmParameterException {
+//        KeyGenParameterSpec spec =
+//                new KeyGenParameterSpec.Builder(
+//                        KEY_ALIAS,
+//                        KeyProperties.PURPOSE_SIGN)
+//                        .setKeySize(4096) // Chọn kích thước khóa RSA ở đây, có thể điều chỉnh tùy ý
+//                        .setDigests(KeyProperties.DIGEST_SHA256,
+//                                KeyProperties.DIGEST_SHA384,
+//                                KeyProperties.DIGEST_SHA512)
+//                        .setSignaturePaddings(KeyProperties.SIGNATURE_PADDING_RSA_PKCS1)
+//                        .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_RSA_PKCS1)
+//                        .setUserAuthenticationRequired(false)
+//                        .setUserAuthenticationValidityDurationSeconds(5 * 60)
+//                        .build();
+//
+//        KeyPairGenerator generator = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_RSA, "AndroidKeyStore");
+//        generator.initialize(spec);
+//         keyPair = generator.generateKeyPair();
+//    }
+//
+//
+//    public void saveUserInfo(String userInfoJson) {
+//        try {
+//            KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
+//            keyStore.load(null);
+//
+//            if (!keyStore.containsAlias(KEY_ALIAS)) {
+////              createKeys();
+//
+//                Calendar start = Calendar.getInstance();
+//                Calendar end = Calendar.getInstance();
+//                end.add(Calendar.YEAR, 10);
+//                KeyPairGeneratorSpec spec = new KeyPairGeneratorSpec.Builder(context)
+//                        .setAlias(KEY_ALIAS)
+//                        .setSubject(new X500Principal("CN=" + KEY_ALIAS))
+//                        .setSerialNumber(BigInteger.ONE)
+//                        .setStartDate(start.getTime())
+//                        .setEndDate(end.getTime())
+//                        .setKeySize(4096)
+//                        .build();
+//                KeyPairGenerator generator = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_RSA, "AndroidKeyStore");
+//                generator.initialize(spec);
+//                 keyPair = generator.generateKeyPair();
+//            }
+//
+//            PublicKey publicKey = keyStore.getCertificate(KEY_ALIAS).getPublicKey();
+////            Cipher inputCipher =Cipher.getInstance("RSA");
+////            inputCipher.init(Cipher.ENCRYPT_MODE, publicKey);
+////            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+////            CipherOutputStream
+//            String encodedInfo = encrypt(publicKey, userInfoJson.getBytes());
+//
+//            editor.putString(KEY_USER_INFO, encodedInfo);
+//            editor.apply();
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    private static String encrypt(PublicKey publicKey, byte[] inputData) throws Exception {
+//        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+//        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+//        byte[] encryptedInfo = cipher.doFinal(inputData);
+//        String encodedEncryptedInfo = Base64.encodeToString(encryptedInfo, Base64.DEFAULT);
+//        return encodedEncryptedInfo;
+//    }
+//
+//    private static String decrypt(PrivateKey privateKey, byte[] encryptedData) throws Exception {
+//        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+//        cipher.init(Cipher.DECRYPT_MODE, privateKey);
+//        byte[] decryptedInfo = cipher.doFinal(encryptedData);
+//        return new String(decryptedInfo, StandardCharsets.UTF_8);
+//    }
+//
+//    public String getUserInfo() throws Exception {
+//        KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
+//        keyStore.load(null);
+//
+//        if (!keyStore.containsAlias(KEY_ALIAS)) {
+//            Calendar start = Calendar.getInstance();
+//            Calendar end = Calendar.getInstance();
+//            end.add(Calendar.YEAR, 10);
+//
+//            KeyGenParameterSpec spec =
+//                    new KeyGenParameterSpec.Builder(
+//                            KEY_ALIAS,
+//                            KeyProperties.PURPOSE_SIGN)
+//                            .setKeySize(4096) // Chọn kích thước khóa RSA ở đây, có thể điều chỉnh tùy ý
+//                            .setDigests(KeyProperties.DIGEST_SHA256,
+//                                    KeyProperties.DIGEST_SHA384,
+//                                    KeyProperties.DIGEST_SHA512)
+//                            .setSignaturePaddings(KeyProperties.SIGNATURE_PADDING_RSA_PKCS1)
+//                            .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_RSA_PKCS1)
+//                            .setUserAuthenticationRequired(false)
+//                            .setUserAuthenticationValidityDurationSeconds(5 * 60)
+//                            .build();
+//            KeyPairGenerator generator = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_RSA, "AndroidKeyStore");
+//            generator.initialize(spec);
+//
+//            generator.generateKeyPair();
+//        }
+//        PrivateKey privateKey = (PrivateKey) keyStore.getKey(KEY_ALIAS, null);
+//        String userInfo = sharedPreferences.getString(KEY_USER_INFO, null);
+//        String deecrypt=  decrypt(privateKey, userInfo.getBytes());
+//        return deecrypt;
+//    }
+//
+//    public void clearSession() {
+//        editor.clear();
+//        editor.apply();
+//    }
+//
+//}

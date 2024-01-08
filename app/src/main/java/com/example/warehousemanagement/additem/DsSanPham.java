@@ -3,6 +3,7 @@ package com.example.warehousemanagement.additem;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -79,7 +81,6 @@ public class DsSanPham extends AppCompatActivity {
         storageId = DangNhap.account.getStorageId();
         sortSpinner = findViewById(R.id.sortSpinner);
 
-//<<<<<<< HEAD
 //        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
 //                this, R.array.sort_options, android.R.layout.simple_spinner_item);
 //        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -127,6 +128,7 @@ public class DsSanPham extends AppCompatActivity {
                     this, R.array.sort_options, android.R.layout.simple_spinner_item);
             spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             sortSpinner.setAdapter(spinnerAdapter);
+              sortSpinner.setVisibility(View.VISIBLE);
 
             sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -135,7 +137,7 @@ public class DsSanPham extends AppCompatActivity {
                     String selectedItem = parentView.getItemAtPosition(position).toString();
                     if (selectedItem.equals(getString(R.string.sort_by_Cake))) {
                         type = "CAKE";
-                     parentView.getItemAtPosition(position);
+
                     } else if (selectedItem.equals(getString(R.string.sort_by_Candy))) {
                         type = "CANDY";
                     }
@@ -148,7 +150,7 @@ public class DsSanPham extends AppCompatActivity {
                         type = "CANNED FOOD";
                     }
                     onRestart();
-
+                    ((TextView) parentView.getChildAt(0)).setTextColor(Color.BLACK);
                     adapter.notifyDataSetChanged();
                 }
 

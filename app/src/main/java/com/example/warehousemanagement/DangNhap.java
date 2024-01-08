@@ -164,7 +164,8 @@ public class DangNhap extends AppCompatActivity {
                     Intent intent = new Intent(DangNhap.this, SplashScreen.class);
 
                     SaveLogin saveLogin = new SaveLogin(getApplicationContext());
-                    saveLogin.saveUserInfo(responseData);
+
+                    saveLogin.saveUserInfo(DangNhap.account.getToken());
                     startActivity(intent);
                     finish();
                 }
