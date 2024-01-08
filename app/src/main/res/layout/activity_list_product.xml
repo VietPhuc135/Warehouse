@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#A8CADA"
+    tools:context=".storage.ListProduct">
+
+    <TextView
+        android:id="@+id/titleStorage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:fontFamily="@font/lobster"
+        android:text="Danh sách sản phẩm"
+        android:textColor="#000000"
+        android:textSize="34dp"
+        android:textStyle="bold"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listViewProduct"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"/>
+</LinearLayout>

@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -50,6 +51,7 @@ public class QLStorage extends AppCompatActivity {
     String header, responseC;
     MapsActivity map;
     Spinner sortSpinner;
+    Button btnThongke;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,16 @@ public class QLStorage extends AppCompatActivity {
         storageNames = new ArrayList<>();
         adapter = new ArrayStorage(this, itemList);
         sortSpinner = findViewById(R.id.sortSpinner1);
+        btnThongke = findViewById(R.id.btnThongKe);
+
+        btnThongke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(QLStorage.this, StaticProduct.class);
+                startActivity(intent);
+            }
+        });
+
         ImageView imaArrange = findViewById(R.id.imgArrageStorage);
 
         imaArrange.setOnClickListener(new View.OnClickListener() {
