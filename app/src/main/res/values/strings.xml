@@ -6,5 +6,11 @@
     <string name="sort_by_quantity">Sort by Quantity</string>
     <string name="sort_by_email">Sort by Email</string>
     <string name="sort_by_address">Sort by Address</string>
+    <string name="sort_by_MEAT">Sort by Meat</string>
+    <string name="sort_by_MILK">Sort by Milk</string>
+    <string name="sort_by_Cake">Sort by Cake</string>
+    <string name="sort_by_Candy">Sort by Candy</string>
+    <string name="sort_by_CannedFood">Sort by Canned_Food</string>
+
 
 </resources>

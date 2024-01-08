@@ -18,6 +18,7 @@
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_import.xml" value="0.152" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_list_import_export_view_user.xml" value="0.1171875" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_list_market.xml" value="0.12056737588652482" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_list_product.xml" value="0.24791666666666667" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_list_storage_market.xml" value="0.1171875" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_list_user.xml" value="0.152" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_login.xml" value="0.176" />
@@ -27,10 +28,11 @@
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_orderadd.xml" value="0.264" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_scan_items.xml" value="0.1171875" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_splashs.xml" value="0.12708333333333333" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_static_product.xml" value="0.24791666666666667" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_storage_manager.xml" value="0.264" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_store_management.xml" value="0.17708333333333334" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_user_manager.xml" value="0.21467391304347827" />
-        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_view_product.xml" value="0.264" />
+        <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/activity_view_product.xml" value="0.152" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/custom_layout_snackbar.xml" value="0.264" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/item_line_item.xml" value="0.264" />
         <entry key="..\:/GitHub/Warehouse/app/src/main/res/layout/product_item.xml" value="0.264" />

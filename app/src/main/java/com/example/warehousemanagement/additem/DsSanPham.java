@@ -1,5 +1,6 @@
 package com.example.warehousemanagement.additem;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -16,17 +17,25 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.Api;
 import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.R;
+import com.example.warehousemanagement.obj.CountByType;
 import com.example.warehousemanagement.obj.Product;
 import com.example.warehousemanagement.order.AddOrder;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,6 +44,7 @@ import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -44,22 +54,24 @@ public class DsSanPham extends AppCompatActivity {
     String header;
     private ListView listView;
     private ArrayProduct adapter;
-    //    private ArrayAdapter<Product> adapter;
     private List<Product> itemList;
     private List<Product> filteredData;
     ImageView imgAddProduct,imaArrange;
     AutoCompleteTextView edtSearchProduct;
     Context context;
         String id;
-        String role,dsSanPham;
-        String storageId;
-    RequestBody body,body1;
+        String role;
+    String storageId;
     Spinner sortSpinner;
+    PieChart piechart;
+    String type = "MEAT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_product);
+
+        piechart = findViewById(R.id.pieChart);
         imgAddProduct = findViewById(R.id.imgAddProduct);
         imaArrange = findViewById(R.id.imgArrageProduct);
         edtSearchProduct = findViewById(R.id.searchProduct);
@@ -114,25 +126,22 @@ public class DsSanPham extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                     // Xử lý sự kiện sắp xếp danh sách khi chọn mục trong Spinner
                     String selectedItem = parentView.getItemAtPosition(position).toString();
-                    if (selectedItem.equals(getString(R.string.sort_by_name))) {
-                        // Sắp xếp theo tên sản phẩm
-                        Collections.sort(itemList, new Comparator<Product>() {
-                            @Override
-                            public int compare(Product p1, Product p2) {
-                                return p1.getName().compareToIgnoreCase(p2.getName());
-                            }
-                        });
-                    } else if (selectedItem.equals(getString(R.string.sort_by_quantity))) {
-                        // Sắp xếp theo số lượng sản phẩm
-                        Collections.sort(itemList, new Comparator<Product>() {
-                            @Override
-                            public int compare(Product p1, Product p2) {
-                                // Đổi sang kiểu số và so sánh
-                                return Float.compare(p1.getSoLuong(), p2.getSoLuong());
-                            }
-                        });
+                    if (selectedItem.equals(getString(R.string.sort_by_Cake))) {
+                        type = "CAKE";
+
+                    } else if (selectedItem.equals(getString(R.string.sort_by_Candy))) {
+                        type = "CANDY";
                     }
-                    // Cập nhật lại ListView sau khi sắp xếp
+                    if (selectedItem.equals(getString(R.string.sort_by_MEAT))) {
+                        type = "MEAT";
+                    } else if (selectedItem.equals(getString(R.string.sort_by_MILK))) {
+                        type = "MILK";
+                    }
+                    else if (selectedItem.equals(getString(R.string.sort_by_CannedFood))) {
+                        type = "CANNED FOOD";
+                    }
+                    onRestart();
+
                     adapter.notifyDataSetChanged();
                 }
 
@@ -159,8 +168,13 @@ public class DsSanPham extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 // Do nothing
             }
+//<<<<<<< Updated upstream
         });*/
 
+//=======
+//        });
+        new LoadDataPieTask(piechart).execute();
+//>>>>>>> Stashed changes
         new MyAsyncTask().execute();
 
         // Thiết lập adapter cho AutoCompleteTextView
@@ -237,22 +251,83 @@ public class DsSanPham extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         new MyAsyncTask().execute();
-
+        new LoadDataPieTask(piechart).execute();
     }
 
+    public static class LoadDataPieTask extends AsyncTask<Void, Void, List<CountByType>> {
+        @SuppressLint("StaticFieldLeak")
+        private final PieChart pieChart;
+
+        public LoadDataPieTask(PieChart pieChart) {
+            this.pieChart = pieChart;
+        }
+
+        @Override
+        protected List<CountByType> doInBackground(Void... voids) {
+            try {
+                OkHttpClient client = new OkHttpClient().newBuilder()
+                        .build();
+                MediaType mediaType = MediaType.parse("text/plain");
+                RequestBody body = RequestBody.create(mediaType, "");
+                Request request = new Request.Builder()
+                        .url(Api.baseURL + "/product/list-count-by-type")
+                        .method("GET", null)
+                        .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdG9ja2VyIiwiaWF0IjoxNzA0NjE2Njg5LCJleHAiOjE3MDUxNDIyODl9.EF6KKkuVeGVkkZUYeeWH4Mzm2Cp83Mi0Qs9HtueefZk")
+                        .build();
+                Response response = client.newCall(request).execute();
+                if (response.isSuccessful()) {
+                    String responseBody = response.body().string();
+                    Gson gson = new Gson();
+                    Type listType = new TypeToken<List<CountByType>>() {}.getType();
+                    return gson.fromJson(responseBody, listType);
+                } else {
+                    return null;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(List<CountByType> pieaDataList) {
+            if (pieaDataList != null) {
+                List<PieEntry> entries = new ArrayList<>();
+                for (CountByType product : pieaDataList) {
+                    entries.add(new PieEntry(product.getSoLuong(), product.getType()));
+                }
+
+                PieDataSet dataSet = new PieDataSet(entries, "Sản phẩm");
+                dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+
+                PieData pieData = new PieData(dataSet);
+                pieChart.setData(pieData);
+                pieChart.invalidate();
+            } else {
+                // Xử lý khi có lỗi
+            }
+        }
+    }
+
+
+    @SuppressLint("StaticFieldLeak")
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
         @Override
         protected Boolean doInBackground(String... params) {
             OkHttpClient client = new OkHttpClient();
             MediaType mediaType = MediaType.parse("text/plain");
+
+            RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                    .addFormDataPart("type",type)
+                    .build();
             Request request = new Request.Builder()
                     .url(Api.baseURL + "/product/getlist")
-                    .method("GET",null)
-                    .addHeader("Authorization", "Bearer " + header)
+                    .method("POST", body)
+                    .addHeader("Authorization", "Bearer "+header)
                     .build();
             client.newCall(request).enqueue(new okhttp3.Callback() {
                 @Override
-                public void onResponse(Call call, Response response) throws IOException {
+                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                     if (response.isSuccessful()) {
                         String responseBody = response.body().string();
                         Gson gson = new Gson();
@@ -261,16 +336,6 @@ public class DsSanPham extends AppCompatActivity {
                         itemList = gson.fromJson(responseBody, listType);
                         System.out.println("Đây la itemlist " + responseBody);
 
-//                        List<Product> filteredList = new ArrayList<>();
-//                        if (id != null){
-//                            for (Product product : itemList) {
-//                                String idSto = product.getStorageId();
-//                                if (product.getStorageId().equals(id)) {
-//                                    filteredList.add(product);
-//                                }
-//                            }
-//                        }
-                        // Cập nhật giao diện trong luồng UI
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -285,7 +350,6 @@ public class DsSanPham extends AppCompatActivity {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     System.out.println("fail");
-
                     e.printStackTrace();
                 }
             });
@@ -295,9 +359,8 @@ public class DsSanPham extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean result) {
             if (result) {
-//                System.out.println(jsonObject);
-//                Intent intent = new Intent(AddStorage.this, QLStorage.class);
-//                startActivity(intent);
+
+
             } else {
                 System.out.println("lỗi ");
             }

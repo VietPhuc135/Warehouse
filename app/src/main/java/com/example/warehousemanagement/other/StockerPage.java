@@ -15,6 +15,7 @@ import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.TrangChu;
 import com.example.warehousemanagement.order.OrderList;
 import com.example.warehousemanagement.profile.ProfilePage;
+import com.example.warehousemanagement.storage.StaticProduct;
 
 public class StockerPage extends  AppCompatActivity{
     Button btnDN, btnDangki;
@@ -28,6 +29,8 @@ public class StockerPage extends  AppCompatActivity{
         imgProduct = findViewById(R.id.imgProduct);
         imgUser = findViewById(R.id.imgUser);
         imgProFile = findViewById(R.id.imgProFile);
+
+
         imgProFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +41,7 @@ public class StockerPage extends  AppCompatActivity{
         imgProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(StockerPage.this, DsSanPham.class);
+                Intent intent2 = new Intent(StockerPage.this, StaticProduct.class);
                 intent2.putExtra("idSto",idStor);
                 startActivity(intent2);
             }

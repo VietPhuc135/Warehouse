@@ -75,4 +75,12 @@
         android:background="#263EC3"
         android:layout_gravity="center"/>
 
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        >
+    </com.github.mikephil.charting.charts.PieChart>
+
+
 </LinearLayout>

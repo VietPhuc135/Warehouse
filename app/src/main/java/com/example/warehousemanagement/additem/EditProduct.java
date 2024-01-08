@@ -87,11 +87,11 @@ public class EditProduct extends AppCompatActivity {
         Spinner spinner1 = (Spinner) findViewById(R.id.spinnerCategory);
         List<String> items1 = new ArrayList<>();
         if (spinner1 != null) {
-            items1.add("Cake");
-            items1.add("Candy");
-            items1.add("Meat");
-            items1.add("Milk");
-            items1.add("Canned Food");
+            items1.add("CAKE");
+            items1.add("CANDY");
+            items1.add("MEAT");
+            items1.add("MILK");
+            items1.add("CANNED FOOD");
             ArrayAdapter<String> adapterCate = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items1);
             adapterCate.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner1.setAdapter(adapterCate);
@@ -132,6 +132,8 @@ public class EditProduct extends AppCompatActivity {
                     jsonObject.put("soLuong", stock);
                     jsonObject.put("date", date);
                     jsonObject.put("category", category);
+                    jsonObject.put("type",category);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

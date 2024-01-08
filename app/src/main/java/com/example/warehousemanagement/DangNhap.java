@@ -1,6 +1,7 @@
 package com.example.warehousemanagement;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.security.KeyPairGeneratorSpec;
 import android.security.keystore.KeyProperties;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.warehousemanagement.obj.Account;
@@ -137,6 +139,7 @@ public class DangNhap extends AppCompatActivity {
                 });
                 e.printStackTrace();
             }
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 // Xử lý khi nhận được phản hồi từ server
