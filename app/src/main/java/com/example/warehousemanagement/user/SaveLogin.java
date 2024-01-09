@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Base64;
 
+import androidx.annotation.Keep;
 import androidx.annotation.RequiresApi;
 
 import java.security.PrivateKey;
@@ -16,7 +17,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-
+@Keep
 public class SaveLogin {
     private static final String PREF_NAME = "UserSession";
     private static final String KEY_USER_INFO = "userInfo";

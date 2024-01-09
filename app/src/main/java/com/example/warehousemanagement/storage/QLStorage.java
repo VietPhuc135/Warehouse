@@ -22,6 +22,7 @@ import com.example.warehousemanagement.DangNhap;
 import com.example.warehousemanagement.MapsActivity;
 import com.example.warehousemanagement.R;
 import com.example.warehousemanagement.obj.Storage;
+import com.example.warehousemanagement.other.SaveLoginKey;
 import com.example.warehousemanagement.profile.ProfilePage;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -57,7 +58,7 @@ public class QLStorage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage_manager);
-        header = DangNhap.account.getToken();
+        header = DangNhap.account.getToken() != null ? DangNhap.account.getToken() : "" ;
         storageList = findViewById(R.id.lvStorage);
         role = DangNhap.account.getRole();
         storageNames = new ArrayList<>();
@@ -157,6 +158,16 @@ public class QLStorage extends AppCompatActivity {
         if (role.equals("SALER")) {
             title = findViewById(R.id.titleStorage);
             title.setText("Kho ");
+            String a = "";
+            SaveLoginKey saveLogin = new SaveLoginKey(getApplicationContext());
+            saveLogin.saveUserInfo(a);
+
+            try {
+                String b = saveLogin.getUserInfo();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            saveLogin.clearSession();
         }
 
         registerForContextMenu(storageList);

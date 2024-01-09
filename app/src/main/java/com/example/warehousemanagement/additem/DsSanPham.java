@@ -81,14 +81,6 @@ public class DsSanPham extends AppCompatActivity {
         storageId = DangNhap.account.getStorageId();
         sortSpinner = findViewById(R.id.sortSpinner);
 
-//        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
-//                this, R.array.sort_options, android.R.layout.simple_spinner_item);
-//        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        sortSpinner.setAdapter(spinnerAdapter);
-//        sortSpinner.setVisibility(View.VISIBLE);
-
-
-
         Intent intent = getIntent();
         if (intent != null) {
             id = intent.getStringExtra("id");
@@ -120,47 +112,47 @@ public class DsSanPham extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     // Toggle visibility of the Spinner
-//                    toggleSpinnerVisibility();
+                    toggleSpinnerVisibility();
                 }
             });
 
-            ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
-                    this, R.array.sort_options, android.R.layout.simple_spinner_item);
-            spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            sortSpinner.setAdapter(spinnerAdapter);
-              sortSpinner.setVisibility(View.VISIBLE);
-
-            sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                    // Xử lý sự kiện sắp xếp danh sách khi chọn mục trong Spinner
-                    String selectedItem = parentView.getItemAtPosition(position).toString();
-                    if (selectedItem.equals(getString(R.string.sort_by_Cake))) {
-                        type = "CAKE";
-
-                    } else if (selectedItem.equals(getString(R.string.sort_by_Candy))) {
-                        type = "CANDY";
-                    }
-                    if (selectedItem.equals(getString(R.string.sort_by_MEAT))) {
-                        type = "MEAT";
-                    } else if (selectedItem.equals(getString(R.string.sort_by_MILK))) {
-                        type = "MILK";
-                    }
-                    else if (selectedItem.equals(getString(R.string.sort_by_CannedFood))) {
-                        type = "CANNED FOOD";
-                    }
-                    onRestart();
-                    ((TextView) parentView.getChildAt(0)).setTextColor(Color.BLACK);
-                    adapter.notifyDataSetChanged();
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parentView) {
-                    // Không có hành động cụ thể khi không chọn mục nào
-                }
-            });
         }
 
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
+                this, R.array.sort_options, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sortSpinner.setAdapter(spinnerAdapter);
+        sortSpinner.setVisibility(View.VISIBLE);
+
+        sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Xử lý sự kiện sắp xếp danh sách khi chọn mục trong Spinner
+                String selectedItem = parentView.getItemAtPosition(position).toString();
+                if (selectedItem.equals(getString(R.string.sort_by_Cake))) {
+                    type = "CAKE";
+
+                } else if (selectedItem.equals(getString(R.string.sort_by_Candy))) {
+                    type = "CANDY";
+                }
+                if (selectedItem.equals(getString(R.string.sort_by_MEAT))) {
+                    type = "MEAT";
+                } else if (selectedItem.equals(getString(R.string.sort_by_MILK))) {
+                    type = "MILK";
+                }
+                else if (selectedItem.equals(getString(R.string.sort_by_CannedFood))) {
+                    type = "CANNED FOOD";
+                }
+                onRestart();
+                ((TextView) parentView.getChildAt(0)).setTextColor(Color.BLACK);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Không có hành động cụ thể khi không chọn mục nào
+            }
+        });
         /*edtSearchProduct.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
@@ -260,62 +252,6 @@ public class DsSanPham extends AppCompatActivity {
         super.onRestart();
         new MyAsyncTask().execute();
     }
-
-    public static class LoadDataPieTask extends AsyncTask<Void, Void, List<CountByType>> {
-        @SuppressLint("StaticFieldLeak")
-        private final PieChart pieChart;
-
-        public LoadDataPieTask(PieChart pieChart) {
-            this.pieChart = pieChart;
-        }
-
-        @Override
-        protected List<CountByType> doInBackground(Void... voids) {
-            try {
-                OkHttpClient client = new OkHttpClient().newBuilder()
-                        .build();
-                MediaType mediaType = MediaType.parse("text/plain");
-                RequestBody body = RequestBody.create(mediaType, "");
-                Request request = new Request.Builder()
-                        .url(Api.baseURL + "/product/list-count-by-type")
-                        .method("GET", null)
-                        .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdG9ja2VyIiwiaWF0IjoxNzA0NjE2Njg5LCJleHAiOjE3MDUxNDIyODl9.EF6KKkuVeGVkkZUYeeWH4Mzm2Cp83Mi0Qs9HtueefZk")
-                        .build();
-                Response response = client.newCall(request).execute();
-                if (response.isSuccessful()) {
-                    String responseBody = response.body().string();
-                    Gson gson = new Gson();
-                    Type listType = new TypeToken<List<CountByType>>() {}.getType();
-                    return gson.fromJson(responseBody, listType);
-                } else {
-                    return null;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(List<CountByType> pieaDataList) {
-            if (pieaDataList != null) {
-                List<PieEntry> entries = new ArrayList<>();
-                for (CountByType product : pieaDataList) {
-                    entries.add(new PieEntry(product.getSoLuong(), product.getType()));
-                }
-
-                PieDataSet dataSet = new PieDataSet(entries, "Sản phẩm");
-                dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-
-                PieData pieData = new PieData(dataSet);
-                pieChart.setData(pieData);
-                pieChart.invalidate();
-            } else {
-                // Xử lý khi có lỗi
-            }
-        }
-    }
-
 
     @SuppressLint("StaticFieldLeak")
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {

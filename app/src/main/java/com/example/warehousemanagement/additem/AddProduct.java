@@ -1,5 +1,6 @@
 package com.example.warehousemanagement.additem;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -38,12 +39,13 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class AddProduct extends AppCompatActivity {
-    private EditText etName, etCode, etStock, etNote, etProducer ;
+    private EditText etName, etCode, etStock, etNote, etProducer;
     private Button btnSubmit;
-    String header ;
-    TextView etDate,etStatus,etCategory;
+    String header;
+    TextView etDate, etStatus, etCategory;
     JSONObject jsonObject = new JSONObject();
-    private ArrayProduct adapter ;
+    private ArrayProduct adapter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 //        setTheme(R.style.Base_Theme_AppCompat_Dialog);
@@ -51,16 +53,16 @@ public class AddProduct extends AppCompatActivity {
         setContentView(R.layout.activity_additem);
         String storId = DangNhap.account.getStorageId();
         header = DangNhap.account.getToken();
-                etName = findViewById(R.id.etName);
-                etCode = findViewById(R.id.etCode);
-                etDate = findViewById(R.id.etDate);
-                etStock = findViewById(R.id.etStock);
-                etNote = findViewById(R.id.etNote);
-                etProducer = findViewById(R.id.etProducer);
-                etStatus = findViewById(R.id.etStatus);
-                etCategory = findViewById(R.id.etCategory);
-                btnSubmit = findViewById(R.id.btnSubmit);
-                    etProducer.setVisibility(View.GONE);
+        etName = findViewById(R.id.etName);
+        etCode = findViewById(R.id.etCode);
+        etDate = findViewById(R.id.etDate);
+        etStock = findViewById(R.id.etStock);
+        etNote = findViewById(R.id.etNote);
+        etProducer = findViewById(R.id.etProducer);
+        etStatus = findViewById(R.id.etStatus);
+        etCategory = findViewById(R.id.etCategory);
+        btnSubmit = findViewById(R.id.btnSubmit);
+        etProducer.setVisibility(View.GONE);
         Spinner spinner = (Spinner) findViewById(R.id.spinnerStatus);
         List<String> items = new ArrayList<>();
         if (spinner != null) {
@@ -97,32 +99,33 @@ public class AddProduct extends AppCompatActivity {
         }
 
         etDate.setOnClickListener(v -> showDatePickerDialog());
-                btnSubmit.setOnClickListener(v -> {
-                    // Lấy dữ liệu từ EditText
-                    String name = etName.getText().toString().trim();
-                    String code = etCode.getText().toString().trim();
-                    int stock = Integer.parseInt(etStock.getText().toString().trim());
-                    String note = etNote.getText().toString().trim();
+        btnSubmit.setOnClickListener(v -> {
+            // Lấy dữ liệu từ EditText
+            String name = etName.getText().toString().trim();
+            String code = etCode.getText().toString().trim();
+            int stock = Integer.parseInt(etStock.getText().toString().trim());
+            String note = etNote.getText().toString().trim();
 //                        String producer = etProducer.getText().toString().trim();
-                    String status = spinner.getSelectedItem().toString();
-                    String category =spinner1.getSelectedItem().toString();
+            String status = spinner.getSelectedItem().toString();
+            String category = spinner1.getSelectedItem().toString();
 
-                    // Tạo JSON object từ dữ liệu
+            // Tạo JSON object từ dữ liệu
 
-                    try {
-                        jsonObject.put("name", name);
-                        jsonObject.put("maSp", code);
-                        jsonObject.put("storageId", storId);
-                        jsonObject.put("soLuong", stock);
-                        jsonObject.put("date", note);
-                        jsonObject.put("category", category);
-                        jsonObject.put("type",category);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    new MyAsyncTask().execute(jsonObject.toString());
-                });
+            try {
+                jsonObject.put("name", name);
+                jsonObject.put("maSp", code);
+                jsonObject.put("storageId", storId);
+                jsonObject.put("soLuong", stock);
+                jsonObject.put("date", note);
+                jsonObject.put("category", category);
+                jsonObject.put("type", category);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+            new MyAsyncTask().execute(jsonObject.toString());
+        });
+    }
+
     private class MyAsyncTask extends AsyncTask<String, Void, Boolean> {
 
         @Override
@@ -132,14 +135,14 @@ public class AddProduct extends AppCompatActivity {
             RequestBody requestBody = RequestBody.create(mediaType, params[0]);
             Request request = new Request.Builder()
                     .url(Api.baseURL + "/product/add")
-                    .addHeader("Authorization", "Bearer " +  header)
+                    .addHeader("Authorization", "Bearer " + header)
                     .method("POST", requestBody)
                     .build();
 
 
             try {
                 Response response = client.newCall(request).execute();
-                   int i =  response.code();
+                int i = response.code();
                 if (response.isSuccessful()) {
                     System.out.println(jsonObject);
                     return true;
@@ -160,7 +163,7 @@ public class AddProduct extends AppCompatActivity {
                 AddProduct.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(AddProduct.this,"Thêm thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddProduct.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
 //                        adapter.notifyDataSetChanged();
                     }
                 });
@@ -170,13 +173,14 @@ public class AddProduct extends AppCompatActivity {
                 AddProduct.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(AddProduct.this,"Thêm không thành công!!! ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddProduct.this, "Thêm không thành công!!! ", Toast.LENGTH_SHORT).show();
                     }
                 });
                 System.out.println("lỗi ");
             }
         }
     }
+
     private void showDatePickerDialog() {
         // Lấy ngày hiện tại
         Calendar calendar = Calendar.getInstance();
@@ -194,7 +198,8 @@ public class AddProduct extends AppCompatActivity {
 
                 // Gửi giá trị ngày đã chọn lên API
                 try {
-                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                    @SuppressLint("SimpleDateFormat")
+                    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
                     Date date = format.parse(selectedDate);
                     long timestamp = date.getTime();
                     jsonObject.put("date", timestamp);

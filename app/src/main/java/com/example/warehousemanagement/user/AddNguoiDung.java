@@ -106,8 +106,8 @@ public class AddNguoiDung extends AppCompatActivity {
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             RequestBody requestBody = RequestBody.create(mediaType, params[0]);
             Request request = new Request.Builder()
-                    .url(Api.baseURL + "/user/add")
-                    .addHeader("Authorization", "Bearer " + header)
+                    .url(Api.baseURL + "/api/v1/auth/register")
+//                    .addHeader("Authorization", "Bearer " + header)
                     .method("POST", requestBody)
                     .build();
 

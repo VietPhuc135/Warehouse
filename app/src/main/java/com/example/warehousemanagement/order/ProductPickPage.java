@@ -3,13 +3,17 @@ package com.example.warehousemanagement.order;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +25,7 @@ import com.example.warehousemanagement.additem.AddProduct;
 import com.example.warehousemanagement.additem.ArrayProduct;
 import com.example.warehousemanagement.additem.DsSanPham;
 import com.example.warehousemanagement.obj.Product;
+import com.github.mikephil.charting.charts.PieChart;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -30,6 +35,7 @@ import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -41,9 +47,9 @@ public class ProductPickPage extends AppCompatActivity {
     private ProductPickAdapter adapter;
     private List<Product> itemList;
     ImageView imgAddProduct,imaArrange;
-    String id;
-    String role;
-    String storageId;
+    Spinner sortSpinner;
+    String type = "MEAT";
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -55,21 +61,56 @@ public class ProductPickPage extends AppCompatActivity {
         listView = findViewById(R.id.lvProduct);
         TextView idTitle = findViewById(R.id.idTitle);
         LinearLayout searchBarviewpd = findViewById(R.id.searchBarviewpd);
+        sortSpinner = findViewById(R.id.sortSpinner);
 
         Log.d("goitao","1");
+
       searchBarviewpd.setVisibility(View.GONE);
         idTitle.setText("Danh sách sản phẩm");
         header = DangNhap.account.getToken();
         adapter = new ProductPickAdapter(this, itemList);
-        new MyAsyncTask().execute();
+
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(
+                this, R.array.sort_options, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sortSpinner.setAdapter(spinnerAdapter);
+        sortSpinner.setVisibility(View.VISIBLE);
+
+        sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Xử lý sự kiện sắp xếp danh sách khi chọn mục trong Spinner
+                String selectedItem = parentView.getItemAtPosition(position).toString();
+                if (selectedItem.equals(getString(R.string.sort_by_Cake))) {
+                    type = "CAKE";
+
+                } else if (selectedItem.equals(getString(R.string.sort_by_Candy))) {
+                    type = "CANDY";
+                }
+                if (selectedItem.equals(getString(R.string.sort_by_MEAT))) {
+                    type = "MEAT";
+                } else if (selectedItem.equals(getString(R.string.sort_by_MILK))) {
+                    type = "MILK";
+                }
+                else if (selectedItem.equals(getString(R.string.sort_by_CannedFood))) {
+                    type = "CANNED FOOD";
+                }
+                restart();
+                ((TextView) parentView.getChildAt(0)).setTextColor(Color.BLACK);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Không có hành động cụ thể khi không chọn mục nào
+            }
+        });
     }
 
-//    @Override
-//    protected void onRestart() {
-//        super.onRestart();
-//        new MyAsyncTask().execute();
-//
-//    }
+    void restart(){
+        new MyAsyncTask().execute();
+
+    }
 
 
     @Override
@@ -84,10 +125,13 @@ public class ProductPickPage extends AppCompatActivity {
         protected Boolean doInBackground(String... params) {
             OkHttpClient client = new OkHttpClient();
             MediaType mediaType = MediaType.parse("text/plain");
+            RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                    .addFormDataPart("type",type)
+                    .build();
             Request request = new Request.Builder()
                     .url(Api.baseURL + "/product/getlist")
-                    .method("GET",null)
-                    .addHeader("Authorization", "Bearer " + header)
+                    .method("POST", body)
+                    .addHeader("Authorization", "Bearer "+header)
                     .build();
             client.newCall(request).enqueue(new okhttp3.Callback() {
                 @Override

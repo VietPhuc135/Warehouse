@@ -31,6 +31,7 @@ public class StockerPage extends  AppCompatActivity{
         imgProFile = findViewById(R.id.imgProFile);
 
 
+
         imgProFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
